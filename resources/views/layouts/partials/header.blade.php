@@ -15,10 +15,12 @@
                 <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> 10 20 123 456</a>
                 <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> info@mydomain.com</a>
             </div>
-            <div class="col-lg-3 text-right">
-                <a href="{{route('login')}}" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
-                <a href="{{route('register')}}" class="small btn btn-primary px-4 py-2 rounded-0"><span
-                        class="icon-users"></span> Register</a>
+            <div class="col-lg-3 social-wrap text-right">
+                <a href="#"><span class="icon-facebook"></span></a>
+                <a href="#"><span class="icon-twitter"></span></a>
+                <a href="#"><span class="icon-linkedin"></span></a>
+                <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
+                        class="icon-menu h3"></span></a>
             </div>
         </div>
     </div>
@@ -59,12 +61,12 @@
                 </nav>
             </div>
             <div class="ml-auto">
-                <div class="social-wrap">
-                    <a href="#"><span class="icon-facebook"></span></a>
-                    <a href="#"><span class="icon-twitter"></span></a>
-                    <a href="#"><span class="icon-linkedin"></span></a>
-                    <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
-                            class="icon-menu h3"></span></a>
+                <div class="container">
+                    <div class="text-right">
+                        <a href="{{route('login')}}" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
+                        <a href="{{route('register')}}" class="small btn btn-primary px-4 py-2 rounded-0"><span
+                                class="icon-users"></span> Register</a>
+                    </div>
                 </div>
             </div>
         </div>
