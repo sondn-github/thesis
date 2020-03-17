@@ -18,6 +18,9 @@ class CreateLessonsTable extends Migration
             $table->unsignedInteger('category_id');
             $table->string('name');
             $table->text('description')->nullable();
+            $table->text('file');
+            $table->text('thumbnail')->nullable();
+            $table->unsignedInteger('view')->default(0);
             $table->unsignedInteger('user_id');
 
             $table->timestamps();
