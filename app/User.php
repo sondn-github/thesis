@@ -15,7 +15,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     /**
@@ -26,4 +31,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /*
+     * The name of column
+     * */
+    public const COL_ID = 'id';
+    public const COL_NAME = 'name';
+    public const COL_EMAIL = 'email';
+    public const COL_BIRTHDAY = 'birthday';
+    public const COL_ROLE_ID = 'role_id';
+    public const COL_RELIABILITY = 'reliability';
+    public const COL_SPECIALTY = 'specialty';
+    public const COL_LEVEL = 'level';
+    public const COL_AVATAR = 'avatar';
+
+
 }

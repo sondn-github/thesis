@@ -2,9 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model as AppModel;
 
-class Category extends Model
+class Category extends AppModel
 {
-    //
+    protected $table = 'categories';
+
+    public const COL_NAME = 'name';
 }
