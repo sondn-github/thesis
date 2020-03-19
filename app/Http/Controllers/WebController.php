@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\Interfaces\LessonServiceInterface;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class WebController extends Controller
 {
     protected $lessonService;
 
@@ -16,7 +16,6 @@ class HomeController extends Controller
      */
     public function __construct(LessonServiceInterface $lessonService)
     {
-        $this->middleware('auth');
         $this->lessonService = $lessonService;
     }
 

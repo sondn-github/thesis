@@ -17,10 +17,12 @@ class CreateLessonsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('category_id');
             $table->string('name');
+            $table->text('abstract')->nullable();
             $table->text('description')->nullable();
             $table->text('file');
             $table->text('thumbnail')->nullable();
             $table->unsignedInteger('view')->default(0);
+            $table->boolean('status')->default(true);
             $table->unsignedInteger('user_id');
 
             $table->timestamps();

@@ -2,12 +2,13 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -44,6 +45,6 @@ class User extends Authenticatable
     public const COL_SPECIALTY = 'specialty';
     public const COL_LEVEL = 'level';
     public const COL_AVATAR = 'avatar';
-
+    public const COL_STATUS = 'status';
 
 }

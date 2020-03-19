@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('specialty')->nullable();
             $table->string('level')->nullable();
             $table->string('avatar')->nullable();
+            $table->boolean('status')->default(true);
 
             $table->rememberToken();
             $table->timestamps();

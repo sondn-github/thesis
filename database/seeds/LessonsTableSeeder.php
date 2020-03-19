@@ -16,101 +16,164 @@ class LessonsTableSeeder extends Seeder
                 'id' => 1,
                 'category_id' => 1,
                 'name' => 'Lập trình hướng đối tượng',
-                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                'abstract' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến lập trình hướng đối tượng, một phương pháp lập trình nền tảng 
                 cho các ngôn ngữ lập trình phổ biến hiện nay như Java, Python, C++.... ',
                 'user_id' => 3,
                 'file' => '/files/Lecture 01 - Introduction to Object Orientation.pdf',
                 'thumbnail' => '/images/course_2.jpg',
                 'view' => rand(10,100),
+                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
             ],
             [
                 'id' => 2,
                 'category_id' => 1,
                 'name' => 'Lập trình hướng đối tượng',
-                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                'abstract' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ... ',
                 'user_id' => 3,
                 'file' => '/files/CA-HEDSPI2016.pdf',
                 'thumbnail' => '/images/course_2.jpg',
                 'view' => rand(10,100),
+                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
             ],
             [
                 'id' => 3,
                 'category_id' => 1,
                 'name' => 'Lập trình hướng đối tượng',
-                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                'abstract' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ... ',
                 'user_id' => 3,
                 'file' => '/files/CA-HEDSPI2016.pdf',
                 'thumbnail' => '/images/course_2.jpg',
                 'view' => rand(10,100),
+                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
             ],
             [
                 'id' => 4,
                 'category_id' => 1,
                 'name' => 'Lập trình hướng đối tượng',
-                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                'abstract' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ... ',
                 'user_id' => 3,
                 'file' => '/files/CA-HEDSPI2016.pdf',
                 'thumbnail' => '/images/course_2.jpg',
                 'view' => rand(10,100),
+                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
             ],
             [
                 'id' => 5,
                 'category_id' => 1,
                 'name' => 'Lập trình hướng đối tượng',
-                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                'abstract' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ... ',
                 'user_id' => 3,
                 'file' => '/files/CA-HEDSPI2016.pdf',
                 'thumbnail' => '/images/course_2.jpg',
                 'view' => rand(10,100),
+                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
             ],
             [
                 'id' => 6,
                 'category_id' => 1,
                 'name' => 'Lập trình hướng đối tượng',
-                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                'abstract' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ... ',
                 'user_id' => 3,
                 'file' => '/files/CA-HEDSPI2016.pdf',
                 'thumbnail' => '/images/course_2.jpg',
                 'view' => rand(10,100),
+                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
             ],
             [
                 'id' => 7,
                 'category_id' => 1,
                 'name' => 'Lập trình hướng đối tượng',
-                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                'abstract' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ... ',
                 'user_id' => 3,
                 'file' => '/files/CA-HEDSPI2016.pdf',
                 'thumbnail' => '/images/course_2.jpg',
                 'view' => rand(10,100),
+                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
             ],
             [
                 'id' => 8,
                 'category_id' => 1,
                 'name' => 'Lập trình hướng đối tượng',
-                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                'abstract' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ... ',
                 'user_id' => 3,
                 'file' => '/files/CA-HEDSPI2016.pdf',
                 'thumbnail' => '/images/course_2.jpg',
                 'view' => rand(10,100),
+                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
             ],
             [
                 'id' => 9,
                 'category_id' => 1,
                 'name' => 'Lập trình hướng đối tượng',
-                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                'abstract' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ... ',
                 'user_id' => 3,
                 'file' => '/files/CA-HEDSPI2016.pdf',
                 'thumbnail' => '/images/course_2.jpg',
                 'view' => rand(10,100),
+                'description' => 'Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
+                đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
             ],
         ]);
     }
