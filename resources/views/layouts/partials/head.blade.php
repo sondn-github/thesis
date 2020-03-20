@@ -26,7 +26,7 @@
     <link href="{{asset("css/jquery.mb.YTPlayer.min.css")}}" media="all" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="{{asset("css/style.css")}}">
-
+    <link rel="stylesheet" href="{{asset("css/custom.css")}}">
 
 </head>
 

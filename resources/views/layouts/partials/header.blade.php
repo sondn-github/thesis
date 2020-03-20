@@ -10,17 +10,19 @@
 <div class="py-2 bg-light">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-9 d-none d-lg-block">
-                <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> Have a questions?</a>
+            <div class="col-lg-10 d-none d-lg-block">
+                <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> {{__('layouts/header.have-a-questions')}}</a>
                 <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> 10 20 123 456</a>
                 <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> info@mydomain.com</a>
             </div>
-            <div class="col-lg-3 social-wrap text-right">
-                <a href="#"><span class="icon-facebook"></span></a>
-                <a href="#"><span class="icon-twitter"></span></a>
-                <a href="#"><span class="icon-linkedin"></span></a>
-                <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
-                        class="icon-menu h3"></span></a>
+            <div class="col-lg-2 text-right">
+                <select name="language" id="language" class="form-control small">
+                    @foreach($languages as $language)
+                        <option value="{{$language}}" {{$language == $currLang? "selected" : ""}}>
+                            {{strtoupper($language)}}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         </div>
     </div>
@@ -38,23 +40,23 @@
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                         <li class="active">
-                            <a href="{{route('index')}}" class="nav-link text-left">Home</a>
+                            <a href="{{route('index')}}" class="nav-link text-left">{{__('layouts/header.home')}}</a>
                         </li>
                         <li class="has-children">
-                            <a href="about.html" class="nav-link text-left">About Us</a>
+                            <a href="#" class="nav-link text-left">{{__('layouts/header.about')}}</a>
                             <ul class="dropdown">
-                                <li><a href="teachers.html">Our Teachers</a></li>
-                                <li><a href="about.html">Our School</a></li>
+                                <li><a href="#">Our Teachers</a></li>
+                                <li><a href="#">Our School</a></li>
                             </ul>
                         </li>
+{{--                        <li>--}}
+{{--                            <a href="admissions.html" class="nav-link text-left">Admissions</a>--}}
+{{--                        </li>--}}
                         <li>
-                            <a href="admissions.html" class="nav-link text-left">Admissions</a>
+                            <a href="{{route('lessons')}}" class="nav-link text-left">{{__('layouts/header.lesson')}}</a>
                         </li>
                         <li>
-                            <a href="courses.html" class="nav-link text-left">Courses</a>
-                        </li>
-                        <li>
-                            <a href="contact.html" class="nav-link text-left">Contact</a>
+                            <a href="#" class="nav-link text-left">{{__('layouts/header.contact')}}</a>
                         </li>
                     </ul>
                     </ul>
@@ -66,28 +68,28 @@
                         @if(Auth::user())
                             <!-- Right Side Of Navbar -->
                             <ul class="navbar-nav ml-auto">
-                                    <li class="nav-item dropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                            {{ Auth::user()->name }} <span class="caret"></span>
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                            {{__('layouts/header.logout')}}
                                         </a>
 
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                    </li>
-                                </ul>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
                         @else
-                            <a href="{{route('login')}}" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
+                            <a href="{{route('login')}}" class="small mr-3"><span class="icon-unlock-alt"></span> {{__('layouts/header.login')}}</a>
                             <a href="{{route('register')}}" class="small btn btn-primary px-4 py-2 rounded-0"><span
-                                    class="icon-users"></span> Register</a>
+                                    class="icon-users"></span> {{__('layouts/header.register')}}</a>
                         @endif
                     </div>
                 </div>

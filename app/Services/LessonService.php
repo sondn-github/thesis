@@ -26,4 +26,11 @@ class LessonService extends Service implements LessonServiceInterface
 
         return $lessonDetail[0];
     }
+
+    public function getAll()
+    {
+        return Lesson::with('category', 'user')
+            ->where(Lesson::COL_STATUS, Lesson::ACTIVE_STATUS)
+            ->get();
+    }
 }

@@ -5,4 +5,8 @@ return [
     'about' => 'Về chúng tôi',
     'lesson' => 'Bài giảng',
     'contact' => 'Liên hệ',
+    'login' => 'Đăng nhập',
+    'register' => 'Đăng kí',
+    'logout' => 'Đăng xuất',
+    'have-a-questions' => 'Bạn có câu hỏi?',
 ];

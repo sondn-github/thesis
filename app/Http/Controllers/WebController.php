@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\Interfaces\LessonServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class WebController extends Controller
 {
@@ -29,5 +30,10 @@ class WebController extends Controller
         $popularLessons = $this->lessonService->getPopularLessons();
 
         return view('welcome', compact('popularLessons'));
+    }
+
+    public function changeLanguage(Request $request)
+    {
+        App::setLocale($request->lang);
     }
 }

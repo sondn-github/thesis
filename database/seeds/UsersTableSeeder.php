@@ -13,12 +13,13 @@ class UsersTableSeeder extends Seeder
     {
         \Illuminate\Support\Facades\DB::table('users')->insert([
             [
-               'id' => 1,
-               'name' => 'Admin',
-               'email' => 'admin@gmail.com',
-               'password' => \Illuminate\Support\Facades\Hash::make('123456'),
-               'role_id' => 4,
-               'reliability' => 2,
+                'id' => 1,
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => \Illuminate\Support\Facades\Hash::make('123456'),
+                'role_id' => 4,
+                'reliability' => 2,
+                'avatar' => '/images/person_1.jpg',
             ],
             [
                 'id' => 2,
@@ -27,6 +28,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
                 'reliability' => 2,
+                'avatar' => '/images/person_1.jpg',
             ],
             [
                 'id' => 3,
@@ -35,6 +37,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 3,
                 'reliability' => 3,
+                'avatar' => '/images/person_1.jpg',
             ],
             [
                 'id' => 4,
@@ -43,6 +46,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 2,
                 'reliability' => 4,
+                'avatar' => '/images/person_1.jpg',
             ],
         ]);
     }

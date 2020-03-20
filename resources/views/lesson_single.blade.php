@@ -16,9 +16,9 @@
         <div class="container">
             <a href="{{route('index')}}">Home</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <a href="courses.html">Lessons</a>
+            <a href="{{route('lessons')}}">Lessons</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <a href="courses.html">{{$lesson->category->name}}</a>
+            <a href="#">{{$lesson->category->name}}</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
             <span class="current">{{$lesson->name}}</span>
         </div>
@@ -51,7 +51,7 @@
 {{--                    </ul>--}}
 
                     <p>
-                        <a href="#" class="btn btn-primary rounded-0 btn-lg px-5">View</a>
+                        <a href="{{route('display-lesson', $lesson->id)}}" class="btn btn-primary rounded-0 btn-lg px-5">View</a>
                     </p>
 
                 </div>
