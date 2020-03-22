@@ -33,4 +33,11 @@ class LessonService extends Service implements LessonServiceInterface
             ->where(Lesson::COL_STATUS, Lesson::ACTIVE_STATUS)
             ->get();
     }
+
+    public function increaseView($id)
+    {
+        $lesson = Lesson::find($id);
+        $lesson->view += 1;
+        $lesson->save();
+    }
 }

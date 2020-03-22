@@ -30,8 +30,8 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
-                'created_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
-                'updated_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 2,
@@ -50,8 +50,8 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
-                'created_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
-                'updated_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 3,
@@ -70,8 +70,8 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
-                'created_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
-                'updated_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 4,
@@ -90,8 +90,8 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
-                'created_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
-                'updated_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 5,
@@ -110,8 +110,8 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
-                'created_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
-                'updated_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 6,
@@ -130,8 +130,8 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
-                'created_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
-                'updated_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 7,
@@ -150,8 +150,8 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
-                'created_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
-                'updated_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 8,
@@ -170,8 +170,8 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
-                'created_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
-                'updated_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 9,
@@ -190,8 +190,8 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
-                'created_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
-                'updated_at' => \Illuminate\Support\Carbon::now()->toDateTimeString(),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
         ]);
     }

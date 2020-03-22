@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <p>
-                        <img src="{{$lesson->thumbnail}}" alt="Image" class="img-fluid">
+                        <img src="{{asset($lesson->thumbnail)}}" alt="Image" class="img-fluid">
                     </p>
                 </div>
                 <div class="col-lg-5 ml-auto align-self-center">

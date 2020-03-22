@@ -251,7 +251,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="post-entry-big">
-                                <a href="news-single.html" class="img-link"><img src="images/blog_large_1.jpg" alt="Image" class="img-fluid"></a>
+                                <a href="news-single.html" class="img-link"><img src="{{asset('images/blog_large_1.jpg')}}" alt="Image" class="img-fluid"></a>
                                 <div class="post-content">
                                     <div class="post-meta">
                                         <a href="#">June 6, 2019</a>
@@ -264,7 +264,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="post-entry-big horizontal d-flex mb-4">
-                                <a href="news-single.html" class="img-link mr-4"><img src="images/blog_1.jpg" alt="Image" class="img-fluid"></a>
+                                <a href="news-single.html" class="img-link mr-4"><img src="{{asset('images/blog_1.jpg')}}" alt="Image" class="img-fluid"></a>
                                 <div class="post-content">
                                     <div class="post-meta">
                                         <a href="#">June 6, 2019</a>
@@ -275,7 +275,7 @@
                                 </div>
                             </div>
                             <div class="post-entry-big horizontal d-flex mb-4">
-                                <a href="news-single.html" class="img-link mr-4"><img src="images/blog_2.jpg" alt="Image" class="img-fluid"></a>
+                                <a href="news-single.html" class="img-link mr-4"><img src="{{asset('images/blog_2.jpg')}}" alt="Image" class="img-fluid"></a>
                                 <div class="post-content">
                                     <div class="post-meta">
                                         <a href="#">June 6, 2019</a>
@@ -286,7 +286,7 @@
                                 </div>
                             </div>
                             <div class="post-entry-big horizontal d-flex mb-4">
-                                <a href="news-single.html" class="img-link mr-4"><img src="images/blog_1.jpg" alt="Image" class="img-fluid"></a>
+                                <a href="news-single.html" class="img-link mr-4"><img src="{{asset('images/blog_1.jpg')}}" alt="Image" class="img-fluid"></a>
                                 <div class="post-content">
                                     <div class="post-meta">
                                         <a href="#">June 6, 2019</a>
@@ -308,13 +308,13 @@
                         <span class="play">
                             <span class="icon-play"></span>
                         </span>
-                        <img src="images/course_5.jpg" alt="Image" class="img-fluid">
+                        <img src="{{asset('images/course_5.jpg')}}" alt="Image" class="img-fluid">
                     </a>
                     <a href="https://vimeo.com/45830194" class="video-1 mb-4" data-fancybox="" data-ratio="2">
                         <span class="play">
                           <span class="icon-play"></span>
                         </span>
-                        <img src="images/course_5.jpg" alt="Image" class="img-fluid">
+                        <img src="{{asset('images/course_5.jpg')}}" alt="Image" class="img-fluid">
                     </a>
                 </div>
             </div>

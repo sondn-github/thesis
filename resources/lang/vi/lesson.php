@@ -5,5 +5,6 @@ return [
     'vote' => 'Đánh giá',
     'view' => 'lượt xem',
     'specialty' => 'Chuyên ngành',
-
+    'send' => 'Gửi',
+    'cancel' => 'Huỷ bỏ',
 ];
