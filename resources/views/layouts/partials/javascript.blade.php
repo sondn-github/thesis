@@ -12,8 +12,7 @@
 <script src="{{asset('js/jquery.fancybox.min.js')}}"></script>
 <script src="{{asset('js/jquery.sticky.js')}}"></script>
 <script src="{{asset('js/jquery.mb.YTPlayer.min.js')}}"></script>
-
-
-
-
+<script src="{{asset('js/toastr.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
+
+@yield('js')

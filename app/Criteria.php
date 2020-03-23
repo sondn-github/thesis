@@ -19,5 +19,8 @@ class Criteria extends AppModel
         self::COL_DESCRIPTION,
         self::COL_EXAMPLE,
         self::COL_EXPLAIN,
+        self::COL_CREATED_AT,
+        self::COL_UPDATED_AT,
+        self::COL_DELETED_AT,
     ];
 }

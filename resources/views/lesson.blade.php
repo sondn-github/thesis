@@ -72,8 +72,9 @@
                                 <h4 class="modal-title">{{__('lesson.vote')}}</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
-                            <form action="#" method="post">
+                            <form action="{{route('evaluation-store')}}" method="post" id="evaluation-form">
                                 {{csrf_field()}}
+                                <input type="hidden" name="lesson_id" value="{{$lesson->id}}">
                                 <div class="modal-body">
                                     <table class="table test-question-table">
                                         <thead>
@@ -111,8 +112,7 @@
                                     </table>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary"
-                                            data-dismiss="modal">{{__('lesson.vote')}}</button>
+                                    <button type="submit" class="btn btn-primary" id="evaluation">{{__('lesson.vote')}}</button>
                                     <button type="button" class="btn btn-danger"
                                             data-dismiss="modal">{{__('lesson.cancel')}}</button>
                                 </div>
@@ -124,4 +124,59 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        function showAlert(data, status)
+        {
+            toastr[status](data.message, data.status);
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        }
+
+        function handleResponse(data, status)
+        {
+            $('#myModal').modal('toggle');
+            this.showAlert(data, status);
+        }
+
+        // this is the id of the form
+        $('#evaluation-form').submit(function(e) {
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(), // serializes the form's elements.
+                success: function(data)
+                {
+                    handleResponse(data, "success");
+                },
+                error: function (data) {
+                    handleResponse(data, "error");
+                }
+            });
+        });
+
+    </script>
 @endsection

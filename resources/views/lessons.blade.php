@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('{{asset_public('images/bg_1.jpg')}}')">
+    <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('{{asset('images/bg_1.jpg')}}')">
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-lg-7">
@@ -27,7 +27,7 @@
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="course-1-item">
                             <figure class="thumnail">
-                                <a href="{{route('lesson-single', $lesson->id)}}"><img src="{{asset_public($lesson->thumbnail)}}" alt="Image" class="img-fluid"></a>
+                                <a href="{{route('lesson-single', $lesson->id)}}"><img src="{{asset($lesson->thumbnail)}}" alt="Image" class="img-fluid"></a>
 {{--                                <div class="price">$99.00</div>--}}
                                 <div class="category"><h3>{{$lesson->category->name}}</h3></div>
                             </figure>

@@ -20,3 +20,5 @@ Route::get('/lesson/{id}', 'LessonsController@getLessonDetail')->name('lesson-si
 Route::get('language/{lang}', 'WebController@changeLanguage')->name('language');
 Route::get('/lessons', 'LessonsController@getLessons')->name('lessons');
 Route::get('/display-lesson/{id}', 'LessonsController@displayLesson')->name('display-lesson');
+
+Route::post('/evaluation', 'EvaluationController@store')->name('evaluation-store');
