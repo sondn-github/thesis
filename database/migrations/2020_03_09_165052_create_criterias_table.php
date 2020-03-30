@@ -15,10 +15,10 @@ class CreateCriteriasTable extends Migration
     {
         Schema::create('criterias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
-            $table->string('description')->nullable();
-            $table->string('explain')->nullable();
-            $table->string('example')->nullable();
+            $table->text('name')->nullable();
+            $table->text('description')->nullable();
+            $table->text('explain')->nullable();
+            $table->text('example')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

@@ -19,6 +19,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/lesson/{id}', 'LessonsController@getLessonDetail')->name('lesson-single');
 Route::get('language/{lang}', 'WebController@changeLanguage')->name('language');
 Route::get('/lessons', 'LessonsController@getLessons')->name('lessons');
-Route::get('/display-lesson/{id}', 'LessonsController@displayLesson')->name('display-lesson');
+Route::get('/display-lesson/{id}', 'LessonsController@displayLesson')->name('display-lesson')->middleware('auth');
 
-Route::post('/evaluation', 'EvaluationController@store')->name('evaluation-store');
+Route::post('/evaluation', 'EvaluationController@store')->name('evaluation-store')->middleware('auth');

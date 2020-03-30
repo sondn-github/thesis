@@ -6,7 +6,7 @@
             <div class="row align-items-end">
                 <div class="col-lg-7">
                     <h2 class="mb-0">{{__('layouts/header.lesson')}}</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+{{--                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>--}}
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                                     <span class="icon-star2 text-warning"></span>
                                 </div>
                                 <p class="desc mb-4">{{$lesson->abstract}}</p>
-                                <p><a href="{{route('lesson-single', $lesson->id)}}" class="btn btn-primary rounded-0 px-4">View Detail</a></p>
+                                <p><a href="{{route('lesson-single', $lesson->id)}}" class="btn btn-primary rounded-0 px-4">Xem chi tiết</a></p>
                             </div>
                         </div>
                     </div>

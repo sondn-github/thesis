@@ -5,3 +5,11 @@
     border-radius: 50%;
     display: inline-block;
 }
+
+.mw-75 {
+    min-width: 75%;
+}
+
+.display-none {
+    display: none;
+}
