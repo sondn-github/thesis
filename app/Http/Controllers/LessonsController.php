@@ -24,9 +24,15 @@ class LessonsController extends Controller
         return view('lesson_single', compact('lesson'));
     }
 
-    public function getLessons()
+    public function getLessons(Request $request)
     {
-        $lessons = $this->lessonService->getAll();
+        if ($request->has('search') && $request->search != '')
+        {
+            $request->flash();
+            $lessons = $this->lessonService->getLessonByName($request->search);
+        } else {
+            $lessons = $this->lessonService->getAll();
+        }
 
         return view('lessons', compact('lessons'));
     }

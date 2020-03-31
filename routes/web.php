@@ -22,3 +22,8 @@ Route::get('/lessons', 'LessonsController@getLessons')->name('lessons');
 Route::get('/display-lesson/{id}', 'LessonsController@displayLesson')->name('display-lesson')->middleware('auth');
 
 Route::post('/evaluation', 'EvaluationController@store')->name('evaluation-store')->middleware('auth');
+Route::get('/profile', 'ProfileController@get')->name('profile.get');
+Route::post('/profile', 'ProfileController@update')->name('profile.update');
+Route::post('/change-password', 'ProfileController@changePassword')->name('profile.change-password');
+Route::post('/change-avatar', 'ProfileController@changeAvatar')->name('profile.change-avatar');
+//Route::get('/search', 'LessonsController@searchLesson')->name('lesson.search');

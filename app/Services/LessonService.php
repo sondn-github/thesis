@@ -40,4 +40,11 @@ class LessonService extends Service implements LessonServiceInterface
         $lesson->view += 1;
         $lesson->save();
     }
+
+    public function getLessonByName($name)
+    {
+        return Lesson::with('category', 'user')
+            ->where(Lesson::COL_NAME, 'like', '%'.$name.'%')
+            ->get();
+    }
 }

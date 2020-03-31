@@ -22,6 +22,21 @@
 
     <div class="site-section">
         <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-4">
+                    <form action="{{route('lessons')}}" method="get">
+                        <div class="input-group">
+                            <label for="search">Tìm kiếm:</label>
+                            <input type="text" class="form-control ml-2" name="search" value="{{ old('search') }}" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default p-0" type="submit">
+                                    <img src="{{asset('images/baseline_search_black_18dp.png')}}" alt="search">
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="row">
                 @foreach($lessons as $lesson)
                     <div class="col-lg-4 col-md-6 mb-4">

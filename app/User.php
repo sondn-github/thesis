@@ -23,6 +23,9 @@ class User extends Authenticatable
         'updated_at',
         'deleted_at',
         'role_id',
+        self::COL_SPECIALTY,
+        self::COL_LEVEL,
+        self::COL_AVATAR,
     ];
 
     /**
@@ -47,5 +50,5 @@ class User extends Authenticatable
     public const COL_LEVEL = 'level';
     public const COL_AVATAR = 'avatar';
     public const COL_STATUS = 'status';
-
+    public const COL_PASSWORD = 'password';
 }
