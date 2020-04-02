@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="course">{{__('lesson.category')}}</label>
+                        <label for="course">{{__('lesson.course')}}</label>
                         <select class="form-control" id="course" name="course_id">
                             <option>--Chọn--</option>
                             @foreach($courses as $course)
