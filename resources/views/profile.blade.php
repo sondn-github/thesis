@@ -5,7 +5,7 @@
         <div class="container">
             <a href="{{route('index')}}">{{__('layouts/header.home')}}</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <span class="current">Profile</span>
+            <span class="current">{{__('layouts/header.profile')}}</span>
         </div>
     </div>
 
@@ -196,5 +196,11 @@
         @elseif (session()->get('errors'))
             this.showAlert("{{ session()->get('errors')->first() }}", "Lỗi", "error");
         @endif
+
+        $("#avatar-sb-btn").click(function () {
+            $(this).prop('disable', true);
+            $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
+                '  <span class="sr-only">Loading...</span>');
+        });
     </script>
 @endsection

@@ -44,7 +44,7 @@
                             <figure class="thumnail">
                                 <a href="{{route('lesson-single', $lesson->id)}}"><img src="{{asset($lesson->thumbnail)}}" alt="Image" class="img-fluid"></a>
 {{--                                <div class="price">$99.00</div>--}}
-                                <div class="category"><h3>{{$lesson->category->name}}</h3></div>
+                                <div class="category"><h3>{{$lesson->course->name}}</h3></div>
                             </figure>
                             <div class="course-1-content pb-4">
                                 <h2>{{$lesson->name}}</h2>
@@ -55,7 +55,7 @@
                                     <span class="icon-star2 text-warning"></span>
                                     <span class="icon-star2 text-warning"></span>
                                 </div>
-                                <p class="desc mb-4">{{$lesson->abstract}}</p>
+                                <p class="desc mb-4"  style="max-height: 100px; overflow: auto">{{$lesson->abstract}}</p>
                                 <p><a href="{{route('lesson-single', $lesson->id)}}" class="btn btn-primary rounded-0 px-4">Xem chi tiết</a></p>
                             </div>
                         </div>

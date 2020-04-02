@@ -92,7 +92,7 @@
                                 <figure class="thumnail">
                                     <a href="{{route('lesson-single', $popularLesson->id)}}"><img src="{{asset($popularLesson->thumbnail)}}" alt="Image" class="img-fluid"></a>
 {{--                                    <div class="price">$99.00</div>--}}
-                                    <div class="category"><h3>{{$popularLesson->category->name}}</h3></div>
+                                    <div class="category"><h3>{{$popularLesson->course->name}}</h3></div>
                                 </figure>
                                 <div class="course-1-content pb-4">
                                     <h2>{{$popularLesson->name}}</h2>

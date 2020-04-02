@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
         Interfaces\RoleServiceInterface::class => Services\RoleService::class,
         Interfaces\CriteriaServiceInterface::class => Services\CriteriaService::class,
         Interfaces\EvaluationServiceInterface::class => Services\EvaluationService::class,
+        Interfaces\CourseServiceInterface::class => Services\CourseService::class,
     ];
 
     /**

@@ -51,4 +51,8 @@ class User extends Authenticatable
     public const COL_AVATAR = 'avatar';
     public const COL_STATUS = 'status';
     public const COL_PASSWORD = 'password';
+
+    public function role() {
+        return $this->belongsTo('App\Role');
+    }
 }

@@ -74,7 +74,10 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a href="{{route('profile.get')}}" class="dropdown-item">Thông tin cá nhân</a>
+                                        <a href="{{route('profile.get')}}" class="dropdown-item">{{__('layouts/header.profile')}}</a>
+                                        @if(Auth::user()->role->name == 'teacher')
+                                            <a href="{{route('teacher.lesson.create')}}" class="dropdown-item">{{__('layouts/header.uploadLesson')}}</a>
+                                        @endif
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">

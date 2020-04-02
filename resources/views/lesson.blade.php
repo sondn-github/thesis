@@ -15,11 +15,11 @@
 
     <div class="custom-breadcrumns border-bottom">
         <div class="container">
-            <a href="{{route('index')}}">Home</a>
+            <a href="{{route('index')}}">{{__('layouts/header.home')}}</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <a href="{{route('lessons')}}">Lessons</a>
+            <a href="{{route('lessons')}}">{{__('layouts/header.lesson')}}</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <a href="#">{{$lesson->category->name}}</a>
+            <a href="#">{{$lesson->course->name}}</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
             <span class="current">{{$lesson->name}}</span>
         </div>
@@ -49,12 +49,12 @@
                 <div class="col-lg-10">
                     <div class="media">
                         <div class="media-left media-top mr-2">
-                            <img src="{{asset($lesson->user->avatar)}}" class="media-object rounded-circle"
+                            <img src="{{asset($teacher->avatar)}}" class="media-object rounded-circle"
                                  style="width:60px">
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading"><strong>{{$lesson->user->name}}</strong></h4>
-                            <p>{{__('lesson.specialty')}}: {{$lesson->user->specialty}}</p>
+                            <h4 class="media-heading"><strong>{{$teacher->name}}</strong></h4>
+                            <p>{{__('lesson.specialty')}}: {{$teacher->specialty}}</p>
                         </div>
                     </div>
                 </div>

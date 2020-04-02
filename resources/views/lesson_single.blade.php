@@ -14,11 +14,11 @@
 
     <div class="custom-breadcrumns border-bottom">
         <div class="container">
-            <a href="{{route('index')}}">Home</a>
+            <a href="{{route('index')}}">{{__('layouts/header.home')}}</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <a href="{{route('lessons')}}">Lessons</a>
+            <a href="{{route('lessons')}}">{{__('layouts/header.lesson')}}</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <a href="#">{{$lesson->category->name}}</a>
+            <a href="#">{{$lesson->course->name}}</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
             <span class="current">{{$lesson->name}}</span>
         </div>
@@ -34,11 +34,11 @@
                 </div>
                 <div class="col-lg-5 ml-auto align-self-center">
                     <h2 class="section-title-underline mb-5">
-                        <span>Lesson Details</span>
+                        <span>{{__('lesson.lessonDetail')}}</span>
                     </h2>
 
-                    <p><strong class="text-black d-block">Teacher:</strong> {{$lesson->user->name}}</p>
-                    <p class="mb-5"><strong class="text-black d-block">Hours:</strong> 8:00 am &mdash; 9:30am</p>
+                    <p><strong class="text-black d-block">{{__('lesson.teacher')}}:</strong> {{$teacher->name}}</p>
+                    <p class="mb-5"><strong class="text-black d-block">{{__('lesson.course')}}:</strong> {{$lesson->course->name}}</p>
                     <p>{{$lesson->description}}</p>
 {{--                    <p>Modi sit dolor repellat esse! Sed necessitatibus itaque libero odit placeat nesciunt, voluptatum totam facere.</p>--}}
 
@@ -51,7 +51,7 @@
 {{--                    </ul>--}}
 
                     <p>
-                        <a href="{{route('display-lesson', $lesson->id)}}" class="btn btn-primary rounded-0 btn-lg px-5">View</a>
+                        <a href="{{route('display-lesson', $lesson->id)}}" class="btn btn-primary rounded-0 btn-lg px-5">{{__('lesson.viewLesson')}}</a>
                     </p>
 
                 </div>

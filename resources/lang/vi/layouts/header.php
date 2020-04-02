@@ -9,4 +9,6 @@ return [
     'register' => 'Đăng kí',
     'logout' => 'Đăng xuất',
     'have-a-questions' => 'Bạn có câu hỏi?',
+    'profile' => 'Thông tin cá nhân',
+    'uploadLesson' => 'Upload bài giảng',
 ];

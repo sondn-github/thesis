@@ -10,7 +10,8 @@ class Lesson extends AppModel
 
     protected $fillable = [
         self::COL_NAME,
-        self::COL_CATEGORY_ID,
+        self::COL_COURSE_ID,
+        self::COL_ABSTRACT,
         self::COL_DESCRIPTION,
         self::COL_FILE,
         self::COL_THUMBNAIL,
@@ -24,7 +25,8 @@ class Lesson extends AppModel
      * The name of column
      * */
     public const COL_NAME = 'name';
-    public const COL_CATEGORY_ID = 'category_id';
+    public const COL_COURSE_ID = 'course_id';
+    public const COL_ABSTRACT = 'abstract';
     public const COL_DESCRIPTION = 'description';
     public const COL_FILE = 'file';
     public const COL_THUMBNAIL = 'thumbnail';
@@ -39,11 +41,7 @@ class Lesson extends AppModel
         self::COL_THUMBNAIL => '/images/course_2.jpg',
     ];
 
-    public function category() {
-        return $this->belongsTo('App\Category');
-    }
-
-    public function user() {
-        return $this->belongsTo('App\User');
+    public function course() {
+        return $this->belongsTo('App\Course');
     }
 }

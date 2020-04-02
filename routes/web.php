@@ -27,3 +27,8 @@ Route::post('/profile', 'ProfileController@update')->name('profile.update');
 Route::post('/change-password', 'ProfileController@changePassword')->name('profile.change-password');
 Route::post('/change-avatar', 'ProfileController@changeAvatar')->name('profile.change-avatar');
 //Route::get('/search', 'LessonsController@searchLesson')->name('lesson.search');
+
+Route::middleware(['auth'])->prefix('teacher')->name('teacher.')->group(function () {
+    Route::get('/lessons/create', 'LessonsController@create')->name('lesson.create');
+    Route::post('/lessons', 'LessonsController@store')->name('lesson.store');
+});
