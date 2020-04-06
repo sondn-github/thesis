@@ -137,7 +137,7 @@
                                                             <div class="col-md-9">
                                                                 <br>
                                                                 <div class="radio">
-                                                                    <label><input type="radio" class="mr-2" value="5" name="{{$c->id}}" required>Rất đồng ý</label>
+{{--                                                                    <label><input type="radio" class="mr-2" value="5" name="{{$c->id}}" required>Rất đồng ý</label>--}}
                                                                 </div>
                                                                 <div class="radio">
                                                                     <label><input type="radio" class="mr-2" value="4" name="{{$c->id}}" required>Đồng ý</label>
@@ -149,7 +149,7 @@
                                                                     <label><input type="radio" class="mr-2" value="2" name="{{$c->id}}" required>Không đồng ý</label>
                                                                 </div>
                                                                 <div class="radio">
-                                                                    <label><input type="radio" class="mr-2" value="1" name="{{$c->id}}" required>Rất không đồng ý</label>
+                                                                    <label><input type="radio" class="mr-2" value="1" name="{{$c->id}}" required>Từ chối trả lời</label>
                                                                 </div>
                                                             </div>
                                                         </div>

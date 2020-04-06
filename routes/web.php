@@ -31,4 +31,11 @@ Route::post('/change-avatar', 'ProfileController@changeAvatar')->name('profile.c
 Route::middleware(['auth'])->prefix('teacher')->name('teacher.')->group(function () {
     Route::get('/lessons/create', 'LessonsController@create')->name('lesson.create');
     Route::post('/lessons', 'LessonsController@store')->name('lesson.store');
+    Route::get('/lessons', 'LessonsController@index')->name('lesson.index');
+    Route::get('/datatables/lessons', 'DatatableController@lessons')->name('datatables.lessons');
+    Route::get('/lessons/{id}', 'LessonsController@getLessonOfTeacher')->name('lesson.getLessonOfTeacher');
+    Route::get('/lessons/{id}/edit', 'LessonsController@edit')->name('lesson.edit');
+    Route::put('/lessons/{id}', 'LessonsController@update')->name('lesson.update');
+    Route::get('/status/change', 'LessonsController@changeStatus')->name('lesson.status.change');
+    Route::delete('/lessons/{id}', 'LessonsController@destroy')->name('lesson.destroy');
 });

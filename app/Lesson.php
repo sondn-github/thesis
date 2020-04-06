@@ -16,6 +16,7 @@ class Lesson extends AppModel
         self::COL_FILE,
         self::COL_THUMBNAIL,
         self::COL_USER_ID,
+        self::COL_STATUS,
         self::COL_CREATED_AT,
         self::COL_UPDATED_AT,
         self::COL_DELETED_AT,

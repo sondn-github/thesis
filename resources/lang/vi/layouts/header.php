@@ -11,4 +11,5 @@ return [
     'have-a-questions' => 'Bạn có câu hỏi?',
     'profile' => 'Thông tin cá nhân',
     'uploadLesson' => 'Upload bài giảng',
+    'lessonManagement' => 'Quản lý bài giảng',
 ];

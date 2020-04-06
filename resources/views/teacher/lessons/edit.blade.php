@@ -11,13 +11,14 @@
 
     <div class="site-section">
         <div class="container">
-            <form action="{{route('teacher.lesson.store')}}" method="post" enctype="multipart/form-data">
-{{--                <form action="{{route('teacher.lesson.store')}}" method="post" class="needs-validation" novalidate>--}}
+            <form action="{{route('teacher.lesson.update', $lesson->id)}}" method="post" enctype="multipart/form-data">
+                {{--                <form action="{{route('teacher.lesson.store')}}" method="post" class="needs-validation" novalidate>--}}
                 {{csrf_field()}}
+                @method('PUT')
                 <div class="form-row">
                     <div class="col-md-8 mb-3 form-group">
                         <label for="name">{{__('lesson.name')}}</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="{{__('lesson.enterName')}}" value="{{old('name')}}">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="{{__('lesson.enterName')}}" value="{{$lesson->name}}">
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -25,9 +26,8 @@
                     <div class="col-md-4 mb-3">
                         <label for="course">{{__('lesson.course')}}</label>
                         <select class="form-control" id="course" name="course_id">
-                            <option>--Chọn--</option>
                             @foreach($courses as $course)
-                                <option value="{{$course->id}}" @if(old('course_id') == $course->id) selected @endif>{{$course->name}}</option>
+                                <option value="{{$course->id}}" @if($lesson->course_id == $course->id) selected @endif>{{$course->name}}</option>
                             @endforeach
                         </select>
                         <div class="valid-feedback">
@@ -37,17 +37,18 @@
                 </div>
                 <div class="form-group">
                     <label for="abstract">{{__('lesson.abstract')}}</label>
-                    <textarea name="abstract" id="abstract" rows="5" class="form-control" placeholder="{{__('lesson.enterAbstract')}}">{{old('abstract')}}</textarea>
+                    <textarea name="abstract" id="abstract" rows="5" class="form-control" placeholder="{{__('lesson.enterAbstract')}}">{{$lesson->abstract}}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="description">{{__('lesson.description')}}</label>
-                    <textarea name="description" id="description" rows="5" class="form-control" placeholder="{{__('lesson.enterDescription')}}">{{old('description')}}</textarea>
+                    <textarea name="description" id="description" rows="5" class="form-control" placeholder="{{__('lesson.enterDescription')}}">{{$lesson->description}}</textarea>
                 </div>
-                <div class="custom-file mb-3">
-                    <input type="file" class="custom-file-input" id="customFile" name="file">
-                    <label id="fileLabel" class="custom-file-label" for="customFile">{{__('lesson.chooseFile')}}</label>
-                </div>
-                <button id="createBtn" class="btn btn-primary" type="submit">{{__('lesson.create')}}</button>
+{{--                <div class="custom-file mb-3">--}}
+{{--                    <input type="file" class="custom-file-input" id="customFile" name="file">--}}
+{{--                    <label id="fileLabel" class="custom-file-label" for="customFile">{{__('lesson.chooseFile')}}</label>--}}
+{{--                </div>--}}
+                <button id="createBtn" class="btn btn-primary" type="submit">{{__('lesson.update')}}</button>
+                <a href="{{route('teacher.lesson.index')}}" class="btn btn-secondary">{{__('lesson.back')}}</a>
             </form>
         </div>
     </div>
