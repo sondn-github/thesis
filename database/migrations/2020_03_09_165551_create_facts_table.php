@@ -15,8 +15,10 @@ class CreateFactsTable extends Migration
     {
         Schema::create('facts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->text('description');
+            $table->unsignedInteger('type');
+            $table->boolean('status')->default(true);
 
             $table->timestamps();
             $table->softDeletes();

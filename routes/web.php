@@ -38,4 +38,7 @@ Route::middleware(['auth'])->prefix('teacher')->name('teacher.')->group(function
     Route::put('/lessons/{id}', 'LessonsController@update')->name('lesson.update');
     Route::get('/status/change', 'LessonsController@changeStatus')->name('lesson.status.change');
     Route::delete('/lessons/{id}', 'LessonsController@destroy')->name('lesson.destroy');
+    Route::get('/advises', 'KnowledgeController@getAdvises')->name('lesson.advises');
 });
+
+Route::get('/test', 'KnowledgeController@getAdvises');

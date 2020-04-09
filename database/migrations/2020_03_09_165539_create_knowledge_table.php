@@ -15,9 +15,12 @@ class CreateKnowledgeTable extends Migration
     {
         Schema::create('knowledge', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code');
-            $table->string('premise_code');
-            $table->string('conclusion_code');
+            $table->string('code')->nullable();
+            $table->string('premise');
+            $table->string('conclusion');
+            $table->float('reliability');
+            $table->unsignedInteger('type');
+            $table->boolean('status')->default(true);
 
             $table->timestamps();
             $table->softDeletes();

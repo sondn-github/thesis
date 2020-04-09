@@ -25,4 +25,8 @@ class Model extends EloquentModel
     public const COL_CREATED_AT = 'created_at';
     public const COL_UPDATED_AT = 'updated_at';
     public const COL_DELETED_AT = 'deleted_at';
+
+    /*Constant*/
+    public const ACTIVE_STATUS = 1;
+    public const INACTIVE_STATUS = 0;
 }

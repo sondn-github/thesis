@@ -23,6 +23,7 @@ class CreateLessonsTable extends Migration
             $table->text('thumbnail')->nullable();
             $table->unsignedInteger('view')->default(0);
             $table->boolean('status')->default(true);
+            $table->text('pfr')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

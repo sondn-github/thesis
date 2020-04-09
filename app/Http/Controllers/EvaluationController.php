@@ -31,4 +31,8 @@ class EvaluationController extends Controller
             ], 500);
         }
     }
+
+    public function test() {
+        $this->evaluationService->getAvgEvaluation(1);
+    }
 }

@@ -17,6 +17,7 @@ class Lesson extends AppModel
         self::COL_THUMBNAIL,
         self::COL_USER_ID,
         self::COL_STATUS,
+        self::COL_PFR,
         self::COL_CREATED_AT,
         self::COL_UPDATED_AT,
         self::COL_DELETED_AT,
@@ -34,12 +35,15 @@ class Lesson extends AppModel
     public const COL_VIEW = 'view';
     public const COL_USER_ID = 'user_id';
     public const COL_STATUS = 'status';
+    public const COL_PFR = 'pfr';
 
-    public const ACTIVE_STATUS = 1;
-    public const INACTIVE_STATUS = 0;
 
     protected $attributes = [
         self::COL_THUMBNAIL => '/images/course_2.jpg',
+    ];
+
+    protected $hidden = [
+        self::COL_PFR,
     ];
 
     public function course() {

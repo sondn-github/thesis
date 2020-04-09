@@ -88,7 +88,7 @@ class LessonsController extends Controller
     public function getLessonOfTeacher(Request $request) {
         $lesson = $this->lessonService->getLessonOfTeacher($request->id, Auth::id());
         if ($lesson) {
-            return response()->json($lesson);
+            return response()->json($lesson, 200);
         } else {
             return response(__('lesson.failed-message'), 401);
         }

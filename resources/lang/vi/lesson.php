@@ -39,4 +39,7 @@ return [
     'confirmMessage' => 'Bạn có chắc chắn không?',
     'deleteSuccess' => 'Đã xoá thành công',
     'deleteFailed' => 'Đã có lỗi xảy ra. Xin bạn hãy thử lại.',
+    'noAdvise' => 'Hiện tại chưa có lời tư vấn nào.',
+    'advise' => 'Tư vấn',
+    'adviseFromSystem' => 'Lời tư vấn từ hệ thống',
 ];

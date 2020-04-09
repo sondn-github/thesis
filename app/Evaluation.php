@@ -24,9 +24,13 @@ class Evaluation extends AppModel
 
     //Answers
     public const REFUSAL = 1;
-    public const VERY_DISAGREEMENT = 2;
-    public const DISAGREEMENT = 3;
-    public const NEUTRAL = 4;
-    public const AGREEMENT = 5;
-    public const VERY_AGREEMENT = 6;
+//    public const VERY_DISAGREEMENT = 2;
+    public const DISAGREEMENT = 2;
+    public const NEUTRAL = 3;
+    public const AGREEMENT = 4;
+//    public const VERY_AGREEMENT = 6;
+
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }

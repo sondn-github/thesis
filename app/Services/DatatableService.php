@@ -35,7 +35,7 @@ class DatatableService extends Service implements DatatableServiceInterface
             ->addColumn('action', function ($lesson) {
                 return '<a href="'.route("teacher.lesson.getLessonOfTeacher", $lesson->id).'" class="btn btn-xs btn-info btn-info-lesson" data-id="'.$lesson->id.'" data-toggle="modal" data-target="#detailLesson" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
                         <a href="'.route("teacher.lesson.edit", $lesson->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>
-                        <a href="" class="btn btn-success margin-r-5"><i class="fa fa-commenting"></i></a>
+                        <a href="#" class="btn btn-success margin-r-5" data-id="' . $lesson->id . '" data-toggle="modal" data-target="#adviseModal" onclick="showAdviseModel(this)"><i class="fa fa-commenting"></i></a>
                         <a href="javascript:void(0)" data-id="' . $lesson->id . '" class="btn btn-xs btn-danger btn-delete"><i class="fa fa-trash"></i></a>';
             })
             ->rawColumns(['action', 'status'])

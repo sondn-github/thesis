@@ -19,6 +19,7 @@ class CreateCriteriasTable extends Migration
             $table->text('description')->nullable();
             $table->text('explain')->nullable();
             $table->text('example')->nullable();
+            $table->boolean('status')->default(true);
 
             $table->timestamps();
             $table->softDeletes();

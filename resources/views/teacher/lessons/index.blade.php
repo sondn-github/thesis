@@ -80,6 +80,33 @@
 
                 </div>
             </div>
+
+            <!-- Modal -->
+            <div id="adviseModal" class="modal fade small" role="dialog">
+                <div class="modal-dialog mw-75">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{__('lesson.advise')}}</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body" id="adviseBody">
+                            <div class="row mb-3">
+                                <div class="col-md-12 label" id="numberEvaluation"></div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-3 label" id="adviseLable">{{__('lesson.adviseFromSystem')}}</div>
+                                <div class="col-md-9" id="advise-list"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="adviseCloseBtn">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -214,5 +241,36 @@
                 }
             });
         });
+
+        function showAdviseModel(btn){
+            var id = $(btn).attr("data-id");
+            // var url = $(btn).attr("href");
+            $.ajax({
+                type: "GET",
+                url: '{{route('teacher.lesson.advises')}}',
+                data: {
+                    id : id
+                },
+                success: function (data) {
+                    $('#numberEvaluation').html('Hiện tại bài giảng nhận được <span class="text-primary">' + data.count + '</span> lượt đánh giá.');
+                    var advises = '<ol>';
+                    $.each(data.advises, function (index, value) {
+                        advises += '<li>' + value.description +'</li>';
+                    });
+                    advises += '</ol>';
+                    $('#advise-list').html(advises);
+                },
+                error: function (data) {
+                    $('#numberEvaluation').html(data.responseJSON);
+                    $('#adviseLable').hide();
+                }
+            });
+        }
+
+        $('#adviseCloseBtn').click(function () {
+            $('#adviseLable').show();
+            $('#numberEvaluation').html('');
+            $('#advise-list').html('');
+        })
     </script>
 @endsection
