@@ -29,6 +29,7 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
@@ -48,6 +49,7 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
@@ -67,6 +69,7 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
@@ -86,6 +89,7 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
@@ -105,6 +109,7 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
@@ -124,6 +129,7 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
@@ -143,6 +149,7 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
@@ -162,6 +169,7 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
@@ -181,6 +189,7 @@ class LessonsTableSeeder extends Seeder
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...Bài giảng này sẽ giúp bạn có những kiến thức tổng quan về các phương pháp lập trình và 
                 đặc biệt là những khái niệm liên quan đến kiến trúc máy tính ...',
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
