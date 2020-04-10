@@ -12,4 +12,5 @@ return [
     'profile' => 'Thông tin cá nhân',
     'uploadLesson' => 'Upload bài giảng',
     'lessonManagement' => 'Quản lý bài giảng',
+    'courseManagement' => 'Quản lý khoá học',
 ];

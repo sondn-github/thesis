@@ -19,4 +19,8 @@ class DatatableController extends Controller
         $teacherId = Auth::id();
         return $this->datatableService->lessons($teacherId);
     }
+
+    public function courses() {
+        return $this->datatableService->courses(Auth::id());
+    }
 }

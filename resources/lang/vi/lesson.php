@@ -19,7 +19,7 @@ return [
     'enterDescription' => 'Nhập mô tả',
     'category' => 'Thể loại',
     'chooseFile' => 'Chọn tệp',
-    'create' => 'Tạo bài giảng',
+    'create' => 'Tạo mới',
     'course' => 'Khoá học',
     'teacher' => 'Giảng viên',
     'lessonDetail' => 'Chi tiết khoá học',
@@ -42,4 +42,6 @@ return [
     'noAdvise' => 'Hiện tại chưa có lời tư vấn nào.',
     'advise' => 'Tư vấn',
     'adviseFromSystem' => 'Lời tư vấn từ hệ thống',
+    'no' => 'STT',
+    'new' => 'Thêm mới',
 ];

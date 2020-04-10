@@ -15,11 +15,12 @@
 
     <div class="site-section">
         <div class="container">
+            <a href="{{route('teacher.lessons.create')}}" class="btn btn-primary mb-3">{{__('lesson.new')}}</a>
             <div class="table-responsive small">
                 <table class="table table-bordered table-hover" id="lessonsTable">
                     <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>{{__('lesson.no')}}</th>
                         <th>{{__('lesson.name')}}</th>
                         <th>{{__('lesson.status')}}</th>
                         <th>{{__('lesson.course')}}</th>
@@ -77,7 +78,6 @@
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -141,7 +141,11 @@
                      url: '{{route('teacher.datatables.lessons')}}',
                  },
                  columns: [
-                     {data: 'id', name: 'lessons.id'},
+                     {data: 'id',
+                         render: function (data, type, row, meta) {
+                             return meta.row + meta.settings._iDisplayStart + 1;
+                         }
+                     },
                      {data: 'name', name: 'lessons.name'},
                      {data: 'status', name: 'lessons.status'},
                      {data: 'course.name', name: 'lessons.course.name', "searchable": false},

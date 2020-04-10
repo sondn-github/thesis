@@ -29,7 +29,7 @@ Route::post('/change-avatar', 'ProfileController@changeAvatar')->name('profile.c
 //Route::get('/search', 'LessonsController@searchLesson')->name('lesson.search');
 
 Route::middleware(['auth'])->prefix('teacher')->name('teacher.')->group(function () {
-    Route::get('/lessons/create', 'LessonsController@create')->name('lesson.create');
+    Route::get('/lessons/create', 'LessonsController@create')->name('lessons.create');
     Route::post('/lessons', 'LessonsController@store')->name('lesson.store');
     Route::get('/lessons', 'LessonsController@index')->name('lesson.index');
     Route::get('/datatables/lessons', 'DatatableController@lessons')->name('datatables.lessons');
@@ -39,6 +39,8 @@ Route::middleware(['auth'])->prefix('teacher')->name('teacher.')->group(function
     Route::get('/status/change', 'LessonsController@changeStatus')->name('lesson.status.change');
     Route::delete('/lessons/{id}', 'LessonsController@destroy')->name('lesson.destroy');
     Route::get('/advises', 'KnowledgeController@getAdvises')->name('lesson.advises');
+    Route::resource('courses', 'Teacher\CourseController');
+    Route::get('/datatables/courses', 'DatatableController@courses')->name('datatables.courses');
 });
 
 Route::get('/test', 'KnowledgeController@getAdvises');

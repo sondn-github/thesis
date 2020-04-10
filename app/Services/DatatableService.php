@@ -32,6 +32,9 @@ class DatatableService extends Service implements DatatableServiceInterface
                             </label>';
                 }
             })
+            ->editColumn(Lesson::COL_CREATED_AT, function ($lesson) {
+                return \Carbon\Carbon::parse($lesson->created_at)->format('d/m/Y');
+            })
             ->addColumn('action', function ($lesson) {
                 return '<a href="'.route("teacher.lesson.getLessonOfTeacher", $lesson->id).'" class="btn btn-xs btn-info btn-info-lesson" data-id="'.$lesson->id.'" data-toggle="modal" data-target="#detailLesson" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
                         <a href="'.route("teacher.lesson.edit", $lesson->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>
@@ -39,6 +42,25 @@ class DatatableService extends Service implements DatatableServiceInterface
                         <a href="javascript:void(0)" data-id="' . $lesson->id . '" class="btn btn-xs btn-danger btn-delete"><i class="fa fa-trash"></i></a>';
             })
             ->rawColumns(['action', 'status'])
+            ->make(true);
+    }
+
+    public function courses($teacherId) {
+        $query = Course::with('category', 'lesson')
+            ->where(Course::COL_USER_ID, $teacherId);
+
+        return DataTables::of($query)
+            ->addColumn('action', function ($course) {
+                return '<a href="'.route("teacher.courses.show", $course->id).'" class="btn btn-xs btn-info btn-info-lesson" data-id="'.$course->id.'" data-toggle="modal" data-target="#courseDetail" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
+                        <a href="'.route("teacher.courses.edit", $course->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>
+                        <a href="javascript:void(0)" data-id="' . $course->id . '" class="btn btn-xs btn-danger btn-delete"><i class="fa fa-trash"></i></a>';
+            })
+            ->addColumn('number_lessons', function ($course) {
+               return count($course->lesson);
+            })
+            ->editColumn(Course::COL_CREATED_AT, function ($course) {
+                return \Carbon\Carbon::parse($course->created_at)->format('d/m/Y');
+            })
             ->make(true);
     }
 }

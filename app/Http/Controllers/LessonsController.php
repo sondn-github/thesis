@@ -68,16 +68,16 @@ class LessonsController extends Controller
         $userId = Auth::id();
         $courses = $this->courseService->getCoursesByUserId($userId);
 
-        return view('teacher.upload_lesson', compact('courses'));
+        return view('teacher.lessons.create', compact('courses'));
     }
 
     public function store(StoreLessonRequest $request) {
         if ($this->lessonService->store($request)) {
-            return redirect()->route('teacher.lesson.create')->with(['success' => __('successStoring')]);
+            return redirect()->route('teacher.lesson.create')->with(['success' => __('lesson.successStoring')]);
         } else {
             return redirect()->route('teacher.lesson.create')
                 ->withInput()
-                ->withErrors(['message' => __('failedStoring')]);
+                ->withErrors(['message' => __('lesson.failedStoring')]);
         }
     }
 

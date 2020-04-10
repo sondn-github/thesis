@@ -76,7 +76,7 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a href="{{route('profile.get')}}" class="dropdown-item">{{__('layouts/header.profile')}}</a>
                                         @if(Auth::user()->role->name == 'teacher')
-                                            <a href="{{route('teacher.lesson.create')}}" class="dropdown-item">{{__('layouts/header.uploadLesson')}}</a>
+                                            <a href="{{route('teacher.courses.index')}}" class="dropdown-item">{{__('layouts/header.courseManagement')}}</a>
                                             <a href="{{route('teacher.lesson.index')}}" class="dropdown-item">{{__('layouts/header.lessonManagement')}}</a>
                                         @endif
                                         <a class="dropdown-item" href="{{ route('logout') }}"
