@@ -46,8 +46,6 @@ class LessonsController extends Controller
         if ($request->has('search') && $request->search != '')
         {
             $lessons = $this->lessonService->getLessonByName($request->search);
-
-            return redirect()->back()->withInput()->with(['lessons' => $lessons]);
         } else {
             $lessons = $this->lessonService->getAll();
         }

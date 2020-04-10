@@ -46,4 +46,5 @@ return [
     'new' => 'Thêm mới',
     'evaluated-message' => 'Bạn đã đánh giá bài giảng này rồi.',
     'search' => 'Tìm kiếm',
+    'no-data' => 'Không tìm thấy kết quả.',
 ];
