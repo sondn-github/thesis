@@ -103,7 +103,7 @@
                                         <span class="icon-star2 text-warning"></span>
                                         <span class="icon-star2 text-warning"></span>
                                     </div>
-                                    <p class="desc mb-4">{{$popularLesson->abstract}}</p>
+                                    <p class="desc mb-4" style="max-height: 100px; overflow: auto">{{$popularLesson->abstract}}</p>
                                     <p><a href="{{route('lesson-single', $popularLesson->id)}}" class="btn btn-primary rounded-0 px-4">{{__('welcome.view-detail')}}</a></p>
                                 </div>
                             </div>
