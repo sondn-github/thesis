@@ -44,4 +44,6 @@ return [
     'adviseFromSystem' => 'Lời tư vấn từ hệ thống',
     'no' => 'STT',
     'new' => 'Thêm mới',
+    'evaluated-message' => 'Bạn đã đánh giá bài giảng này rồi.',
+    'search' => 'Tìm kiếm',
 ];

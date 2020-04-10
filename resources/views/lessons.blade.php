@@ -26,11 +26,11 @@
                 <div class="col-md-4">
                     <form action="{{route('lessons')}}" method="get">
                         <div class="input-group">
-                            <label for="search">Tìm kiếm:</label>
-                            <input type="text" class="form-control ml-2" name="search" value="{{ old('search') }}" placeholder="Search">
+{{--                            <label for="search">Tìm kiếm:</label>--}}
+                            <input type="text" class="form-control mr-2" name="search" value="{{ old('search') }}" placeholder="{{__('lesson.search')}}">
                             <div class="input-group-btn">
-                                <button class="btn btn-default p-0" type="submit">
-                                    <img src="{{asset('images/baseline_search_black_18dp.png')}}" alt="search">
+                                <button class="btn btn-primary" type="submit">
+                                    {{__('lesson.search')}}
                                 </button>
                             </div>
                         </div>
@@ -62,6 +62,7 @@
                     </div>
                 @endforeach
             </div>
+            <div class="mx-auto">{{$lessons->links()}}</div>
         </div>
     </div>
 @endsection

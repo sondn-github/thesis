@@ -36,7 +36,7 @@ class LessonService extends Service implements LessonServiceInterface
     {
         return Lesson::with('course')
             ->where(Lesson::COL_STATUS, Lesson::ACTIVE_STATUS)
-            ->get();
+            ->paginate(6);
     }
 
     public function increaseView($id)
@@ -50,7 +50,7 @@ class LessonService extends Service implements LessonServiceInterface
     {
         return Lesson::with('course')
             ->where(Lesson::COL_NAME, 'like', '%'.$name.'%')
-            ->get();
+            ->paginate(6);
     }
 
     public function store(StoreLessonRequest $request) {

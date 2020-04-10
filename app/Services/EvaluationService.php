@@ -99,4 +99,10 @@ class EvaluationService extends Service implements EvaluationServiceInterface
         return Evaluation::where(Evaluation::COL_LESSON_ID, $lessonId)
             ->count();
     }
+
+    public function getEvaluation($lessonId, $userId) {
+        return Evaluation::where(Evaluation::COL_LESSON_ID, $lessonId)
+            ->where(Evaluation::COL_USER_ID, $userId)
+            ->get();
+    }
 }

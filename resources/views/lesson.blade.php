@@ -54,14 +54,16 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading"><strong>{{$teacher->name}}</strong></h4>
-                            <p>{{__('lesson.specialty')}}: {{$teacher->specialty}}</p>
+                            <p>{{$teacher->email}}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-2text-right">
-                    <button type="button" id="evaluationBtn" class="btn btn-info px-4 py-2" data-toggle="modal" data-target="#myModal">
+                    <button type="button" id="evaluationBtn" class="btn btn-info px-4 py-2"  @if($isEvaluated) disabled data-toggle="tooltip" data-placement="top"
+                            title="{{__('lesson.evaluated-message')}}"@else data-toggle="modal"
+                            data-target="#myModal" @endif>
                         <span class="icon-poll mr-2"></span>{{__('lesson.vote')}}<span
-                            class="ml-1 badge badge-light">9</span>
+                            class="ml-1 badge badge-light">{{$numberEvaluation}}</span>
                     </button>
                 </div>
                 <!-- Modal -->

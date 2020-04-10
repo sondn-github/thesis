@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Evaluation;
 use App\Services\Interfaces\EvaluationServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EvaluationController extends Controller
 {
@@ -16,19 +18,26 @@ class EvaluationController extends Controller
 
     public function store(Request $request)
     {
-        if ($this->evaluationService->storeEvaluation($request))
-        {
-            return response([
-                'status' =>__('lesson.success'),
-                'message' => __('lesson.success-message'),
-            ], 200);
-        }
-        else
-        {
+        if ($this->evaluationService->getEvaluation($request->input(Evaluation::COL_LESSON_ID), Auth::id())) {
             return response([
                 'status' =>__('lesson.failed'),
-                'message' => __('lesson.failed-message'),
+                'message' => __('lesson.evaluated-message'),
             ], 500);
+        } else {
+            if ($this->evaluationService->storeEvaluation($request))
+            {
+                return response([
+                    'status' =>__('lesson.success'),
+                    'message' => __('lesson.success-message'),
+                ], 200);
+            }
+            else
+            {
+                return response([
+                    'status' =>__('lesson.failed'),
+                    'message' => __('lesson.failed-message'),
+                ], 500);
+            }
         }
     }
 

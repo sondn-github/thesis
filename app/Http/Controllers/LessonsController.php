@@ -6,6 +6,7 @@ use App\Http\Requests\StoreLessonRequest;
 use App\Http\Requests\UpdateLessonRequest;
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Services\Interfaces\CriteriaServiceInterface;
+use App\Services\Interfaces\EvaluationServiceInterface;
 use App\Services\Interfaces\LessonServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
 use App\User;
@@ -18,16 +19,19 @@ class LessonsController extends Controller
     protected $criteriaService;
     protected $courseService;
     protected $userService;
+    protected $evaluationService;
 
     public function __construct(LessonServiceInterface $lessonService,
                                 CriteriaServiceInterface $criteriaService,
                                 CourseServiceInterface $courseService,
-                                UserServiceInterface $userService)
+                                UserServiceInterface $userService,
+                                EvaluationServiceInterface $evaluationService)
     {
         $this->lessonService = $lessonService;
         $this->criteriaService = $criteriaService;
         $this->courseService = $courseService;
         $this->userService = $userService;
+        $this->evaluationService = $evaluationService;
     }
 
     public function getLessonDetail(Request $request) {
@@ -41,8 +45,9 @@ class LessonsController extends Controller
     {
         if ($request->has('search') && $request->search != '')
         {
-            $request->flash();
             $lessons = $this->lessonService->getLessonByName($request->search);
+
+            return redirect()->back()->withInput()->with(['lessons' => $lessons]);
         } else {
             $lessons = $this->lessonService->getAll();
         }
@@ -56,11 +61,15 @@ class LessonsController extends Controller
         $lesson = $this->lessonService->getLessonDetailById($request->id);
         $teacher = $this->userService->getUserById($lesson->course->user_id);
         $criteria = $this->criteriaService->getAllCriteria();
+        $numberEvaluation = $this->evaluationService->countEvaluation($request->id);
+        $isEvaluated = $this->evaluationService->getEvaluation($request->id, Auth::id()) ? true : false;
 
         return view('lesson', [
             'lesson' => $lesson,
             'criteria' => $criteria,
             'teacher' => $teacher,
+            'numberEvaluation' => $numberEvaluation,
+            'isEvaluated' => $isEvaluated,
         ]);
     }
 
