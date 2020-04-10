@@ -132,11 +132,9 @@
                         {{csrf_field()}}
                         <label class="btn btn-light mt-3 p-1" for="my-file-selector" id="avatar-selector">
                             <input id="my-file-selector" type="file" style="display:none"
-                                   onchange="uploadAvatar()" name="avatar"><img
-                                src="{{asset('images/baseline_folder_open_black_18dp.png')}}" alt="folder">
+                                   onchange="uploadAvatar()" name="avatar"><i class="fa fa-folder"></i>
                         </label>
-                        <button type="submit" id="avatar-sb-btn" class="btn btn-light display-none mt-2 p-1"><img
-                                src="{{asset('images/baseline_publish_black_18dp.png')}}" alt="upload"></button>
+                        <button type="submit" id="avatar-sb-btn" class="btn btn-light display-none mt-2 p-1"><i class="fa fa-upload"></i></button>
                     </form>
                     <p class='label label-info' id="upload-file-info"></p>
                 </div>
