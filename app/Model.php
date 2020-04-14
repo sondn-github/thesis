@@ -29,4 +29,5 @@ class Model extends EloquentModel
     /*Constant*/
     public const ACTIVE_STATUS = 1;
     public const INACTIVE_STATUS = 0;
+    public const PER_PAGE = 6;
 }

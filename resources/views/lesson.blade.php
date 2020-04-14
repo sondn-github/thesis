@@ -63,7 +63,7 @@
                             title="{{__('lesson.evaluated-message')}}"@else data-toggle="modal"
                             data-target="#myModal" @endif>
                         <span class="icon-poll mr-2"></span>{{__('lesson.vote')}}<span
-                            class="ml-1 badge badge-light">{{$numberEvaluation}}</span>
+                            class="ml-1 badge badge-light" id="numberEvaluation">{{$numberEvaluation}}</span>
                     </button>
                 </div>
                 <!-- Modal -->
@@ -229,6 +229,15 @@
                 data: form.serialize(), // serializes the form's elements.
                 success: function (data) {
                     handleResponse(data, "success");
+                    var numberEvaluation = parseInt($('#numberEvaluation').html());
+                    numberEvaluation += 1;
+                    $('#numberEvaluation').html(numberEvaluation);
+                    var btn = $('#evaluationBtn');
+                    btn.attr('disabled', true);
+                    btn.attr('data-toggle', 'tooltip');
+                    btn.attr('data-placement', 'top');
+                    btn.attr('title', "{{__('lesson.evaluated-message')}}");
+                    btn.removeAttr('data-target');
                 },
                 error: function (data) {
                     handleResponse(data, "error");

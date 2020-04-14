@@ -18,11 +18,11 @@ class EvaluationController extends Controller
 
     public function store(Request $request)
     {
-        if ($this->evaluationService->getEvaluation($request->input(Evaluation::COL_LESSON_ID), Auth::id())) {
+        if (count($this->evaluationService->getEvaluation($request->input(Evaluation::COL_LESSON_ID), Auth::id())) == 1) {
             return response([
                 'status' =>__('lesson.failed'),
                 'message' => __('lesson.evaluated-message'),
-            ], 500);
+            ], 401);
         } else {
             if ($this->evaluationService->storeEvaluation($request))
             {

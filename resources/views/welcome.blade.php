@@ -91,7 +91,7 @@
                             <div class="course-1-item">
                                 <figure class="thumnail">
                                     <a href="{{route('lesson-single', $popularLesson->id)}}"><img src="{{asset($popularLesson->thumbnail)}}" alt="Image" class="img-fluid"></a>
-{{--                                    <div class="price">$99.00</div>--}}
+                                    <div class="price">{{__('layouts/header.lesson')}}</div>
                                     <div class="category"><h3>{{$popularLesson->course->name}}</h3></div>
                                 </figure>
                                 <div class="course-1-content pb-4">
@@ -104,7 +104,7 @@
                                         <span class="icon-star2 text-warning"></span>
                                     </div>
                                     <p class="desc mb-4" style="max-height: 100px; overflow: auto">{{$popularLesson->abstract}}</p>
-                                    <p><a href="{{route('lesson-single', $popularLesson->id)}}" class="btn btn-primary rounded-0 px-4">{{__('welcome.view-detail')}}</a></p>
+                                    <p><a href="{{route('display-lesson', $popularLesson->id)}}" class="btn btn-primary rounded-0 px-4">{{__('welcome.view-detail')}}</a></p>
                                 </div>
                             </div>
                         @endforeach

@@ -20,4 +20,10 @@ return [
     'create' => 'Tạo mới',
     'failedStoring' => 'Có lỗi xảy ra xin vui lòng thử lại.',
     'successStoring' => 'Tạo mới thành công.',
+    'search' => 'Tìm kiếm',
+    'no-data' => 'Không tìm thấy kết quả.',
+    'courseDetail' => 'Chi tiết khoá học',
+    'content' => 'Nội dung khoá học',
+    'getStarted' => 'Bắt đầu học',
+    'teacher' => 'Giảng viên',
 ];

@@ -13,4 +13,10 @@ return [
     'uploadLesson' => 'Upload bài giảng',
     'lessonManagement' => 'Quản lý bài giảng',
     'courseManagement' => 'Quản lý khoá học',
+    'courses' => 'Các khoá học',
+    'categories' => 'Thể loại',
+    'course' => 'Khoá học',
+    'criteriaManagement' => 'Quản trị tiêu chí',
+    'ruleManagement' => 'Quản trị luật',
+    'factManagement' => 'Quản trị sự kiện',
 ];

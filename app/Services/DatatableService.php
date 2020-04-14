@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Course;
+use App\Criteria;
 use App\Lesson;
 use App\Services\Interfaces\DatatableServiceInterface;
 use Yajra\DataTables\DataTables;
@@ -61,6 +62,31 @@ class DatatableService extends Service implements DatatableServiceInterface
             ->editColumn(Course::COL_CREATED_AT, function ($course) {
                 return \Carbon\Carbon::parse($course->created_at)->format('d/m/Y');
             })
+            ->make(true);
+    }
+
+    public function criteria() {
+        $query = Criteria::all();
+
+        return DataTables::of($query)
+            ->editColumn(Criteria::COL_STATUS, function ($criteria) {
+                if ($criteria->status == Criteria::ACTIVE_STATUS) {
+                    return '<label class="switch small">
+                                <input type="checkbox" name="status" data-id="'.$criteria->id.'" checked>
+                                <span class="slider round"></span>
+                            </label>';
+                } else {
+                    return '<label class="switch">
+                                <input type="checkbox" data-id="'.$criteria->id.'" name="status">
+                                <span class="slider round"></span>
+                            </label>';
+                }
+            })
+            ->addColumn('action', function ($criteria) {
+                return '<a href="'.route("expert.criteria.show", $criteria->id).'" class="btn btn-xs btn-info btn-info-criteria" data-id="'.$criteria->id.'" data-toggle="modal" data-target="#criteriaModal" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
+                        <a href="'.route("expert.criteria.edit", $criteria->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
+            })
+            ->rawColumns(['action', Criteria::COL_STATUS])
             ->make(true);
     }
 }

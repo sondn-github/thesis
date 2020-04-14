@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Services\Interfaces\CourseServiceInterface;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class CategoryController extends Controller
 {
     protected $courseService;
+
     public function __construct(CourseServiceInterface $courseService)
     {
         $this->courseService = $courseService;
@@ -20,8 +21,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = $this->courseService->getCourses();
-        return view('courses', compact('courses'));
+        //
     }
 
     /**
@@ -53,9 +53,8 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $course = $this->courseService->getCourseById($id);
-
-        return view('course_single', compact('course'));
+        $courses = $this->courseService->getCoursesByCategory($id);
+        return view('courses', compact('courses'));
     }
 
     /**

@@ -15,15 +15,15 @@
                 <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> 10 20 123 456</a>
                 <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> info@mydomain.com</a>
             </div>
-            <div class="col-lg-2 text-right">
-                <select name="language" id="language" class="form-control small">
-                    @foreach($languages as $language)
-                        <option value="{{$language}}" {{$language == $currLang? "selected" : ""}}>
-                            {{strtoupper($language)}}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
+{{--            <div class="col-lg-2 text-right">--}}
+{{--                <select name="language" id="language" class="form-control small">--}}
+{{--                    @foreach($languages as $language)--}}
+{{--                        <option value="{{$language}}" {{$language == $currLang? "selected" : ""}}>--}}
+{{--                            {{strtoupper($language)}}--}}
+{{--                        </option>--}}
+{{--                    @endforeach--}}
+{{--                </select>--}}
+{{--            </div>--}}
         </div>
     </div>
 </div>
@@ -43,22 +43,22 @@
                             <a href="{{route('index')}}" class="nav-link text-left">{{__('layouts/header.home')}}</a>
                         </li>
                         <li class="has-children">
-                            <a href="#" class="nav-link text-left">{{__('layouts/header.about')}}</a>
+                            <a href="#" class="nav-link text-left">{{__('layouts/header.categories')}}</a>
                             <ul class="dropdown">
-                                <li><a href="#">Our Teachers</a></li>
-                                <li><a href="#">Our School</a></li>
+                                @foreach($categories as $category)
+                                    <li><a href="{{route('categories.show', $category->id)}}">{{$category->name}}</a></li>
+                                @endforeach
                             </ul>
                         </li>
 {{--                        <li>--}}
 {{--                            <a href="admissions.html" class="nav-link text-left">Admissions</a>--}}
 {{--                        </li>--}}
                         <li>
-                            <a href="{{route('lessons')}}" class="nav-link text-left">{{__('layouts/header.lesson')}}</a>
+                            <a href="{{route('courses.index')}}" class="nav-link text-left">{{__('layouts/header.courses')}}</a>
                         </li>
                         <li>
                             <a href="#" class="nav-link text-left">{{__('layouts/header.contact')}}</a>
                         </li>
-                    </ul>
                     </ul>
                 </nav>
             </div>
@@ -78,6 +78,11 @@
                                         @if(Auth::user()->role->name == 'teacher')
                                             <a href="{{route('teacher.courses.index')}}" class="dropdown-item">{{__('layouts/header.courseManagement')}}</a>
                                             <a href="{{route('teacher.lesson.index')}}" class="dropdown-item">{{__('layouts/header.lessonManagement')}}</a>
+                                        @endif
+                                        @if(Auth::user()->role->name == 'expert')
+                                            <a href="{{route('expert.criteria.index')}}" class="dropdown-item">{{__('layouts/header.criteriaManagement')}}</a>
+                                            <a href="" class="dropdown-item">{{__('layouts/header.factManagement')}}</a>
+                                            <a href="" class="dropdown-item">{{__('layouts/header.ruleManagement')}}</a>
                                         @endif
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();

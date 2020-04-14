@@ -13,12 +13,18 @@ class Course extends AppModel
     public const COL_CATEGORY_ID = 'category_id';
     public const COL_USER_ID = 'user_id';
     public const COL_DESCRIPTION = 'description';
+    public const COL_THUMBNAIL = 'thumbnail';
 
     protected $fillable = [
         self::COL_NAME,
         self::COL_CATEGORY_ID,
         self::COL_USER_ID,
         self::COL_DESCRIPTION,
+        self::COL_THUMBNAIL
+    ];
+
+    protected $attributes = [
+        self::COL_THUMBNAIL => '/images/course_2.jpg',
     ];
 
     public function category() {
@@ -27,5 +33,9 @@ class Course extends AppModel
 
     public function lesson() {
         return $this->hasMany('App\Lesson');
+    }
+
+    public function user() {
+        return $this->belongsTo('App\User');
     }
 }

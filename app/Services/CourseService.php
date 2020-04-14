@@ -8,6 +8,7 @@ use App\Course;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Requests\StoreCourseRequest;
 use App\Services\Interfaces\CourseServiceInterface;
+use function GuzzleHttp\Psr7\_parse_request_uri;
 
 class CourseService extends Service implements CourseServiceInterface
 {
@@ -17,7 +18,7 @@ class CourseService extends Service implements CourseServiceInterface
     }
 
     public function getCourseById($courseId) {
-        return Course::with('category', 'lesson')
+        return Course::with('category', 'lesson', 'user')
             ->where(Course::COL_ID, $courseId)
             ->first();
     }
@@ -41,5 +42,15 @@ class CourseService extends Service implements CourseServiceInterface
             Course::COL_DESCRIPTION => $request->input(Course::COL_DESCRIPTION),
             Course::COL_USER_ID => $teacherId,
         ]);
+    }
+
+    public function getCourses() {
+        return Course::with('category')->paginate(Course::PER_PAGE);
+    }
+
+    public function getCoursesByCategory($categoryId) {
+        return Course::with('category')
+            ->where(Course::COL_CATEGORY_ID, $categoryId)
+            ->paginate(Course::PER_PAGE);
     }
 }

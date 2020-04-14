@@ -44,3 +44,11 @@ Route::middleware(['auth'])->prefix('teacher')->name('teacher.')->group(function
 });
 
 Route::get('/test', 'KnowledgeController@getAdvises');
+Route::resource('courses', 'CourseController');
+Route::resource('categories', 'CategoryController');
+
+Route::middleware(['auth'])->prefix('expert')->name('expert.')->group(function () {
+    Route::get('/datatables/criteria', 'DatatableController@criteria')->name('datatables.criteria');
+    Route::resource('criteria', 'Expert\CriteriaController')->except(['destroy']);
+    Route::get('/status/change', 'Expert\CriteriaController@changeStatus')->name('criteria.changing-status');
+});

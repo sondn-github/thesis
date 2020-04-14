@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Category;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Interfaces;
 use App\Services;
@@ -36,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Get current language
         View::share('currLang', App::getLocale());
+        View::share('categories', Category::all());
     }
 
     /**

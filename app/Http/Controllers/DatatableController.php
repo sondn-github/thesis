@@ -23,4 +23,8 @@ class DatatableController extends Controller
     public function courses() {
         return $this->datatableService->courses(Auth::id());
     }
+
+    public function criteria() {
+        return $this->datatableService->criteria();
+    }
 }
