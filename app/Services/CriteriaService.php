@@ -23,7 +23,7 @@ class CriteriaService extends Service implements CriteriaServiceInterface
             ]);
     }
 
-    public function getCriteria($id) {
+    public function getCriteriaById($id) {
         return Criteria::findOrFail($id);
     }
 

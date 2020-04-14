@@ -51,4 +51,7 @@ Route::middleware(['auth'])->prefix('expert')->name('expert.')->group(function (
     Route::get('/datatables/criteria', 'DatatableController@criteria')->name('datatables.criteria');
     Route::resource('criteria', 'Expert\CriteriaController')->except(['destroy']);
     Route::get('/status/change', 'Expert\CriteriaController@changeStatus')->name('criteria.changing-status');
+    Route::resource('facts', 'Expert\FactController')->except(['destroy']);
+    Route::get('/datatables/facts', 'DatatableController@facts')->name('datatables.facts');
+    Route::get('/status/change', 'Expert\FactController@changeStatus')->name('facts.changing-status');
 });

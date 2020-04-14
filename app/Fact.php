@@ -20,4 +20,8 @@ class Fact extends AppModel
         self::COL_TYPE,
         self::COL_STATUS,
     ];
+
+    // Constant
+    public const TYPE_COMMENT = 1;
+    public const TYPE_ADVISE = 2;
 }

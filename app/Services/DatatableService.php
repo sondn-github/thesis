@@ -6,8 +6,10 @@ namespace App\Services;
 
 use App\Course;
 use App\Criteria;
+use App\Fact;
 use App\Lesson;
 use App\Services\Interfaces\DatatableServiceInterface;
+use Symfony\Component\VarDumper\Cloner\Data;
 use Yajra\DataTables\DataTables;
 
 class DatatableService extends Service implements DatatableServiceInterface
@@ -85,6 +87,37 @@ class DatatableService extends Service implements DatatableServiceInterface
             ->addColumn('action', function ($criteria) {
                 return '<a href="'.route("expert.criteria.show", $criteria->id).'" class="btn btn-xs btn-info btn-info-criteria" data-id="'.$criteria->id.'" data-toggle="modal" data-target="#criteriaModal" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
                         <a href="'.route("expert.criteria.edit", $criteria->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
+            })
+            ->rawColumns(['action', Criteria::COL_STATUS])
+            ->make(true);
+    }
+
+    public function facts() {
+        $query = Fact::all();
+
+        return DataTables::of($query)
+            ->editColumn(Fact::COL_STATUS, function ($fact) {
+                if ($fact->status == Fact::ACTIVE_STATUS) {
+                    return '<label class="switch small">
+                                <input type="checkbox" name="status" data-id="'.$fact->id.'" checked>
+                                <span class="slider round"></span>
+                            </label>';
+                } else {
+                    return '<label class="switch">
+                                <input type="checkbox" data-id="'.$fact->id.'" name="status">
+                                <span class="slider round"></span>
+                            </label>';
+                }
+            })
+            ->editColumn(Fact::COL_TYPE, function ($fact) {
+                if ($fact->type == Fact::TYPE_COMMENT) {
+                    return __('fact.comment');
+                } else {
+                    return __('fact.advise');
+                }
+            })
+            ->addColumn('action', function ($fact) {
+                return '<a href="'.route("expert.facts.edit", $fact->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
             })
             ->rawColumns(['action', Criteria::COL_STATUS])
             ->make(true);

@@ -27,4 +27,8 @@ class DatatableController extends Controller
     public function criteria() {
         return $this->datatableService->criteria();
     }
+
+    public function facts() {
+        return $this->datatableService->facts();
+    }
 }

@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         Interfaces\CourseServiceInterface::class => Services\CourseService::class,
         Interfaces\DatatableServiceInterface::class => Services\DatatableService::class,
         Interfaces\KnowledgeServiceInterface::class => Services\KnowledgeService::class,
+        Interfaces\FactServiceInterface::class => Services\FactService::class,
     ];
 
     /**

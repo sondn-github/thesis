@@ -81,7 +81,7 @@
                                         @endif
                                         @if(Auth::user()->role->name == 'expert')
                                             <a href="{{route('expert.criteria.index')}}" class="dropdown-item">{{__('layouts/header.criteriaManagement')}}</a>
-                                            <a href="" class="dropdown-item">{{__('layouts/header.factManagement')}}</a>
+                                            <a href="{{route('expert.facts.index')}}" class="dropdown-item">{{__('layouts/header.factManagement')}}</a>
                                             <a href="" class="dropdown-item">{{__('layouts/header.ruleManagement')}}</a>
                                         @endif
                                         <a class="dropdown-item" href="{{ route('logout') }}"

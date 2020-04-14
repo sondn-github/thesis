@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Expert;
 
-use App\Http\Requests\StoreCriteriaRequest;
-use App\Http\Requests\UpdateCriteriaRequest;
-use App\Services\Interfaces\CriteriaServiceInterface;
+use App\Http\Requests\StoreFactRequest;
+use App\Http\Requests\UpdateFactRequest;
+use App\Services\Interfaces\FactServiceInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CriteriaController extends Controller
+class FactController extends Controller
 {
-    protected $criteriaService;
+    protected $factService;
 
-    public function __construct(CriteriaServiceInterface $criteriaService)
+    public function __construct(FactServiceInterface $factService)
     {
-        $this->criteriaService = $criteriaService;
+        $this->factService = $factService;
     }
 
     /**
@@ -24,7 +24,7 @@ class CriteriaController extends Controller
      */
     public function index()
     {
-        return view('expert.criteria.index');
+        return view('expert.facts.index');
     }
 
     /**
@@ -34,7 +34,7 @@ class CriteriaController extends Controller
      */
     public function create()
     {
-        return view('expert.criteria.create');
+        return view('expert.facts.create');
     }
 
     /**
@@ -43,12 +43,12 @@ class CriteriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCriteriaRequest $request)
+    public function store(StoreFactRequest $request)
     {
-        if ($this->criteriaService->store($request)) {
-            return redirect()->back()->with('success', __('criteria.storingSuccess'));
+        if ($this->factService->store($request)) {
+            return redirect()->back()->with('success', __('fact.storingSuccess'));
         } else {
-            return redirect()->back()->withErrors(['message' => __('criteria.storingFailed')]);
+            return redirect()->back()->withErrors(['message' => __('fact.storingFailed')]);
         }
     }
 
@@ -60,12 +60,7 @@ class CriteriaController extends Controller
      */
     public function show($id)
     {
-        $criteria = $this->criteriaService->getCriteria($id);
-        if ($criteria) {
-            return response()->json($criteria, 200);
-        } else {
-            return response(__('lesson.failed-message'), 401);
-        }
+        //
     }
 
     /**
@@ -76,9 +71,8 @@ class CriteriaController extends Controller
      */
     public function edit($id)
     {
-        $criteria = $this->criteriaService->getCriteriaById($id);
-
-         return view('expert.criteria.edit', compact('criteria'));
+        $fact = $this->factService->getFactById($id);
+        return view('expert.facts.edit', compact('fact'));
     }
 
     /**
@@ -88,12 +82,12 @@ class CriteriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCriteriaRequest $request, $id)
+    public function update(UpdateFactRequest $request, $id)
     {
-        if ($this->criteriaService->update($request, $id)) {
-            return redirect()->back()->with('success', __('criteria.updateSuccess'));
+        if ($this->factService->update($request, $id)) {
+            return redirect()->back()->with('success', __('fact.updateSuccess'));
         } else {
-            return redirect()->back()->withErrors(['message' => __('criteria.updateFailed')]);
+            return redirect()->back()->withErrors(['message' => __('fact.updateFailed')]);
         }
     }
 
@@ -109,13 +103,13 @@ class CriteriaController extends Controller
     }
 
     public function changeStatus(Request $request) {
-        if ($this->criteriaService->changeStatus($request)) {
+        if ($this->factService->changeStatus($request)) {
             return response()->json([
-                'success' => __('criteria.updateSuccess'),
+                'success' => __('fact.updateSuccess'),
             ], 200);
         } else {
             return response()->json([
-                'error' => __('criteria.updateFailed'),
+                'error' => __('fact.updateFailed'),
             ], 500);
         }
     }
