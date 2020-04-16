@@ -1,3 +1,9 @@
+<?php
+    use App\Category;
+
+    $categories = Category::all();
+?>
+
 <div class="site-mobile-menu site-navbar-target">
     <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -82,7 +88,7 @@
                                         @if(Auth::user()->role->name == 'expert')
                                             <a href="{{route('expert.criteria.index')}}" class="dropdown-item">{{__('layouts/header.criteriaManagement')}}</a>
                                             <a href="{{route('expert.facts.index')}}" class="dropdown-item">{{__('layouts/header.factManagement')}}</a>
-                                            <a href="" class="dropdown-item">{{__('layouts/header.ruleManagement')}}</a>
+                                            <a href="{{route('expert.knowledge.index')}}" class="dropdown-item">{{__('layouts/header.ruleManagement')}}</a>
                                         @endif
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();

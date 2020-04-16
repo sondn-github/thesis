@@ -50,8 +50,11 @@ Route::resource('categories', 'CategoryController');
 Route::middleware(['auth'])->prefix('expert')->name('expert.')->group(function () {
     Route::get('/datatables/criteria', 'DatatableController@criteria')->name('datatables.criteria');
     Route::resource('criteria', 'Expert\CriteriaController')->except(['destroy']);
-    Route::get('/status/change', 'Expert\CriteriaController@changeStatus')->name('criteria.changing-status');
-    Route::resource('facts', 'Expert\FactController')->except(['destroy']);
+    Route::get('/criteria-status/change', 'Expert\CriteriaController@changeStatus')->name('criteria.changing-status');
+    Route::resource('facts', 'Expert\FactController')->except(['destroy', 'show']);
     Route::get('/datatables/facts', 'DatatableController@facts')->name('datatables.facts');
-    Route::get('/status/change', 'Expert\FactController@changeStatus')->name('facts.changing-status');
+    Route::get('/fact-status/change', 'Expert\FactController@changeStatus')->name('facts.changing-status');
+    Route::resource('knowledge', 'Expert\KnowledgeController')->except(['destroy', 'show']);
+    Route::get('/datatables/knowledge', 'DatatableController@knowledge')->name('datatables.knowledge');
+    Route::get('/fact-status/change', 'Expert\KnowledgeController@changeStatus')->name('knowledge.changing-status');
 });

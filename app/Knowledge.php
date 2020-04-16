@@ -27,4 +27,12 @@ class Knowledge extends AppModel
 
     // Constant
     public const MIN_RELIABILITY = 0.7;
+    public const OPERATORS = ['>=', '<=', '>', '<'];
+    public const TYPE_1 = 1;
+    public const TYPE_2 = 2;
+
+    protected $casts = [
+        self::COL_PREMISE => 'array',
+        self::COL_STATUS => 'boolean',
+    ];
 }

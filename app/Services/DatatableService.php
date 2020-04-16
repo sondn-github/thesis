@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Course;
 use App\Criteria;
 use App\Fact;
+use App\Knowledge;
 use App\Lesson;
 use App\Services\Interfaces\DatatableServiceInterface;
 use Symfony\Component\VarDumper\Cloner\Data;
@@ -119,7 +120,31 @@ class DatatableService extends Service implements DatatableServiceInterface
             ->addColumn('action', function ($fact) {
                 return '<a href="'.route("expert.facts.edit", $fact->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
             })
-            ->rawColumns(['action', Criteria::COL_STATUS])
+            ->rawColumns(['action', Fact::COL_STATUS])
+            ->make(true);
+    }
+
+    public function knowledge() {
+        $query = Knowledge::all();
+
+        return DataTables::of($query)
+            ->editColumn(Knowledge::COL_STATUS, function ($knowledge) {
+                if ($knowledge->status == Knowledge::ACTIVE_STATUS) {
+                    return '<label class="switch small">
+                                <input type="checkbox" name="status" data-id="'.$knowledge->id.'" checked>
+                                <span class="slider round"></span>
+                            </label>';
+                } else {
+                    return '<label class="switch">
+                                <input type="checkbox" data-id="'.$knowledge->id.'" name="status">
+                                <span class="slider round"></span>
+                            </label>';
+                }
+            })
+            ->addColumn('action', function ($knowledge) {
+                return '<a href="'.route("expert.knowledge.edit", $knowledge->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
+            })
+            ->rawColumns(['action', Knowledge::COL_STATUS])
             ->make(true);
     }
 }

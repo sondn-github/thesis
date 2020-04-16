@@ -38,7 +38,6 @@ class AppServiceProvider extends ServiceProvider
 
         // Get current language
         View::share('currLang', App::getLocale());
-        View::share('categories', Category::all());
     }
 
     /**

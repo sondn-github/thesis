@@ -31,4 +31,8 @@ class DatatableController extends Controller
     public function facts() {
         return $this->datatableService->facts();
     }
+
+    public function knowledge() {
+        return $this->datatableService->knowledge();
+    }
 }

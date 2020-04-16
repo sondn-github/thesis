@@ -5,8 +5,11 @@ namespace App\Services;
 
 
 use App\Fact;
+use App\Http\Requests\StoreKnowledgeRequest;
+use App\Http\Requests\UpdateKnowledgeRequest;
 use App\Knowledge;
 use App\Services\Interfaces\KnowledgeServiceInterface;
+use Illuminate\Http\Request;
 
 class KnowledgeService extends Service implements KnowledgeServiceInterface
 {
@@ -98,5 +101,49 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         }
 
         return true;
+    }
+
+    public function changeStatus($request) {
+        return Knowledge::findOrFail($request->id)
+            ->update([
+                Knowledge::COL_STATUS => $request->input(Knowledge::COL_STATUS),
+            ]);
+    }
+
+    public function convertToPremiseWithType1(Request $request) {
+        $premises = [];
+
+        foreach ($request->criteria as $key => $criteriaId) {
+            $premise = $criteriaId.','.Knowledge::OPERATORS[$request->operators[$key]].','.$request->scores[$key];
+            array_push($premises, $premise);
+        }
+
+        return $premises;
+    }
+
+    public function storeRuleType1(Request $request) {
+        return Knowledge::create([
+            Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
+            Knowledge::COL_TYPE => Knowledge::TYPE_1,
+            Knowledge::COL_PREMISE => $this->convertToPremiseWithType1($request),
+            Knowledge::COL_CONCLUSION => $request->input(Knowledge::COL_CONCLUSION),
+            Knowledge::COL_RELIABILITY => $request->input(Knowledge::COL_RELIABILITY),
+            Knowledge::COL_STATUS => $request->input(Knowledge::COL_STATUS),
+        ]);
+    }
+
+    public function getKnowledgeById($id) {
+        return Knowledge::findOrFail($id);
+    }
+
+    public function updateRuleType1(Request $request, $id) {
+        return Knowledge::findOrFail($id)
+            ->update([
+                Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
+                Knowledge::COL_PREMISE => $this->convertToPremiseWithType1($request),
+                Knowledge::COL_CONCLUSION => $request->input(Knowledge::COL_CONCLUSION),
+                Knowledge::COL_RELIABILITY => $request->input(Knowledge::COL_RELIABILITY),
+                Knowledge::COL_STATUS => $request->input(Knowledge::COL_STATUS),
+            ]);
     }
 }
