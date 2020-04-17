@@ -10,16 +10,20 @@ class Evaluation extends AppModel
 
     //Column name
     public const COL_USER_ID = 'user_id';
-    public const COL_LESSON_ID = 'lesson_id';
+    public const COL_COURSE_ID = 'course_id';
     public const COL_ANSWERS = 'answers';
 
     protected $fillable = [
         self::COL_USER_ID,
-        self::COL_LESSON_ID,
+        self::COL_COURSE_ID,
         self::COL_ANSWERS,
         self::COL_CREATED_AT,
         self::COL_UPDATED_AT,
         self::COL_DELETED_AT,
+    ];
+
+    protected $casts = [
+        self::COL_ANSWERS => 'array',
     ];
 
     //Answers

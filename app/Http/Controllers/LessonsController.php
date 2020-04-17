@@ -58,17 +58,11 @@ class LessonsController extends Controller
         $this->lessonService->increaseView($request->id);
         $lesson = $this->lessonService->getLessonDetailById($request->id);
         $teacher = $this->userService->getUserById($lesson->course->user_id);
-        $criteria = $this->criteriaService->getAllCriteria();
-        $numberEvaluation = $this->evaluationService->countEvaluation($request->id);
-        $isEvaluated = count($this->evaluationService->getEvaluation($request->id, Auth::id())) == 1 ? true : false;
 
         return view('lesson', [
             'lesson' => $lesson,
-            'criteria' => $criteria,
             'teacher' => $teacher,
-            'numberEvaluation' => $numberEvaluation,
-            'isEvaluated' => $isEvaluated,
-        ]);
+            ]);
     }
 
     public function create() {

@@ -3,14 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Services\Interfaces\CourseServiceInterface;
+use App\Services\Interfaces\CriteriaServiceInterface;
+use App\Services\Interfaces\EvaluationServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
     protected $courseService;
-    public function __construct(CourseServiceInterface $courseService)
+    protected $criteriaService;
+    protected $evaluationService;
+
+    public function __construct(CourseServiceInterface $courseService,
+                                CriteriaServiceInterface $criteriaService,
+                                EvaluationServiceInterface $evaluationService)
     {
         $this->courseService = $courseService;
+        $this->criteriaService = $criteriaService;
+        $this->evaluationService = $evaluationService;
     }
 
     /**
@@ -49,13 +59,21 @@ class CourseController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
      */
     public function show($id)
     {
         $course = $this->courseService->getCourseById($id);
+        $criteria = $this->criteriaService->getAllCriteria();
+        $numberEvaluation = $this->evaluationService->countEvaluation($id);
+        $isEvaluated = count($this->evaluationService->getEvaluation($id, Auth::id())) == 1;
 
-        return view('course_single', compact('course'));
+        return view('course_single', [
+            'course' => $course,
+            'criteria' => $criteria,
+            'numberEvaluation' => $numberEvaluation,
+            'isEvaluated' => $isEvaluated,
+        ]);
     }
 
     /**

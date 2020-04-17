@@ -5,34 +5,33 @@ namespace App\Services;
 
 
 use App\Evaluation;
-use App\Lesson;
+use App\Course;
 use App\Services\Interfaces\EvaluationServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Monolog\Formatter\ElasticaFormatter;
 
 class EvaluationService extends Service implements EvaluationServiceInterface
 {
     public function storeEvaluation(Request $request)
     {
-        $answers = $request->except([Evaluation::COL_LESSON_ID, '_token']);
+        $answers = $request->except([Evaluation::COL_COURSE_ID, '_token']);
 
         $result = Evaluation::create([
             Evaluation::COL_USER_ID => Auth::id(),
-            Evaluation::COL_LESSON_ID => $request->input(Evaluation::COL_LESSON_ID),
-            Evaluation::COL_ANSWERS => json_encode($answers),
+            Evaluation::COL_COURSE_ID => $request->input(Evaluation::COL_COURSE_ID),
+            Evaluation::COL_ANSWERS => $answers,
         ]);
         if ($result) {
-            $this->calculateToPFR($request->input(Evaluation::COL_LESSON_ID));
+            $this->calculateToPFR($request->input(Evaluation::COL_COURSE_ID));
         }
 
         return $result;
     }
 
-    public function calculateToPFR($lessonId) {
+    public function calculateToPFR($courseId) {
         $evaluations = Evaluation::with('user')
             ->select(Evaluation::COL_ANSWERS, Evaluation::COL_USER_ID)
-            ->where(Evaluation::COL_LESSON_ID, $lessonId)
+            ->where(Evaluation::COL_COURSE_ID, $courseId)
             ->get();
         $results = [];
         $reliabilities = [];
@@ -40,7 +39,7 @@ class EvaluationService extends Service implements EvaluationServiceInterface
         $pfr = [];
 
         foreach ($evaluations as $evaluation) {
-            $results[$evaluation->user_id] = json_decode($evaluation->answers, true);
+            $results[$evaluation->user_id] = $evaluation->answers;
             $reliabilities[$evaluation->user_id] = $evaluation->user->reliability;
         }
 
@@ -74,17 +73,17 @@ class EvaluationService extends Service implements EvaluationServiceInterface
                 $pfr[$criteriaId][$key] = round($value/array_sum($reliabilities), 2);
             }
         }
-        $this->savePFR(json_encode($pfr), $lessonId);
+        $this->savePFR($pfr, $courseId);
     }
 
-    public function savePFR($pfr, $lessonId) {
-        return Lesson::findOrFail($lessonId)->update([
-            Lesson::COL_PFR => $pfr,
+    public function savePFR($pfr, $courseId) {
+        return Course::findOrFail($courseId)->update([
+            Course::COL_PFR => $pfr,
         ]);
     }
 
-    public function getAvgEvaluation($lessonId) {
-        $pfr = json_decode(Lesson::findOrFail($lessonId)->pfr, true);
+    public function getAvgEvaluation($courseId) {
+        $pfr = Course::findOrFail($courseId)->pfr;
         $sr = [];
         if ($pfr) {
             foreach ($pfr as $criteriaId => $pfs) {
@@ -95,13 +94,13 @@ class EvaluationService extends Service implements EvaluationServiceInterface
         return $sr;
     }
 
-    public function countEvaluation($lessonId) {
-        return Evaluation::where(Evaluation::COL_LESSON_ID, $lessonId)
+    public function countEvaluation($courseId) {
+        return Evaluation::where(Evaluation::COL_COURSE_ID, $courseId)
             ->count();
     }
 
-    public function getEvaluation($lessonId, $userId) {
-        return Evaluation::where(Evaluation::COL_LESSON_ID, $lessonId)
+    public function getEvaluation($courseId, $userId) {
+        return Evaluation::where(Evaluation::COL_COURSE_ID, $courseId)
             ->where(Evaluation::COL_USER_ID, $userId)
             ->get();
     }

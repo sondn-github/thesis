@@ -59,10 +59,224 @@
 
                     <p>
                         <a href="{{route('display-lesson', $course->lesson[0]->id)}}" class="btn btn-primary rounded-0 btn-lg px-5">{{__('course.getStarted')}}</a>
+                        <button type="button" id="evaluationBtn" class="btn btn-info rounded-0 btn-lg px-5 ml-1"  @if($isEvaluated) disabled data-toggle="tooltip" data-placement="top"
+                                title="{{__('lesson.evaluated-message')}}"@else data-toggle="modal"
+                                data-target="#myModal" @endif>
+                            <span class="icon-poll mr-2"></span>{{__('lesson.vote')}}<span
+                                class="ml-1 badge badge-light" id="numberEvaluation">{{$numberEvaluation}}</span>
+                        </button>
                     </p>
 
+                </div>
+                <!-- Modal -->
+                <div class="modal fade small" id="myModal" role="dialog">
+                    <div class="modal-dialog mw-75">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">{{__('lesson.vote')}}</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <form action="{{route('evaluation-store')}}" method="post" id="evaluation-form">
+                                {{csrf_field()}}
+                                <input type="hidden" name="course_id" value="{{$course->id}}">
+                                <div class="modal-body">
+                                    {{--                                    <table class="table test-question-table">--}}
+                                    {{--                                        <thead>--}}
+                                    {{--                                        <tr>--}}
+                                    {{--                                            <th></th>--}}
+                                    {{--                                            <th></th>--}}
+                                    {{--                                            <th class="text-center">Từ chối trả lời</th>--}}
+                                    {{--                                            <th class="text-center">Rất không đồng ý</th>--}}
+                                    {{--                                            <th class="text-center">Không đồng ý</th>--}}
+                                    {{--                                            <th class="text-center">Trung lập</th>--}}
+                                    {{--                                            <th class="text-center">Đồng ý</th>--}}
+                                    {{--                                            <th class="text-center">Rất đồng ý</th>--}}
+                                    {{--                                        </tr>--}}
+                                    {{--                                        </thead>--}}
+                                    {{--                                        <tbody>--}}
+                                    {{--                                        @foreach($criteria as $key => $c)--}}
+                                    {{--                                            <tr>--}}
+                                    {{--                                                <td>{!! $key + 1 !!}</td>--}}
+                                    {{--                                                <td class="question-content text-justify">{{$c->description}}</td>--}}
+                                    {{--                                                <td class="text-center"><input type="radio" value="1" name="{{$c->id}}"--}}
+                                    {{--                                                                               required></td>--}}
+                                    {{--                                                <td class="text-center"><input type="radio" value="2" name="{{$c->id}}"--}}
+                                    {{--                                                                               required></td>--}}
+                                    {{--                                                <td class="text-center"><input type="radio" value="3" name="{{$c->id}}"--}}
+                                    {{--                                                                               required></td>--}}
+                                    {{--                                                <td class="text-center"><input type="radio" value="4" name="{{$c->id}}"--}}
+                                    {{--                                                                               required></td>--}}
+                                    {{--                                                <td class="text-center"><input type="radio" value="5" name="{{$c->id}}"--}}
+                                    {{--                                                                               required></td>--}}
+                                    {{--                                                <td class="text-center"><input type="radio" value="6" name="{{$c->id}}"--}}
+                                    {{--                                                                               required></td>--}}
+                                    {{--                                            </tr>--}}
+                                    {{--                                        @endforeach--}}
+                                    {{--                                        </tbody>--}}
+                                    {{--                                    </table>--}}
+                                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner mw-75">
+                                            @foreach($criteria as $key => $c)
+                                                <div class="carousel-item @if($key == 0) active @endif">
+                                                    <div class="container w-75">
+                                                        <div class="row">
+                                                            <div class="col-md-3">Tiêu chí {{$key + 1}}</div>
+                                                            <div class="col-md-9">{{$c->name}}</div>
+                                                        </div>
+                                                        @if ($c->description)
+                                                            <div class="row">
+                                                                <div class="col-md-3">Mô tả</div>
+                                                                <div class="col-md-9">{{$c->description}}</div>
+                                                            </div>
+                                                        @endif
+                                                        @if($c->explain)
+                                                            <div class="row">
+                                                                <div class="col-md-3">Giải thích</div>
+                                                                <div class="col-md-9">{{$c->explain}}</div>
+                                                            </div>
+                                                        @endif
+                                                        @if($c->example)
+                                                            <div class="row">
+                                                                <div class="col-md-3">Ví dụ</div>
+                                                                <div class="col-md-9">{{$c->example}}</div>
+                                                            </div>
+                                                        @endif
+                                                        <div class="row">
+                                                            <div class="col-md-3">Chọn đáp án:</div>
+                                                            <div class="col-md-9">
+                                                                <br>
+                                                                <div class="radio">
+                                                                    {{--                                                                    <label><input type="radio" class="mr-2" value="5" name="{{$c->id}}" required>Rất đồng ý</label>--}}
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" class="mr-2" value="4" name="{{$c->id}}" required>Đồng ý</label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" class="mr-2" value="3" name="{{$c->id}}" required>Trung lập</label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" class="mr-2" value="2" name="{{$c->id}}" required>Không đồng ý</label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" class="mr-2" value="1" name="{{$c->id}}" required>Từ chối trả lời</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <a class="carousel-control-prev display-none" href="#carouselExampleControls" role="button"
+                                           data-slide="prev">
+                                            <img src="{{asset('images/baseline_arrow_back_ios_black_18dp.png')}}" alt="">
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                           data-slide="next">
+                                            <img src="{{asset('images/baseline_arrow_forward_ios_black_18dp.png')}}" alt="">
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary"
+                                            id="evaluation" disabled>{{__('lesson.vote')}}</button>
+                                    <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal">{{__('lesson.cancel')}}</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        function showAlert(data, status) {
+            toastr[status](data.message, data.status);
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        }
+
+        function handleResponse(data, status) {
+            $('#myModal').modal('toggle');
+            this.showAlert(data, status);
+        }
+
+        // this is the id of the form
+        $('#evaluation-form').submit(function (e) {
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(), // serializes the form's elements.
+                success: function (data) {
+                    handleResponse(data, "success");
+                    var numberEvaluation = parseInt($('#numberEvaluation').html());
+                    numberEvaluation += 1;
+                    $('#numberEvaluation').html(numberEvaluation);
+                    var btn = $('#evaluationBtn');
+                    btn.attr('disabled', true);
+                    btn.attr('data-toggle', 'tooltip');
+                    btn.attr('data-placement', 'top');
+                    btn.attr('title', "{{__('lesson.evaluated-message')}}");
+                    btn.removeAttr('data-target');
+                },
+                error: function (data) {
+                    handleResponse(data, "error");
+                }
+            });
+        });
+
+        $(".carousel").carousel(
+            {interval: false}
+        );
+
+        let totalItems = $('.carousel-item').length;
+
+        $("input").click(function() {
+
+            // if (this.checked) {
+            //     carouselControlNext.css("display", "flex");
+            // }
+            let currentIndex = $('div.active').index() + 1;
+            if (currentIndex === totalItems) {
+                $("#evaluation").removeAttr('disabled');
+                $(".carousel-control-next").css("display", "none");
+            } else {
+                $(".carousel-control-prev").css("display", "flex");
+                $(".carousel").delay(50).queue(function() {
+                    $(this).carousel("next");
+                    $(this).dequeue();
+                });
+            }
+            // $("input:not(:checked)").parent().removeClass("checked");
+            // $("input:checked").parent().addClass("checked");
+        });
+    </script>
 @endsection

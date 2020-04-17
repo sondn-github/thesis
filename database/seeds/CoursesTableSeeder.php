@@ -22,6 +22,9 @@ class CoursesTableSeeder extends Seeder
                 'thumbnail' => '/images/course_1.jpg',
                 'user_id' => 3,
                 'category_id' => 1,
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 2,
@@ -33,6 +36,9 @@ class CoursesTableSeeder extends Seeder
                 'thumbnail' => '/images/course_2.jpg',
                 'user_id' => 3,
                 'category_id' => 2,
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 3,
@@ -44,6 +50,9 @@ class CoursesTableSeeder extends Seeder
                 'thumbnail' => '/images/course_3.jpg',
                 'user_id' => 3,
                 'category_id' => 1,
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 4,
@@ -55,6 +64,9 @@ class CoursesTableSeeder extends Seeder
                 'thumbnail' => '/images/course_4.jpg',
                 'user_id' => 3,
                 'category_id' => 1,
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 5,
@@ -66,6 +78,9 @@ class CoursesTableSeeder extends Seeder
                 'thumbnail' => '/images/course_5.jpg',
                 'user_id' => 3,
                 'category_id' => 1,
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 6,
@@ -77,6 +92,9 @@ class CoursesTableSeeder extends Seeder
                 'thumbnail' => '/images/course_6.jpg',
                 'user_id' => 3,
                 'category_id' => 2,
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 7,
@@ -88,6 +106,9 @@ class CoursesTableSeeder extends Seeder
                 'thumbnail' => '/images/course_6.jpg',
                 'user_id' => 3,
                 'category_id' => 2,
+                'pfr' => '{"1":{"4":0,"3":0.38,"2":0.31},"2":{"4":0.38,"3":0.15,"2":0.31},"3":{"4":0.38,"3":0,"2":0.46},"4":{"4":0.15,"3":0.38,"2":0.31},"5":{"4":0.15,"3":0,"2":0.54},"6":{"4":0,"3":0,"2":0.46},"7":{"4":0,"3":0.15,"2":0.46},"8":{"4":0,"3":0.38,"2":0.46},"9":{"4":0.15,"3":0.15,"2":0.54}}',
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
             ],
         ]);
     }

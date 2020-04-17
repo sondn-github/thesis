@@ -16,8 +16,8 @@ class CreateEvaluationsTable extends Migration
         Schema::create('evaluations', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('lesson_id');
-            $table->string('answers');
+            $table->unsignedInteger('course_id');
+            $table->json('answers');
 
             $table->softDeletes();
             $table->timestamps();

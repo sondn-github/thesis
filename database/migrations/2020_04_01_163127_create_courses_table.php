@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('user_id');
             $table->string('thumbnail')->nullable();
+            $table->json('pfr')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
