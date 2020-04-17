@@ -42,6 +42,10 @@ class EvaluationController extends Controller
     }
 
     public function test() {
-        $this->evaluationService->getAvgEvaluation(1);
+        if ($this->evaluationService->getAvgEvaluation(9)) {
+            echo "h";
+        } else {
+            echo "k";
+        }
     }
 }

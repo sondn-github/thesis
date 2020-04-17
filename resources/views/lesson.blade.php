@@ -122,18 +122,24 @@
                                                             <div class="col-md-3">Tiêu chí {{$key + 1}}</div>
                                                             <div class="col-md-9">{{$c->name}}</div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-3">Mô tả</div>
-                                                            <div class="col-md-9">{{$c->description}}</div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-3">Giải thích</div>
-                                                            <div class="col-md-9">{{$c->explain}}</div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-3">Ví dụ</div>
-                                                            <div class="col-md-9">{{$c->example}}</div>
-                                                        </div>
+                                                        @if ($c->description)
+                                                            <div class="row">
+                                                                <div class="col-md-3">Mô tả</div>
+                                                                <div class="col-md-9">{{$c->description}}</div>
+                                                            </div>
+                                                        @endif
+                                                        @if($c->explain)
+                                                            <div class="row">
+                                                                <div class="col-md-3">Giải thích</div>
+                                                                <div class="col-md-9">{{$c->explain}}</div>
+                                                            </div>
+                                                        @endif
+                                                        @if($c->example)
+                                                            <div class="row">
+                                                                <div class="col-md-3">Ví dụ</div>
+                                                                <div class="col-md-9">{{$c->example}}</div>
+                                                            </div>
+                                                        @endif
                                                         <div class="row">
                                                             <div class="col-md-3">Chọn đáp án:</div>
                                                             <div class="col-md-9">

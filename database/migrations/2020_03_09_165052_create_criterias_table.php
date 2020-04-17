@@ -21,6 +21,7 @@ class CreateCriteriasTable extends Migration
             $table->text('example')->nullable();
             $table->float('weight');
             $table->boolean('status')->default(true);
+            $table->unsignedInteger('type_id');
 
             $table->timestamps();
             $table->softDeletes();

@@ -43,7 +43,6 @@ Route::middleware(['auth'])->prefix('teacher')->name('teacher.')->group(function
     Route::get('/datatables/courses', 'DatatableController@courses')->name('datatables.courses');
 });
 
-Route::get('/test', 'KnowledgeController@getAdvises');
 Route::resource('courses', 'CourseController');
 Route::resource('categories', 'CategoryController');
 
@@ -58,3 +57,13 @@ Route::middleware(['auth'])->prefix('expert')->name('expert.')->group(function (
     Route::get('/datatables/knowledge', 'DatatableController@knowledge')->name('datatables.knowledge');
     Route::get('/fact-status/change', 'Expert\KnowledgeController@changeStatus')->name('knowledge.changing-status');
 });
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/home', 'Admin\HomeController@home')->name('home');
+    Route::resource('criteria', 'Admin\CriteriaController')->except(['destroy']);
+    Route::get('/datatables/criteria', 'DatatableController@criteria')->name('datatables.criteria');
+    Route::get('/criteria-status/change', 'Admin\CriteriaController@changeStatus')->name('criteria.changing-status');
+    Route::get('/criteria-type/change', 'Admin\TypeController@changeType')->name('criteria.changing-type');
+});
+
+Route::get('/test', 'EvaluationController@test');

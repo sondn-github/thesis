@@ -15,6 +15,7 @@ class Criteria extends AppModel
     public const COL_EXAMPLE = 'example';
     public const COL_WEIGHT = 'weight';
     public const COL_STATUS = 'status';
+    public const COL_TYPE_ID = 'type_id';
 
     protected $fillable = [
         self::COL_NAME,
@@ -23,8 +24,13 @@ class Criteria extends AppModel
         self::COL_EXPLAIN,
         self::COL_WEIGHT,
         self::COL_STATUS,
+        self::COL_TYPE_ID,
         self::COL_CREATED_AT,
         self::COL_UPDATED_AT,
         self::COL_DELETED_AT,
     ];
+
+    public function type() {
+        return $this->belongsTo('App\Type');
+    }
 }

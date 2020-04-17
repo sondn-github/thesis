@@ -40,10 +40,10 @@ class DatatableService extends Service implements DatatableServiceInterface
                 return \Carbon\Carbon::parse($lesson->created_at)->format('d/m/Y');
             })
             ->addColumn('action', function ($lesson) {
-                return '<a href="'.route("teacher.lesson.getLessonOfTeacher", $lesson->id).'" class="btn btn-xs btn-info btn-info-lesson" data-id="'.$lesson->id.'" data-toggle="modal" data-target="#detailLesson" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
+                return '<a href="'.route("teacher.lesson.getLessonOfTeacher", $lesson->id).'" class="btn btn-info btn-info-lesson" data-id="'.$lesson->id.'" data-toggle="modal" data-target="#detailLesson" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
                         <a href="'.route("teacher.lesson.edit", $lesson->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>
                         <a href="#" class="btn btn-success margin-r-5" data-id="' . $lesson->id . '" data-toggle="modal" data-target="#adviseModal" onclick="showAdviseModel(this)"><i class="fa fa-commenting"></i></a>
-                        <a href="javascript:void(0)" data-id="' . $lesson->id . '" class="btn btn-xs btn-danger btn-delete"><i class="fa fa-trash"></i></a>';
+                        <a href="javascript:void(0)" data-id="' . $lesson->id . '" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></a>';
             })
             ->rawColumns(['action', 'status'])
             ->make(true);
@@ -55,9 +55,9 @@ class DatatableService extends Service implements DatatableServiceInterface
 
         return DataTables::of($query)
             ->addColumn('action', function ($course) {
-                return '<a href="'.route("teacher.courses.show", $course->id).'" class="btn btn-xs btn-info btn-info-lesson" data-id="'.$course->id.'" data-toggle="modal" data-target="#courseDetail" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
+                return '<a href="'.route("teacher.courses.show", $course->id).'" class="btn btn-info btn-info-lesson" data-id="'.$course->id.'" data-toggle="modal" data-target="#courseDetail" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
                         <a href="'.route("teacher.courses.edit", $course->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>
-                        <a href="javascript:void(0)" data-id="' . $course->id . '" class="btn btn-xs btn-danger btn-delete"><i class="fa fa-trash"></i></a>';
+                        <a href="javascript:void(0)" data-id="' . $course->id . '" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></a>';
             })
             ->addColumn('number_lessons', function ($course) {
                return count($course->lesson);
@@ -69,7 +69,9 @@ class DatatableService extends Service implements DatatableServiceInterface
     }
 
     public function criteria() {
-        $query = Criteria::all();
+        $query = Criteria::with('type')
+            ->where(Criteria::COL_STATUS, Criteria::ACTIVE_STATUS)
+            ->orderBy(Criteria::COL_ID, 'asc');
 
         return DataTables::of($query)
             ->editColumn(Criteria::COL_STATUS, function ($criteria) {
@@ -86,7 +88,7 @@ class DatatableService extends Service implements DatatableServiceInterface
                 }
             })
             ->addColumn('action', function ($criteria) {
-                return '<a href="'.route("expert.criteria.show", $criteria->id).'" class="btn btn-xs btn-info btn-info-criteria" data-id="'.$criteria->id.'" data-toggle="modal" data-target="#criteriaModal" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
+                return '<a href="'.route("expert.criteria.show", $criteria->id).'" class="btn btn-info btn-info-criteria" data-id="'.$criteria->id.'" data-toggle="modal" data-target="#criteriaModal" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
                         <a href="'.route("expert.criteria.edit", $criteria->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
             })
             ->rawColumns(['action', Criteria::COL_STATUS])

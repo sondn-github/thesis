@@ -14,19 +14,16 @@ use Illuminate\Http\Request;
 class KnowledgeService extends Service implements KnowledgeServiceInterface
 {
     public function getRuleByType($type) {
-        $rules = Knowledge::where(Knowledge::COL_TYPE, $type)
+        return Knowledge::where(Knowledge::COL_TYPE, $type)
             ->where(Knowledge::COL_STATUS, Knowledge::ACTIVE_STATUS)
             ->get();
-
-        return $rules;
     }
 
     public function getAdvises($sr) {
         $advisesId = $this->deduceWithRule2($this->deduceWithRule1($sr));
-        $advises = Fact::whereIn(Fact::COL_ID, $advisesId)
-            ->get();
 
-        return $advises;
+        return Fact::whereIn(Fact::COL_ID, $advisesId)
+            ->get();
     }
 
     public function deduceWithRule1($sr) {
@@ -55,7 +52,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
     }
 
     public function compareWithRule1($sr, $rule) {
-        $premises = json_decode($rule->premise, true);
+        $premises = $rule->premise;
         foreach ($premises as $premise) {
             $temp = explode(",", $premise);
             $criteriaId = $temp[0];
@@ -89,7 +86,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
     }
 
     public function compareWithRule2($conclusions, $rule) {
-        $premises = json_decode($rule->premise, true);
+        $premises = $rule->premise;
         foreach ($premises as $premise) {
             $temp = explode(",", $premise);
             $factId = $temp[0];

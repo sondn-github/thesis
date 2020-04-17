@@ -19,4 +19,7 @@ return [
     'criteriaManagement' => 'Quản trị tiêu chí',
     'ruleManagement' => 'Quản trị luật',
     'factManagement' => 'Quản trị sự kiện',
+    'management' => 'QUẢN TRỊ',
+    'criteria' => 'Bộ tiêu chí',
+    'pageManagement' => 'Trang quản lý',
 ];

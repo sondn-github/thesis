@@ -27,4 +27,9 @@ return [
     'back' => 'Quay lại',
     'storingSuccess' => 'Tạo thành công',
     'storingFailed' => 'Đã có lỗi xảy ra. Xin bạn hãy thử lại.',
+    'usingCriteria' => 'Sử dụng bộ tiêu chí',
+    'apply' => 'Áp dụng',
+    'type' => 'Loại',
+    'applyingSuccess' => 'Áp dụng thành công.',
+    'applyingFailed' => 'Đã có lỗi xảy ra. Xin bạn hãy thử lại.',
 ];

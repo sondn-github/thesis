@@ -8,12 +8,19 @@ use App\Criteria;
 use App\Http\Requests\StoreCriteriaRequest;
 use App\Http\Requests\UpdateCriteriaRequest;
 use App\Services\Interfaces\CriteriaServiceInterface;
+use App\Type;
 
 class CriteriaService extends Service implements CriteriaServiceInterface
 {
     public function getAllCriteria()
     {
-        return Criteria::all();
+        $typesId = Type::select(Type::COL_ID)
+            ->where(Type::COL_IS_USING, true)
+            ->get();
+
+        return Criteria::where(Criteria::COL_STATUS, Criteria::ACTIVE_STATUS)
+            ->whereIn(Criteria::COL_TYPE_ID, $typesId)
+            ->get();
     }
 
     public function changeStatus($request) {
