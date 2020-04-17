@@ -21,6 +21,7 @@ class CourseController extends Controller
         $this->courseService = $courseService;
         $this->criteriaService = $criteriaService;
         $this->evaluationService = $evaluationService;
+        $this->middleware('auth')->only(['show']);
     }
 
     /**
