@@ -70,7 +70,6 @@ class DatatableService extends Service implements DatatableServiceInterface
 
     public function criteria() {
         $query = Criteria::with('type')
-            ->where(Criteria::COL_STATUS, Criteria::ACTIVE_STATUS)
             ->orderBy(Criteria::COL_ID, 'asc');
 
         return DataTables::of($query)

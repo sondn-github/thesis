@@ -11,7 +11,7 @@
 
     <div class="site-section">
         <div class="container">
-            <form action="{{route('expert.criteria.update', $criteria->id)}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.criteria.update', $criteria->id)}}" method="post" enctype="multipart/form-data">
                 {{--                <form action="{{route('teacher.criteria.store')}}" method="post" class="needs-validation" novalidate>--}}
                 {{csrf_field()}}
                 @method('PUT')
@@ -56,7 +56,7 @@
                     <input type="text" class="form-control" id="weight" name="weight" placeholder="{{__('criteria.enterWeight')}}" value="{{$criteria->weight}}">
                 </div>
                 <button id="createBtn" class="btn btn-primary" type="submit">{{__('criteria.update')}}</button>
-                <a href="{{route('expert.criteria.index')}}" class="btn btn-secondary">{{__('criteria.back')}}</a>
+                <a href="{{route('admin.criteria.index')}}" class="btn btn-secondary">{{__('criteria.back')}}</a>
             </form>
         </div>
     </div>

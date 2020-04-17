@@ -67,7 +67,7 @@ class CriteriaController extends Controller
      */
     public function show($id)
     {
-        $criteria = $this->criteriaService->getCriteria($id);
+        $criteria = $this->criteriaService->getCriteriaById($id);
         if ($criteria) {
             return response()->json($criteria, 200);
         } else {

@@ -62,6 +62,49 @@
     </div>
     <!-- /.content-wrapper -->
 
+    <!-- Modal -->
+    <div id="criteriaModal" class="modal fade small" role="dialog">
+        <div class="modal-dialog mw-75">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{__('criteria.detail')}}</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 label">{{__('criteria.name')}}</div>
+                        <div class="col-md-8" id="name"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 label">{{__('criteria.description')}}</div>
+                        <div class="col-md-8" id="description"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 label">{{__('criteria.explain')}}</div>
+                        <div class="col-md-8" id="explain"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 label">{{__('criteria.example')}}</div>
+                        <div class="col-md-8" id="example"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 label">{{__('criteria.weight')}}</div>
+                        <div class="col-md-8" id="weight"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 label">{{__('criteria.status')}}</div>
+                        <div class="col-md-8" id="status"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
