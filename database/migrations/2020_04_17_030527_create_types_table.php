@@ -17,6 +17,7 @@ class CreateTypesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->boolean('is_using')->default(false);
+            $table->boolean('is_pfr')->default(true);
 
             $table->timestamps();
             $table->softDeletes();

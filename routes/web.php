@@ -58,7 +58,7 @@ Route::middleware(['auth'])->prefix('expert')->name('expert.')->group(function (
     Route::get('/fact-status/change', 'Expert\KnowledgeController@changeStatus')->name('knowledge.changing-status');
 });
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/home', 'Admin\HomeController@home')->name('home');
     Route::resource('criteria', 'Admin\CriteriaController')->except(['destroy']);
     Route::get('/datatables/criteria', 'DatatableController@criteria')->name('datatables.criteria');

@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Course;
 use App\Criteria;
 use App\Http\Requests\StoreCriteriaRequest;
 use App\Http\Requests\UpdateCriteriaRequest;
@@ -53,5 +54,33 @@ class CriteriaService extends Service implements CriteriaServiceInterface
             Criteria::COL_EXAMPLE => $request->input(Criteria::COL_EXAMPLE),
             Criteria::COL_WEIGHT => $request->input(Criteria::COL_WEIGHT),
         ]);
+    }
+
+    public function getCriteriaByUser($user, $courseId) {
+        $typeICT = Type::find(Type::TYPE_ICT);
+        $course = Course::find($courseId);
+
+        if ($typeICT->is_using == 1) {
+            return Criteria::where(Criteria::COL_STATUS, Criteria::ACTIVE_STATUS)
+                ->orderBy(Criteria::COL_ID, 'asc')
+                ->get();
+        } else {
+            if ($user->role->name == 'student') {
+                return Criteria::where(Criteria::COL_TYPE_ID, Type::TYPE_DHBK_SV)
+                    ->where(Criteria::COL_STATUS, Criteria::ACTIVE_STATUS)
+                    ->orderBy(Criteria::COL_ID, 'asc')
+                    ->get();
+            } elseif($course->user_id == $user->id) {
+                return Criteria::where(Criteria::COL_TYPE_ID, Type::TYPE_GV)
+                    ->where(Criteria::COL_STATUS, Criteria::ACTIVE_STATUS)
+                    ->orderBy(Criteria::COL_ID, 'asc')
+                    ->get();
+            } else {
+                return Criteria::where(Criteria::COL_TYPE_ID, Type::TYPE_DHBK_GV)
+                    ->where(Criteria::COL_STATUS, Criteria::ACTIVE_STATUS)
+                    ->orderBy(Criteria::COL_ID, 'asc')
+                    ->get();
+            }
+        }
     }
 }

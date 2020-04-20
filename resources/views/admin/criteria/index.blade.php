@@ -26,14 +26,26 @@
             <div class="container-fluid">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form action="{{route('admin.criteria.changing-type')}}" class="form-inline" method="get">
+                        <form action="{{route('admin.criteria.changing-type')}}" method="get">
                             <div class="form-group">
                                 <label for="type_id">{{__('criteria.usingCriteria')}}:</label>
-                                <select name="id" id="type_id" class="form-control mx-3">
-                                    @foreach($types as $type)
-                                        <option value="{{$type->id}}" @if($type->is_using) selected @endif>{{$type->name}}</option>
-                                    @endforeach
+                                <select name="id" id="type_id" class="form-control">
+{{--                                    @foreach($types as $type)--}}
+{{--                                        <option value="{{$type->id}}" @if($type->is_using) selected @endif>{{$type->name}}</option>--}}
+{{--                                    @endforeach--}}
+                                    <option value="1" @if($type->is_using) selected @endif>Bộ tiêu chí ICT NewHourse</option>
+                                    <option value="2" @if(!$type->is_using) selected @endif>Bộ tiêu chí ĐHBKHN</option>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="is_pfr" id="inlineRadio1" value="1" @if($type->is_pfr) checked @endif>
+                                    <label class="form-check-label" for="inlineRadio1">Đánh giá theo kiểu PFR</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="is_pfr" id="inlineRadio2" value="0" @if(!$type->is_pfr) checked @endif>
+                                    <label class="form-check-label" for="inlineRadio2">Đánh giá theo kiểu truyền thống</label>
+                                </div>
                             </div>
                             <button class="btn btn-primary" type="submit">{{__('criteria.apply')}}</button>
                         </form>

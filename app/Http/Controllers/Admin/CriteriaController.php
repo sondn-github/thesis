@@ -29,9 +29,9 @@ class CriteriaController extends Controller
      */
     public function index()
     {
-        $types = $this->typeService->getTypes();
+        $type = $this->typeService->getTypeById(Type::TYPE_ICT);
 
-        return view('admin.criteria.index', compact('types'));
+        return view('admin.criteria.index', compact('type'));
     }
 
     /**

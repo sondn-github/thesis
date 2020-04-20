@@ -144,24 +144,48 @@
                                                         @endif
                                                         <div class="row">
                                                             <div class="col-md-3">Chọn đáp án:</div>
-                                                            <div class="col-md-9">
-                                                                <br>
-                                                                <div class="radio">
-                                                                    {{--                                                                    <label><input type="radio" class="mr-2" value="5" name="{{$c->id}}" required>Rất đồng ý</label>--}}
+                                                            @if($optionIsPFR)
+                                                                <div class="col-md-9">
+                                                                    <br>
+                                                                    <div class="radio">
+                                                                        {{--                                                                    <label><input type="radio" class="mr-2" value="5" name="{{$c->id}}" required>Rất đồng ý</label>--}}
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" class="mr-2" value="4" name="{{$c->id}}" required>Đồng ý</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" class="mr-2" value="3" name="{{$c->id}}" required>Trung lập</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" class="mr-2" value="2" name="{{$c->id}}" required>Không đồng ý</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" class="mr-2" value="1" name="{{$c->id}}" required>Từ chối trả lời</label>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="radio">
-                                                                    <label><input type="radio" class="mr-2" value="4" name="{{$c->id}}" required>Đồng ý</label>
+                                                            @else
+                                                                <div class="col-md-9">
+                                                                    <br>
+                                                                    <div class="radio">
+                                                                        {{--                                                                    <label><input type="radio" class="mr-2" value="5" name="{{$c->id}}" required>Rất đồng ý</label>--}}
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" class="mr-2" value="6" name="{{$c->id}}" required>Rất đồng ý</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" class="mr-2" value="4" name="{{$c->id}}" required>Đồng ý</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" class="mr-2" value="5" name="{{$c->id}}" required>Cơ bản đồng ý</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" class="mr-2" value="2" name="{{$c->id}}" required>Không đồng ý</label>
+                                                                    </div>
+                                                                    <div class="radio">
+                                                                        <label><input type="radio" class="mr-2" value="7" name="{{$c->id}}" required>Rất không đồng ý</label>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="radio">
-                                                                    <label><input type="radio" class="mr-2" value="3" name="{{$c->id}}" required>Trung lập</label>
-                                                                </div>
-                                                                <div class="radio">
-                                                                    <label><input type="radio" class="mr-2" value="2" name="{{$c->id}}" required>Không đồng ý</label>
-                                                                </div>
-                                                                <div class="radio">
-                                                                    <label><input type="radio" class="mr-2" value="1" name="{{$c->id}}" required>Từ chối trả lời</label>
-                                                                </div>
-                                                            </div>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

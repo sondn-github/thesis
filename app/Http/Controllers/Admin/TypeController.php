@@ -93,7 +93,7 @@ class TypeController extends Controller
     }
 
     public function changeType(Request $request) {
-        if ($this->typeService->update($request->input(Type::COL_ID))) {
+        if ($this->typeService->update($request)) {
             return redirect()->back()->with('success', __('criteria.applyingSuccess'));
         } else {
             return redirect()->back()->withErrors(['message' => __('criteria.applyingFailed')]);

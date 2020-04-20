@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Services\Interfaces\CriteriaServiceInterface;
 use App\Services\Interfaces\EvaluationServiceInterface;
+use App\Services\Interfaces\TypeServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,14 +14,17 @@ class CourseController extends Controller
     protected $courseService;
     protected $criteriaService;
     protected $evaluationService;
+    protected $typeSerice;
 
     public function __construct(CourseServiceInterface $courseService,
                                 CriteriaServiceInterface $criteriaService,
-                                EvaluationServiceInterface $evaluationService)
+                                EvaluationServiceInterface $evaluationService,
+                                TypeServiceInterface $typeService)
     {
         $this->courseService = $courseService;
         $this->criteriaService = $criteriaService;
         $this->evaluationService = $evaluationService;
+        $this->typeSerice = $typeService;
         $this->middleware('auth')->only(['show']);
     }
 
@@ -65,15 +69,17 @@ class CourseController extends Controller
     public function show($id)
     {
         $course = $this->courseService->getCourseById($id);
-        $criteria = $this->criteriaService->getAllCriteria();
+        $criteria = $this->criteriaService->getCriteriaByUser(Auth::user(), $id);
         $numberEvaluation = $this->evaluationService->countEvaluation($id);
         $isEvaluated = count($this->evaluationService->getEvaluation($id, Auth::id())) == 1;
+        $optionIsPFR = $this->typeSerice->isPFR($criteria[0]->type_id);
 
         return view('course_single', [
             'course' => $course,
             'criteria' => $criteria,
             'numberEvaluation' => $numberEvaluation,
             'isEvaluated' => $isEvaluated,
+            'optionIsPFR' => $optionIsPFR,
         ]);
     }
 

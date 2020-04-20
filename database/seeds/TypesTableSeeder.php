@@ -19,12 +19,17 @@ class TypesTableSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'name' => 'Bộ tiêu chí ĐHBKHN - 1',
+                'name' => 'Bộ tiêu chí ĐHBKHN - SV',
                 'is_using' => false,
             ],
             [
                 'id' => 3,
-                'name' => 'Bộ tiêu chí ĐHBKHN - 2',
+                'name' => 'Bộ tiêu chí cho người tạo bài giảng',
+                'is_using' => false,
+            ],
+            [
+                'id' => 4,
+                'name' => 'Bộ tiêu chí ĐHBKHN - GV',
                 'is_using' => false,
             ],
         ]);
