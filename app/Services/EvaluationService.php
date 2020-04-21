@@ -33,6 +33,7 @@ class EvaluationService extends Service implements EvaluationServiceInterface
         $evaluations = Evaluation::with('user')
             ->select(Evaluation::COL_ANSWERS, Evaluation::COL_USER_ID)
             ->where(Evaluation::COL_COURSE_ID, $courseId)
+            ->where(Evaluation::COL_TYPE, Evaluation::TYPE_PFR)
             ->get();
         $results = [];
         $reliabilities = [];
