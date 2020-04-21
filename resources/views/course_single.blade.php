@@ -80,6 +80,7 @@
                             <form action="{{route('evaluation-store')}}" method="post" id="evaluation-form">
                                 {{csrf_field()}}
                                 <input type="hidden" name="course_id" value="{{$course->id}}">
+                                <input type="hidden" name="type" value="@if($optionIsPFR) 1 @else 2 @endif">
                                 <div class="modal-body">
                                     {{--                                    <table class="table test-question-table">--}}
                                     {{--                                        <thead>--}}

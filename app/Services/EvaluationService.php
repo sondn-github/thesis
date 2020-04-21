@@ -14,12 +14,13 @@ class EvaluationService extends Service implements EvaluationServiceInterface
 {
     public function storeEvaluation(Request $request)
     {
-        $answers = $request->except([Evaluation::COL_COURSE_ID, '_token']);
+        $answers = $request->except([Evaluation::COL_COURSE_ID, '_token', Evaluation::COL_TYPE]);
 
         $result = Evaluation::create([
             Evaluation::COL_USER_ID => Auth::id(),
             Evaluation::COL_COURSE_ID => $request->input(Evaluation::COL_COURSE_ID),
             Evaluation::COL_ANSWERS => $answers,
+            Evaluation::COL_TYPE => $request->input(Evaluation::COL_TYPE),
         ]);
         if ($result) {
             $this->calculateToPFR($request->input(Evaluation::COL_COURSE_ID));

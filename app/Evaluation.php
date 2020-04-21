@@ -12,11 +12,17 @@ class Evaluation extends AppModel
     public const COL_USER_ID = 'user_id';
     public const COL_COURSE_ID = 'course_id';
     public const COL_ANSWERS = 'answers';
+    public const COL_TYPE = 'type';
+
+    //Constant
+    public const TYPE_PFR = 1;
+    public const TYPE_NORMAL = 2 ;
 
     protected $fillable = [
         self::COL_USER_ID,
         self::COL_COURSE_ID,
         self::COL_ANSWERS,
+        self::COL_TYPE,
         self::COL_CREATED_AT,
         self::COL_UPDATED_AT,
         self::COL_DELETED_AT,
