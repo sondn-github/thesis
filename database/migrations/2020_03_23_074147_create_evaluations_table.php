@@ -19,6 +19,7 @@ class CreateEvaluationsTable extends Migration
             $table->unsignedInteger('course_id');
             $table->json('answers');
             $table->unsignedInteger('type');
+            $table->unsignedInteger('criteria_type');
 
             $table->softDeletes();
             $table->timestamps();

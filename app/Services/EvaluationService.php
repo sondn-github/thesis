@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Criteria;
 use App\Evaluation;
 use App\Course;
 use App\Services\Interfaces\EvaluationServiceInterface;
@@ -14,13 +15,14 @@ class EvaluationService extends Service implements EvaluationServiceInterface
 {
     public function storeEvaluation(Request $request)
     {
-        $answers = $request->except([Evaluation::COL_COURSE_ID, '_token', Evaluation::COL_TYPE]);
+        $answers = $request->except([Evaluation::COL_COURSE_ID, '_token', Evaluation::COL_TYPE, Evaluation::COL_CRITERIA_TYPE]);
 
         $result = Evaluation::create([
             Evaluation::COL_USER_ID => Auth::id(),
             Evaluation::COL_COURSE_ID => $request->input(Evaluation::COL_COURSE_ID),
             Evaluation::COL_ANSWERS => $answers,
             Evaluation::COL_TYPE => $request->input(Evaluation::COL_TYPE),
+            Evaluation::COL_CRITERIA_TYPE => $request->input(Evaluation::COL_CRITERIA_TYPE),
         ]);
         if ($result) {
             $this->calculateToPFR($request->input(Evaluation::COL_COURSE_ID));
@@ -29,9 +31,14 @@ class EvaluationService extends Service implements EvaluationServiceInterface
         return $result;
     }
 
+    public function getCriteriaType($criteriaId) {
+        return Criteria::findOrFail($criteriaId)
+            ->type
+            ->id;
+    }
+
     public function calculateToPFR($courseId) {
         $evaluations = Evaluation::with('user')
-            ->select(Evaluation::COL_ANSWERS, Evaluation::COL_USER_ID)
             ->where(Evaluation::COL_COURSE_ID, $courseId)
             ->where(Evaluation::COL_TYPE, Evaluation::TYPE_PFR)
             ->get();
@@ -39,10 +46,15 @@ class EvaluationService extends Service implements EvaluationServiceInterface
         $reliabilities = [];
         $criteria = [];
         $pfr = [];
+        $sumReliabilityByCriteriaType = [];
 
         foreach ($evaluations as $evaluation) {
             $results[$evaluation->user_id] = $evaluation->answers;
             $reliabilities[$evaluation->user_id] = $evaluation->user->reliability;
+            if (!isset($sumReliabilityByCriteriaType[$evaluation->criteria_type])) {
+                $sumReliabilityByCriteriaType[$evaluation->criteria_type] = 0;
+            }
+            $sumReliabilityByCriteriaType[$evaluation->criteria_type] += $evaluation->user->reliability;
         }
 
         foreach ($results as $userId => $answers) {
@@ -71,8 +83,9 @@ class EvaluationService extends Service implements EvaluationServiceInterface
         }
 
         foreach ($criteria as $criteriaId => $memberships) {
+            $criteriaType = $this->getCriteriaType($criteriaId);
             foreach ($memberships as $key => $value) {
-                $pfr[$criteriaId][$key] = round($value/array_sum($reliabilities), 2);
+                $pfr[$criteriaId][$key] = round($value/$sumReliabilityByCriteriaType[$criteriaType], 2);
             }
         }
         $this->savePFR($pfr, $courseId);

@@ -44,4 +44,8 @@ class EvaluationController extends Controller
             }
         }
     }
+
+    public function test() {
+        return $this->evaluationService->getCriteriaType(6);
+    }
 }

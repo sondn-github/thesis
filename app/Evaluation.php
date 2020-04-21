@@ -13,6 +13,7 @@ class Evaluation extends AppModel
     public const COL_COURSE_ID = 'course_id';
     public const COL_ANSWERS = 'answers';
     public const COL_TYPE = 'type';
+    public const COL_CRITERIA_TYPE = 'criteria_type';
 
     //Constant
     public const TYPE_PFR = 1;
@@ -23,6 +24,7 @@ class Evaluation extends AppModel
         self::COL_COURSE_ID,
         self::COL_ANSWERS,
         self::COL_TYPE,
+        self::COL_CRITERIA_TYPE,
         self::COL_CREATED_AT,
         self::COL_UPDATED_AT,
         self::COL_DELETED_AT,
