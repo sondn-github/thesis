@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Evaluation;
 use App\Services\Interfaces\EvaluationServiceInterface;
+use App\Services\Interfaces\KnowledgeServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class EvaluationController extends Controller
 {
     protected $evaluationService;
+    protected $knowledgeService;
 
-    public function __construct(EvaluationServiceInterface $evaluationService)
+    public function __construct(EvaluationServiceInterface $evaluationService,
+                                KnowledgeServiceInterface $knowledgeService)
     {
         $this->evaluationService = $evaluationService;
+        $this->knowledgeService = $knowledgeService;
     }
 
     public function store(Request $request)
@@ -38,14 +42,6 @@ class EvaluationController extends Controller
                     'message' => __('lesson.failed-message'),
                 ], 500);
             }
-        }
-    }
-
-    public function test() {
-        if ($this->evaluationService->getAvgEvaluation(9)) {
-            echo "h";
-        } else {
-            echo "k";
         }
     }
 }

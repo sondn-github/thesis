@@ -5,11 +5,8 @@ namespace App\Services;
 
 
 use App\Fact;
-use App\Http\Requests\StoreKnowledgeRequest;
-use App\Http\Requests\UpdateKnowledgeRequest;
 use App\Knowledge;
 use App\Services\Interfaces\KnowledgeServiceInterface;
-use Illuminate\Http\Request;
 
 class KnowledgeService extends Service implements KnowledgeServiceInterface
 {
@@ -19,36 +16,70 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
             ->get();
     }
 
-    public function getAdvises($sr) {
-        $advisesId = $this->deduceWithRule2($this->deduceWithRule1($sr));
+    public function filterConclusions($conclusions) {
+        $rightConclusions = [];
+        foreach ($conclusions as $conclusion) {
+            foreach ($conclusion as $conclusionId => $reliability) {
+                if ($reliability >= Knowledge::MIN_RELIABILITY) {
+                    $rightConclusions[] = $conclusionId;
+                }
+            }
+        }
 
-        return Fact::whereIn(Fact::COL_ID, $advisesId)
+        return $rightConclusions;
+    }
+
+    public function getAdvises($sr) {
+        $conclusions = $this->deduceWithRule2($this->deduceWithRule1($sr));
+        $rightConclusions = $this->filterConclusions($conclusions);
+
+        return Fact::whereIn(Fact::COL_ID, $rightConclusions)
+            ->where(Fact::COL_TYPE, Fact::TYPE_ADVISE)
             ->get();
     }
 
     public function deduceWithRule1($sr) {
         $conclusions = [];
-        $rules = $this->getRuleByType(1);
+        $rules = $this->getRuleByType(Knowledge::TYPE_1);
         foreach ($rules as $rule) {
             if ($this->compareWithRule1($sr, $rule)) {
-                $conclusions[$rule->conclusion] = $rule->reliability;
+                $conclusions[] = array($rule->conclusion => $rule->reliability);
             }
         }
 
         return $conclusions;
     }
 
-    public function deduceWithRule2($conclusions) {
-        $rules = $this->getRuleByType(2);
-        $advises = [];
+    public function removeUsedConclusions($conclusionsSource, $usedConclusion) {
+        $source = $conclusionsSource;
+        foreach ($usedConclusion as $conclusionId) {
+            unset($source[$conclusionId]);
+        }
+        return $source;
+    }
 
+    public function deduceWithRule2($conclusionsFromRule1) {
+        $rules = $this->getRuleByType(Knowledge::TYPE_2);
+        $conclusions = $conclusionsFromRule1;
+        $isDone = false;
+        $rulesIsUsed = [];
         foreach ($rules as $rule) {
-            if ($this->compareWithRule2($conclusions, $rule) && $rule->reliability >= Knowledge::MIN_RELIABILITY) {
-                array_push($advises, $rule->conclusion);
+            $rulesIsUsed[$rule->id] = false;
+        }
+        while (!$isDone) {
+            $isDone = true;
+            foreach ($rules as $rule) {
+                $usedConclusions = $this->compareWithRule2($conclusions, $rule);
+                if ($usedConclusions && !$rulesIsUsed[$rule->id]) {
+                    $rulesIsUsed[$rule->id] = true;
+                    $isDone = false;
+                    $conclusions = $this->removeUsedConclusions($conclusions, $usedConclusions);
+                    $conclusions[] = array($rule->conclusion => $rule->reliability);
+                }
             }
         }
 
-        return $advises;
+        return $conclusions;
     }
 
     public function compareWithRule1($sr, $rule) {
@@ -87,17 +118,26 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
 
     public function compareWithRule2($conclusions, $rule) {
         $premises = $rule->premise;
+        $usedConclusions = [];
+        $count = 0;
         foreach ($premises as $premise) {
             $temp = explode(",", $premise);
             $factId = $temp[0];
             $startValue = $temp[1];
             $endValue = $temp[2];
-            if (!(isset($conclusions[$factId]) && $conclusions[$factId] >= $startValue && $conclusions[$factId] <= $endValue)) {
-                return false;
+            foreach ($conclusions as $key => $conclusion) {
+                if (isset($conclusion[$factId]) && $conclusion[$factId] >= $startValue && $conclusion[$factId] <= $endValue) {
+                    $usedConclusions[] = $key;
+                    $count++;
+                }
             }
         }
 
-        return true;
+        if ($count == count($premises)) {
+            return $usedConclusions;
+        } else {
+            return false;
+        }
     }
 
     public function changeStatus($request) {
