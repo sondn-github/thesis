@@ -107,7 +107,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
             ]);
     }
 
-    public function convertToPremiseWithType1(Request $request) {
+    public function convertToPremiseWithType1($request) {
         $premises = [];
 
         foreach ($request->criteria as $key => $criteriaId) {
@@ -118,7 +118,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         return $premises;
     }
 
-    public function storeRuleType1(Request $request) {
+    public function storeRuleType1($request) {
         return Knowledge::create([
             Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
             Knowledge::COL_TYPE => Knowledge::TYPE_1,
@@ -133,7 +133,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         return Knowledge::findOrFail($id);
     }
 
-    public function updateRuleType1(Request $request, $id) {
+    public function updateRuleType1($request, $id) {
         return Knowledge::findOrFail($id)
             ->update([
                 Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
@@ -145,7 +145,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
             ]);
     }
 
-    public function convertToPremiseWithType2(Request $request) {
+    public function convertToPremiseWithType2($request) {
         $premises = [];
 
         foreach ($request->facts as $key => $factId) {
@@ -156,7 +156,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         return $premises;
     }
 
-    public function storeRuleType2(Request $request) {
+    public function storeRuleType2($request) {
         return Knowledge::create([
             Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
             Knowledge::COL_TYPE => Fact::findOrFail($request->input(Knowledge::COL_CONCLUSION))->type,
@@ -167,7 +167,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         ]);
     }
 
-    public function updateRuleType2(Request $request, $id) {
+    public function updateRuleType2($request, $id) {
         return Knowledge::findOrFail($id)
             ->update([
                 Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),

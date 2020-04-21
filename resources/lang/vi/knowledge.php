@@ -30,4 +30,8 @@ return [
     'type-2' => 'Loại 2',
     'enterScore' => 'Từ 0 -> 1. Ví dụ 0.3',
     'select' => '--Chọn--',
+    'criteria' => 'Tiêu chí',
+    'operator' => 'Toán tử',
+    'scoreRangeFrom' => 'Khoảng điểm bắt đầu',
+    'scoreRangeTo' => 'Khoảng điểm kết thúc',
 ];

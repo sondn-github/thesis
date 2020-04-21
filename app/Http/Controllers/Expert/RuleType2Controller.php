@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Expert;
 
 use App\Fact;
+use App\Http\Requests\StoreRuleType2Request;
+use App\Http\Requests\UpdateRuleType2Request;
 use App\Services\Interfaces\FactServiceInterface;
 use App\Services\Interfaces\KnowledgeServiceInterface;
 use Illuminate\Http\Request;
@@ -49,7 +51,7 @@ class RuleType2Controller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRuleType2Request $request)
     {
         if ($this->knowledgeService->storeRuleType2($request)) {
             return redirect()->back()->with('success', __('knowledge.storingSuccess'));
@@ -73,7 +75,7 @@ class RuleType2Controller extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -95,7 +97,7 @@ class RuleType2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRuleType2Request $request, $id)
     {
         if ($this->knowledgeService->updateRuleType2($request, $id)) {
             return redirect()->back()->with('success', __('knowledge.updateSuccess'));

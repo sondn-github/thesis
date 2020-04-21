@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Expert;
 
 use App\Fact;
+use App\Http\Requests\StoreRuleType1Request;
+use App\Http\Requests\UpdateRuleType1Request;
 use App\Services\Interfaces\CriteriaServiceInterface;
 use App\Services\Interfaces\FactServiceInterface;
 use App\Services\Interfaces\KnowledgeServiceInterface;
@@ -53,7 +55,7 @@ class KnowledgeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreRuleType1Request $request)
     {
         if ($this->knowledgeService->storeRuleType1($request)) {
             return redirect()->back()->with('success', __('knowledge.storingSuccess'));
@@ -99,7 +101,7 @@ class KnowledgeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRuleType1Request $request, $id)
     {
         if ($this->knowledgeService->updateRuleType1($request, $id)) {
             return redirect()->back()->with('success', __('knowledge.updateSuccess'));
