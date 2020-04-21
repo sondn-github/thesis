@@ -65,7 +65,7 @@
             },
             order: [[ 1, 'asc' ]],
             ajax: {
-                url: '{{route('expert.datatables.knowledge')}}',
+                url: '{{route('expert.datatables.knowledge.rulesType1')}}',
             },
             columns: [
                 {data: 'id',

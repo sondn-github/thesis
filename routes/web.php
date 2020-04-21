@@ -54,8 +54,10 @@ Route::middleware(['auth'])->prefix('expert')->name('expert.')->group(function (
     Route::get('/datatables/facts', 'DatatableController@facts')->name('datatables.facts');
     Route::get('/fact-status/change', 'Expert\FactController@changeStatus')->name('facts.changing-status');
     Route::resource('knowledge', 'Expert\KnowledgeController')->except(['destroy', 'show']);
-    Route::get('/datatables/knowledge', 'DatatableController@knowledge')->name('datatables.knowledge');
+    Route::get('/datatables/rulesType1', 'DatatableController@rulesType1')->name('datatables.knowledge.rulesType1');
+    Route::get('/datatables/rulesType2', 'DatatableController@rulesType2')->name('datatables.knowledge.rulesType2');
     Route::get('/fact-status/change', 'Expert\KnowledgeController@changeStatus')->name('knowledge.changing-status');
+    Route::resource('rulesType2', 'Expert\RuleType2Controller')->except(['destroy', 'show']);
 });
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {

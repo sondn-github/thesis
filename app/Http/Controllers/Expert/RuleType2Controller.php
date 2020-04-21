@@ -3,25 +3,21 @@
 namespace App\Http\Controllers\Expert;
 
 use App\Fact;
-use App\Services\Interfaces\CriteriaServiceInterface;
 use App\Services\Interfaces\FactServiceInterface;
 use App\Services\Interfaces\KnowledgeServiceInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class KnowledgeController extends Controller
+class RuleType2Controller extends Controller
 {
-    protected $knowledgeService;
-    protected $criteriaService;
     protected $factService;
+    protected $knowledgeService;
 
-    public function __construct(KnowledgeServiceInterface $knowledgeService,
-                                CriteriaServiceInterface $criteriaService,
-                                FactServiceInterface $factService)
+    public function __construct(FactServiceInterface $factService,
+                                KnowledgeServiceInterface $knowledgeService)
     {
-        $this->knowledgeService = $knowledgeService;
-        $this->criteriaService = $criteriaService;
         $this->factService = $factService;
+        $this->knowledgeService = $knowledgeService;
     }
 
     /**
@@ -31,7 +27,7 @@ class KnowledgeController extends Controller
      */
     public function index()
     {
-        return view('expert.knowledge.rulesType1.index');
+        return view('expert.knowledge.rulesType2.index');
     }
 
     /**
@@ -41,21 +37,21 @@ class KnowledgeController extends Controller
      */
     public function create()
     {
-        $criteria = $this->criteriaService->getAllCriteria();
-        $facts = $this->factService->getFactsByType(Fact::TYPE_COMMENT);
+        $factsTypeComment = $this->factService->getFactsByType(Fact::TYPE_COMMENT);
+        $facts = $this->factService->getFacts();
 
-        return view('expert.knowledge.rulesType1.create', compact('criteria'), compact('facts'));
+        return view('expert.knowledge.rulesType2.create', compact('facts'), compact('factsTypeComment'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        if ($this->knowledgeService->storeRuleType1($request)) {
+        if ($this->knowledgeService->storeRuleType2($request)) {
             return redirect()->back()->with('success', __('knowledge.storingSuccess'));
         } else {
             return redirect()->back()->withErrors(['message' => __('knowledge.storingFailed')]);
@@ -77,17 +73,17 @@ class KnowledgeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $knowledge = $this->knowledgeService->getKnowledgeById($id);
-        $criteria = $this->criteriaService->getAllCriteria();
-        $facts = $this->factService->getFactsByType(Fact::TYPE_COMMENT);
+        $factsTypeComment = $this->factService->getFactsByType(Fact::TYPE_COMMENT);
+        $facts = $this->factService->getFacts();
 
-        return view('expert.knowledge.rulesType1.edit', [
+        return view('expert.knowledge.rulesType2.edit', [
             'knowledge' => $knowledge,
-            'criteria' => $criteria,
+            'factsTypeComment' => $factsTypeComment,
             'facts' => $facts,
         ]);
     }
@@ -97,11 +93,11 @@ class KnowledgeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        if ($this->knowledgeService->updateRuleType1($request, $id)) {
+        if ($this->knowledgeService->updateRuleType2($request, $id)) {
             return redirect()->back()->with('success', __('knowledge.updateSuccess'));
         } else {
             return redirect()->back()->withErrors(['message' => __('knowledge.updateFailed')]);
@@ -117,17 +113,5 @@ class KnowledgeController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function changeStatus(Request $request) {
-        if ($this->knowledgeService->changeStatus($request)) {
-            return response()->json([
-                'success' => __('knowledge.updateSuccess'),
-            ], 200);
-        } else {
-            return response()->json([
-                'error' => __('knowledge.updateFailed'),
-            ], 500);
-        }
     }
 }

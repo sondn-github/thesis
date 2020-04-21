@@ -88,7 +88,8 @@
                                         @if(Auth::user()->role->name == 'expert')
                                             <a href="{{route('expert.criteria.index')}}" class="dropdown-item">{{__('layouts/header.criteriaManagement')}}</a>
                                             <a href="{{route('expert.facts.index')}}" class="dropdown-item">{{__('layouts/header.factManagement')}}</a>
-                                            <a href="{{route('expert.knowledge.index')}}" class="dropdown-item">{{__('layouts/header.ruleManagement')}}</a>
+                                            <a href="{{route('expert.knowledge.index')}}" class="dropdown-item">{{__('layouts/header.rule1Management')}}</a>
+                                            <a href="{{route('expert.rulesType2.index')}}" class="dropdown-item">{{__('layouts/header.rule2Management')}}</a>
                                         @endif
                                         @if(Auth::user()->role->name == 'admin')
                                             <a href="{{route('admin.home')}}" class="dropdown-item">{{__('layouts/header.pageManagement')}}</a>

@@ -43,4 +43,8 @@ class FactService extends Service implements FactServiceInterface
         return Fact::where(Fact::COL_TYPE, $type)
             ->get();
     }
+
+    public function getFacts() {
+        return Fact::all();
+    }
 }

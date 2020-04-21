@@ -125,8 +125,9 @@ class DatatableService extends Service implements DatatableServiceInterface
             ->make(true);
     }
 
-    public function knowledge() {
-        $query = Knowledge::all();
+    public function rulesType1() {
+        $query = Knowledge::where(Knowledge::COL_TYPE, Knowledge::TYPE_1)
+            ->where(Knowledge::COL_STATUS, Knowledge::ACTIVE_STATUS);
 
         return DataTables::of($query)
             ->editColumn(Knowledge::COL_STATUS, function ($knowledge) {
@@ -144,6 +145,31 @@ class DatatableService extends Service implements DatatableServiceInterface
             })
             ->addColumn('action', function ($knowledge) {
                 return '<a href="'.route("expert.knowledge.edit", $knowledge->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
+            })
+            ->rawColumns(['action', Knowledge::COL_STATUS])
+            ->make(true);
+    }
+
+    public function rulesType2() {
+        $query = Knowledge::where(Knowledge::COL_TYPE, Knowledge::TYPE_2)
+            ->where(Knowledge::COL_STATUS, Knowledge::ACTIVE_STATUS);
+
+        return DataTables::of($query)
+            ->editColumn(Knowledge::COL_STATUS, function ($knowledge) {
+                if ($knowledge->status == Knowledge::ACTIVE_STATUS) {
+                    return '<label class="switch small">
+                                <input type="checkbox" name="status" data-id="'.$knowledge->id.'" checked>
+                                <span class="slider round"></span>
+                            </label>';
+                } else {
+                    return '<label class="switch">
+                                <input type="checkbox" data-id="'.$knowledge->id.'" name="status">
+                                <span class="slider round"></span>
+                            </label>';
+                }
+            })
+            ->addColumn('action', function ($knowledge) {
+                return '<a href="'.route("expert.rulesType2.edit", $knowledge->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
             })
             ->rawColumns(['action', Knowledge::COL_STATUS])
             ->make(true);

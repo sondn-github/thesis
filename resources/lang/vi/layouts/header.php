@@ -17,9 +17,10 @@ return [
     'categories' => 'Thể loại',
     'course' => 'Khoá học',
     'criteriaManagement' => 'Quản trị tiêu chí',
-    'ruleManagement' => 'Quản trị luật',
+    'rule1Management' => 'Quản trị luật loại 1',
     'factManagement' => 'Quản trị sự kiện',
     'management' => 'QUẢN TRỊ',
     'criteria' => 'Bộ tiêu chí',
     'pageManagement' => 'Trang quản lý',
+    'rule2Management' => 'Quản trị luật loại 2',
 ];

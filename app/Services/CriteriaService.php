@@ -16,7 +16,7 @@ class CriteriaService extends Service implements CriteriaServiceInterface
     public function getAllCriteria()
     {
         $typesId = Type::select(Type::COL_ID)
-            ->where(Type::COL_IS_USING, true)
+//            ->where(Type::COL_IS_USING, true)
             ->get();
 
         return Criteria::where(Criteria::COL_STATUS, Criteria::ACTIVE_STATUS)
