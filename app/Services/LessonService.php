@@ -9,19 +9,16 @@ use App\Http\Requests\UpdateLessonRequest;
 use App\Services\Interfaces\LessonServiceInterface;
 use App\Lesson;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class LessonService extends Service implements LessonServiceInterface
 {
-    public function getPopularLessons() {
-        $popularLessons = Lesson::with('course')
-            ->where(Lesson::COL_STATUS, Lesson::ACTIVE_STATUS)
-            ->orderBy(Lesson::COL_VIEW, 'desc')
-            ->limit(5)
-            ->get();
-
-        return $popularLessons;
+    public function getLesson($id) {
+        return Lesson::with('course')
+            ->where(Lesson::COL_ID, $id)
+            ->first();
     }
 
     public function getLessonDetailById($id) {
@@ -91,18 +88,30 @@ class LessonService extends Service implements LessonServiceInterface
     }
 
     public function changeStatus($request, $teacherId) {
-        if ($this->getLessonOfTeacher($request->id, $teacherId)) {
+        if (Auth::user()->role->name == 'admin') {
             return Lesson::findOrFail($request->id)
                 ->update([
                     Lesson::COL_STATUS => $request->input(Lesson::COL_STATUS),
                 ]);
+        } elseif ($this->getLessonOfTeacher($request->id, $teacherId)) {
+            return Lesson::findOrFail($request->id)
+                ->update([
+                    Lesson::COL_STATUS => $request->input(Lesson::COL_STATUS),
+                ]);
+        } else {
+            return null;
         }
     }
 
-    public function destroy(Request $request, $teacherId) {
-        if ($this->getLessonOfTeacher($request->id, $teacherId)) {
+    public function destroy($request, $teacherId) {
+        if (Auth::user()->role->name == 'admin') {
+            return Lesson::findOrFail($request)
+                ->delete();
+        } elseif ($this->getLessonOfTeacher($request->id, $teacherId)) {
             return Lesson::findOrFail($request->id)
                 ->delete();
+        } else {
+            return null;
         }
     }
 }

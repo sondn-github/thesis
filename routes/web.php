@@ -82,6 +82,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     Route::resource('courses', 'Admin\CourseController')->except(['create, store']);
     Route::get('/datatables/courses', 'DatatableController@courses')->name('datatables.courses');
+
+    Route::get('/datatables/lessons', 'DatatableController@lessons')->name('datatables.lessons');
+    Route::get('/status/change', 'Admin\LessonController@changeStatus')->name('lessons.status.change');
+    Route::resource('lessons', 'Admin\LessonController')->except(['create, store']);
 });
 
 Route::get('/test', 'EvaluationController@test');

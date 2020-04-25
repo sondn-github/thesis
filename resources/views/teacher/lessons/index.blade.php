@@ -22,10 +22,10 @@
                     <tr>
                         <th>{{__('lesson.no')}}</th>
                         <th>{{__('lesson.name')}}</th>
-                        <th>{{__('lesson.status')}}</th>
                         <th>{{__('lesson.course')}}</th>
                         <th>{{__('lesson.view')}}</th>
                         <th>{{__('lesson.created_at')}}</th>
+                        <th>{{__('lesson.status')}}</th>
                         <th width="14%"></th>
                     </tr>
                     </thead>
@@ -120,11 +120,31 @@
                          }
                      },
                      {data: 'name', name: 'lessons.name'},
-                     {data: 'status', name: 'lessons.status'},
                      {data: 'course.name', name: 'lessons.course.name', "searchable": false},
                      {data: 'view', name: 'lessons.view'},
                      {data: 'created_at', name: 'lessons.created_at'},
-                     {data: 'action', name: 'lessons.action', "searchable": false}
+                     {data: 'status', "searchable": false,
+                         render: function (data, type, row, meta) {
+                             if (data == 1) {
+                                 return '<label class="switch small">'
+                                     + '<input type="checkbox" name="status" data-id="'+ row.id + '" checked>'
+                                     + '<span class="slider round"></span>'
+                                     + '</label>';
+                             } else {
+                                 return '<label class="switch small">'
+                                     + '<input type="checkbox" name="status" data-id="'+ row.id + '">'
+                                     + '<span class="slider round"></span>'
+                                     + '</label>';
+                             }
+                         }
+                     },
+                     {data: 'action', "searchable": false,
+                         render: function (data, type, row, meta) {
+                             return '<a href="/teacher/lessons/' + row.id + '" class="btn btn-info btn-info-lesson" data-id="' + row.id + '" data-toggle="modal" data-target="#detailLesson" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>'
+                                 + '<a href="/teacher/lessons/' + row.id + '/edit" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>'
+                                 + '<a href="javascript:void(0)" data-id="' + row.id + '" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></a>';
+                         }
+                     },
                  ]
             });
         // });
