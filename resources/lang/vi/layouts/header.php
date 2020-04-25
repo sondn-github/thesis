@@ -32,4 +32,6 @@ return [
     'fact' => 'Sự kiện',
     'ruleType1' => 'Luật loại 1',
     'ruleType2' => 'Luật loại 2',
+    'welcomeMessage' => 'Hệ thống quản lý',
+    'criteria' => 'Tiêu chí',
 ];
