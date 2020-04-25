@@ -14,8 +14,8 @@ return [
     'tools-for-students' => 'Công cụ cho sinh viên',
     'tools-for-students-description' => 'Là công cụ, phương pháp mới giúp ôn tập kiến thức, tạo thói quen tự học và khai thác kiến thức trên mạng.',
     'learn-more' => 'Tìm hiểu thêm',
-    'popular-lessons' => 'Bài giảng phổ biến',
-    'popular-lessons-description' => 'Những bài giảng với số lượng người xem nhiều nhất trên Academics',
+    'popular-course' => 'Khoá học được đánh giá cao',
+    'popular-course-description' => 'Những khoá học được các sinh viên, chuyên gia, giảng viên đánh giá cao nhất trên Academics.',
     'view-detail' => 'Xem chi tiết',
     'read-more' => 'Xem thêm',
     'our-philosphy' => 'Triết lý của chúng tôi',
@@ -24,5 +24,5 @@ return [
     'academics-principle-description' => 'Nguyên tắc của Academics',
     'key-of-success' => 'Chìa khoá thành công',
     'key-of-success-description' => 'Chìa khoá thành công',
-
+    'ranking' => 'Hạng',
 ];

@@ -56,16 +56,29 @@ Route::middleware(['auth'])->prefix('expert')->name('expert.')->group(function (
     Route::resource('knowledge', 'Expert\KnowledgeController')->except(['destroy', 'show']);
     Route::get('/datatables/rulesType1', 'DatatableController@rulesType1')->name('datatables.knowledge.rulesType1');
     Route::get('/datatables/rulesType2', 'DatatableController@rulesType2')->name('datatables.knowledge.rulesType2');
-    Route::get('/fact-status/change', 'Expert\KnowledgeController@changeStatus')->name('knowledge.changing-status');
+    Route::get('/rule-status/change', 'Expert\KnowledgeController@changeStatus')->name('knowledge.changing-status');
     Route::resource('rulesType2', 'Expert\RuleType2Controller')->except(['destroy', 'show']);
 });
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/home', 'Admin\HomeController@home')->name('home');
+
     Route::resource('criteria', 'Admin\CriteriaController')->except(['destroy']);
     Route::get('/datatables/criteria', 'DatatableController@criteria')->name('datatables.criteria');
     Route::get('/criteria-status/change', 'Admin\CriteriaController@changeStatus')->name('criteria.changing-status');
     Route::get('/criteria-type/change', 'Admin\TypeController@changeType')->name('criteria.changing-type');
+
+    Route::resource('facts', 'Admin\FactController')->except(['destroy', 'show']);
+    Route::get('/datatables/facts', 'DatatableController@facts')->name('datatables.facts');
+    Route::get('/fact-status/change', 'Admin\FactController@changeStatus')->name('facts.changing-status');
+
+    Route::resource('rulesType1', 'Admin\RuleType1Controller')->except(['destroy', 'show']);
+    Route::get('/datatables/rulesType1', 'DatatableController@rulesType1')->name('datatables.knowledge.rulesType1');
+    Route::get('/ruleType1-status/change', 'Admin\RuleType1Controller@changeStatus')->name('ruleType1.changing-status');
+
+    Route::resource('rulesType2', 'Admin\RuleType2Controller')->except(['destroy', 'show']);
+    Route::get('/datatables/rulesType2', 'DatatableController@rulesType1')->name('datatables.knowledge.rulesType2');
+    Route::get('/ruleType2-status/change', 'Admin\RuleType2Controller@changeStatus')->name('ruleType2.changing-status');
 });
 
 Route::get('/test', 'EvaluationController@test');

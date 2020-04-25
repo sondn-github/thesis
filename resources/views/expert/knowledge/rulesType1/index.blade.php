@@ -68,7 +68,8 @@
                 url: '{{route('expert.datatables.knowledge.rulesType1')}}',
             },
             columns: [
-                {data: 'id',
+                {
+                    data: 'id',
                     render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }
@@ -78,11 +79,27 @@
                 {data: 'conclusion'},
                 {data: 'reliability'},
                 {data: 'type'},
-                {data: 'status', "searchable": false},
-                {data: 'action', "searchable": false},
-
+                {data: 'status', "searchable": false,
+                    render: function (data, type, row, meta) {
+                        if (data == 1) {
+                            return '<label class="switch small">'
+                                + '<input type="checkbox" name="status" data-id="'+ row.id + '" checked>'
+                                + '<span class="slider round"></span>'
+                                + '</label>';
+                        } else {
+                            return '<label class="switch small">'
+                                + '<input type="checkbox" name="status" data-id="'+ row.id + '">'
+                                + '<span class="slider round"></span>'
+                                + '</label>';
+                        }
+                    }
+                },
+                {data: 'action', "searchable": false,
+                    render: function (data, type, row, meta) {
+                        return '<a href="/expert/knowledge/' + row.id + '/edit " class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
+                    }
+                },
             ],
-
         });
 
         $('#knowledgeTable').on("click", ':checkbox', function() {

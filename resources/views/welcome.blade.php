@@ -79,23 +79,23 @@
             <div class="row mb-5 justify-content-center text-center">
                 <div class="col-lg-6 mb-5">
                     <h2 class="section-title-underline mb-3">
-                        <span>{{__('welcome.popular-lessons')}}</span>
+                        <span>{{__('welcome.popular-course')}}</span>
                     </h2>
-                    <p>{{__('welcome.popular-lessons-description')}}</p>
+                    <p>{{__('welcome.popular-course-description')}}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <div class="owl-slide-3 owl-carousel">
-                        @foreach($popularLessons as $popularLesson)
+                        @foreach($topCourses as $key => $course)
                             <div class="course-1-item">
                                 <figure class="thumnail">
-                                    <a href="{{route('lesson-single', $popularLesson->id)}}"><img src="{{asset($popularLesson->thumbnail)}}" alt="Image" class="img-fluid"></a>
-                                    <div class="price">{{__('layouts/header.lesson')}}</div>
-                                    <div class="category"><h3>{{$popularLesson->course->name}}</h3></div>
+                                    <a href="{{route('courses.show', $course->id)}}"><img src="{{asset($course->thumbnail)}}" alt="Image" class="img-fluid"></a>
+                                    <div class="price">#{{__('welcome.ranking').' '.($key + 1)}}</div>
+                                    <div class="category"><h3>{{$course->category->name}}</h3></div>
                                 </figure>
                                 <div class="course-1-content pb-4">
-                                    <h2>{{$popularLesson->name}}</h2>
+                                    <h2>{{$course->name}}</h2>
                                     <div class="rating text-center mb-3">
                                         <span class="icon-star2 text-warning"></span>
                                         <span class="icon-star2 text-warning"></span>
@@ -103,8 +103,8 @@
                                         <span class="icon-star2 text-warning"></span>
                                         <span class="icon-star2 text-warning"></span>
                                     </div>
-                                    <p class="desc mb-4" style="max-height: 100px; overflow: auto">{{$popularLesson->abstract}}</p>
-                                    <p><a href="{{route('display-lesson', $popularLesson->id)}}" class="btn btn-primary rounded-0 px-4">{{__('welcome.view-detail')}}</a></p>
+                                    <p class="desc mb-4" style="max-height: 100px; overflow: auto">{{$course->description}}</p>
+                                    <p><a href="{{route('courses.show', $course->id)}}" class="btn btn-primary rounded-0 px-4">{{__('welcome.view-detail')}}</a></p>
                                 </div>
                             </div>
                         @endforeach

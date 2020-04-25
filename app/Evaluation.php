@@ -18,6 +18,7 @@ class Evaluation extends AppModel
     //Constant
     public const TYPE_PFR = 1;
     public const TYPE_NORMAL = 2 ;
+    public const MIN_NUMBER_EVALUATION = 0;
 
     protected $fillable = [
         self::COL_USER_ID,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Evaluation;
+use App\Services\Interfaces\CourseServiceInterface;
 use App\Services\Interfaces\EvaluationServiceInterface;
 use App\Services\Interfaces\KnowledgeServiceInterface;
 use Illuminate\Http\Request;
@@ -12,12 +13,15 @@ class EvaluationController extends Controller
 {
     protected $evaluationService;
     protected $knowledgeService;
+    protected $courseService;
 
     public function __construct(EvaluationServiceInterface $evaluationService,
-                                KnowledgeServiceInterface $knowledgeService)
+                                KnowledgeServiceInterface $knowledgeService,
+                                CourseServiceInterface $courseService)
     {
         $this->evaluationService = $evaluationService;
         $this->knowledgeService = $knowledgeService;
+        $this->courseService = $courseService;
     }
 
     public function store(Request $request)
@@ -46,6 +50,6 @@ class EvaluationController extends Controller
     }
 
     public function test() {
-        return $this->evaluationService->getCriteriaType(6);
+        dd($this->courseService->getCoursesToRanking());
     }
 }

@@ -16,6 +16,9 @@ class Course extends AppModel
     public const COL_THUMBNAIL = 'thumbnail';
     public const COL_PFR = 'pfr';
 
+    // Constant
+    public const PER_PAGE = 6;
+
     protected $fillable = [
         self::COL_NAME,
         self::COL_CATEGORY_ID,

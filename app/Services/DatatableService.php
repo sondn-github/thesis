@@ -98,19 +98,6 @@ class DatatableService extends Service implements DatatableServiceInterface
         $query = Fact::all();
 
         return DataTables::of($query)
-            ->editColumn(Fact::COL_STATUS, function ($fact) {
-                if ($fact->status == Fact::ACTIVE_STATUS) {
-                    return '<label class="switch small">
-                                <input type="checkbox" name="status" data-id="'.$fact->id.'" checked>
-                                <span class="slider round"></span>
-                            </label>';
-                } else {
-                    return '<label class="switch">
-                                <input type="checkbox" data-id="'.$fact->id.'" name="status">
-                                <span class="slider round"></span>
-                            </label>';
-                }
-            })
             ->editColumn(Fact::COL_TYPE, function ($fact) {
                 if ($fact->type == Fact::TYPE_COMMENT) {
                     return __('fact.comment');
@@ -118,10 +105,6 @@ class DatatableService extends Service implements DatatableServiceInterface
                     return __('fact.advise');
                 }
             })
-            ->addColumn('action', function ($fact) {
-                return '<a href="'.route("expert.facts.edit", $fact->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
-            })
-            ->rawColumns(['action', Fact::COL_STATUS])
             ->make(true);
     }
 
@@ -130,23 +113,6 @@ class DatatableService extends Service implements DatatableServiceInterface
             ->where(Knowledge::COL_STATUS, Knowledge::ACTIVE_STATUS);
 
         return DataTables::of($query)
-            ->editColumn(Knowledge::COL_STATUS, function ($knowledge) {
-                if ($knowledge->status == Knowledge::ACTIVE_STATUS) {
-                    return '<label class="switch small">
-                                <input type="checkbox" name="status" data-id="'.$knowledge->id.'" checked>
-                                <span class="slider round"></span>
-                            </label>';
-                } else {
-                    return '<label class="switch">
-                                <input type="checkbox" data-id="'.$knowledge->id.'" name="status">
-                                <span class="slider round"></span>
-                            </label>';
-                }
-            })
-            ->addColumn('action', function ($knowledge) {
-                return '<a href="'.route("expert.knowledge.edit", $knowledge->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
-            })
-            ->rawColumns(['action', Knowledge::COL_STATUS])
             ->make(true);
     }
 
@@ -155,23 +121,6 @@ class DatatableService extends Service implements DatatableServiceInterface
             ->where(Knowledge::COL_STATUS, Knowledge::ACTIVE_STATUS);
 
         return DataTables::of($query)
-            ->editColumn(Knowledge::COL_STATUS, function ($knowledge) {
-                if ($knowledge->status == Knowledge::ACTIVE_STATUS) {
-                    return '<label class="switch small">
-                                <input type="checkbox" name="status" data-id="'.$knowledge->id.'" checked>
-                                <span class="slider round"></span>
-                            </label>';
-                } else {
-                    return '<label class="switch">
-                                <input type="checkbox" data-id="'.$knowledge->id.'" name="status">
-                                <span class="slider round"></span>
-                            </label>';
-                }
-            })
-            ->addColumn('action', function ($knowledge) {
-                return '<a href="'.route("expert.rulesType2.edit", $knowledge->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
-            })
-            ->rawColumns(['action', Knowledge::COL_STATUS])
             ->make(true);
     }
 }

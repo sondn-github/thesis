@@ -1,21 +1,30 @@
-@extends('layouts.default')
-
-@section('css')
-    <!-- Bootstrap CSS -->
-@endsection
+@extends('admin.layouts.default')
 
 @section('content')
-    <div class="custom-breadcrumns border-bottom">
-        <div class="container">
-            <a href="{{route('index')}}">{{__('layouts/header.home')}}</a>
-            <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <span class="current">{{__('layouts/header.uploadLesson')}}</span>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">{{__('layouts/header.fact')}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a
+                                    href="{{route('admin.home')}}">{{__('layouts/header.home')}}</a></li>
+                            <li class="breadcrumb-item active">{{__('layouts/header.fact')}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </div>
-    </div>
+        <!-- /.content-header -->
 
-    <div class="site-section">
-        <div class="container">
-            <a href="{{route('expert.facts.create')}}" class="btn btn-primary mb-3">{{__('fact.new')}}</a>
+    <div class="content">
+        <div class="container-fluid">
+            <a href="{{route('admin.facts.create')}}" class="btn btn-primary mb-3">{{__('fact.new')}}</a>
             <div class="table-responsive small">
                 <table class="table table-bordered table-hover" id="factTable">
                     <thead>
@@ -61,9 +70,9 @@
                     "previous": "Trang trước"
                 },
             },
-            order: [[ 1, 'asc' ]],
+            order: [[1, 'asc']],
             ajax: {
-                url: '{{route('expert.datatables.facts')}}',
+                url: '{{route('admin.datatables.facts')}}',
             },
             columns: [
                 {
@@ -92,14 +101,13 @@
                 },
                 {data: 'action', "searchable": false,
                     render: function (data, type, row, meta) {
-                        return '<a href="/expert/facts/' + row.id + '/edit " class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
+                        return '<a href="/admin/facts/' + row.id + '/edit " class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
                     }
                 },
             ],
-
         });
 
-        $('#factTable').on("click", ':checkbox', function() {
+        $('#factTable').on("click", ':checkbox', function () {
             var status = this;
             var id = $(status).attr("data-id");
             var value = $(status).prop("checked");
@@ -110,11 +118,11 @@
                     '{{__('fact.confirm')}}': function () {
                         $.ajax({
                             type: "GET",
-                            url: '{{route('expert.facts.changing-status')}}',
+                            url: '{{route('admin.facts.changing-status')}}',
                             dataType: "json",
                             data: {
-                                id : id,
-                                status : value? 1 : 0
+                                id: id,
+                                status: value ? 1 : 0
                             },
                             success: function (data) {
                                 table.ajax.reload();

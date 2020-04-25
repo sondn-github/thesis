@@ -58,7 +58,7 @@
 {{--                    </ul>--}}
 
                     <p>
-                        <a href="{{route('display-lesson', $course->lesson[0]->id)}}" class="btn btn-primary rounded-0 btn-lg px-5">{{__('course.getStarted')}}</a>
+                        <a href="@if(isset($course->lesson[0]->id)) {{route('display-lesson', $course->lesson[0]->id)}} @else # @endif" class="btn btn-primary rounded-0 btn-lg px-5">{{__('course.getStarted')}}</a>
                         <button type="button" id="evaluationBtn" class="btn btn-info rounded-0 btn-lg px-5 ml-1"  @if($isEvaluated) disabled data-toggle="tooltip" data-placement="top"
                                 title="{{__('lesson.evaluated-message')}}"@else data-toggle="modal"
                                 data-target="#myModal" @endif>
