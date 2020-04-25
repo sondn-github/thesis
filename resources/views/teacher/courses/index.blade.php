@@ -159,8 +159,14 @@
                 {data: 'category.name'},
                 {data: 'number_lessons'},
                 {data: 'created_at'},
-                {data: 'action', "searchable": false},
-
+                {data: 'action', "searchable": false,
+                    render: function (data, type, row, meta) {
+                        return '<a href="/teacher/courses/' + row.id + '" class="btn btn-info btn-info-lesson" data-id="' + row.id + '" data-toggle="modal" data-target="#courseDetail" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>'
+                            + '<a href="/teacher/courses/' + row.id + '/edit" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>'
+                            + '<a href="#" class="btn btn-success margin-r-5" data-id="' + row.id + '" data-toggle="modal" data-target="#adviseModal" onclick="showAdviseModel(this)"><i class="fa fa-commenting"></i></a>'
+                            + '<a href="javascript:void(0)" data-id="' + row.id + '" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></a>';
+                    }
+                },
             ],
 
         });

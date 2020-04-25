@@ -10,6 +10,7 @@ use App\Fact;
 use App\Knowledge;
 use App\Lesson;
 use App\Services\Interfaces\DatatableServiceInterface;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\VarDumper\Cloner\Data;
 use Yajra\DataTables\DataTables;
 
@@ -49,16 +50,12 @@ class DatatableService extends Service implements DatatableServiceInterface
     }
 
     public function courses($teacherId) {
-        $query = Course::with('category', 'lesson')
-            ->where(Course::COL_USER_ID, $teacherId);
+        $query = Course::with('category', 'lesson', 'user');
+        if (!Auth::user()->role->name == 'admin') {
+            $query = $query->where(Course::COL_USER_ID, $teacherId);
+        }
 
         return DataTables::of($query)
-            ->addColumn('action', function ($course) {
-                return '<a href="'.route("teacher.courses.show", $course->id).'" class="btn btn-info btn-info-lesson" data-id="'.$course->id.'" data-toggle="modal" data-target="#courseDetail" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
-                        <a href="'.route("teacher.courses.edit", $course->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>
-                        <a href="#" class="btn btn-success margin-r-5" data-id="' . $course->id . '" data-toggle="modal" data-target="#adviseModal" onclick="showAdviseModel(this)"><i class="fa fa-commenting"></i></a>
-                        <a href="javascript:void(0)" data-id="' . $course->id . '" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></a>';
-            })
             ->addColumn('number_lessons', function ($course) {
                return count($course->lesson);
             })
@@ -73,24 +70,6 @@ class DatatableService extends Service implements DatatableServiceInterface
             ->orderBy(Criteria::COL_ID, 'asc');
 
         return DataTables::of($query)
-            ->editColumn(Criteria::COL_STATUS, function ($criteria) {
-                if ($criteria->status == Criteria::ACTIVE_STATUS) {
-                    return '<label class="switch small">
-                                <input type="checkbox" name="status" data-id="'.$criteria->id.'" checked>
-                                <span class="slider round"></span>
-                            </label>';
-                } else {
-                    return '<label class="switch">
-                                <input type="checkbox" data-id="'.$criteria->id.'" name="status">
-                                <span class="slider round"></span>
-                            </label>';
-                }
-            })
-            ->addColumn('action', function ($criteria) {
-                return '<a href="'.route("expert.criteria.show", $criteria->id).'" class="btn btn-info btn-info-criteria" data-id="'.$criteria->id.'" data-toggle="modal" data-target="#criteriaModal" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>
-                        <a href="'.route("expert.criteria.edit", $criteria->id).'" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
-            })
-            ->rawColumns(['action', Criteria::COL_STATUS])
             ->make(true);
     }
 

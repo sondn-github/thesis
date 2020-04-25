@@ -115,8 +115,27 @@
                 },
                 {data: 'name'},
                 {data: 'weight'},
-                {data: 'status', "searchable": false},
-                {data: 'action', "searchable": false},
+                {data: 'status', "searchable": false,
+                    render: function (data, type, row, meta) {
+                        if (data == 1) {
+                            return '<label class="switch small">'
+                                + '<input type="checkbox" name="status" data-id="'+ row.id + '" checked>'
+                                + '<span class="slider round"></span>'
+                                + '</label>';
+                        } else {
+                            return '<label class="switch small">'
+                                + '<input type="checkbox" name="status" data-id="'+ row.id + '">'
+                                + '<span class="slider round"></span>'
+                                + '</label>';
+                        }
+                    }
+                },
+                {data: 'action', "searchable": false,
+                    render: function (data, type, row, meta) {
+                        return '<a href="/expert/criteria/' + row.id + '" class="btn btn-info btn-info-criteria" data-id="' + row.id + '" data-toggle="modal" data-target="#criteriaModal" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>'
+                            + '<a href="/expert/criteria/' + row.id + '/edit" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
+                    }
+                },
 
             ],
 

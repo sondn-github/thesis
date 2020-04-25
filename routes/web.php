@@ -79,6 +79,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('rulesType2', 'Admin\RuleType2Controller')->except(['destroy', 'show']);
     Route::get('/datatables/rulesType2', 'DatatableController@rulesType2')->name('datatables.knowledge.rulesType2');
     Route::get('/ruleType2-status/change', 'Admin\RuleType2Controller@changeStatus')->name('ruleType2.changing-status');
+
+    Route::resource('courses', 'Admin\CourseController')->except(['create, store']);
+    Route::get('/datatables/courses', 'DatatableController@courses')->name('datatables.courses');
 });
 
 Route::get('/test', 'EvaluationController@test');
