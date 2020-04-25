@@ -177,7 +177,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         return Knowledge::findOrFail($id)
             ->update([
                 Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
-                Knowledge::COL_TYPE => Knowledge::TYPE_2,
+                Knowledge::COL_TYPE => Knowledge::TYPE_1,
                 Knowledge::COL_PREMISE => $this->convertToPremiseWithType1($request),
                 Knowledge::COL_CONCLUSION => $request->input(Knowledge::COL_CONCLUSION),
                 Knowledge::COL_RELIABILITY => $request->input(Knowledge::COL_RELIABILITY),

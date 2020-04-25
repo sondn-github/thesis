@@ -109,16 +109,14 @@ class DatatableService extends Service implements DatatableServiceInterface
     }
 
     public function rulesType1() {
-        $query = Knowledge::where(Knowledge::COL_TYPE, Knowledge::TYPE_1)
-            ->where(Knowledge::COL_STATUS, Knowledge::ACTIVE_STATUS);
+        $query = Knowledge::where(Knowledge::COL_TYPE, Knowledge::TYPE_1);
 
         return DataTables::of($query)
             ->make(true);
     }
 
     public function rulesType2() {
-        $query = Knowledge::where(Knowledge::COL_TYPE, Knowledge::TYPE_2)
-            ->where(Knowledge::COL_STATUS, Knowledge::ACTIVE_STATUS);
+        $query = Knowledge::where(Knowledge::COL_TYPE, Knowledge::TYPE_2);
 
         return DataTables::of($query)
             ->make(true);

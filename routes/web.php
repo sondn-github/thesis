@@ -77,7 +77,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/ruleType1-status/change', 'Admin\RuleType1Controller@changeStatus')->name('ruleType1.changing-status');
 
     Route::resource('rulesType2', 'Admin\RuleType2Controller')->except(['destroy', 'show']);
-    Route::get('/datatables/rulesType2', 'DatatableController@rulesType1')->name('datatables.knowledge.rulesType2');
+    Route::get('/datatables/rulesType2', 'DatatableController@rulesType2')->name('datatables.knowledge.rulesType2');
     Route::get('/ruleType2-status/change', 'Admin\RuleType2Controller@changeStatus')->name('ruleType2.changing-status');
 });
 

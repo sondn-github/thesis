@@ -111,7 +111,6 @@
                             }
                         },
                     ],
-
                 });
 
                 $('#knowledgeTable').on("click", ':checkbox', function () {
