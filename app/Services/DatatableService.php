@@ -10,6 +10,7 @@ use App\Fact;
 use App\Knowledge;
 use App\Lesson;
 use App\Services\Interfaces\DatatableServiceInterface;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\VarDumper\Cloner\Data;
 use Yajra\DataTables\DataTables;
@@ -81,6 +82,13 @@ class DatatableService extends Service implements DatatableServiceInterface
 
     public function rulesType2() {
         $query = Knowledge::where(Knowledge::COL_TYPE, Knowledge::TYPE_2);
+
+        return DataTables::of($query)
+            ->make(true);
+    }
+
+    public function users() {
+        $query = User::with('role');
 
         return DataTables::of($query)
             ->make(true);

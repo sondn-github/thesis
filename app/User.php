@@ -24,6 +24,7 @@ class User extends Authenticatable
         'deleted_at',
         'role_id',
         self::COL_SPECIALTY,
+        self::COL_RELIABILITY,
         self::COL_LEVEL,
         self::COL_AVATAR,
     ];
@@ -35,6 +36,15 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    protected $attributes = [
+        self::COL_AVATAR => '/images/person_1.jpg',
+    ];
+
+
+    protected $casts = [
+        self::COL_STATUS => 'boolean',
     ];
 
     /*

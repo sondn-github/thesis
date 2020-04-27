@@ -34,4 +34,5 @@ return [
     'ruleType2' => 'Luật loại 2',
     'welcomeMessage' => 'Hệ thống quản lý',
     'criteria' => 'Tiêu chí',
+    'user' => 'Người dùng',
 ];

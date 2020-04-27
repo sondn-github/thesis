@@ -39,4 +39,8 @@ class DatatableController extends Controller
     public function rulesType2() {
         return $this->datatableService->rulesType2();
     }
+
+    public function users() {
+        return $this->datatableService->users();
+    }
 }

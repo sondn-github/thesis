@@ -6,6 +6,8 @@ namespace App\Services;
 
 use App\Http\Requests\ChangeAvatarRequest;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Services\Interfaces\UserServiceInterface;
 use App\User;
 use Illuminate\Http\Request;
@@ -73,5 +75,32 @@ class UserService extends Service implements UserServiceInterface
         {
             return false;
         }
+    }
+
+    public function store(StoreUserRequest $request) {
+        return User::create([
+            User::COL_NAME => $request->input(User::COL_NAME),
+            User::COL_EMAIL => $request->input(User::COL_EMAIL),
+            User::COL_PASSWORD => $request->input(User::COL_PASSWORD),
+            User::COL_ROLE_ID => $request->input(User::COL_ROLE_ID),
+            User::COL_SPECIALTY => $request->input(User::COL_SPECIALTY),
+            User::COL_RELIABILITY => $request->input(User::COL_RELIABILITY),
+            User::COL_LEVEL => $request->input(User::COL_LEVEL),
+        ]);
+    }
+
+    public function updateUserByAdmin(UpdateUserRequest $request, $id) {
+        return User::findOrFail($id)->update([
+            User::COL_NAME => $request->input(User::COL_NAME),
+            User::COL_ROLE_ID => $request->input(User::COL_ROLE_ID),
+            User::COL_SPECIALTY => $request->input(User::COL_SPECIALTY),
+            User::COL_RELIABILITY => $request->input(User::COL_RELIABILITY),
+            User::COL_LEVEL => $request->input(User::COL_LEVEL),
+        ]);
+    }
+
+    public function destroy($id) {
+        return User::findOrFail($id)
+            ->delete();
     }
 }

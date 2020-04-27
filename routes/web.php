@@ -84,8 +84,12 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/datatables/courses', 'DatatableController@courses')->name('datatables.courses');
 
     Route::get('/datatables/lessons', 'DatatableController@lessons')->name('datatables.lessons');
-    Route::get('/status/change', 'Admin\LessonController@changeStatus')->name('lessons.status.change');
+    Route::get('/lesson-status/change', 'Admin\LessonController@changeStatus')->name('lessons.status.change');
     Route::resource('lessons', 'Admin\LessonController')->except(['create, store']);
+
+    Route::get('/datatables/users', 'DatatableController@users')->name('datatables.users');
+    Route::get('/user-status/change', 'Admin\UserController@changeStatus')->name('users.status.change');
+    Route::resource('users', 'Admin\UserController');
 });
 
 Route::get('/test', 'EvaluationController@test');
