@@ -65,4 +65,12 @@ class User extends Authenticatable
     public function role() {
         return $this->belongsTo('App\Role');
     }
+
+    public function isStudent() {
+        return $this->role->name === 'student';
+    }
+
+    public function isAdmin() {
+        return $this->role->name === 'admin';
+    }
 }

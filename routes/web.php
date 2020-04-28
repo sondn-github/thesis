@@ -90,6 +90,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/datatables/users', 'DatatableController@users')->name('datatables.users');
     Route::get('/user-status/change', 'Admin\UserController@changeStatus')->name('users.status.change');
     Route::resource('users', 'Admin\UserController');
+
+    Route::get('/datatables/categories', 'DatatableController@categories')->name('datatables.categories');
+    Route::resource('categories', 'Admin\CategoryController')->except(['show']);
 });
 
 Route::get('/test', 'EvaluationController@test');

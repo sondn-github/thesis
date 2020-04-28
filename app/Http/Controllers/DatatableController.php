@@ -43,4 +43,8 @@ class DatatableController extends Controller
     public function users() {
         return $this->datatableService->users();
     }
+
+    public function categories() {
+        return $this->datatableService->categories();
+    }
 }

@@ -711,7 +711,7 @@
                 </li>
                 <li class="nav-header">{{__('layouts/header.contentManagement')}}</li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{route('admin.categories.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-stream"></i>
                         <p>
                             {{__('layouts/header.categoryManagement')}}

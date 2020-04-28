@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 4,
-                'reliability' => 2,
+                'reliability' => 0.1,
                 'avatar' => '/images/person_1.jpg',
             ],
             [
@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'student@gmail.com',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
-                'reliability' => 2,
+                'reliability' => 0.1,
                 'avatar' => '/images/person_1.jpg',
             ],
             [
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'teacher@gmail.com',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 3,
-                'reliability' => 3,
+                'reliability' => 0.5,
                 'avatar' => '/images/person_1.jpg',
             ],
             [
@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'expert@gmail.com',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 2,
-                'reliability' => 4,
+                'reliability' => 1,
                 'avatar' => '/images/person_1.jpg',
             ],
             [
@@ -54,7 +54,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'student5@gmail.com',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
-                'reliability' => 2,
+                'reliability' => 0.1,
                 'avatar' => '/images/person_1.jpg',
             ],
             [
@@ -63,7 +63,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'student6@gmail.com',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
-                'reliability' => 2,
+                'reliability' => 0.1,
                 'avatar' => '/images/person_1.jpg',
             ],
             [
@@ -72,7 +72,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'student7@gmail.com',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
-                'reliability' => 2,
+                'reliability' => 0.1,
                 'avatar' => '/images/person_1.jpg',
             ],
             [
@@ -81,7 +81,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'student8@gmail.com',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
-                'reliability' => 2,
+                'reliability' => 0.1,
                 'avatar' => '/images/person_1.jpg',
             ],
             [
@@ -90,7 +90,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'student9@gmail.com',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
-                'reliability' => 2,
+                'reliability' => 0.1,
                 'avatar' => '/images/person_1.jpg',
             ],
             [
@@ -99,7 +99,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'student10@gmail.com',
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
-                'reliability' => 2,
+                'reliability' => 0.1,
                 'avatar' => '/images/person_1.jpg',
             ],
         ]);

@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Category;
 use App\Course;
 use App\Criteria;
 use App\Fact;
@@ -89,6 +90,13 @@ class DatatableService extends Service implements DatatableServiceInterface
 
     public function users() {
         $query = User::with('role');
+
+        return DataTables::of($query)
+            ->make(true);
+    }
+
+    public function categories() {
+        $query = Category::all();
 
         return DataTables::of($query)
             ->make(true);
