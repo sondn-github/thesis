@@ -222,6 +222,78 @@ class FactsTableSeeder extends Seeder
                 'description' => 'Đáp ứng đầy đủ các yêu cầu chung của một bài giảng điện tử tốt.',
                 'type' => 2,
             ],
+            [
+                'id' => 36,
+                'code' => '',
+                'description' => 'Nội dung liệu điện tử chưa phù với mục tiêu đào tạo môn học',
+                'type' => 1,
+            ],
+            [
+                'id' => 37,
+                'code' => '',
+                'description' => 'Kiến thức chưa được tổ chức một cách rõ ràng.',
+                'type' => 1,
+            ],
+            [
+                'id' => 38,
+                'code' => '',
+                'description' => 'Thời lượng khoá học chưa phù hợp',
+                'type' => 1,
+            ],
+            [
+                'id' => 39,
+                'code' => '',
+                'description' => 'Thời lượng cho các bài tập thực hành, tham gia tình huống tương tác chưa phù hợp với sinh viên',
+                'type' => 1,
+            ],
+            [
+                'id' => 40,
+                'code' => '',
+                'description' => 'Bài tập trong các chủ đề là chưa bám sát nội dung bài học',
+                'type' => 1,
+            ],
+            [
+                'id' => 41,
+                'code' => '',
+                'description' => 'Chưa cung cấp đủ tài liệu tham khảo cho sinh viên',
+                'type' => 1,
+            ],
+            [
+                'id' => 42,
+                'code' => '',
+                'description' => 'Nên cung cấp thêm tài liệu tham khảo cho sinh viên',
+                'type' => 2,
+            ],
+            [
+                'id' => 43,
+                'code' => '',
+                'description' => 'Bài tập trong các chủ đề nên bám sát nội dụng bài học',
+                'type' => 2,
+            ],
+            [
+                'id' => 44,
+                'code' => '',
+                'description' => 'Nên cải thiện nội dung bài tập thực hành, tình huống.',
+                'type' => 2,
+            ],
+            [
+                'id' => 45,
+                'code' => '',
+                'description' => 'Nên tối ưu lại thời lượng khoá học.',
+                'type' => 2,
+            ],
+            [
+                'id' => 46,
+                'code' => '',
+                'description' => 'Nên tổ chức lại kiến thức trong bài học một cách rõ ràng.',
+                'type' => 2,
+            ],
+            [
+                'id' => 47,
+                'code' => '',
+                'description' => 'Nên chọn lọc lại nội dung sao cho phù hợp với mục đích đào tạo của khoá học.',
+                'type' => 2,
+            ],
         ]);
     }
 }

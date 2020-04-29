@@ -89,27 +89,31 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
             $criteriaId = $temp[0];
             $operator = $temp[1];
             $value = $temp[2];
-            switch ($operator) {
-                case ">":
-                    if ($sr[$criteriaId] <= $value) {
-                        return false;
-                    }
-                    break;
-                case ">=":
-                    if ($sr[$criteriaId] < $value) {
-                        return false;
-                    }
-                    break;
-                case "<":
-                    if ($sr[$criteriaId] >= $value) {
-                        return false;
-                    }
-                    break;
-                case "<=":
-                    if ($sr[$criteriaId] > $value) {
-                        return false;
-                    }
-                    break;
+            if (isset($sr[$criteriaId])) {
+                switch ($operator) {
+                    case ">":
+                        if ($sr[$criteriaId] <= $value) {
+                            return false;
+                        }
+                        break;
+                    case ">=":
+                        if ($sr[$criteriaId] < $value) {
+                            return false;
+                        }
+                        break;
+                    case "<":
+                        if ($sr[$criteriaId] >= $value) {
+                            return false;
+                        }
+                        break;
+                    case "<=":
+                        if ($sr[$criteriaId] > $value) {
+                            return false;
+                        }
+                        break;
+                }
+            } else {
+                return false;
             }
         }
 

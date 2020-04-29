@@ -38,7 +38,7 @@ class DatatableService extends Service implements DatatableServiceInterface
 
     public function courses($teacherId) {
         $query = Course::with('category', 'lesson', 'user');
-        if (!Auth::user()->role->name == 'admin') {
+        if (!Auth::user()->isAdmin()) {
             $query = $query->where(Course::COL_USER_ID, $teacherId);
         }
 

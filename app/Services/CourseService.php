@@ -72,18 +72,31 @@ class CourseService extends Service implements CourseServiceInterface
         foreach ($evaluations as $evaluation) {
             $coursesId[] = $evaluation->course_id;
         }
+
+        if (count($coursesId) == 0) {
+            return Course::with('category')
+                ->limit($limit)
+                ->get();
+        }
+
+        $defaultPFS = [Evaluation::AGREEMENT => 0, Evaluation::NEUTRAL => 0, Evaluation::DISAGREEMENT => 0];
+
         $courses = Course::whereIn(Course::COL_ID, $coursesId)
             ->get();
+
         $bestPFR = [];
         $criteria = $this->getUsingCriteria($typeId);
         foreach ($criteria as $c) {
-            $bestPFR[$c->id] = [Evaluation::AGREEMENT => 0, Evaluation::NEUTRAL => 0, Evaluation::DISAGREEMENT => 0];
+            $bestPFR[$c->id] = $defaultPFS;
         }
+
         foreach ($criteria as $c) {
             foreach ($courses as $course) {
-                $bestPFR[$c->id][Evaluation::AGREEMENT] = max($bestPFR[$c->id][Evaluation::AGREEMENT], $course->pfr[$c->id][Evaluation::AGREEMENT]);
-                $bestPFR[$c->id][Evaluation::NEUTRAL] = min($bestPFR[$c->id][Evaluation::NEUTRAL], $course->pfr[$c->id][Evaluation::NEUTRAL]);
-                $bestPFR[$c->id][Evaluation::DISAGREEMENT] = min($bestPFR[$c->id][Evaluation::DISAGREEMENT], $course->pfr[$c->id][Evaluation::DISAGREEMENT]);
+                if (isset($course->pfr[$c->id])) {
+                    $bestPFR[$c->id][Evaluation::AGREEMENT] = max($bestPFR[$c->id][Evaluation::AGREEMENT], $course->pfr[$c->id][Evaluation::AGREEMENT]);
+                    $bestPFR[$c->id][Evaluation::NEUTRAL] = min($bestPFR[$c->id][Evaluation::NEUTRAL], $course->pfr[$c->id][Evaluation::NEUTRAL]);
+                    $bestPFR[$c->id][Evaluation::DISAGREEMENT] = min($bestPFR[$c->id][Evaluation::DISAGREEMENT], $course->pfr[$c->id][Evaluation::DISAGREEMENT]);
+                }
             }
         }
         $entropies = [];
@@ -159,6 +172,7 @@ class CourseService extends Service implements CourseServiceInterface
 
     public function getUsingCriteriaTypeId() {
         return Type::where(Type::COL_IS_USING, true)
+            ->where(Type::COL_ID, '!=', 3)
             ->pluck(Type::COL_ID)
             ->toArray();
     }

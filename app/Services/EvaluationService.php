@@ -8,6 +8,7 @@ use App\Criteria;
 use App\Evaluation;
 use App\Course;
 use App\Services\Interfaces\EvaluationServiceInterface;
+use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -115,8 +116,13 @@ class EvaluationService extends Service implements EvaluationServiceInterface
     }
 
     public function getEvaluation($courseId, $userId) {
+        $usingTypeId = Type::select(Type::COL_ID)
+            ->where(Type::COL_IS_USING, true)
+            ->get();
+
         return Evaluation::where(Evaluation::COL_COURSE_ID, $courseId)
             ->where(Evaluation::COL_USER_ID, $userId)
+            ->whereIn(Evaluation::COL_CRITERIA_TYPE, $usingTypeId)
             ->get();
     }
 }

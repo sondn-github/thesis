@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Evaluation;
 use App\Knowledge;
 use App\Services\Interfaces\EvaluationServiceInterface;
 use App\Services\Interfaces\KnowledgeServiceInterface;
@@ -22,7 +23,7 @@ class KnowledgeController extends Controller
 
     public function getAdvises(Request $request) {
         $numberEvaluation = $this->evaluationService->countEvaluation($request->id);
-        if ($numberEvaluation > 2) {
+        if ($numberEvaluation > Evaluation::MIN_NUMBER_EVALUATION) {
             $sr = $this->evaluationService->getAvgEvaluation($request->id);
             return response()->json([
                 'advises' => $this->knowledgeService->getAdvises($sr),

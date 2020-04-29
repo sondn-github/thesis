@@ -74,7 +74,7 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">{{__('lesson.vote')}}</h4>
+                                <h4 class="modal-title">{{$criteria[0]->type->name}}</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
                             <form action="{{route('evaluation-store')}}" method="post" id="evaluation-form">
@@ -291,7 +291,7 @@
             //     carouselControlNext.css("display", "flex");
             // }
             let currentIndex = $('div.active').index() + 1;
-            if (currentIndex === totalItems) {
+            if (currentIndex == totalItems) {
                 $("#evaluation").removeAttr('disabled');
                 $(".carousel-control-next").css("display", "none");
             } else {

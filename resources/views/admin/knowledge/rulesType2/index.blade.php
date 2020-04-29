@@ -84,7 +84,22 @@
                             }
                         },
                         {data: 'code'},
-                        {data: 'premise'},
+                        {
+                            data: 'premise',
+                            render: function (data, type, row, meta) {
+                                var premise = '';
+                                // let premiseSource = data.join(',');
+                                $.each(data, function (index, value) {
+                                    let elements = value.split(',')
+                                    if (index !== 0) {
+                                        premise += ' AND ';
+                                    }
+                                    premise += elements[1] + ' <= ' + elements[0] + ' <= ' + elements[2];
+                                });
+
+                                return premise;
+                            }
+                        },
                         {data: 'conclusion'},
                         {data: 'reliability'},
                         {data: 'type'},
