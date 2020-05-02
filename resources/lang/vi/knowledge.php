@@ -17,7 +17,7 @@ return [
     'active' => 'Hoạt động',
     'inactive' => 'Không hoạt động',
     'failed-message' => 'Đã có lỗi xảy ra. Xin bạn hãy thử lại.',
-    'enterCode' => 'Nhập mã sự kiện. Ví dụ sk102',
+    'enterCode' => 'Nhập mã sự kiện...',
     'enterDescription' => 'Nhập mô tả',
     'update' => 'Cập nhật',
     'back' => 'Quay lại',
@@ -34,4 +34,5 @@ return [
     'operator' => 'Toán tử',
     'scoreRangeFrom' => 'Khoảng điểm bắt đầu',
     'scoreRangeTo' => 'Khoảng điểm kết thúc',
+    'enterRuleCode' => 'Nhập mã luật...'
 ];

@@ -17,7 +17,7 @@ return [
     'active' => 'Hoạt động',
     'deactive' => 'Không hoạt động',
     'failed-message' => 'Đã có lỗi xảy ra. Xin bạn hãy thử lại.',
-    'enterCode' => 'Nhập mã sự kiện. Ví dụ sk102',
+    'enterCode' => 'Nhập mã sự kiện...',
     'enterDescription' => 'Nhập mô tả',
     'update' => 'Cập nhật',
     'back' => 'Quay lại',

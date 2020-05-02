@@ -25,6 +25,7 @@ class UpdateRuleType2Request extends FormRequest
     public function rules()
     {
         $rules = [
+            Knowledge::COL_CODE => 'required|unique:knowledge,code,'.$this->rulesType2,
             Knowledge::COL_CONCLUSION => 'required|exists:facts,id',
             Knowledge::COL_RELIABILITY => 'required|numeric|between:0,1',
             Knowledge::COL_STATUS => 'required|boolean',
@@ -36,7 +37,7 @@ class UpdateRuleType2Request extends FormRequest
             $rules['scoresFrom.'.$key] = 'required|numeric|between:0,1|lte:scoresTo.'.$key;
         }
         foreach ($this->request->get('scoresTo') as $key => $value) {
-            $rules['scores.'.$key] = 'required|numeric|between:0,1';
+            $rules['scoresTo.'.$key] = 'required|numeric|between:0,1';
         }
 
         return $rules;
@@ -45,6 +46,7 @@ class UpdateRuleType2Request extends FormRequest
     public function attributes()
     {
         return [
+            Knowledge::COL_CODE => __('knowledge.code'),
             Knowledge::COL_CONCLUSION => __('knowledge.conclusion'),
             Knowledge::COL_RELIABILITY => __('knowledge.reliability'),
             Knowledge::COL_STATUS => __('knowledge.status'),

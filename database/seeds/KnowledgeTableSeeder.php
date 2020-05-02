@@ -14,6 +14,7 @@ class KnowledgeTableSeeder extends Seeder
         \Illuminate\Support\Facades\DB::table('knowledge')->insert([
             [
                 'id' => 1,
+                'code' => 'R11',
                 'premise' => '{"0":"7,>=,0.7"}',
                 'conclusion' => '20',
                 'reliability' => 0.8,
@@ -21,6 +22,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 2,
+                'code' => 'R12',
                 'premise' => '{"0":"7,<,0.7"}',
                 'conclusion' => '14',
                 'reliability' => 0.8,
@@ -28,6 +30,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 3,
+                'code' => 'R13',
                 'premise' => '{"0":"6,>=,0.7"}',
                 'conclusion' => '19',
                 'reliability' => 0.8,
@@ -35,6 +38,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 4,
+                'code' => 'R14',
                 'premise' => '{"0":"6,<,0.7"}',
                 'conclusion' => '13',
                 'reliability' => 0.8,
@@ -42,6 +46,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 5,
+                'code' => 'R15',
                 'premise' => '{"0":"5,>=,0.7"}',
                 'conclusion' => '18',
                 'reliability' => 0.8,
@@ -49,6 +54,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 6,
+                'code' => 'R16',
                 'premise' => '{"0":"4,<,0.7"}',
                 'conclusion' => '11',
                 'reliability' => 0.8,
@@ -56,6 +62,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 7,
+                'code' => 'R17',
                 'premise' => '{"0":"3,>=,0.7"}',
                 'conclusion' => '16',
                 'reliability' => 0.8,
@@ -63,6 +70,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 8,
+                'code' => 'R18',
                 'premise' => '{"0":"3,>=,0.7"}',
                 'conclusion' => '17',
                 'reliability' => 0.8,
@@ -70,6 +78,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 9,
+                'code' => 'R19',
                 'premise' => '{"0":"3,<,0.7"}',
                 'conclusion' => '9',
                 'reliability' => 0.8,
@@ -77,6 +86,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 10,
+                'code' => 'R110',
                 'premise' => '{"0":"3,<,0.7"}',
                 'conclusion' => '10',
                 'reliability' => 0.8,
@@ -84,6 +94,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 11,
+                'code' => 'R111',
                 'premise' => '{"0":"2,>=,0.7","1":"4,>=,0.6"}',
                 'conclusion' => '6',
                 'reliability' => 0.8,
@@ -91,6 +102,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 12,
+                'code' => 'R112',
                 'premise' => '{"0":"2,<,0.7"}',
                 'conclusion' => '4',
                 'reliability' => 0.8,
@@ -98,6 +110,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 13,
+                'code' => 'R113',
                 'premise' => '{"0":"2,<,0.7"}',
                 'conclusion' => '5',
                 'reliability' => 0.8,
@@ -105,6 +118,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 14,
+                'code' => 'R114',
                 'premise' => '{"0":"2,<,0.7"}',
                 'conclusion' => '6',
                 'reliability' => 0.8,
@@ -112,6 +126,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 15,
+                'code' => 'R115',
                 'premise' => '{"0":"1,>=,0.7"}',
                 'conclusion' => '2',
                 'reliability' => 0.8,
@@ -119,6 +134,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 16,
+                'code' => 'R21',
                 'premise' => '{"0":"1,0.8,1.0","1":"2,0.9,1.0","2":"3,1.0,1.0"}',
                 'conclusion' => '21',
                 'reliability' => 0.8,
@@ -126,6 +142,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 17,
+                'code' => 'R22',
                 'premise' => '{"0":"4,0.7,0.8"}',
                 'conclusion' => '22',
                 'reliability' => 0.8,
@@ -133,6 +150,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 18,
+                'code' => 'R23',
                 'premise' => '{"0":"5,0.8,1.0","1":"6,0.6,0.8"}',
                 'conclusion' => '24',
                 'reliability' => 0.8,
@@ -140,6 +158,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 19,
+                'code' => 'R24',
                 'premise' => '{"0":"7,0.4,0.6"}',
                 'conclusion' => '25',
                 'reliability' => 0.8,
@@ -147,6 +166,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 20,
+                'code' => 'R25',
                 'premise' => '{"0":"7,0.7,0.8"}',
                 'conclusion' => '26',
                 'reliability' => 0.8,
@@ -154,6 +174,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 21,
+                'code' => 'R26',
                 'premise' => '{"0":"9,0.7,1.0"}',
                 'conclusion' => '28',
                 'reliability' => 0.8,
@@ -161,6 +182,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 22,
+                'code' => 'R27',
                 'premise' => '{"0":"10,0.7,1.0"}',
                 'conclusion' => '29',
                 'reliability' => 0.8,
@@ -168,6 +190,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 23,
+                'code' => 'R28',
                 'premise' => '{"0":"11,0.7,1.0"}',
                 'conclusion' => '30',
                 'reliability' => 0.8,
@@ -175,6 +198,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 24,
+                'code' => 'R29',
                 'premise' => '{"0":"12,0.7,1.0"}',
                 'conclusion' => '31',
                 'reliability' => 0.8,
@@ -182,6 +206,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 25,
+                'code' => 'R210',
                 'premise' => '{"0":"13,0.7,1.0"}',
                 'conclusion' => '32',
                 'reliability' => 0.8,
@@ -189,6 +214,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 26,
+                'code' => 'R211',
                 'premise' => '{"0":"13,0.7,1.0"}',
                 'conclusion' => '33',
                 'reliability' => 0.8,
@@ -196,6 +222,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 27,
+                'code' => 'R212',
                 'premise' => '{"0":"14,0.7,1.0"}',
                 'conclusion' => '34',
                 'reliability' => 0.8,
@@ -203,6 +230,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 28,
+                'code' => 'R116',
                 'premise' => '{"0":"11,<,0.7"}',
                 'conclusion' => '36',
                 'reliability' => 0.8,
@@ -210,6 +238,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 29,
+                'code' => 'R117',
                 'premise' => '{"0":"14,<,0.7"}',
                 'conclusion' => '20',
                 'reliability' => 0.8,
@@ -217,6 +246,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 30,
+                'code' => 'R118',
                 'premise' => '{"0":"16,<,0.7"}',
                 'conclusion' => '41',
                 'reliability' => 0.8,
@@ -224,6 +254,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 31,
+                'code' => 'R119',
                 'premise' => '{"0":"18,<,0.7"}',
                 'conclusion' => '37',
                 'reliability' => 0.8,
@@ -231,6 +262,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 32,
+                'code' => 'R120',
                 'premise' => '{"0":"41,<,0.7"}',
                 'conclusion' => '38',
                 'reliability' => 0.8,
@@ -238,6 +270,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 33,
+                'code' => 'R121',
                 'premise' => '{"0":"42,<,0.7"}',
                 'conclusion' => '39',
                 'reliability' => 0.8,
@@ -245,6 +278,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 34,
+                'code' => 'R122',
                 'premise' => '{"0":"43,<,0.7"}',
                 'conclusion' => '40',
                 'reliability' => 0.8,
@@ -252,6 +286,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 35,
+                'code' => 'R123',
                 'premise' => '{"0":"44,<,0.7"}',
                 'conclusion' => '41',
                 'reliability' => 0.8,
@@ -259,6 +294,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 36,
+                'code' => 'R213',
                 'premise' => '{"0":"41,0.7,1"}',
                 'conclusion' => '42',
                 'reliability' => 0.8,
@@ -266,6 +302,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 37,
+                'code' => 'R214',
                 'premise' => '{"0":"40,0.7,1"}',
                 'conclusion' => '43',
                 'reliability' => 0.8,
@@ -273,6 +310,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 38,
+                'code' => 'R215',
                 'premise' => '{"0":"36,0.7,1"}',
                 'conclusion' => '47',
                 'reliability' => 0.8,
@@ -280,6 +318,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 39,
+                'code' => 'R216',
                 'premise' => '{"0":"37,0.7,1"}',
                 'conclusion' => '46',
                 'reliability' => 0.8,
@@ -287,6 +326,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 40,
+                'code' => 'R217',
                 'premise' => '{"0":"38,0.7,1"}',
                 'conclusion' => '45',
                 'reliability' => 0.8,
@@ -294,6 +334,7 @@ class KnowledgeTableSeeder extends Seeder
             ],
             [
                 'id' => 41,
+                'code' => 'R218',
                 'premise' => '{"0":"39,0.7,1"}',
                 'conclusion' => '44',
                 'reliability' => 0.8,

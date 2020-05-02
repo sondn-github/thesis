@@ -14,8 +14,18 @@
             <form action="{{route('expert.rulesType2.store')}}" class="form-horizontal" role="form" method="post">
                 @csrf
                 <div class="panel-group">
+                    <div class="panel panel-warning mb-3">
+                        <div class="panel-heading">{{__('knowledge.code')}}</div>
+                        <div class="panel-body">
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="code" name="code" value="{{old('code')}}" placeholder="{{__('knowledge.enterCode')}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="panel panel-info mb-3">
-                        <div class="panel-heading">Tiền đề</div>
+                        <div class="panel-heading">{{__('knowledge.premise')}}</div>
                         <div class="panel-body">
                             <div id="premise-form-group">
                                 <div class="premise-form">
