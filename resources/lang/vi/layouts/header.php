@@ -35,4 +35,8 @@ return [
     'welcomeMessage' => 'Hệ thống quản lý',
     'criteria' => 'Tiêu chí',
     'user' => 'Người dùng',
+    'report' => 'Thống kê',
+    'all' => 'Tất cả',
+    'detail' => 'Chi tiết',
+    'chart' => 'Biểu đồ',
 ];

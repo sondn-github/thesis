@@ -93,6 +93,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     Route::get('/datatables/categories', 'DatatableController@categories')->name('datatables.categories');
     Route::resource('categories', 'Admin\CategoryController')->except(['show']);
+
+    Route::resource('reports', 'Admin\ReportController')->except(['destroy']);
 });
 
-Route::get('/test', 'EvaluationController@test');
+Route::get('/test', 'Admin\ReportController@test');
