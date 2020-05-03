@@ -85,7 +85,7 @@
                             if (index !== 0) {
                                 premise += ' AND ';
                             }
-                            premise += elements[1] + ' <= ' + elements[0] + ' <= ' + elements[2];
+                            premise += '(' + elements[1] + ' <= ' + elements[0] + ' <= ' + elements[2] +')';
                         });
 
                         return premise;

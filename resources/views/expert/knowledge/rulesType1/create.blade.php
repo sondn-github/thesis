@@ -68,7 +68,7 @@
                                     <select class="form-control" id="conclusion" name="conclusion" required>
                                         <option>{{__('knowledge.select')}}</option>
                                         @foreach($facts as $fact)
-                                            <option value="{{$fact->id}}">{{$fact->description}}</option>
+                                            <option value="{{$fact->code}}">{{$fact->description}}</option>
                                         @endforeach
                                     </select>
                                 </div>

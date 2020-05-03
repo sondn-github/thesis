@@ -16,6 +16,7 @@ class CreateCriteriasTable extends Migration
         Schema::create('criterias', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name')->nullable();
+            $table->text('code');
             $table->text('description')->nullable();
             $table->text('explain')->nullable();
             $table->text('example')->nullable();

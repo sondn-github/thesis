@@ -9,6 +9,7 @@ class Criteria extends AppModel
     protected $table = 'criterias';
 
     //Column name
+    public const COL_CODE = 'code';
     public const COL_NAME = 'name';
     public const COL_DESCRIPTION = 'description';
     public const COL_EXPLAIN = 'explain';
@@ -18,6 +19,7 @@ class Criteria extends AppModel
     public const COL_TYPE_ID = 'type_id';
 
     protected $fillable = [
+        self::COL_CODE,
         self::COL_NAME,
         self::COL_DESCRIPTION,
         self::COL_EXAMPLE,

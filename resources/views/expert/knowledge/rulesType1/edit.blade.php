@@ -39,7 +39,7 @@
                                                 <select class="form-control" id="criteria" name="criteria[]" required>
                                                     <option>{{__('knowledge.select')}}</option>
                                                     @foreach($criteria as $c)
-                                                        <option value="{{$c->id}}" @if($premise[0] == $c->id) selected @endif>{{$c->name}}</option>
+                                                        <option value="{{$c->code}}" @if($premise[0] == $c->code) selected @endif>{{$c->code}} - {{$c->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -74,7 +74,7 @@
                                     <select class="form-control" id="conclusion" name="conclusion" required>
                                         <option>{{__('knowledge.select')}}</option>
                                         @foreach($facts as $fact)
-                                            <option value="{{$fact->id}}" @if($knowledge->conclusion == $fact->id) selected @endif>{{$fact->description}}</option>
+                                            <option value="{{$fact->code}}" @if($knowledge->conclusion == $fact->code) selected @endif>{{$fact->code}} - {{$fact->description}}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -19,9 +19,9 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
     public function filterConclusions($conclusions) {
         $rightConclusions = [];
         foreach ($conclusions as $conclusion) {
-            foreach ($conclusion as $conclusionId => $reliability) {
+            foreach ($conclusion as $conclusionCode => $reliability) {
                 if ($reliability >= Knowledge::MIN_RELIABILITY) {
-                    $rightConclusions[] = $conclusionId;
+                    $rightConclusions[] = $conclusionCode;
                 }
             }
         }
@@ -33,7 +33,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         $conclusions = $this->deduceWithRule2($this->deduceWithRule1($sr));
         $rightConclusions = $this->filterConclusions($conclusions);
 
-        return Fact::whereIn(Fact::COL_ID, $rightConclusions)
+        return Fact::whereIn(Fact::COL_CODE, $rightConclusions)
             ->where(Fact::COL_TYPE, Fact::TYPE_ADVISE)
             ->get();
     }
@@ -52,8 +52,8 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
 
     public function removeUsedConclusions($conclusionsSource, $usedConclusion) {
         $source = $conclusionsSource;
-        foreach ($usedConclusion as $conclusionId) {
-            unset($source[$conclusionId]);
+        foreach ($usedConclusion as $conclusionCode) {
+            unset($source[$conclusionCode]);
         }
         return $source;
     }
@@ -64,14 +64,14 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         $isDone = false;
         $rulesIsUsed = [];
         foreach ($rules as $rule) {
-            $rulesIsUsed[$rule->id] = false;
+            $rulesIsUsed[$rule->code] = false;
         }
         while (!$isDone) {
             $isDone = true;
             foreach ($rules as $rule) {
                 $usedConclusions = $this->compareWithRule2($conclusions, $rule);
-                if ($usedConclusions && !$rulesIsUsed[$rule->id]) {
-                    $rulesIsUsed[$rule->id] = true;
+                if ($usedConclusions && !$rulesIsUsed[$rule->code]) {
+                    $rulesIsUsed[$rule->code] = true;
                     $isDone = false;
                     $conclusions = $this->removeUsedConclusions($conclusions, $usedConclusions);
                     $conclusions[] = array($rule->conclusion => $rule->reliability);
@@ -86,28 +86,28 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         $premises = $rule->premise;
         foreach ($premises as $premise) {
             $temp = explode(",", $premise);
-            $criteriaId = $temp[0];
+            $criteriaCode = $temp[0];
             $operator = $temp[1];
             $value = $temp[2];
-            if (isset($sr[$criteriaId])) {
+            if (isset($sr[$criteriaCode])) {
                 switch ($operator) {
                     case ">":
-                        if ($sr[$criteriaId] <= $value) {
+                        if ($sr[$criteriaCode] <= $value) {
                             return false;
                         }
                         break;
                     case ">=":
-                        if ($sr[$criteriaId] < $value) {
+                        if ($sr[$criteriaCode] < $value) {
                             return false;
                         }
                         break;
                     case "<":
-                        if ($sr[$criteriaId] >= $value) {
+                        if ($sr[$criteriaCode] >= $value) {
                             return false;
                         }
                         break;
                     case "<=":
-                        if ($sr[$criteriaId] > $value) {
+                        if ($sr[$criteriaCode] > $value) {
                             return false;
                         }
                         break;
@@ -126,11 +126,11 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         $count = 0;
         foreach ($premises as $premise) {
             $temp = explode(",", $premise);
-            $factId = $temp[0];
+            $factCode = $temp[0];
             $startValue = $temp[1];
             $endValue = $temp[2];
             foreach ($conclusions as $key => $conclusion) {
-                if (isset($conclusion[$factId]) && $conclusion[$factId] >= $startValue && $conclusion[$factId] <= $endValue) {
+                if (isset($conclusion[$factCode]) && $conclusion[$factCode] >= $startValue && $conclusion[$factCode] <= $endValue) {
                     $usedConclusions[] = $key;
                     $count++;
                 }
@@ -154,8 +154,8 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
     public function convertToPremiseWithType1($request) {
         $premises = [];
 
-        foreach ($request->criteria as $key => $criteriaId) {
-            $premise = $criteriaId.','.Knowledge::OPERATORS[$request->operators[$key]].','.$request->scores[$key];
+        foreach ($request->criteria as $key => $criteriaCode) {
+            $premise = $criteriaCode.','.Knowledge::OPERATORS[$request->operators[$key]].','.$request->scores[$key];
             array_push($premises, $premise);
         }
 
@@ -192,18 +192,24 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
     public function convertToPremiseWithType2($request) {
         $premises = [];
 
-        foreach ($request->facts as $key => $factId) {
-            $premise = $factId.','.$request->scoresFrom[$key].','.$request->scoresTo[$key];
+        foreach ($request->facts as $key => $factCode) {
+            $premise = $factCode.','.$request->scoresFrom[$key].','.$request->scoresTo[$key];
             array_push($premises, $premise);
         }
 
         return $premises;
     }
 
+    public function getFactTypeByCode($code) {
+        return Fact::where(Fact::COL_CODE, $code)
+            ->first()
+            ->type;
+    }
+
     public function storeRuleType2($request) {
         return Knowledge::create([
             Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
-            Knowledge::COL_TYPE => Fact::findOrFail($request->input(Knowledge::COL_CONCLUSION))->type,
+            Knowledge::COL_TYPE => $this->getFactTypeByCode($request->input(Knowledge::COL_CONCLUSION)),
             Knowledge::COL_PREMISE => $this->convertToPremiseWithType2($request),
             Knowledge::COL_CONCLUSION => $request->input(Knowledge::COL_CONCLUSION),
             Knowledge::COL_RELIABILITY => $request->input(Knowledge::COL_RELIABILITY),
@@ -215,7 +221,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         return Knowledge::findOrFail($id)
             ->update([
                 Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
-                Knowledge::COL_TYPE => Fact::findOrFail($request->input(Knowledge::COL_CONCLUSION))->type,
+                Knowledge::COL_TYPE => $this->getFactTypeByCode($request->input(Knowledge::COL_CONCLUSION)),
                 Knowledge::COL_PREMISE => $this->convertToPremiseWithType2($request),
                 Knowledge::COL_CONCLUSION => $request->input(Knowledge::COL_CONCLUSION),
                 Knowledge::COL_RELIABILITY => $request->input(Knowledge::COL_RELIABILITY),

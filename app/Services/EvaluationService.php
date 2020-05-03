@@ -32,8 +32,9 @@ class EvaluationService extends Service implements EvaluationServiceInterface
         return $result;
     }
 
-    public function getCriteriaType($criteriaId) {
-        return Criteria::findOrFail($criteriaId)
+    public function getCriteriaType($criteriaCode) {
+        return Criteria::where(Criteria::COL_CODE, $criteriaCode)
+            ->first()
             ->type
             ->id;
     }
@@ -59,34 +60,34 @@ class EvaluationService extends Service implements EvaluationServiceInterface
         }
 
         foreach ($results as $userId => $answers) {
-            foreach ($answers as $criteriaId => $answer) {
-                if (!isset($criteria[$criteriaId][Evaluation::AGREEMENT])) {
-                    $criteria[$criteriaId][Evaluation::AGREEMENT] = 0;
+            foreach ($answers as $criteriaCode => $answer) {
+                if (!isset($criteria[$criteriaCode][Evaluation::AGREEMENT])) {
+                    $criteria[$criteriaCode][Evaluation::AGREEMENT] = 0;
                 }
-                if (!isset($criteria[$criteriaId][Evaluation::NEUTRAL])) {
-                    $criteria[$criteriaId][Evaluation::NEUTRAL] = 0;
+                if (!isset($criteria[$criteriaCode][Evaluation::NEUTRAL])) {
+                    $criteria[$criteriaCode][Evaluation::NEUTRAL] = 0;
                 }
-                if (!isset($criteria[$criteriaId][Evaluation::DISAGREEMENT])) {
-                    $criteria[$criteriaId][Evaluation::DISAGREEMENT] = 0;
+                if (!isset($criteria[$criteriaCode][Evaluation::DISAGREEMENT])) {
+                    $criteria[$criteriaCode][Evaluation::DISAGREEMENT] = 0;
                 }
                 switch ((int)$answer) {
                     case Evaluation::AGREEMENT:
-                        $criteria[$criteriaId][Evaluation::AGREEMENT] += $reliabilities[$userId];
+                        $criteria[$criteriaCode][Evaluation::AGREEMENT] += $reliabilities[$userId];
                         break;
                     case Evaluation::NEUTRAL:
-                        $criteria[$criteriaId][Evaluation::NEUTRAL] += $reliabilities[$userId];
+                        $criteria[$criteriaCode][Evaluation::NEUTRAL] += $reliabilities[$userId];
                         break;
                     case Evaluation::DISAGREEMENT:
-                        $criteria[$criteriaId][Evaluation::DISAGREEMENT] += $reliabilities[$userId];
+                        $criteria[$criteriaCode][Evaluation::DISAGREEMENT] += $reliabilities[$userId];
                         break;
                 }
             }
         }
 
-        foreach ($criteria as $criteriaId => $memberships) {
-            $criteriaType = $this->getCriteriaType($criteriaId);
+        foreach ($criteria as $criteriaCode => $memberships) {
+            $criteriaType = $this->getCriteriaType($criteriaCode);
             foreach ($memberships as $key => $value) {
-                $pfr[$criteriaId][$key] = round($value/$sumReliabilityByCriteriaType[$criteriaType], 2);
+                $pfr[$criteriaCode][$key] = round($value/$sumReliabilityByCriteriaType[$criteriaType], 2);
             }
         }
         $this->savePFR($pfr, $courseId);
@@ -102,8 +103,8 @@ class EvaluationService extends Service implements EvaluationServiceInterface
         $pfr = Course::findOrFail($courseId)->pfr;
         $sr = [];
         if ($pfr) {
-            foreach ($pfr as $criteriaId => $pfs) {
-                $sr[$criteriaId] = $pfs[Evaluation::AGREEMENT] - $pfs[Evaluation::DISAGREEMENT]*(1 - $pfs[Evaluation::AGREEMENT] - $pfs[Evaluation::NEUTRAL] - $pfs[Evaluation::DISAGREEMENT]);
+            foreach ($pfr as $criteriaCode => $pfs) {
+                $sr[$criteriaCode] = $pfs[Evaluation::AGREEMENT] - $pfs[Evaluation::DISAGREEMENT]*(1 - $pfs[Evaluation::AGREEMENT] - $pfs[Evaluation::NEUTRAL] - $pfs[Evaluation::DISAGREEMENT]);
             }
         }
 

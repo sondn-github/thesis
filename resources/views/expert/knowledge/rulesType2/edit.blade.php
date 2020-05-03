@@ -39,7 +39,7 @@
                                                 <select class="form-control" id="fact" name="facts[]" required>
                                                     <option>{{__('knowledge.select')}}</option>
                                                     @foreach($factsTypeComment as $fact)
-                                                        <option value="{{$fact->id}}" @if($premise[0] == $fact->id) selected @endif>{{$fact->description}}</option>
+                                                        <option value="{{$fact->code}}" @if($premise[0] == $fact->code) selected @endif>{{$fact->code}} - {{$fact->description}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -69,7 +69,7 @@
                                     <select class="form-control" id="conclusion" name="conclusion" required>
                                         <option>{{__('knowledge.select')}}</option>
                                         @foreach($facts as $fact)
-                                            <option value="{{$fact->id}}" @if($knowledge->conclusion == $fact->id) selected @endif>{{$fact->description}}</option>
+                                            <option value="{{$fact->code}}" @if($knowledge->conclusion == $fact->code) selected @endif>{{$fact->code}} - {{$fact->description}}</option>
                                         @endforeach
                                     </select>
                                 </div>

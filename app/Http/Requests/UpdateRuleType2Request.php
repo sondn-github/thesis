@@ -26,12 +26,12 @@ class UpdateRuleType2Request extends FormRequest
     {
         $rules = [
             Knowledge::COL_CODE => 'required|unique:knowledge,code,'.$this->rulesType2,
-            Knowledge::COL_CONCLUSION => 'required|exists:facts,id',
+            Knowledge::COL_CONCLUSION => 'required|exists:facts,code',
             Knowledge::COL_RELIABILITY => 'required|numeric|between:0,1',
             Knowledge::COL_STATUS => 'required|boolean',
         ];
         foreach ($this->request->get('facts') as $key => $value) {
-            $rules['facts.'.$key] = 'required|exists:facts,id';
+            $rules['facts.'.$key] = 'required|exists:facts,code';
         }
         foreach ($this->request->get('scoresFrom') as $key => $value) {
             $rules['scoresFrom.'.$key] = 'required|numeric|between:0,1|lte:scoresTo.'.$key;

@@ -87,15 +87,15 @@ class CourseService extends Service implements CourseServiceInterface
         $bestPFR = [];
         $criteria = $this->getUsingCriteria($typeId);
         foreach ($criteria as $c) {
-            $bestPFR[$c->id] = $defaultPFS;
+            $bestPFR[$c->code] = $defaultPFS;
         }
 
         foreach ($criteria as $c) {
             foreach ($courses as $course) {
-                if (isset($course->pfr[$c->id])) {
-                    $bestPFR[$c->id][Evaluation::AGREEMENT] = max($bestPFR[$c->id][Evaluation::AGREEMENT], $course->pfr[$c->id][Evaluation::AGREEMENT]);
-                    $bestPFR[$c->id][Evaluation::NEUTRAL] = min($bestPFR[$c->id][Evaluation::NEUTRAL], $course->pfr[$c->id][Evaluation::NEUTRAL]);
-                    $bestPFR[$c->id][Evaluation::DISAGREEMENT] = min($bestPFR[$c->id][Evaluation::DISAGREEMENT], $course->pfr[$c->id][Evaluation::DISAGREEMENT]);
+                if (isset($course->pfr[$c->code])) {
+                    $bestPFR[$c->code][Evaluation::AGREEMENT] = max($bestPFR[$c->code][Evaluation::AGREEMENT], $course->pfr[$c->code][Evaluation::AGREEMENT]);
+                    $bestPFR[$c->code][Evaluation::NEUTRAL] = min($bestPFR[$c->code][Evaluation::NEUTRAL], $course->pfr[$c->code][Evaluation::NEUTRAL]);
+                    $bestPFR[$c->code][Evaluation::DISAGREEMENT] = min($bestPFR[$c->code][Evaluation::DISAGREEMENT], $course->pfr[$c->code][Evaluation::DISAGREEMENT]);
                 }
             }
         }
@@ -119,12 +119,12 @@ class CourseService extends Service implements CourseServiceInterface
     public function calculateEntropy($pfrSource, $bestPfr, $usingCriteria) {
         $entropy = 0;
         $weight = $this->standardizeWeight($usingCriteria);
-        foreach ($bestPfr as $criteriaId => $pfs) {
-            if (!isset($pfrSource[$criteriaId])) {
-                $pfrSource[$criteriaId] = [Evaluation::AGREEMENT => 0, Evaluation::NEUTRAL => 0, Evaluation::DISAGREEMENT => 0];
+        foreach ($bestPfr as $criteriaCode => $pfs) {
+            if (!isset($pfrSource[$criteriaCode])) {
+                $pfrSource[$criteriaCode] = [Evaluation::AGREEMENT => 0, Evaluation::NEUTRAL => 0, Evaluation::DISAGREEMENT => 0];
             }
             foreach ($pfs as $answer => $bestMembership) {
-                $entropy += $this->calculateElementEntropy($pfrSource[$criteriaId][$answer], $bestMembership, $weight[$criteriaId]);
+                $entropy += $this->calculateElementEntropy($pfrSource[$criteriaCode][$answer], $bestMembership, $weight[$criteriaCode]);
             }
         }
 
@@ -144,7 +144,7 @@ class CourseService extends Service implements CourseServiceInterface
             $sumWeight += $c->weight;
         }
         foreach ($criteria as $c) {
-            $weight[$c->id] = $c->weight / $sumWeight;
+            $weight[$c->code] = $c->weight / $sumWeight;
         }
         return $weight;
     }

@@ -35,6 +35,10 @@
                 {{--                    </div>--}}
                 {{--                </div>--}}
                 <div class="form-group">
+                    <label for="name">{{__('criteria.code')}}</label>
+                    <input type="text" class="form-control" id="code" name="code" placeholder="{{__('criteria.enterCode')}}" value="{{old('code')}}">
+                </div>
+                <div class="form-group">
                     <label for="name">{{__('criteria.name')}}</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="{{__('criteria.enterName')}}" value="{{old('name')}}">
                 </div>

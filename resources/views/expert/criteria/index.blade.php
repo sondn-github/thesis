@@ -21,6 +21,7 @@
                     <thead>
                     <tr>
                         <th>{{__('criteria.no')}}</th>
+                        <th>{{__('criteria.code')}}</th>
                         <th>{{__('criteria.name')}}</th>
                         <th>{{__('criteria.weight')}}</th>
                         <th>{{__('criteria.status')}}</th>
@@ -45,6 +46,10 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 label">{{__('criteria.code')}}</div>
+                        <div class="col-md-8" id="code"></div>
+                    </div>
                     <div class="row mb-3">
                         <div class="col-md-4 label">{{__('criteria.name')}}</div>
                         <div class="col-md-8" id="name"></div>
@@ -113,6 +118,7 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }
                 },
+                {data: 'code'},
                 {data: 'name'},
                 {data: 'weight'},
                 {data: 'status', "searchable": false,
@@ -148,6 +154,7 @@
                 type: "GET",
                 url: url,
                 success: function (data) {
+                    $("#code").html(data.code);
                     $("#name").html(data.name);
                     $("#description").html(data.description);
                     $("#explain").html(data.explain);

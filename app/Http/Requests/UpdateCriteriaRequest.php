@@ -25,6 +25,7 @@ class UpdateCriteriaRequest extends FormRequest
     public function rules()
     {
         return [
+            Criteria::COL_CODE => 'required|max:255|unique:criterias,code,'.$this->criterion,
             Criteria::COL_NAME => 'required|max:255',
             Criteria::COL_DESCRIPTION => 'max:65000',
             Criteria::COL_EXAMPLE => 'max:65000',
@@ -37,6 +38,7 @@ class UpdateCriteriaRequest extends FormRequest
     {
         return [
             Criteria::COL_NAME => __('criteria.name'),
+            Criteria::COL_CODE => __('criteria.code'),
             Criteria::COL_DESCRIPTION => __('criteria.description'),
             Criteria::COL_EXPLAIN => __('criteria.explain'),
             Criteria::COL_EXAMPLE => __('criteria.example'),
