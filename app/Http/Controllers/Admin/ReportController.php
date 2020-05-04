@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\DetailEvaluationByCriteriaTypeReport;
+use App\Exports\TotalEvaluationExport;
 use App\Services\Interfaces\ReportServiceInterface;
+use App\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 {
@@ -22,7 +26,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $data = $this->reportService->getNumberEvaluationByCriteriaType();
+        $data = $this->reportService->getNumberEvaluationByCriteriaType()->toArray();
         return view('admin.reports.chart', compact('data'));
     }
 
@@ -92,7 +96,16 @@ class ReportController extends Controller
         //
     }
 
+    public function exportTotalEvaluation() {
+        return Excel::download(new TotalEvaluationExport($this->reportService), 'total.xlsx');
+    }
+
+    public function exportDetailEvaluationByCriteria(Request $request) {
+        return Excel::download(new DetailEvaluationByCriteriaTypeReport($this->reportService, $request->criteria_type), 'detail.xlsx');
+    }
+
     public function test() {
-        dd($this->reportService->getNumberEvaluationByCriteriaType());
+        dd($this->reportService->getDetailEvaluationByCriteriaType(Type::TYPE_DHBK_SV));
+//        return \Maatwebsite\Excel\Facades\Excel::download(new DetailEvaluationByCriteriaTypeReport($this->reportService), 'test.xlsx');
     }
 }

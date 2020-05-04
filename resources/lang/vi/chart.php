@@ -6,6 +6,6 @@ return [
     'student' => 'Sinh viên',
     'teacher' => 'Giảng viên',
     'expert' => 'Chuyên gia',
-    'detailPersonChart' => 'Biểu đồ chi tiết số người đánh giá',
-    'totalPersonChart' => 'Tổng số người đánh giá',
+    'detailPersonChart' => 'Chi tiết số lượt đánh giá',
+    'totalPersonChart' => 'Tổng số lượt đánh giá',
 ];

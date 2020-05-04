@@ -48,4 +48,12 @@ class Evaluation extends AppModel
     public function user() {
         return $this->belongsTo('App\User');
     }
+
+    public function course() {
+        return $this->belongsTo('App\Course');
+    }
+
+    public function criterion_type() {
+        return $this->belongsTo('App\Type', 'criteria_type', 'id');
+    }
 }

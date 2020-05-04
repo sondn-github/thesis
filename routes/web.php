@@ -95,6 +95,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('categories', 'Admin\CategoryController')->except(['show']);
 
     Route::resource('reports', 'Admin\ReportController')->except(['destroy']);
+    Route::get('/exports', 'Admin\ReportController@exportTotalEvaluation')->name('exports.index');
+    Route::get('/exports/{criteria_type}', 'Admin\ReportController@exportDetailEvaluationByCriteria')->name('exports.show');
 });
 
 Route::get('/test', 'Admin\ReportController@test');

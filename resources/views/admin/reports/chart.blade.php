@@ -39,6 +39,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart">
+                                    <a href="{{route('admin.exports.index')}}" class="btn btn-primary">Export</a>
                                     <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
@@ -136,6 +137,10 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <a href="{{route('admin.exports.show', 1)}}" class="btn btn-primary">Export ICT NewHouse</a>
+                                    <a href="{{route('admin.exports.show', 2)}}" class="btn btn-primary">Export DHBKHN</a>
+                                </div>
                                 <div class="chart">
                                     <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                 </div>
