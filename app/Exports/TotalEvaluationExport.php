@@ -33,10 +33,10 @@ class TotalEvaluationExport implements FromCollection, WithHeadings
             } else {
                 $index++;
                 $evaluation[$row->course_id] = array(
-                    '0' => $index,
-                    '1' => $row->course->name,
-                    '2' => $row->course->user->name,
-                    '3' => $row->count,
+                    0 => $index,
+                    1 => $row->course->name,
+                    2 => $row->course->user->name,
+                    3 => $row->count,
                 );
             }
         }
