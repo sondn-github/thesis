@@ -41,7 +41,9 @@ class CriteriaController extends Controller
      */
     public function create()
     {
-        return view('admin.criteria.create');
+        $types = $this->typeService->getTypes();
+
+        return view('admin.criteria.create', compact('types'));
     }
 
     /**
@@ -84,8 +86,9 @@ class CriteriaController extends Controller
     public function edit($id)
     {
         $criteria = $this->criteriaService->getCriteriaById($id);
+        $types = $this->typeService->getTypes();
 
-        return view('admin.criteria.edit', compact('criteria'));
+        return view('admin.criteria.edit', compact('criteria'), compact('types'));
     }
 
     /**

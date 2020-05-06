@@ -34,4 +34,5 @@ return [
     'applyingFailed' => 'Đã có lỗi xảy ra. Xin bạn hãy thử lại.',
     'code' => 'Mã tiêu chí',
     'enterCode' => 'Nhập mã tiêu chí...',
+    'create' => 'Tạo mới',
 ];

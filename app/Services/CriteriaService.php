@@ -52,21 +52,25 @@ class CriteriaService extends Service implements CriteriaServiceInterface
     public function update(UpdateCriteriaRequest $request, $id) {
         return Criteria::findOrFail($id)
             ->update([
+                Criteria::COL_CODE => $request->input(Criteria::COL_CODE),
                 Criteria::COL_NAME => $request->input(Criteria::COL_NAME),
                 Criteria::COL_DESCRIPTION => $request->input(Criteria::COL_DESCRIPTION),
                 Criteria::COL_EXPLAIN => $request->input(Criteria::COL_EXPLAIN),
                 Criteria::COL_EXAMPLE => $request->input(Criteria::COL_EXAMPLE),
                 Criteria::COL_WEIGHT => $request->input(Criteria::COL_WEIGHT),
+                Criteria::COL_TYPE_ID => $request->input((Criteria::COL_TYPE_ID)),
             ]);
     }
 
     public function store(StoreCriteriaRequest $request) {
         return Criteria::create([
+            Criteria::COL_CODE => $request->input(Criteria::COL_CODE),
             Criteria::COL_NAME => $request->input(Criteria::COL_NAME),
             Criteria::COL_DESCRIPTION => $request->input(Criteria::COL_DESCRIPTION),
             Criteria::COL_EXPLAIN => $request->input(Criteria::COL_EXPLAIN),
             Criteria::COL_EXAMPLE => $request->input(Criteria::COL_EXAMPLE),
             Criteria::COL_WEIGHT => $request->input(Criteria::COL_WEIGHT),
+            Criteria::COL_TYPE_ID => $request->input((Criteria::COL_TYPE_ID)),
         ]);
     }
 

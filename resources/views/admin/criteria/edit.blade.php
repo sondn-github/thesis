@@ -61,6 +61,15 @@
                                placeholder="{{__('criteria.enterName')}}" value="{{$criteria->name}}">
                     </div>
                     <div class="form-group">
+                        <label for="type">{{__('criteria.type')}}</label>
+                        <select name="type_id" id="type_id" class="form-control">
+                            <option>--Chọn--</option>
+                            @foreach($types as $type)
+                                <option value="{{$type->id}}" @if($criteria->type_id == $type->id) selected @endif>{{$type->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="description">{{__('criteria.description')}}</label>
                         <textarea name="description" id="description" rows="5" class="form-control"
                                   placeholder="{{__('criteria.enterDescription')}}">{{$criteria->description}}</textarea>

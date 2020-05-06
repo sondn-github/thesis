@@ -46,6 +46,15 @@
 @endsection
 
 @section('js')
+        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+        <script>
+            CKEDITOR.replace( 'editor1', {
+                filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
+            } );
+        </script>
+        <script type="text/javascript" src="/js/ckfinder/ckfinder.js"></script>
+        <script>CKFinder.config( { connectorPath: '/ckfinder/connector' } );</script>
+        @include('ckfinder::setup')
     <script type="text/javascript">
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {

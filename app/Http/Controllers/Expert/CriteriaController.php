@@ -5,16 +5,20 @@ namespace App\Http\Controllers\Expert;
 use App\Http\Requests\StoreCriteriaRequest;
 use App\Http\Requests\UpdateCriteriaRequest;
 use App\Services\Interfaces\CriteriaServiceInterface;
+use App\Services\Interfaces\TypeServiceInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CriteriaController extends Controller
 {
-    protected $criteriaService;
+    private $criteriaService;
+    private $typeService;
 
-    public function __construct(CriteriaServiceInterface $criteriaService)
+    public function __construct(CriteriaServiceInterface $criteriaService,
+                                TypeServiceInterface $typeService)
     {
         $this->criteriaService = $criteriaService;
+        $this->typeService = $typeService;
     }
 
     /**
@@ -34,7 +38,9 @@ class CriteriaController extends Controller
      */
     public function create()
     {
-        return view('expert.criteria.create');
+        $types = $this->typeService->getTypes();
+
+        return view('expert.criteria.create', compact('types'));
     }
 
     /**
@@ -77,8 +83,9 @@ class CriteriaController extends Controller
     public function edit($id)
     {
         $criteria = $this->criteriaService->getCriteriaById($id);
+        $types = $this->typeService->getTypes();
 
-         return view('expert.criteria.edit', compact('criteria'));
+        return view('expert.criteria.edit', compact('criteria'), compact('types'));
     }
 
     /**

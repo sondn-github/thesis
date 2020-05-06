@@ -43,6 +43,15 @@
                     <input type="text" class="form-control" id="name" name="name" placeholder="{{__('criteria.enterName')}}" value="{{old('name')}}">
                 </div>
                 <div class="form-group">
+                    <label for="type">{{__('criteria.type')}}</label>
+                    <select name="type_id" id="type_id" class="form-control">
+                        <option>--Chọn--</option>
+                        @foreach($types as $type)
+                            <option value="{{$type->id}}" @if(old('type_id') == $type->id) selected @endif>{{$type->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="description">{{__('criteria.description')}}</label>
                     <textarea name="description" id="description" rows="5" class="form-control" placeholder="{{__('criteria.enterDescription')}}">{{old('description')}}</textarea>
                 </div>
@@ -58,7 +67,7 @@
                     <label for="weight">{{__('criteria.weight')}}</label>
                     <input type="text" class="form-control" id="weight" name="weight" placeholder="{{__('criteria.enterWeight')}}" value="{{old('weight')}}">
                 </div>
-                <button id="createBtn" class="btn btn-primary" type="submit">{{__('criteria.update')}}</button>
+                <button id="createBtn" class="btn btn-primary" type="submit">{{__('criteria.create')}}</button>
                 <a href="{{route('expert.criteria.index')}}" class="btn btn-secondary">{{__('criteria.back')}}</a>
             </form>
         </div>
