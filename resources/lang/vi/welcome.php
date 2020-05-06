@@ -25,4 +25,6 @@ return [
     'key-of-success' => 'Chìa khoá thành công',
     'key-of-success-description' => 'Chìa khoá thành công',
     'ranking' => 'Hạng',
+    'subscribeUs' => 'Hãy theo dõi chúng tôi!',
+    'news' => 'Tin tức',
 ];

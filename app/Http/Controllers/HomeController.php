@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Course;
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Services\Interfaces\LessonServiceInterface;
+use App\Services\Interfaces\PostServiceInterface;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     protected $lessonService;
     protected $courseService;
+    private $postService;
 
     /**
      * Create a new controller instance.
@@ -18,11 +20,13 @@ class HomeController extends Controller
      * @return void
      */
     public function __construct(LessonServiceInterface $lessonService,
-                                CourseServiceInterface $courseService)
+                                CourseServiceInterface $courseService,
+                                PostServiceInterface $postService)
     {
         $this->middleware('auth');
         $this->lessonService = $lessonService;
         $this->courseService = $courseService;
+        $this->postService = $postService;
     }
 
     /**
@@ -33,7 +37,8 @@ class HomeController extends Controller
     public function index()
     {
         $topCourses = $this->courseService->getTopCourses(Course::PER_PAGE);
+        $posts = $this->postService->getPost();
 
-        return view('welcome', compact('topCourses'));
+        return view('welcome', compact('topCourses'), compact('posts'));
     }
 }

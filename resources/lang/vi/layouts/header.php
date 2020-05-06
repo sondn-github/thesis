@@ -39,4 +39,9 @@ return [
     'all' => 'Tất cả',
     'detail' => 'Chi tiết',
     'chart' => 'Biểu đồ',
+    'news' => 'Tin tức',
+    'postManagement' => 'Quản lý tin tức',
+    'create' => 'Tạo mới',
+    'edit' => 'Chỉnh sửa',
+    'posts' => 'Tin tức',
 ];

@@ -63,7 +63,7 @@
                             <a href="{{route('courses.index')}}" class="nav-link text-left">{{__('layouts/header.courses')}}</a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-left">{{__('layouts/header.contact')}}</a>
+                            <a href="#footer" class="nav-link text-left">{{__('layouts/header.contact')}}</a>
                         </li>
                     </ul>
                 </nav>

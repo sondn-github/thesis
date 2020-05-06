@@ -716,6 +716,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.posts.index')}}" class="nav-link">
+                        <i class="nav-icon far fa-newspaper"></i>
+                        <p>
+                            {{__('layouts/header.postManagement')}}
+                            {{--                            <span class="right badge badge-danger">New</span>--}}
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-header">{{__('layouts/header.report')}}</li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">

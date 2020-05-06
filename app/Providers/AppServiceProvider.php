@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         Interfaces\FactServiceInterface::class => Services\FactService::class,
         Interfaces\TypeServiceInterface::class => Services\TypeService::class,
         Interfaces\ReportServiceInterface::class => Services\ReportService::class,
+        Interfaces\PostServiceInterface::class => Services\PostService::class,
     ];
 
     /**

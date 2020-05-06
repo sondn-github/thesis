@@ -45,6 +45,7 @@ Route::middleware(['auth'])->prefix('teacher')->name('teacher.')->group(function
 
 Route::resource('courses', 'CourseController');
 Route::resource('categories', 'CategoryController');
+Route::resource('posts', 'PostController')->only(['show', 'index']);
 
 Route::middleware(['auth'])->prefix('expert')->name('expert.')->group(function () {
     Route::get('/datatables/criteria', 'DatatableController@criteria')->name('datatables.criteria');
@@ -97,6 +98,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('reports', 'Admin\ReportController')->except(['destroy']);
     Route::get('/exports', 'Admin\ReportController@exportTotalEvaluation')->name('exports.index');
     Route::get('/exports/{criteria_type}', 'Admin\ReportController@exportDetailEvaluationByCriteria')->name('exports.show');
+
+    Route::get('/datatables/posts', 'DatatableController@posts')->name('datatables.posts');
+    Route::resource('posts', 'Admin\PostController');
 });
 
 Route::get('/test', 'Admin\ReportController@test');

@@ -10,10 +10,10 @@ use App\Criteria;
 use App\Fact;
 use App\Knowledge;
 use App\Lesson;
+use App\Post;
 use App\Services\Interfaces\DatatableServiceInterface;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\VarDumper\Cloner\Data;
 use Yajra\DataTables\DataTables;
 
 class DatatableService extends Service implements DatatableServiceInterface
@@ -97,6 +97,13 @@ class DatatableService extends Service implements DatatableServiceInterface
 
     public function categories() {
         $query = Category::all();
+
+        return DataTables::of($query)
+            ->make(true);
+    }
+
+    public function posts() {
+        $query = Post::all();
 
         return DataTables::of($query)
             ->make(true);
