@@ -254,7 +254,7 @@
                                 <a href="{{route('posts.show', $posts[0]->id)}}" class="img-link"><img src="{{asset($posts[0]->thumbnail)}}" alt="Image" class="img-fluid"></a>
                                 <div class="post-content">
                                     <div class="post-meta">
-                                        <a href="#">{{$posts[0]->created_at}}</a>
+                                        <a href="#">{{$posts[0]->created_at->diffForHumans()}}</a>
                                         <span class="mx-1">/</span>
                                         <a href="#">{{$posts[0]->user->name}}</a>
                                     </div>
@@ -268,7 +268,7 @@
                                     <a href="{{route('posts.show', $post->id)}}" class="img-link mr-4"><img src="{{asset($post->thumbnail)}}" alt="Image" class="img-fluid"></a>
                                     <div class="post-content">
                                         <div class="post-meta">
-                                            <a href="#">{{$post->created_at}}</a>
+                                            <a href="#">{{$post->created_at->diffForHumans()}}</a>
                                             <span class="mx-1">/</span>
                                             <a href="#">{{$post->user->name}}</a>
                                         </div>
