@@ -249,6 +249,10 @@
             this.showAlert(data, status);
         }
 
+        function submitForm() {
+            console.log($('#evaluation-form').serialize());
+        }
+
         // this is the id of the form
         $('#evaluation-form').submit(function (e) {
 
@@ -284,6 +288,33 @@
         );
 
         let totalItems = $('.carousel-item').length;
+
+        $('input').on("invalid", function(e){
+            console.log("A");
+        });
+
+        $(".carousel-control-next").click(function () {
+            let currentIndex = $('div.active').index() + 1;
+            if (currentIndex == 1) {
+                $(".carousel-control-prev").css("display", "flex");
+            }
+
+            if (currentIndex == (totalItems - 1)) {
+                $(".carousel-control-next").css("display", "none");
+            }
+        })
+
+        $(".carousel-control-prev").click(function () {
+            let currentIndex = $('div.active').index() + 1;
+            console.log(currentIndex);
+            if (currentIndex == 2) {
+                $(".carousel-control-prev").css("display", "none");
+            }
+
+            if (currentIndex == totalItems) {
+                $(".carousel-control-next").css("display", "flex");
+            }
+        })
 
         $("input").click(function() {
 
