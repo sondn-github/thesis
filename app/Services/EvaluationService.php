@@ -16,7 +16,7 @@ class EvaluationService extends Service implements EvaluationServiceInterface
 {
     public function storeEvaluation(Request $request)
     {
-        $answers = $request->except([Evaluation::COL_COURSE_ID, '_token', Evaluation::COL_TYPE, Evaluation::COL_CRITERIA_TYPE]);
+        $answers = $request->answers;
 
         $result = Evaluation::create([
             Evaluation::COL_USER_ID => Auth::id(),

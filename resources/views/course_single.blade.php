@@ -153,16 +153,16 @@
                                                                         {{--                                                                    <label><input type="radio" class="mr-2" value="5" name="{{$c->id}}" required>Rất đồng ý</label>--}}
                                                                     </div>
                                                                     <div class="radio">
-                                                                        <label><input type="radio" class="mr-2" value="4" name="{{$c->code}}" required>Đồng ý</label>
+                                                                        <label><input type="radio" class="mr-2" value="4" name="answers[{{$c->code}}]" required>Đồng ý</label>
                                                                     </div>
                                                                     <div class="radio">
-                                                                        <label><input type="radio" class="mr-2" value="3" name="{{$c->code}}" required>Trung lập</label>
+                                                                        <label><input type="radio" class="mr-2" value="3" name="answers[{{$c->code}}]" required>Trung lập</label>
                                                                     </div>
                                                                     <div class="radio">
-                                                                        <label><input type="radio" class="mr-2" value="2" name="{{$c->code}}" required>Không đồng ý</label>
+                                                                        <label><input type="radio" class="mr-2" value="2" name="answers[{{$c->code}}]" required>Không đồng ý</label>
                                                                     </div>
                                                                     <div class="radio">
-                                                                        <label><input type="radio" class="mr-2" value="1" name="{{$c->code}}" required>Từ chối trả lời</label>
+                                                                        <label><input type="radio" class="mr-2" value="1" name="answers[{{$c->code}}]" required>Từ chối trả lời</label>
                                                                     </div>
                                                                 </div>
                                                             @else
@@ -172,19 +172,19 @@
                                                                         {{--                                                                    <label><input type="radio" class="mr-2" value="5" name="{{$c->code}}" required>Rất đồng ý</label>--}}
                                                                     </div>
                                                                     <div class="radio">
-                                                                        <label><input type="radio" class="mr-2" value="6" name="{{$c->code}}" required>Rất đồng ý</label>
+                                                                        <label><input type="radio" class="mr-2" value="6" name="answers[{{$c->code}}]" required>Rất đồng ý</label>
                                                                     </div>
                                                                     <div class="radio">
-                                                                        <label><input type="radio" class="mr-2" value="4" name="{{$c->code}}" required>Đồng ý</label>
+                                                                        <label><input type="radio" class="mr-2" value="4" name="answers[{{$c->code}}]" required>Đồng ý</label>
                                                                     </div>
                                                                     <div class="radio">
-                                                                        <label><input type="radio" class="mr-2" value="5" name="{{$c->code}}" required>Cơ bản đồng ý</label>
+                                                                        <label><input type="radio" class="mr-2" value="5" name="answers[{{$c->code}}]" required>Cơ bản đồng ý</label>
                                                                     </div>
                                                                     <div class="radio">
-                                                                        <label><input type="radio" class="mr-2" value="2" name="{{$c->code}}" required>Không đồng ý</label>
+                                                                        <label><input type="radio" class="mr-2" value="2" name="answers[{{$c->code}}]" required>Không đồng ý</label>
                                                                     </div>
                                                                     <div class="radio">
-                                                                        <label><input type="radio" class="mr-2" value="7" name="{{$c->code}}" required>Rất không đồng ý</label>
+                                                                        <label><input type="radio" class="mr-2" value="7" name="answers[{{$c->code}}]" required>Rất không đồng ý</label>
                                                                     </div>
                                                                 </div>
                                                             @endif
@@ -206,7 +206,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary"
+                                    <button type="button" onclick="submitForm()" class="btn btn-primary"
                                             id="evaluation" disabled>{{__('lesson.vote')}}</button>
                                     <button type="button" class="btn btn-danger"
                                             data-dismiss="modal">{{__('lesson.cancel')}}</button>
@@ -250,17 +250,33 @@
         }
 
         function submitForm() {
-            console.log($('#evaluation-form').serialize());
+            var dataForm = $('#evaluation-form').serializeArray();
+            const regex = new RegExp('[answers\[C1-9\]]');
+            const matchedData = dataForm.filter(({name}) => name.match(regex));
+            var criterionCodes = [];
+            @foreach($criteria as $criterion)
+                criterionCodes.push('answers[' + '{{$criterion->code}}' + ']');
+            @endforeach
+
+            if (matchedData.length == criterionCodes.length) {
+                $('#evaluation-form').submit();
+            } else {
+                $.each(criterionCodes, function (index, value) {
+                    if (!matchedData.find(element => element.name == value)) {
+                        const i = $('input[name="' + value + '"]').closest('.carousel-item').index();
+                        $(".carousel").carousel(i);
+                        showAlert({message: "Bạn chưa trả lời đủ câu hỏi."}, "error");
+                        return false; //break foreach
+                    }
+                })
+            }
         }
 
-        // this is the id of the form
         $('#evaluation-form').submit(function (e) {
-
-            e.preventDefault(); // avoid to execute the actual submit of the form.
+            e.preventDefault(true); // avoid to execute the actual submit of the form.
 
             var form = $(this);
             var url = form.attr('action');
-
             $.ajax({
                 type: "POST",
                 url: url,
@@ -283,15 +299,15 @@
             });
         });
 
+
+        // this is the id of the form
+
+
         $(".carousel").carousel(
             {interval: false}
         );
 
         let totalItems = $('.carousel-item').length;
-
-        $('input').on("invalid", function(e){
-            console.log("A");
-        });
 
         $(".carousel-control-next").click(function () {
             let currentIndex = $('div.active').index() + 1;
@@ -306,7 +322,6 @@
 
         $(".carousel-control-prev").click(function () {
             let currentIndex = $('div.active').index() + 1;
-            console.log(currentIndex);
             if (currentIndex == 2) {
                 $(".carousel-control-prev").css("display", "none");
             }
@@ -322,11 +337,13 @@
             //     carouselControlNext.css("display", "flex");
             // }
             let currentIndex = $('div.active').index() + 1;
+
             if (currentIndex == totalItems) {
                 $("#evaluation").removeAttr('disabled');
                 $(".carousel-control-next").css("display", "none");
             } else {
                 $(".carousel-control-prev").css("display", "flex");
+                $(".carousel-control-next").css("display", "flex");
                 $(".carousel").delay(50).queue(function() {
                     $(this).carousel("next");
                     $(this).dequeue();
