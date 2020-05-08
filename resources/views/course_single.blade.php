@@ -251,7 +251,8 @@
 
         function submitForm() {
             var dataForm = $('#evaluation-form').serializeArray();
-            const regex = new RegExp('[answers\[C1-9\]]');
+            const regex = new RegExp(/answers.+/);
+
             const matchedData = dataForm.filter(({name}) => name.match(regex));
             var criterionCodes = [];
             @foreach($criteria as $criterion)

@@ -242,7 +242,7 @@ class CriteriasTableSeeder extends Seeder
             ],
             [
                 'id' => 20,
-                'code' => '20',
+                'code' => 'C20',
                 'name' => 'Liệt kê các điều kiện học tập',
                 'description' => '',
                 'explain' => '',
