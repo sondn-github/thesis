@@ -28,6 +28,7 @@ class UpdateCourseRequest extends FormRequest
             Course::COL_NAME => 'required|max:255',
             Course::COL_DESCRIPTION => 'required|max:65000',
             Course::COL_CATEGORY_ID => 'required|exists:categories,id',
+            Course::COL_LINK => 'url',
         ];
     }
 
@@ -37,6 +38,7 @@ class UpdateCourseRequest extends FormRequest
             Course::COL_NAME => __('course.name'),
             Course::COL_DESCRIPTION => __('course.description'),
             Course::COL_CATEGORY_ID => __('course.category'),
+            Course::COL_LINK => __('course.link'),
         ];
     }
 }

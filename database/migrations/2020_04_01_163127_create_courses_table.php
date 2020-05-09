@@ -21,6 +21,7 @@ class CreateCoursesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('thumbnail')->nullable();
             $table->json('pfr')->nullable();
+            $table->text('link')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

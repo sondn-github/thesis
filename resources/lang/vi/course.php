@@ -26,4 +26,5 @@ return [
     'content' => 'Nội dung khoá học',
     'getStarted' => 'Bắt đầu học',
     'teacher' => 'Giảng viên',
+    'link' => 'Đường dẫn',
 ];

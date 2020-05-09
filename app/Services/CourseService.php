@@ -33,6 +33,7 @@ class CourseService extends Service implements CourseServiceInterface
             Course::COL_NAME => $request->input(Course::COL_NAME),
             Course::COL_CATEGORY_ID => $request->input(Course::COL_CATEGORY_ID),
             Course::COL_DESCRIPTION => $request->input(Course::COL_DESCRIPTION),
+            Course::COL_LINK => $request->input(Course::COL_LINK),
         ]);
     }
 
@@ -46,6 +47,7 @@ class CourseService extends Service implements CourseServiceInterface
             Course::COL_CATEGORY_ID => $request->input(Course::COL_CATEGORY_ID),
             Course::COL_DESCRIPTION => $request->input(Course::COL_DESCRIPTION),
             Course::COL_USER_ID => $teacherId,
+            Course::COL_LINK => $request->input(Course::COL_LINK),
         ]);
     }
 

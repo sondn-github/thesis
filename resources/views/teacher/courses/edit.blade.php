@@ -39,6 +39,10 @@
                     <label for="description">{{__('course.description')}}</label>
                     <textarea name="description" id="description" rows="5" class="form-control" placeholder="{{__('course.enterDescription')}}">{{$course->description}}</textarea>
                 </div>
+                <div class="form-group">
+                    <label for="link">{{__('course.link')}}</label>
+                    <input type="text" class="form-control" id="link" name="link" value="{{$course->link}}">
+                </div>
                 <button id="updateBtn" class="btn btn-primary" type="submit">{{__('course.update')}}</button>
                 <a href="{{route('teacher.courses.index')}}" class="btn btn-secondary">{{__('course.back')}}</a>
             </form>

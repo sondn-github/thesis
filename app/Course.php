@@ -15,6 +15,7 @@ class Course extends AppModel
     public const COL_DESCRIPTION = 'description';
     public const COL_THUMBNAIL = 'thumbnail';
     public const COL_PFR = 'pfr';
+    public const COL_LINK = 'link';
 
     // Constant
     public const PER_PAGE = 6;
@@ -26,6 +27,7 @@ class Course extends AppModel
         self::COL_DESCRIPTION,
         self::COL_THUMBNAIL,
         self::COL_PFR,
+        self::COL_LINK,
     ];
 
     protected $attributes = [

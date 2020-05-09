@@ -59,6 +59,10 @@
                         <div class="col-md-8" id="description"></div>
                     </div>
                     <div class="row mb-3">
+                        <div class="col-md-4 label">{{__('course.link')}}</div>
+                        <div class="col-md-8" id="link"></div>
+                    </div>
+                    <div class="row mb-3">
                         <div class="col-md-4 label">{{__('course.created_at')}}</div>
                         <div class="col-md-8" id="created-at"></div>
                     </div>
@@ -181,6 +185,7 @@
                     $("#name").html(data.name);
                     $("#course-name").html(data.category.name);
                     $("#description").html(data.description);
+                    $("#link").html(data.link);
                     $("#created-at").html(data.created_at);
                     $.each(data.lesson, function (index, value) {
                         index = index + 1;
