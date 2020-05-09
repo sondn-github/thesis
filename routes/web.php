@@ -103,4 +103,4 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('posts', 'Admin\PostController');
 });
 
-Route::get('/test', 'Admin\ReportController@test');
+//Route::get('/test', 'EvaluationController@test');

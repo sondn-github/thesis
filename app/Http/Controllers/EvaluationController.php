@@ -50,6 +50,6 @@ class EvaluationController extends Controller
     }
 
     public function test() {
-        dd($this->courseService->getCoursesToRanking());
+        $this->evaluationService->calculateToPFR(8);
     }
 }

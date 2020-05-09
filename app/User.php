@@ -39,7 +39,7 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        self::COL_AVATAR => '/images/person_1.jpg',
+        self::COL_AVATAR => '/images/default-avatar.jpg',
     ];
 
 
@@ -61,6 +61,12 @@ class User extends Authenticatable
     public const COL_AVATAR = 'avatar';
     public const COL_STATUS = 'status';
     public const COL_PASSWORD = 'password';
+
+    //Constant
+    public const RELIABILITY_ARR = [
+        1 => 0.1,
+        3 => 0.5,
+    ];
 
     public function role() {
         return $this->belongsTo('App\Role');

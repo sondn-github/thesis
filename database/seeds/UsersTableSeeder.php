@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 4,
                 'reliability' => 0.1,
-                'avatar' => '/images/person_1.jpg',
+                'avatar' => '/images/default-avatar.jpg',
             ],
             [
                 'id' => 2,
@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
                 'reliability' => 0.1,
-                'avatar' => '/images/person_1.jpg',
+                'avatar' => '/images/default-avatar.jpg',
             ],
             [
                 'id' => 3,
@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 3,
                 'reliability' => 0.5,
-                'avatar' => '/images/person_1.jpg',
+                'avatar' => '/images/default-avatar.jpg',
             ],
             [
                 'id' => 4,
@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 2,
                 'reliability' => 1,
-                'avatar' => '/images/person_1.jpg',
+                'avatar' => '/images/default-avatar.jpg',
             ],
             [
                 'id' => 5,
@@ -55,7 +55,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
                 'reliability' => 0.1,
-                'avatar' => '/images/person_1.jpg',
+                'avatar' => '/images/default-avatar.jpg',
             ],
             [
                 'id' => 6,
@@ -64,7 +64,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
                 'reliability' => 0.1,
-                'avatar' => '/images/person_1.jpg',
+                'avatar' => '/images/default-avatar.jpg',
             ],
             [
                 'id' => 7,
@@ -73,7 +73,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
                 'reliability' => 0.1,
-                'avatar' => '/images/person_1.jpg',
+                'avatar' => '/images/default-avatar.jpg',
             ],
             [
                 'id' => 8,
@@ -82,7 +82,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
                 'reliability' => 0.1,
-                'avatar' => '/images/person_1.jpg',
+                'avatar' => '/images/default-avatar.jpg',
             ],
             [
                 'id' => 9,
@@ -91,7 +91,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
                 'reliability' => 0.1,
-                'avatar' => '/images/person_1.jpg',
+                'avatar' => '/images/default-avatar.jpg',
             ],
             [
                 'id' => 10,
@@ -100,7 +100,7 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 1,
                 'reliability' => 0.1,
-                'avatar' => '/images/person_1.jpg',
+                'avatar' => '/images/default-avatar.jpg',
             ],
             [
                 'id' => 11,
@@ -109,7 +109,16 @@ class UsersTableSeeder extends Seeder
                 'password' => \Illuminate\Support\Facades\Hash::make('123456'),
                 'role_id' => 3,
                 'reliability' => 0.5,
-                'avatar' => '/images/person_1.jpg',
+                'avatar' => '/images/default-avatar.jpg',
+            ],
+            [
+                'id' => 12,
+                'name' => 'Nguyễn Thị Hương Giang',
+                'email' => 'nguyenthihuonggiang@gmail.com',
+                'password' => \Illuminate\Support\Facades\Hash::make('123456'),
+                'role_id' => 3,
+                'reliability' => 0.5,
+                'avatar' => '/images/default-avatar.jpg',
             ],
         ]);
     }

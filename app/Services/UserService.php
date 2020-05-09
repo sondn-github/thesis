@@ -78,13 +78,18 @@ class UserService extends Service implements UserServiceInterface
     }
 
     public function store(StoreUserRequest $request) {
+        if (!$request->input(User::COL_RELIABILITY)) {
+            $reliability = User::RELIABILITY_ARR[$request->input(User::COL_ROLE_ID)];
+        } else {
+            $reliability = $request->input(User::COL_RELIABILITY);
+        }
         return User::create([
             User::COL_NAME => $request->input(User::COL_NAME),
             User::COL_EMAIL => $request->input(User::COL_EMAIL),
             User::COL_PASSWORD => $request->input(User::COL_PASSWORD),
             User::COL_ROLE_ID => $request->input(User::COL_ROLE_ID),
             User::COL_SPECIALTY => $request->input(User::COL_SPECIALTY),
-            User::COL_RELIABILITY => $request->input(User::COL_RELIABILITY),
+            User::COL_RELIABILITY => $reliability,
             User::COL_LEVEL => $request->input(User::COL_LEVEL),
         ]);
     }
