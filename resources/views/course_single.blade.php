@@ -59,9 +59,14 @@
 
                     <p>
                         <a href="@if($course->link){{$course->link}}@elseif(isset($course->lesson[0]->id)){{route('display-lesson', $course->lesson[0]->id)}}@else#@endif" class="btn btn-primary rounded-0 btn-lg px-5">{{__('course.getStarted')}}</a>
-                        <button type="button" id="evaluationBtn" class="btn btn-info rounded-0 btn-lg px-5 ml-1"  @if($isEvaluated) disabled data-toggle="tooltip" data-placement="top"
-                                title="{{__('lesson.evaluated-message')}}"@else data-toggle="modal"
-                                data-target="#myModal" @endif>
+{{--                        <button type="button" id="evaluationBtn" class="btn btn-info rounded-0 btn-lg px-5 ml-1"  @if($isEvaluated) disabled data-toggle="tooltip" data-placement="top"--}}
+{{--                                title="{{__('lesson.evaluated-message')}}"@else data-toggle="modal"--}}
+{{--                                data-target="#myModal" @endif>--}}
+{{--                            <span class="icon-poll mr-2"></span>{{__('lesson.vote')}}<span--}}
+{{--                                class="ml-1 badge badge-light" id="numberEvaluation">{{$numberEvaluation}}</span>--}}
+{{--                        </button>--}}
+                        <button type="button" id="evaluationBtn" class="btn btn-info rounded-0 btn-lg px-5 ml-1"  data-toggle="modal"
+                                data-target="#myModal">
                             <span class="icon-poll mr-2"></span>{{__('lesson.vote')}}<span
                                 class="ml-1 badge badge-light" id="numberEvaluation">{{$numberEvaluation}}</span>
                         </button>
@@ -295,7 +300,7 @@
                     btn.removeAttr('data-target');
                 },
                 error: function (data) {
-                    handleResponse(data, "error");
+                    handleResponse(data.responseJSON, "error");
                 }
             });
         });

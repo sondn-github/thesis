@@ -31,7 +31,7 @@ class EvaluationController extends Controller
             return response([
                 'status' =>__('lesson.failed'),
                 'message' => __('lesson.evaluated-message'),
-            ], 401);
+            ], 500);
         } else {
             if ($this->evaluationService->storeEvaluation($request))
             {
@@ -52,7 +52,7 @@ class EvaluationController extends Controller
 
     public function test() {
 
-        dd($criteriaArr);
+//        dd($criteriaArr);
 //        $this->evaluationService->calculateToPFR(8);
     }
 }
