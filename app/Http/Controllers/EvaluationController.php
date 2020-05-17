@@ -29,7 +29,7 @@ class EvaluationController extends Controller
     {
         if (count($this->evaluationService->getEvaluation($request->input(Evaluation::COL_COURSE_ID), Auth::id())) == 1) {
             return response([
-                'status' =>__('lesson.failed'),
+                'status' =>__('Thông báo'),
                 'message' => __('lesson.evaluated-message'),
             ], 500);
         } else {
@@ -43,7 +43,7 @@ class EvaluationController extends Controller
             else
             {
                 return response([
-                    'status' =>__('lesson.failed'),
+                    'status' =>__('Thông báo'),
                     'message' => __('lesson.failed-message'),
                 ], 500);
             }

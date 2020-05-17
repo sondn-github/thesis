@@ -280,7 +280,7 @@
 
         $('#evaluation-form').submit(function (e) {
             e.preventDefault(true); // avoid to execute the actual submit of the form.
-
+            $('#evaluation').prop('disable', true);
             var form = $(this);
             var url = form.attr('action');
             $.ajax({
