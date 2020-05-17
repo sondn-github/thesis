@@ -70,46 +70,54 @@
             </div>
             <div class="ml-auto">
                 <div class="container">
-                    <div class="text-right">
-                        @if(Auth::user())
-                            <!-- Right Side Of Navbar -->
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }} <span class="caret"></span>
-                                    </a>
+                    <div class="row">
+                        <div class="col-8 col-sm-8 col-lg-12">
+                            <div class="text-right">
+                            @if(Auth::user())
+                                <!-- Right Side Of Navbar -->
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item dropdown">
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                                {{ Auth::user()->name }} <span class="caret"></span>
+                                            </a>
 
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a href="{{route('profile.get')}}" class="dropdown-item">{{__('layouts/header.profile')}}</a>
-                                        @if(Auth::user()->role->name == 'teacher')
-                                            <a href="{{route('teacher.courses.index')}}" class="dropdown-item">{{__('layouts/header.courseManagement')}}</a>
-                                            <a href="{{route('teacher.lesson.index')}}" class="dropdown-item">{{__('layouts/header.lessonManagement')}}</a>
-                                        @endif
-                                        @if(Auth::user()->role->name == 'expert')
-                                            <a href="{{route('expert.criteria.index')}}" class="dropdown-item">{{__('layouts/header.criteriaManagement')}}</a>
-                                            <a href="{{route('expert.facts.index')}}" class="dropdown-item">{{__('layouts/header.factManagement')}}</a>
-                                            <a href="{{route('expert.knowledge.index')}}" class="dropdown-item">{{__('layouts/header.rule1Management')}}</a>
-                                            <a href="{{route('expert.rulesType2.index')}}" class="dropdown-item">{{__('layouts/header.rule2Management')}}</a>
-                                        @endif
-                                        @if(Auth::user()->role->name == 'admin')
-                                            <a href="{{route('admin.home')}}" class="dropdown-item">{{__('layouts/header.pageManagement')}}</a>
-                                        @endif
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <a href="{{route('profile.get')}}" class="dropdown-item">{{__('layouts/header.profile')}}</a>
+                                                @if(Auth::user()->role->name == 'teacher')
+                                                    <a href="{{route('teacher.courses.index')}}" class="dropdown-item">{{__('layouts/header.courseManagement')}}</a>
+                                                    <a href="{{route('teacher.lesson.index')}}" class="dropdown-item">{{__('layouts/header.lessonManagement')}}</a>
+                                                @endif
+                                                @if(Auth::user()->role->name == 'expert')
+                                                    <a href="{{route('expert.criteria.index')}}" class="dropdown-item">{{__('layouts/header.criteriaManagement')}}</a>
+                                                    <a href="{{route('expert.facts.index')}}" class="dropdown-item">{{__('layouts/header.factManagement')}}</a>
+                                                    <a href="{{route('expert.knowledge.index')}}" class="dropdown-item">{{__('layouts/header.rule1Management')}}</a>
+                                                    <a href="{{route('expert.rulesType2.index')}}" class="dropdown-item">{{__('layouts/header.rule2Management')}}</a>
+                                                @endif
+                                                @if(Auth::user()->role->name == 'admin')
+                                                    <a href="{{route('admin.home')}}" class="dropdown-item">{{__('layouts/header.pageManagement')}}</a>
+                                                @endif
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                            {{__('layouts/header.logout')}}
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
-                        @else
-                            <a href="{{route('login')}}" class="small mr-3"><span class="icon-unlock-alt"></span> {{__('layouts/header.login')}}</a>
-                            <a href="{{route('register')}}" class="small btn btn-primary px-4 py-2 rounded-0"><span
-                                    class="icon-users"></span> {{__('layouts/header.register')}}</a>
-                        @endif
+                                                    {{__('layouts/header.logout')}}
+                                                </a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                @else
+                                    <a href="{{route('login')}}" class="small mr-3"><span class="icon-unlock-alt"></span> {{__('layouts/header.login')}}</a>
+                                    <a href="{{route('register')}}" class="small btn btn-primary px-4 py-2 rounded-0"><span
+                                            class="icon-users"></span> {{__('layouts/header.register')}}</a>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-4 my-auto">
+                            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
+                                    class="icon-menu h3"></span></a>
+                        </div>
                     </div>
                 </div>
             </div>

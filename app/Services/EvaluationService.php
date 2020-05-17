@@ -25,18 +25,21 @@ class EvaluationService extends Service implements EvaluationServiceInterface
             Evaluation::COL_TYPE => $request->input(Evaluation::COL_TYPE),
             Evaluation::COL_CRITERIA_TYPE => $request->input(Evaluation::COL_CRITERIA_TYPE),
         ]);
-        if ($result) {
+        if ($result && $request->input(Evaluation::COL_TYPE) == Evaluation::TYPE_PFR) {
             $this->calculateToPFR($request->input(Evaluation::COL_COURSE_ID));
         }
 
         return $result;
     }
 
-    public function getCriteriaType($criteriaCode) {
-        return Criteria::where(Criteria::COL_CODE, $criteriaCode)
-            ->first()
-            ->type
-            ->id;
+    public function getCriteriaType($criteriaCode, $criteriaArr) {
+        foreach ($criteriaArr as $c) {
+            if ($c->code == $criteriaCode) {
+                return $c->type->id;
+            }
+        }
+
+        return false;
     }
 
     public function calculateToPFR($courseId) {
@@ -84,8 +87,11 @@ class EvaluationService extends Service implements EvaluationServiceInterface
             }
         }
 
+        $criteriaArr = Criteria::with('type')
+            ->get();
+
         foreach ($criteria as $criteriaCode => $memberships) {
-            $criteriaType = $this->getCriteriaType($criteriaCode);
+            $criteriaType = $this->getCriteriaType($criteriaCode, $criteriaArr);
             foreach ($memberships as $key => $value) {
                 $pfr[$criteriaCode][$key] = round($value/$sumReliabilityByCriteriaType[$criteriaType], 2);
             }

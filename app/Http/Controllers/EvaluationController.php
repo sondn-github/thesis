@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Criteria;
 use App\Evaluation;
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Services\Interfaces\EvaluationServiceInterface;
@@ -50,6 +51,8 @@ class EvaluationController extends Controller
     }
 
     public function test() {
-        $this->evaluationService->calculateToPFR(8);
+
+        dd($criteriaArr);
+//        $this->evaluationService->calculateToPFR(8);
     }
 }
