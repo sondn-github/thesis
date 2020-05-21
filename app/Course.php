@@ -34,9 +34,9 @@ class Course extends AppModel
         self::COL_THUMBNAIL => '/images/course_2.jpg',
     ];
 
-    protected $hidden = [
-        self::COL_PFR,
-    ];
+//    protected $hidden = [
+//        self::COL_PFR,
+//    ];
 
     protected $casts = [
         self::COL_PFR => 'array',

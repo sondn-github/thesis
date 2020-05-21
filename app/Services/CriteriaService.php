@@ -102,4 +102,10 @@ class CriteriaService extends Service implements CriteriaServiceInterface
             }
         }
     }
+
+    public function getCriteriaByTypeId($typeId) {
+        return Type::with('criteria')
+            ->where(Type::COL_ID, $typeId)
+            ->firstOrFail();
+    }
 }

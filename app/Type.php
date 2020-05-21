@@ -32,4 +32,9 @@ class Type extends AppModel
         self::COL_IS_USING => 'boolean',
         self::COL_IS_PFR => 'boolean',
     ];
+
+    public function criteria() {
+        return $this->hasMany('App\Criteria')
+            ->orderBy('code', 'asc');
+    }
 }
