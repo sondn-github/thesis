@@ -132,4 +132,44 @@ class EvaluationService extends Service implements EvaluationServiceInterface
             ->whereIn(Evaluation::COL_CRITERIA_TYPE, $usingTypeId)
             ->get();
     }
+
+    public function reportEvaluationsOfCourse($courseId) {
+        $evaluations = Evaluation::where(Evaluation::COL_COURSE_ID, $courseId)
+            ->where(Evaluation::COL_TYPE, Evaluation::TYPE_PFR)
+            ->where(Evaluation::COL_CRITERIA_TYPE, Type::TYPE_DHBK_SV)
+            ->get();
+        $data = [];
+        foreach ($evaluations as $evaluation) {
+            foreach ($evaluation->answers as $criterionCode => $answer) {
+                if (!isset($data[$criterionCode][Evaluation::AGREEMENT])) {
+                    $data[$criterionCode][Evaluation::AGREEMENT] = 0;
+                }
+                if (!isset($data[$criterionCode][Evaluation::NEUTRAL])) {
+                    $data[$criterionCode][Evaluation::NEUTRAL] = 0;
+                }
+                if (!isset($data[$criterionCode][Evaluation::DISAGREEMENT])) {
+                    $data[$criterionCode][Evaluation::DISAGREEMENT] = 0;
+                }
+                if (!isset($data[$criterionCode][Evaluation::REFUSAL])) {
+                    $data[$criterionCode][Evaluation::REFUSAL] = 0;
+                }
+                switch ((int)$answer) {
+                    case Evaluation::AGREEMENT:
+                        $data[$criterionCode][Evaluation::AGREEMENT] += 1;
+                        break;
+                    case Evaluation::NEUTRAL:
+                        $data[$criterionCode][Evaluation::NEUTRAL] += 1;
+                        break;
+                    case Evaluation::DISAGREEMENT:
+                        $data[$criterionCode][Evaluation::DISAGREEMENT] += 1;
+                        break;
+                    case Evaluation::REFUSAL:
+                        $data[$criterionCode][Evaluation::REFUSAL] += 1;
+                        break;
+                }
+            }
+        }
+
+        return $data;
+    }
 }

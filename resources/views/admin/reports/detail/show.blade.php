@@ -25,11 +25,10 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6">
-                        <!-- STACKED BAR CHART -->
+                    <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">{{__('chart.totalPersonChart')}}</h3>
+                                <h3 class="card-title">{{__('Số lượt đánh giá với khóa học')}}</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -38,9 +37,12 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    {{--                                    <a href="{{route('admin.exports.show', 1)}}" class="btn btn-primary">Export ICT NewHouse</a>--}}
+                                    {{--                                    <a href="{{route('admin.exports.show', 2)}}" class="btn btn-primary">Export DHBKHN</a>--}}
+                                </div>
                                 <div class="chart">
-                                    <a href="{{route('admin.exports.index')}}" class="btn btn-primary">Export</a>
-                                    <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                    <canvas id="barChartNumberEvaluation" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -104,7 +106,7 @@
 
                     </div>
                     <!-- /.col (LEFT) -->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                     {{--                        <!-- LINE CHART -->--}}
                     {{--                        <div class="card card-info">--}}
                     {{--                            <div class="card-header">--}}
@@ -128,7 +130,7 @@
                     <!-- BAR CHART -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">{{__('chart.detailPersonChart')}}</h3>
+                                <h3 class="card-title">{{__('Mức độ đồng ý của tiêu chí với khóa học')}}</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -138,8 +140,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
-                                    <a href="{{route('admin.exports.show', 1)}}" class="btn btn-primary">Export ICT NewHouse</a>
-                                    <a href="{{route('admin.exports.show', 2)}}" class="btn btn-primary">Export DHBKHN</a>
+{{--                                    <a href="{{route('admin.exports.show', 1)}}" class="btn btn-primary">Export ICT NewHouse</a>--}}
+{{--                                    <a href="{{route('admin.exports.show', 2)}}" class="btn btn-primary">Export DHBKHN</a>--}}
                                 </div>
                                 <div class="chart">
                                     <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
@@ -176,64 +178,64 @@
             // Get context with jQuery - using jQuery's .get() method.
             // var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
-            var areaChartData = {
-                labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [
-                    {
-                        label               : 'Digital Goods',
-                        backgroundColor     : 'rgba(60,141,188,0.9)',
-                        borderColor         : 'rgba(60,141,188,0.8)',
-                        pointRadius          : false,
-                        pointColor          : '#3b8bba',
-                        pointStrokeColor    : 'rgba(60,141,188,1)',
-                        pointHighlightFill  : '#fff',
-                        pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data                : [28, 48, 40, 19, 86, 27, 90]
-                    },
-                    {
-                        label               : 'Electronics',
-                        backgroundColor     : 'rgba(210, 214, 222, 1)',
-                        borderColor         : 'rgba(210, 214, 222, 1)',
-                        pointRadius         : false,
-                        pointColor          : 'rgba(210, 214, 222, 1)',
-                        pointStrokeColor    : '#c1c7d1',
-                        pointHighlightFill  : '#fff',
-                        pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data                : [65, 59, 80, 81, 56, 55, 40]
-                    },
-                    {
-                        label               : 'Son',
-                        backgroundColor     : '#00c0ef',
-                        borderColor         : '#00c0ef',
-                        pointRadius         : false,
-                        pointColor          : '#00c0ef',
-                        pointStrokeColor    : '#c1c7d1',
-                        pointHighlightFill  : '#fff',
-                        pointHighlightStroke: '#00c0ef',
-                        data                : [65, 59, 80, 81, 56, 55, 40]
-                    },
-                ]
-            }
-
-            var areaChartOptions = {
-                maintainAspectRatio : false,
-                responsive : true,
-                legend: {
-                    display: false
-                },
-                scales: {
-                    xAxes: [{
-                        gridLines : {
-                            display : false,
-                        }
-                    }],
-                    yAxes: [{
-                        gridLines : {
-                            display : false,
-                        }
-                    }]
-                }
-            }
+            // var areaChartData = {
+            //     labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            //     datasets: [
+            //         {
+            //             label               : 'Digital Goods',
+            //             backgroundColor     : 'rgba(60,141,188,0.9)',
+            //             borderColor         : 'rgba(60,141,188,0.8)',
+            //             pointRadius          : false,
+            //             pointColor          : '#3b8bba',
+            //             pointStrokeColor    : 'rgba(60,141,188,1)',
+            //             pointHighlightFill  : '#fff',
+            //             pointHighlightStroke: 'rgba(60,141,188,1)',
+            //             data                : [28, 48, 40, 19, 86, 27, 90]
+            //         },
+            //         {
+            //             label               : 'Electronics',
+            //             backgroundColor     : 'rgba(210, 214, 222, 1)',
+            //             borderColor         : 'rgba(210, 214, 222, 1)',
+            //             pointRadius         : false,
+            //             pointColor          : 'rgba(210, 214, 222, 1)',
+            //             pointStrokeColor    : '#c1c7d1',
+            //             pointHighlightFill  : '#fff',
+            //             pointHighlightStroke: 'rgba(220,220,220,1)',
+            //             data                : [65, 59, 80, 81, 56, 55, 40]
+            //         },
+            //         {
+            //             label               : 'Son',
+            //             backgroundColor     : '#00c0ef',
+            //             borderColor         : '#00c0ef',
+            //             pointRadius         : false,
+            //             pointColor          : '#00c0ef',
+            //             pointStrokeColor    : '#c1c7d1',
+            //             pointHighlightFill  : '#fff',
+            //             pointHighlightStroke: '#00c0ef',
+            //             data                : [65, 59, 80, 81, 56, 55, 40]
+            //         },
+            //     ]
+            // }
+            //
+            // var areaChartOptions = {
+            //     maintainAspectRatio : false,
+            //     responsive : true,
+            //     legend: {
+            //         display: false
+            //     },
+            //     scales: {
+            //         xAxes: [{
+            //             gridLines : {
+            //                 display : false,
+            //             }
+            //         }],
+            //         yAxes: [{
+            //             gridLines : {
+            //                 display : false,
+            //             }
+            //         }]
+            //     }
+            // }
 
 
             //-------------
@@ -254,9 +256,9 @@
             var data = [];
             var labels = [];
             var codes = [];
-            @foreach($type->criteria as $c)
+            @foreach($type->criteria as $key => $c)
                 codes.push('{{$c->code}}');
-                labels.push('{{$c->name}}');
+                labels.push('Tiêu chí ' + '{{$key + 1}}');
             @endforeach
             @foreach($course->pfr as $key => $value)
                 if (codes.includes('{{$key}}')) {
@@ -265,10 +267,10 @@
                 @endforeach
 
             var chartData = {
-                    labels  : codes,
+                    labels  : labels,
                     datasets: [
                         {
-                            label               : '{{__('chart.student')}}',
+                            label               : '{{__('Mức độ đồng ý')}}',
                             backgroundColor     : 'rgba(60,141,188,0.9)',
                             borderColor         : 'rgba(60,141,188,0.8)',
                             pointRadius          : false,
@@ -357,6 +359,98 @@
             {{--    data: stackedBarChartData,--}}
             {{--    options: stackedBarChartOptions--}}
             {{--})--}}
+            data = [];
+            data[4] = [];
+            data[3] = [];
+            data[2] = [];
+            data[1] = [];
+                @foreach($evaluation as $criterionCode => $answer)
+                    data[4].push('{{$answer[4]}}');
+                    data[3].push('{{$answer[3]}}');
+                    data[2].push('{{$answer[2]}}');
+                    data[1].push('{{$answer[1]}}');
+                @endforeach
+
+             chartData = {
+                    labels  : labels,
+                    datasets: [
+                        {
+                            label               : '{{__('Đồng ý')}}',
+                            backgroundColor     : 'rgba(60,141,188,0.9)',
+                            borderColor         : 'rgba(60,141,188,0.8)',
+                            pointRadius          : false,
+                            pointColor          : '#3b8bba',
+                            pointStrokeColor    : 'rgba(60,141,188,1)',
+                            pointHighlightFill  : '#fff',
+                            pointHighlightStroke: 'rgba(60,141,188,1)',
+                            data                : data[4]
+                        },
+                        {
+                            label               : '{{__('Trung lập')}}',
+                            backgroundColor     : 'rgba(210, 214, 222, 1)',
+                            borderColor         : 'rgba(210, 214, 222, 1)',
+                            pointRadius         : false,
+                            pointColor          : 'rgba(210, 214, 222, 1)',
+                            pointStrokeColor    : '#c1c7d1',
+                            pointHighlightFill  : '#fff',
+                            pointHighlightStroke: 'rgba(220,220,220,1)',
+                            data                : data[3]
+                        },
+                        {
+                            label               : '{{__('Không đồng ý')}}',
+                            backgroundColor     : '#00c0ef',
+                            borderColor         : '#00c0ef',
+                            pointRadius         : false,
+                            pointColor          : '#00c0ef',
+                            pointStrokeColor    : '#c1c7d1',
+                            pointHighlightFill  : '#fff',
+                            pointHighlightStroke: '#00c0ef',
+                            data                : data[2]
+                        },
+                        {
+                            label               : '{{__('Từ chối')}}',
+                            backgroundColor     : '#008fef',
+                            borderColor         : '#008fef',
+                            pointRadius         : false,
+                            pointColor          : '#00c0ef',
+                            pointStrokeColor    : '#c1c7d1',
+                            pointHighlightFill  : '#fff',
+                            pointHighlightStroke: '#00c0ef',
+                            data                : data[1]
+                        },
+                    ]
+                }
+
+            //-------------
+            //- BAR CHART -
+            //-------------
+            barChartCanvas = $('#barChartNumberEvaluation').get(0).getContext('2d')
+            barChartData = jQuery.extend(true, {}, chartData)
+            barChartData.datasets[0] = chartData.datasets[0]
+            barChartData.datasets[1] = chartData.datasets[1]
+            barChartData.datasets[2] = chartData.datasets[2]
+            barChartData.datasets[3] = chartData.datasets[3]
+
+            barChartOptions = {
+                responsive              : true,
+                maintainAspectRatio     : false,
+                datasetFill             : false,
+                scales: {
+                    display: true,
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                        }
+                    }],
+                },
+
+            }
+
+            barChart = new Chart(barChartCanvas, {
+                type: 'bar',
+                data: barChartData,
+                options: barChartOptions
+            })
         })
     </script>
 @endsection

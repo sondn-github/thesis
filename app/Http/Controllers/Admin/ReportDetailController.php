@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Services\Interfaces\CriteriaServiceInterface;
+use App\Services\Interfaces\EvaluationServiceInterface;
 use App\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,12 +13,15 @@ class ReportDetailController extends Controller
 {
     private $courseService;
     private $criteriaService;
+    private $evaluationService;
 
     public function __construct(CourseServiceInterface $courseService,
-                                CriteriaServiceInterface $criteriaService)
+                                CriteriaServiceInterface $criteriaService,
+                                EvaluationServiceInterface $evaluationService)
     {
         $this->courseService = $courseService;
         $this->criteriaService = $criteriaService;
+        $this->evaluationService = $evaluationService;
     }
 
     /**
@@ -61,8 +65,13 @@ class ReportDetailController extends Controller
     {
         $course = $this->courseService->getCourseById($id);
         $type = $this->criteriaService->getCriteriaByTypeId(Type::TYPE_DHBK_SV);
+        $evaluation = $this->evaluationService->reportEvaluationsOfCourse($id);
 
-        return view('admin.reports.detail.show', compact('course'), compact('type'));
+        return view('admin.reports.detail.show', [
+            'course' => $course,
+            'type' => $type,
+            'evaluation' => $evaluation,
+        ]);
     }
 
     /**
