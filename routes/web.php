@@ -101,6 +101,8 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
 
     Route::get('/datatables/posts', 'DatatableController@posts')->name('datatables.posts');
     Route::resource('posts', 'Admin\PostController');
+
+    Route::resource('details', 'Admin\ReportDetailController');
 });
 
 Route::get('/test', 'EvaluationController@test');
