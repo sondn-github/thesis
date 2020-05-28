@@ -61,7 +61,7 @@ Route::middleware(['auth'])->prefix('expert')->name('expert.')->group(function (
     Route::resource('rulesType2', 'Expert\RuleType2Controller')->except(['destroy', 'show']);
 });
 
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/home', 'Admin\HomeController@home')->name('home');
 
     Route::resource('criteria', 'Admin\CriteriaController')->except(['destroy']);
