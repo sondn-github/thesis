@@ -66,11 +66,13 @@ class ReportDetailController extends Controller
         $course = $this->courseService->getCourseById($id);
         $type = $this->criteriaService->getCriteriaByTypeId(Type::TYPE_DHBK_SV);
         $evaluation = $this->evaluationService->reportEvaluationsOfCourse($id);
+        $fromDate = $this->evaluationService->getMinCreatedAt();
 
         return view('admin.reports.detail.show', [
             'course' => $course,
             'type' => $type,
             'evaluation' => $evaluation,
+            'fromDate' => $fromDate,
         ]);
     }
 

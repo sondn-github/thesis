@@ -26,6 +26,34 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="panel panel-default">
+{{--                            <div class="panel-heading">Bộ lọc</div>--}}
+                            <div class="panel-body">
+                                <div class="row">
+                                    <form action="" class="form-inline ml-2">
+                                        <div class="form-group mr-5 datepicker" data-provide="datepicker">
+                                            <label for="from-date" class="mr-2">Từ:</label>
+                                            <input type="text" class="form-control" value="{{\Carbon\Carbon::createFromTimeString($fromDate)->toDateString()}}">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-th"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mr-5 datepicker" data-provide="datepicker">
+                                            <label for="from-date" class="mr-2">Đến:</label>
+                                            <input type="text" class="form-control" value="{{\Carbon\Carbon::now()->toDateString()}}">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-th"></span>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Lọc</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">{{__('Số lượt đánh giá với khóa học')}}</h3>
@@ -162,7 +190,13 @@
 
 @section('js')
     <script src="{{asset('admin/plugins/chart.js/Chart.min.js')}}"></script>
-    {{--    <script src="{{asset('admin/dist/js/demo.js')}}"></script>--}}
+    <script src="{{asset('admin/plugins/jquery-ui/jquery-ui.js')}}"></script>
+    {{--    <script src="{{asset('weekStart: 0,
+            calendarWeeks: true,
+            autoclose: true,
+            todayHighlight: true,
+            rtl: true,
+            orientation: "auto"admin/dist/js/demo.js')}}"></script>--}}
     {{--    <script src="{{asset('admin/dist/js/pages/dashboard3.js')}}"></script>--}}
     <script type="text/javascript">
         $(function () {
@@ -451,6 +485,16 @@
                 data: barChartData,
                 options: barChartOptions
             })
+        })
+
+        $('.datepicker').datepicker({
+            format: "dd/mm/yy",
+            weekStart: 0,
+            calendarWeeks: true,
+            autoclose: true,
+            todayHighlight: true,
+            rtl: true,
+            orientation: "auto"
         })
     </script>
 @endsection

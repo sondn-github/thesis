@@ -172,4 +172,11 @@ class EvaluationService extends Service implements EvaluationServiceInterface
 
         return $data;
     }
+
+    public function getMinCreatedAt() {
+        return Evaluation::where(Evaluation::COL_CREATED_AT, '!=', null)
+            ->orderBy(Evaluation::COL_CREATED_AT, 'asc')
+            ->firstOrFail()
+            ->created_at;
+    }
 }
