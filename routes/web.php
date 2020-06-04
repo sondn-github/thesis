@@ -28,7 +28,7 @@ Route::post('/change-password', 'ProfileController@changePassword')->name('profi
 Route::post('/change-avatar', 'ProfileController@changeAvatar')->name('profile.change-avatar');
 //Route::get('/search', 'LessonsController@searchLesson')->name('lesson.search');
 
-Route::middleware(['auth'])->prefix('teacher')->name('teacher.')->group(function () {
+Route::middleware(['auth', 'isTeacher'])->prefix('teacher')->name('teacher.')->group(function () {
     Route::get('/lessons/create', 'LessonsController@create')->name('lessons.create');
     Route::post('/lessons', 'LessonsController@store')->name('lesson.store');
     Route::get('/lessons', 'LessonsController@index')->name('lesson.index');
@@ -47,7 +47,7 @@ Route::resource('courses', 'CourseController');
 Route::resource('categories', 'CategoryController');
 Route::resource('posts', 'PostController')->only(['show', 'index']);
 
-Route::middleware(['auth'])->prefix('expert')->name('expert.')->group(function () {
+Route::middleware(['auth', 'isExpert'])->prefix('expert')->name('expert.')->group(function () {
     Route::get('/datatables/criteria', 'DatatableController@criteria')->name('datatables.criteria');
     Route::resource('criteria', 'Expert\CriteriaController')->except(['destroy']);
     Route::get('/criteria-status/change', 'Expert\CriteriaController@changeStatus')->name('criteria.changing-status');

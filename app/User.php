@@ -79,4 +79,12 @@ class User extends Authenticatable
     public function isAdmin() {
         return $this->role->name === 'admin';
     }
+
+    public function isExpert() {
+        return $this->role->name === 'expert';
+    }
+
+    public function isTeacher() {
+        return $this->role->name === 'teacher';
+    }
 }
