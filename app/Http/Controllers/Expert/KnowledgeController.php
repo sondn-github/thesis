@@ -60,7 +60,7 @@ class KnowledgeController extends Controller
         if ($this->knowledgeService->storeRuleType1($request)) {
             return redirect()->back()->with('success', __('knowledge.storingSuccess'));
         } else {
-            return redirect()->back()->withErrors(['message' => __('knowledge.storingFailed')]);
+            return redirect()->back()->withErrors(['message' => __('Luật đã tồn tại')]);
         }
     }
 

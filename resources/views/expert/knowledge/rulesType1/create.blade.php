@@ -34,7 +34,7 @@
                                             <select class="form-control" id="criteria" name="criteria[]" required>
                                                 <option>{{__('knowledge.select')}}</option>
                                                 @foreach($criteria as $c)
-                                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                                    <option value="{{$c->code}}">{{$c->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>

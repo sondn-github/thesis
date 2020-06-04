@@ -159,14 +159,28 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
             array_push($premises, $premise);
         }
 
+        $sortedPremises = collect($premises)->sort()->all();
         return $premises;
     }
 
+    public function hasRule($premises = [], $conclusion, $ruleType) {
+        return !Knowledge::where(Knowledge::COL_TYPE, Knowledge::TYPE_1)
+            ->where(Knowledge::COL_PREMISE, json_encode($premises))
+            ->where(Knowledge::COL_CONCLUSION, $conclusion)
+            ->get()
+            ->isEmpty();
+    }
+
     public function storeRuleType1($request) {
+        $premises = $this->convertToPremiseWithType1($request);
+        if ($this->hasRule($premises, $request->input(Knowledge::COL_CONCLUSION), Knowledge::TYPE_1)) {
+            return false;
+        }
+        
         return Knowledge::create([
             Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
             Knowledge::COL_TYPE => Knowledge::TYPE_1,
-            Knowledge::COL_PREMISE => $this->convertToPremiseWithType1($request),
+            Knowledge::COL_PREMISE => $premises,
             Knowledge::COL_CONCLUSION => $request->input(Knowledge::COL_CONCLUSION),
             Knowledge::COL_RELIABILITY => $request->input(Knowledge::COL_RELIABILITY),
             Knowledge::COL_STATUS => $request->input(Knowledge::COL_STATUS),
@@ -178,6 +192,11 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
     }
 
     public function updateRuleType1($request, $id) {
+        $premises = $this->convertToPremiseWithType1($request);
+        if ($this->hasRule($premises, $request->input(Knowledge::COL_CONCLUSION), Knowledge::TYPE_1)) {
+            return false;
+        }
+
         return Knowledge::findOrFail($id)
             ->update([
                 Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
@@ -207,6 +226,11 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
     }
 
     public function storeRuleType2($request) {
+        $premises = $this->convertToPremiseWithType1($request);
+        if ($this->hasRule($premises, $request->input(Knowledge::COL_CONCLUSION), Knowledge::TYPE_2)) {
+            return false;
+        }
+
         return Knowledge::create([
             Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
             Knowledge::COL_TYPE => $this->getFactTypeByCode($request->input(Knowledge::COL_CONCLUSION)),
@@ -218,6 +242,11 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
     }
 
     public function updateRuleType2($request, $id) {
+        $premises = $this->convertToPremiseWithType1($request);
+        if ($this->hasRule($premises, $request->input(Knowledge::COL_CONCLUSION), Knowledge::TYPE_2)) {
+            return false;
+        }
+
         return Knowledge::findOrFail($id)
             ->update([
                 Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
