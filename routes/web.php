@@ -29,7 +29,7 @@ Route::post('/change-avatar', 'ProfileController@changeAvatar')->name('profile.c
 //Route::get('/search', 'LessonsController@searchLesson')->name('lesson.search');
 
 Route::middleware(['auth', 'isTeacher'])->prefix('teacher')->name('teacher.')->group(function () {
-    Route::get('/lessons/create', 'LessonsController@create')->name('lessons.create');
+    Route::get('/lessons/create', 'LessonsController@create')->name('lesson.create');
     Route::post('/lessons', 'LessonsController@store')->name('lesson.store');
     Route::get('/lessons', 'LessonsController@index')->name('lesson.index');
     Route::get('/datatables/lessons', 'DatatableController@lessons')->name('datatables.lessons');
