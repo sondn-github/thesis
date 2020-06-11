@@ -23,6 +23,11 @@ class UserService extends Service implements UserServiceInterface
         $img->fit($width, $height);
 
         $path = 'images/'.$width.'x'.$height.'/'.$userId.'_'.Carbon::now()->toDateTimeString().'.jpg';
+
+        if (!file_exists(storage_path('app/public/'.$path))) {
+            mkdir(storage_path('app/public/'.$path), 666, true);
+        }
+
         $img->save(storage_path('app/public/'.$path));
 
         return 'storage/'.$path;
