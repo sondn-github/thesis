@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'code' => 'Mã sự kiện',
+    'description' => 'Mô tả',
+    'status' => 'Trạng thái',
+    'type' => 'Loại',
+    'no' => 'STT',
+    'advise' => 'Tư vấn',
+    'comment' => 'Nhận xét',
+    'new' => 'Thêm mới',
+    'confirm' => 'Xác nhận',
+    'confirmMessage' => 'Bạn có chắc chắn không?',
+    'cancel' => 'Huỷ bỏ',
+    'updateSuccess' => 'Cập nhật thành công.',
+    'updateFailed' => 'Cập nhật thất bại.',
+    'active' => 'Hoạt động',
+    'deactive' => 'Không hoạt động',
+    'failed-message' => 'Đã có lỗi xảy ra. Xin bạn hãy thử lại.',
+    'enterCode' => 'Nhập mã sự kiện...',
+    'enterDescription' => 'Nhập mô tả',
+    'update' => 'Cập nhật',
+    'back' => 'Quay lại',
+    'storingSuccess' => 'Tạo thành công',
+    'storingFailed' => 'Đã có lỗi xảy ra. Xin bạn hãy thử lại.',
+    'create' => 'Tạo mới',
+];

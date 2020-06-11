@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'no' => 'STT',
+    'name' => 'Tên',
+    'avatar' => 'Avatar',
+    'email' => 'Email',
+    'specialty' => 'Chuyên môn',
+    'level' => 'Trình độ',
+    'reliability' => 'Độ tin cậy',
+    'role' => 'Vai trò',
+    'status' => 'Trạng thái',
+    'new' => 'Thêm mới',
+    'create' => 'Tạo mới',
+    'update' => 'Cập nhật',
+    'back' => 'Quay lại',
+    'enterName' => 'Nhập tên',
+    'password' => 'Mật khẩu',
+    'password_confirmation' => 'Nhập lại mật khẩu',
+    'successStoring' => 'Thêm mới thành công',
+    'failedStoring' => 'Đã có lỗi xảy ra xin vui lòng thử lại',
+    'successUpdating' => 'Cập nhật thành công',
+    'failedUpdating' => 'Đã có lỗi xảy ra xin vui lòng thử lại',
+    'successDeleting' => 'Xoá thành công',
+    'failedDeleting' => 'Đã có lỗi xảy ra xin vui lòng thử lại',
+];
