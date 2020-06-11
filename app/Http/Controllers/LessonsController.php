@@ -74,9 +74,9 @@ class LessonsController extends Controller
 
     public function store(StoreLessonRequest $request) {
         if ($this->lessonService->store($request)) {
-            return redirect()->route('teacher.lesson.create')->with(['success' => __('lesson.successStoring')]);
+            return redirect()->route('teacher.lessons.create')->with(['success' => __('lesson.successStoring')]);
         } else {
-            return redirect()->route('teacher.lesson.create')
+            return redirect()->route('teacher.lessons.create')
                 ->withInput()
                 ->withErrors(['message' => __('lesson.failedStoring')]);
         }
