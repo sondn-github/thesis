@@ -9,6 +9,7 @@ use App\Evaluation;
 use App\Course;
 use App\Services\Interfaces\EvaluationServiceInterface;
 use App\Type;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -133,11 +134,21 @@ class EvaluationService extends Service implements EvaluationServiceInterface
             ->get();
     }
 
-    public function reportEvaluationsOfCourse($courseId) {
+    public function reportEvaluationsOfCourse($courseId, $request) {
         $evaluations = Evaluation::where(Evaluation::COL_COURSE_ID, $courseId)
             ->where(Evaluation::COL_TYPE, Evaluation::TYPE_PFR)
-            ->where(Evaluation::COL_CRITERIA_TYPE, Type::TYPE_DHBK_SV)
-            ->get();
+            ->where(Evaluation::COL_CRITERIA_TYPE, Type::TYPE_DHBK_SV);
+
+        if ($fromDate = $request->get('from-date')) {
+            $evaluations->whereDate('created_at', '>=', $fromDate);
+        }
+
+        if ($toDate = $request->get('to-date')) {
+            $evaluations->whereDate('created_at', '<=', $toDate);
+        }
+
+        $evaluations = $evaluations->get();
+
         $data = [];
         foreach ($evaluations as $evaluation) {
             foreach ($evaluation->answers as $criterionCode => $answer) {

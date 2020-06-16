@@ -30,23 +30,24 @@
 {{--                            <div class="panel-heading">Bộ lọc</div>--}}
                             <div class="panel-body">
                                 <div class="row">
-                                    <form action="" class="form-inline ml-2">
-                                        <div class="form-group mr-5 datepicker" data-provide="datepicker">
+                                    {!! Form::open(['route' => ['admin.details.show', $course->id], 'method' => 'get', 'class' => 'form-inline ml-2']) !!}
+                                        <div class="form-group mr-5">
                                             <label for="from-date" class="mr-2">Từ:</label>
-                                            <input type="text" class="form-control" value="{{\Carbon\Carbon::createFromTimeString($fromDate)->toDateString()}}">
+                                            <input type="date" name="from-date" class="form-control date-picker" value="{{old('from-date') ?? \Carbon\Carbon::createFromTimeString($fromDate)->toDateString()}}">
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-th"></span>
                                             </div>
                                         </div>
-                                        <div class="form-group mr-5 datepicker" data-provide="datepicker">
-                                            <label for="from-date" class="mr-2">Đến:</label>
-                                            <input type="text" class="form-control" value="{{\Carbon\Carbon::now()->toDateString()}}">
+                                        <div class="form-group mr-5">
+                                            <label for="to-date" class="mr-2">Đến:</label>
+                                            <input type="date" name="to-date" class="form-control date-picker" value="{{old('to-date') ?? \Carbon\Carbon::now()->toDateString()}}">
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-th"></span>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Lọc</button>
                                     </form>
+                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>
@@ -487,14 +488,14 @@
             })
         })
 
-        $('.datepicker').datepicker({
-            format: "dd/mm/yy",
-            weekStart: 0,
-            calendarWeeks: true,
-            autoclose: true,
-            todayHighlight: true,
-            rtl: true,
-            orientation: "auto"
-        })
+        // $('.date-picker').datepicker({
+        //     format: "d/m/yy",
+        //     weekStart: 0,
+        //     calendarWeeks: true,
+        //     autoclose: true,
+        //     todayHighlight: true,
+        //     rtl: true,
+        //     orientation: "auto"
+        // })
     </script>
 @endsection
