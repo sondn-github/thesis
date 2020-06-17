@@ -15,7 +15,7 @@
                 @csrf
                 <div class="panel-group">
                     <div class="panel panel-warning mb-3">
-                        <div class="panel-heading">{{__('knowledge.code')}}</div>
+                        <div class="panel-heading required" >{{__('knowledge.code')}}</div>
                         <div class="panel-body">
                             <div class="form-group row">
                                 <div class="col-md-4">
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="panel panel-info mb-3">
-                        <div class="panel-heading">{{__('knowledge.premise')}}</div>
+                        <div class="panel-heading required">{{__('knowledge.premise')}}</div>
                         <div class="panel-body">
                             <div id="premise-form-group">
                                 <div class="premise-form">
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div class="panel panel-success mb-3">
-                        <div class="panel-heading">Kết luận</div>
+                        <div class="panel-heading required">Kết luận</div>
                         <div class="panel-body">
                             <div class="form-group row">
                                 <div class="col-md-4">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div class="panel-heading">Trạng thái</div>
+                        <div class="panel-heading required">Trạng thái</div>
                         <div class="panel-body">
                             <div class="form-group row">
                                 <div class="col-md-4">

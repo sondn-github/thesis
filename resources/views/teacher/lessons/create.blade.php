@@ -16,14 +16,14 @@
                 {{csrf_field()}}
                 <div class="form-row">
                     <div class="col-md-8 mb-3 form-group">
-                        <label for="name">{{__('lesson.name')}}</label>
+                        <label for="name" class="required">{{__('lesson.name')}}</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="{{__('lesson.enterName')}}" value="{{old('name')}}">
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="course">{{__('lesson.course')}}</label>
+                        <label for="course" class="required">{{__('lesson.course')}}</label>
                         <select class="form-control" id="course" name="course_id">
                             <option>--Chọn--</option>
                             @foreach($courses as $course)
@@ -48,7 +48,7 @@
                     <label id="fileLabel" class="custom-file-label" for="customFile">{{__('lesson.chooseFile')}}</label>
                 </div>
                 <button id="createBtn" class="btn btn-primary" type="submit">{{__('lesson.create')}}</button>
-                <a href="{{route('teacher.courses.index')}}" class="btn btn-danger">{{__('lesson.back')}}</a>
+                <a href="{{route('teacher.lesson.index')}}" class="btn btn-danger">{{__('lesson.back')}}</a>
             </form>
         </div>
     </div>

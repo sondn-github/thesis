@@ -398,3 +398,8 @@ input:checked + .slider:before {
 .panel-danger > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #ebccd1
 }
+
+.required:after {
+    content:" *";
+    color: red;
+}

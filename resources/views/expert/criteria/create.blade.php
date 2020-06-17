@@ -35,15 +35,15 @@
                 {{--                    </div>--}}
                 {{--                </div>--}}
                 <div class="form-group">
-                    <label for="code">{{__('criteria.code')}}</label>
+                    <label for="code" class="required">{{__('criteria.code')}}</label>
                     <input type="text" class="form-control" id="code" name="code" placeholder="{{__('criteria.enterCode')}}" value="{{old('code')}}">
                 </div>
                 <div class="form-group">
-                    <label for="name">{{__('criteria.name')}}</label>
+                    <label for="name" class="required">{{__('criteria.name')}}</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="{{__('criteria.enterName')}}" value="{{old('name')}}">
                 </div>
                 <div class="form-group">
-                    <label for="type">{{__('criteria.type')}}</label>
+                    <label for="type" class="required">{{__('criteria.type')}}</label>
                     <select name="type_id" id="type_id" class="form-control">
                         <option>--Chọn--</option>
                         @foreach($types as $type)
@@ -64,7 +64,7 @@
                     <textarea name="example" id="example" rows="5" class="form-control" placeholder="{{__('criteria.enterExample')}}">{{old('example')}}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="weight">{{__('criteria.weight')}}</label>
+                    <label for="weight" class="required">{{__('criteria.weight')}}</label>
                     <input type="text" class="form-control" id="weight" name="weight" placeholder="{{__('criteria.enterWeight')}}" value="{{old('weight')}}">
                 </div>
                 <button id="createBtn" class="btn btn-primary" type="submit">{{__('criteria.create')}}</button>

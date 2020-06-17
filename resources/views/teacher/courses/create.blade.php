@@ -16,14 +16,14 @@
                 {{csrf_field()}}
                 <div class="form-row">
                     <div class="col-md-8 mb-3 form-group">
-                        <label for="name">{{__('course.name')}}</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="{{__('course.enterName')}}" value="{{old('name')}}">
+                        <label for="name" class="required">{{__('course.name')}}</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="{{__('course.enterName')}}" value="{{old('name')}}" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="category">{{__('lesson.category')}}</label>
+                        <label for="category" class="required">{{__('lesson.category')}}</label>
                         <select class="form-control" id="category" name="category_id">
                             <option>--Chọn--</option>
                             @foreach($categories as $category)
