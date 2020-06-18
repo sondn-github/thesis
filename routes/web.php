@@ -41,6 +41,8 @@ Route::middleware(['auth', 'isTeacher'])->prefix('teacher')->name('teacher.')->g
     Route::get('/advises', 'KnowledgeController@getAdvises')->name('courses.advises');
     Route::resource('courses', 'Teacher\CourseController');
     Route::get('/datatables/courses', 'DatatableController@courses')->name('datatables.courses');
+    Route::resource('details', 'Admin\ReportDetailController');
+    Route::get('/home', 'Teacher\HomeController@home')->name('home');
 });
 
 Route::resource('courses', 'CourseController');
@@ -59,6 +61,7 @@ Route::middleware(['auth', 'isExpert'])->prefix('expert')->name('expert.')->grou
     Route::get('/datatables/rulesType2', 'DatatableController@rulesType2')->name('datatables.knowledge.rulesType2');
     Route::get('/rule-status/change', 'Expert\KnowledgeController@changeStatus')->name('knowledge.changing-status');
     Route::resource('rulesType2', 'Expert\RuleType2Controller')->except(['destroy', 'show']);
+    Route::get('/home', 'Expert\HomeController@home')->name('home');
 });
 
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {

@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('admin.home')}}">{{__('layouts/header.home')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route(Auth::user()->role->name . '.home')}}">{{__('layouts/header.home')}}</a></li>
                             <li class="breadcrumb-item">{{__('layouts/header.chart')}}</li>
                             <li class="breadcrumb-item active">{{__('layouts/header.detail')}}</li>
                         </ol>
@@ -30,7 +30,7 @@
 {{--                            <div class="panel-heading">Bộ lọc</div>--}}
                             <div class="panel-body">
                                 <div class="row">
-                                    {!! Form::open(['route' => ['admin.details.show', $course->id], 'method' => 'get', 'class' => 'form-inline ml-2']) !!}
+                                    {!! Form::open(['route' => [Auth::user()->role->name . '.details.show', $course->id], 'method' => 'get', 'class' => 'form-inline ml-2']) !!}
                                         <div class="form-group mr-5">
                                             <label for="from-date" class="mr-2">Từ:</label>
                                             <input type="date" name="from-date" class="form-control date-picker" value="{{old('from-date') ?? \Carbon\Carbon::createFromTimeString($fromDate)->toDateString()}}">

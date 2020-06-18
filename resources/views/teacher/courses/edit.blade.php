@@ -1,51 +1,71 @@
-@extends('layouts.default')
+@extends('admin.layouts.default')
 
 @section('content')
-    <div class="custom-breadcrumns border-bottom">
-        <div class="container">
-            <a href="{{route('index')}}">{{__('layouts/header.home')}}</a>
-            <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <span class="current">{{__('layouts/header.uploadLesson')}}</span>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">{{__('layouts/header.course')}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">
+                                <a href="{{route('teacher.home')}}">{{__('layouts/header.home')}}</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{route('teacher.courses.index')}}">{{__('layouts/header.courseManagement')}}</a>
+                            </li>
+                            <li class="breadcrumb-item active">{{__('layouts/header.edit')}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </div>
-    </div>
 
-    <div class="site-section">
-        <div class="container">
-            <form action="{{route('teacher.courses.update', $course->id)}}" method="post">
-                {{--                <form action="{{route('teacher.lesson.store')}}" method="post" class="needs-validation" novalidate>--}}
-                {{csrf_field()}}
-                @method('PUT')
-                <div class="form-row">
-                    <div class="col-md-8 mb-3 form-group">
-                        <label for="name" class="required">{{__('course.name')}}</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="{{__('course.enterName')}}" value="{{$course->name}}">
-                        <div class="valid-feedback">
-                            Looks good!
+        <div class="content">
+            <div class="container-fluid">
+                <form action="{{route('teacher.courses.update', $course->id)}}" method="post">
+                    {{--                <form action="{{route('teacher.lesson.store')}}" method="post" class="needs-validation" novalidate>--}}
+                    {{csrf_field()}}
+                    @method('PUT')
+                    <div class="form-row">
+                        <div class="col-md-8 mb-3 form-group">
+                            <label for="name" class="required">{{__('course.name')}}</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                   placeholder="{{__('course.enterName')}}" value="{{$course->name}}">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="course" class="required">{{__('course.category')}}</label>
+                            <select class="form-control" id="category" name="category_id">
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}"
+                                            @if($course->category_id == $category->id) selected @endif>{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="course" class="required">{{__('course.category')}}</label>
-                        <select class="form-control" id="category" name="category_id">
-                            @foreach($categories as $category)
-                                <option value="{{$category->id}}" @if($course->category_id == $category->id) selected @endif>{{$category->name}}</option>
-                            @endforeach
-                        </select>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
+                    <div class="form-group">
+                        <label for="description">{{__('course.description')}}</label>
+                        <textarea name="description" id="description" rows="5" class="form-control"
+                                  placeholder="{{__('course.enterDescription')}}">{{$course->description}}</textarea>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="description">{{__('course.description')}}</label>
-                    <textarea name="description" id="description" rows="5" class="form-control" placeholder="{{__('course.enterDescription')}}">{{$course->description}}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="link">{{__('course.link')}}</label>
-                    <input type="text" class="form-control" id="link" name="link" value="{{$course->link}}">
-                </div>
-                <button id="updateBtn" class="btn btn-primary" type="submit">{{__('course.update')}}</button>
-                <a href="{{route('teacher.courses.index')}}" class="btn btn-secondary">{{__('course.back')}}</a>
-            </form>
+                    <div class="form-group">
+                        <label for="link">{{__('course.link')}}</label>
+                        <input type="text" class="form-control" id="link" name="link" value="{{$course->link}}">
+                    </div>
+                    <button id="updateBtn" class="btn btn-primary" type="submit">{{__('course.update')}}</button>
+                    <a href="{{route('teacher.courses.index')}}" class="btn btn-secondary">{{__('course.back')}}</a>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
@@ -53,14 +73,14 @@
 @section('js')
     <script type="text/javascript">
         // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
+        (function () {
             'use strict';
-            window.addEventListener('load', function() {
+            window.addEventListener('load', function () {
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
                 var forms = document.getElementsByClassName('needs-validation');
                 // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
                         if (form.checkValidity() === false) {
                             event.preventDefault();
                             event.stopPropagation();
@@ -71,7 +91,7 @@
             }, false);
         })();
 
-        function showAlert(message, header,status) {
+        function showAlert(message, header, status) {
             toastr[status](message, header);
             toastr.options = {
                 "closeButton": true,
@@ -93,7 +113,7 @@
         }
 
         @if (session('success'))
-            this.showAlert("{{session('success')}}", "Thành công","success");
+            this.showAlert("{{session('success')}}", "Thành công", "success");
         @elseif (session()->get('errors'))
             this.showAlert("{{ session()->get('errors')->first() }}", "Lỗi", "error");
         @endif
