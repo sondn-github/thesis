@@ -45,6 +45,13 @@ class UserService extends Service implements UserServiceInterface
         return User::find($id);
     }
 
+    public function getUserByEmail($email)
+    {
+        return User::where(User::COL_EMAIL, $email)
+            ->where(User::COL_STATUS, User::ACTIVE_STATUS)
+            ->first();
+    }
+
     public function changePassword(ChangePasswordRequest $request, $userId, $oldPassword)
     {
         if (Hash::check($request->input('oldPassword'), $oldPassword))
@@ -103,5 +110,12 @@ class UserService extends Service implements UserServiceInterface
     public function destroy($id) {
         return User::findOrFail($id)
             ->delete();
+    }
+
+    public function changeStatus($request) {
+        return User::findOrFail($request->get('id'))
+            ->update([
+                User::COL_STATUS => $request->get('status'),
+            ]);
     }
 }

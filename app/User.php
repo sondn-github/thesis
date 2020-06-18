@@ -27,6 +27,7 @@ class User extends Authenticatable
         self::COL_RELIABILITY,
         self::COL_LEVEL,
         self::COL_AVATAR,
+        self::COL_STATUS,
     ];
 
     /**
@@ -61,6 +62,8 @@ class User extends Authenticatable
     public const COL_AVATAR = 'avatar';
     public const COL_STATUS = 'status';
     public const COL_PASSWORD = 'password';
+
+    public const ACTIVE_STATUS = 1;
 
     //Constant
     public const RELIABILITY_ARR = [

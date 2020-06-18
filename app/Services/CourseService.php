@@ -9,6 +9,7 @@ use App\Criteria;
 use App\Evaluation;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Requests\StoreCourseRequest;
+use App\Lesson;
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Type;
 use Illuminate\Support\Facades\DB;
@@ -23,8 +24,9 @@ class CourseService extends Service implements CourseServiceInterface
     }
 
     public function getCourseById($courseId) {
-        return Course::with('category', 'lesson', 'user')
-            ->where(Course::COL_ID, $courseId)
+        return Course::with(['category', 'user', 'lesson' => function ($query) {
+            $query->where(Lesson::COL_STATUS, Lesson::ACTIVE_STATUS);
+        }])->where(Course::COL_ID, $courseId)
             ->first();
     }
 

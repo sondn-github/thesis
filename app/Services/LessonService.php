@@ -8,7 +8,6 @@ use App\Http\Requests\StoreLessonRequest;
 use App\Http\Requests\UpdateLessonRequest;
 use App\Services\Interfaces\LessonServiceInterface;
 use App\Lesson;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -24,6 +23,7 @@ class LessonService extends Service implements LessonServiceInterface
     public function getLessonDetailById($id) {
         $lessonDetail = Lesson::with('course')
             ->where(Lesson::COL_ID, $id)
+            ->where(Lesson::COL_STATUS, Lesson::ACTIVE_STATUS)
             ->get();
 
         return $lessonDetail[0];
@@ -47,6 +47,7 @@ class LessonService extends Service implements LessonServiceInterface
     {
         return Lesson::with('course')
             ->where(Lesson::COL_NAME, 'like', '%'.$name.'%')
+            ->where(Lesson::COL_STATUS, Lesson::ACTIVE_STATUS)
             ->paginate(6);
     }
 
