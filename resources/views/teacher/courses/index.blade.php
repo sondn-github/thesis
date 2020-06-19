@@ -32,9 +32,9 @@
                             <th width="3%">{{__('course.no')}}</th>
                             <th>{{__('course.name')}}</th>
                             <th>{{__('course.category')}}</th>
-                            <th width="10%">{{__('course.numberLessons')}}</th>
-                            <th width="8%">{{__('course.created_at')}}</th>
-                            <th width="15%"></th>
+                            <th>{{__('course.numberLessons')}}</th>
+                            <th>{{__('course.created_at')}}</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>

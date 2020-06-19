@@ -33,10 +33,10 @@
                             <th width="3%">{{__('knowledge.no')}}</th>
                             <th>{{__('knowledge.code')}}</th>
                             <th>{{__('knowledge.premise')}}</th>
-                            <th width="6%">{{__('knowledge.conclusion')}}</th>
-                            <th width="7%">{{__('knowledge.reliability')}}</th>
-                            <th width="6%">{{__('knowledge.status')}}</th>
-                            <th width="4%"></th>
+                            <th>{{__('knowledge.conclusion')}}</th>
+                            <th>{{__('knowledge.reliability')}}</th>
+                            <th>{{__('knowledge.status')}}</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>

@@ -33,13 +33,13 @@ class LoginController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
 
     protected function authenticated(Request $request, $user)
     {
-        if ($user->isAdmin() ) {// do your magic here
-            return redirect()->route('admin.home');
+        if ($user->isAdmin() || $user->isExpert() || $user->isTeacher()) {// do your magic here
+            return redirect()->route($user->role->name . '.home');
         }
         return redirect()->route('home');
 

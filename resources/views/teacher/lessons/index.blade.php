@@ -33,10 +33,10 @@
                             <th width="3%">{{__('lesson.no')}}</th>
                             <th>{{__('lesson.name')}}</th>
                             <th>{{__('lesson.course')}}</th>
-                            <th width="6%">{{__('lesson.view')}}</th>
-                            <th width="6%">{{__('lesson.created_at')}}</th>
-                            <th width="6%">{{__('lesson.status')}}</th>
-                            <th width="10%"></th>
+                            <th>{{__('lesson.view')}}</th>
+                            <th>{{__('lesson.created_at')}}</th>
+                            <th>{{__('lesson.status')}}</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>

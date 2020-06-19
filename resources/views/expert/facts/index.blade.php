@@ -32,9 +32,9 @@
                             <th width="3%">{{__('fact.no')}}</th>
                             <th>{{__('fact.code')}}</th>
                             <th>{{__('fact.description')}}</th>
-                            <th width="6%">{{__('fact.type')}}</th>
-                            <th width="7%">{{__('fact.status')}}</th>
-                            <th width="4%"></th>
+                            <th>{{__('fact.type')}}</th>
+                            <th>{{__('fact.status')}}</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>

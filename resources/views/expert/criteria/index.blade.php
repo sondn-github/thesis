@@ -33,9 +33,9 @@
                             <th width="3%">{{__('criteria.no')}}</th>
                             <th>{{__('criteria.code')}}</th>
                             <th>{{__('criteria.name')}}</th>
-                            <th width="6%">{{__('criteria.weight')}}</th>
-                            <th width="6%">{{__('criteria.status')}}</th>
-                            <th width="7%"></th>
+                            <th>{{__('criteria.weight')}}</th>
+                            <th>{{__('criteria.status')}}</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
