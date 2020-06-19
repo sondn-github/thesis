@@ -9,6 +9,7 @@ use App\Evaluation;
 use App\Course;
 use App\Services\Interfaces\EvaluationServiceInterface;
 use App\Type;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -145,6 +146,11 @@ class EvaluationService extends Service implements EvaluationServiceInterface
 
         if ($toDate = $request->get('to-date')) {
             $evaluations->whereDate('created_at', '<=', $toDate);
+        }
+
+        if ($className = $request->get('class_name')) {
+            $userIds = User::where('class_name', $className)->get()->pluck('id');
+            $evaluations->whereIn(Evaluation::COL_USER_ID, $userIds);
         }
 
         $evaluations = $evaluations->get();

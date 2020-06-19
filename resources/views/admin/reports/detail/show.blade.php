@@ -45,6 +45,10 @@
                                                 <span class="glyphicon glyphicon-th"></span>
                                             </div>
                                         </div>
+                                        <div class="form-group mr-5">
+                                            {!! Form::label('class_name', 'Lớp:', ['class' => 'control-label mr-2']) !!}
+                                            {!! Form::select('class_name', ['' => 'Chọn lớp', 'Hespi' => 'Hespi','SIE' => 'SIE'] , null , ['class' => 'form-control']) !!}
+                                        </div>
                                         <button type="submit" class="btn btn-primary">Lọc</button>
                                     </form>
                                     {!! Form::close() !!}
