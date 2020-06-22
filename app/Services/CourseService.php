@@ -59,10 +59,19 @@ class CourseService extends Service implements CourseServiceInterface
         return Course::with('category')->paginate(Course::PER_PAGE);
     }
 
-    public function getCoursesByCategory($categoryId) {
-        return Course::with('category')
-            ->where(Course::COL_CATEGORY_ID, $categoryId)
-            ->paginate(Course::PER_PAGE);
+    public function getCoursesByCategoryWithFilter($categoryId, $request) {
+        $courses = Course::with('category')
+            ->where('category_id', $categoryId);
+
+        if ($teacherId = $request->get('teacher_id')) {
+            $courses->where('user_id', $teacherId);
+        }
+
+        if ($courseName = $request->get('course_name')) {
+            $courses->where('name', 'like', "%$courseName%");
+        }
+
+        return $courses->paginate(Course::PER_PAGE);
     }
 
     public function getTopCourses($limit) {
