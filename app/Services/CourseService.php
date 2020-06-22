@@ -22,6 +22,7 @@ class CourseService extends Service implements CourseServiceInterface
 {
     public function getCoursesByUserId($userId) {
         return Course::where(Course::COL_USER_ID, $userId)
+            ->where(Course::COL_STATUS, Course::ACTIVE_STATUS)
             ->get();
     }
 
@@ -55,13 +56,10 @@ class CourseService extends Service implements CourseServiceInterface
         ]);
     }
 
-    public function getCourses() {
-        return Course::with('category')->paginate(Course::PER_PAGE);
-    }
-
     public function getCoursesByCategoryWithFilter($categoryId, $request) {
         $courses = Course::with('category')
-            ->where('category_id', $categoryId);
+            ->where('category_id', $categoryId)
+            ->where(Course::COL_STATUS, Course::ACTIVE_STATUS);
 
         if ($teacherId = $request->get('teacher_id')) {
             $courses->where('user_id', $teacherId);
@@ -90,6 +88,7 @@ class CourseService extends Service implements CourseServiceInterface
 
         if (count($coursesId) == 0) {
             return Course::with('category')
+                ->where(Course::COL_STATUS, Course::ACTIVE_STATUS)
                 ->limit($limit)
                 ->get();
         }
@@ -97,7 +96,11 @@ class CourseService extends Service implements CourseServiceInterface
         $defaultPFS = [Evaluation::AGREEMENT => 0, Evaluation::NEUTRAL => 0, Evaluation::DISAGREEMENT => 0];
 
         $courses = Course::whereIn(Course::COL_ID, $coursesId)
+            ->where(Course::COL_STATUS, Course::ACTIVE_STATUS)
             ->get();
+        if (count($courses) == 0) {
+            return [];
+        }
 
         $bestPFR = [];
         $criteria = $this->getUsingCriteria($typeId);
@@ -227,10 +230,9 @@ class CourseService extends Service implements CourseServiceInterface
                 return $course
                         ->update([
                             Course::COL_STATUS => $request->get('status'),
-                        ]) && $course->lesson()
-                        ->update([
+                        ]) && ($course->lesson->count() != 0 ? $course->lesson()->update([
                             Lesson::COL_STATUS => $request->get('status'),
-                        ]);
+                        ]) : true);
             } else {
                 return false;
             }

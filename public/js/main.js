@@ -150,14 +150,14 @@ jQuery(document).ready(function($) {
 			});
 		}
 
-		if ( $('.owl-slide-3').length > 0 ) {
+		if ( $('.owl-slide-3').length > 0) {
 			$('.owl-slide-3').owlCarousel({
 				center: false,
 				items: 1,
-				loop: true,
+				loop: false,
 				stagePadding: 10,
 				margin: 30,
-				autoplay: true,
+				autoplay: false,
 				smartSpeed: 500,
 				nav: true,
 				dots: true,
@@ -207,7 +207,6 @@ jQuery(document).ready(function($) {
 		    }
 			});
 		}
-
 
 		if ( $('.nonloop-block-14').length > 0 ) {
 			$('.nonloop-block-14').owlCarousel({
