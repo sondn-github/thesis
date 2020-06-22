@@ -12,6 +12,7 @@ use App\Http\Requests\StoreCourseRequest;
 use App\Lesson;
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Type;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Routing\CompiledRoute;
 use function GuzzleHttp\Psr7\_parse_request_uri;
@@ -181,4 +182,21 @@ class CourseService extends Service implements CourseServiceInterface
             ->toArray();
     }
 
+    public function getCoursesWithFilter(Request $request) {
+        $courses = Course::with('category');
+
+        if ($categoryId = $request->get('category_id')) {
+            $courses->where('category_id', $categoryId);
+        }
+
+        if ($teacherId = $request->get('teacher_id')) {
+            $courses->where('user_id', $teacherId);
+        }
+
+        if ($courseName = $request->get('course_name')) {
+            $courses->where('name', 'like', "%$courseName%");
+        }
+
+        return $courses->paginate(Course::PER_PAGE);
+    }
 }

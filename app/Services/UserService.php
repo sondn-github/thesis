@@ -8,6 +8,7 @@ use App\Http\Requests\ChangeAvatarRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Role;
 use App\Services\Interfaces\UserServiceInterface;
 use App\User;
 use Illuminate\Http\Request;
@@ -117,5 +118,12 @@ class UserService extends Service implements UserServiceInterface
             ->update([
                 User::COL_STATUS => $request->get('status'),
             ]);
+    }
+
+    public function getUsersByRoleName($roleName) {
+        return Role::where('name', $roleName)
+            ->firstOrFail()
+            ->users()
+            ->get();
     }
 }

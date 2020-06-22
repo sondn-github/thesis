@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Interfaces\CategoryServiceInterface;
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Services\Interfaces\CriteriaServiceInterface;
 use App\Services\Interfaces\EvaluationServiceInterface;
 use App\Services\Interfaces\TypeServiceInterface;
+use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,29 +16,41 @@ class CourseController extends Controller
     protected $courseService;
     protected $criteriaService;
     protected $evaluationService;
-    protected $typeSerice;
+    protected $typeService;
+    private $categoryService;
+    private $userService;
 
     public function __construct(CourseServiceInterface $courseService,
                                 CriteriaServiceInterface $criteriaService,
                                 EvaluationServiceInterface $evaluationService,
-                                TypeServiceInterface $typeService)
+                                TypeServiceInterface $typeService,
+                                CategoryServiceInterface $categoryService,
+                                UserServiceInterface $userService)
     {
         $this->courseService = $courseService;
         $this->criteriaService = $criteriaService;
         $this->evaluationService = $evaluationService;
-        $this->typeSerice = $typeService;
+        $this->typeService = $typeService;
+        $this->categoryService = $categoryService;
+        $this->userService = $userService;
+
         $this->middleware('auth')->only(['show']);
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $courses = $this->courseService->getCourses();
-        return view('courses', compact('courses'));
+        $courses = $this->courseService->getCoursesWithFilter($request);
+        $teachers = $this->userService->getUsersByRoleName('teacher');
+        $categories = $this->categoryService->getCategories();
+        $request->flash();
+
+        return view('courses', compact('courses', 'teachers', 'categories'));
     }
 
     /**

@@ -23,18 +23,38 @@
     <div class="site-section">
         <div class="container">
             <div class="row mb-5">
-                <div class="col-md-4">
-                    <form action="" method="get">
-                        <div class="input-group">
-{{--                            <label for="search">Tìm kiếm:</label>--}}
-                            <input type="text" class="form-control mr-2" name="search" value="{{ old('search') }}" placeholder="{{__('course.search')}}">
-                            <div class="input-group-btn">
-                                <button class="btn btn-primary" type="submit">
-                                    {{__('course.search')}}
-                                </button>
+                <div class="panel panel-default mx-auto">
+                    <div class="panel-body">
+                        {!! Form::open(['route' => 'courses.index', 'method' => 'get', 'class' => 'form-inline ml-2']) !!}
+                            <div class="form-group mr-3">
+                                {!! Form::label('category_id', 'Thể loại:', ['class' => 'control-label mr-2']) !!}
+                                <select class="form-control" name="category_id" id="category_id">
+                                    <option value="">{{ __('--Chọn--') }}</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}" @if (old('category_id') == $category->id) selected @endif>{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+{{--                                {!! Form::select('category_id', $categories , old('category_id') , ['class' => 'form-control']) !!}--}}
                             </div>
-                        </div>
-                    </form>
+                            <div class="form-group mr-3">
+                                {!! Form::label('teacher_id', 'Giảng viên:', ['class' => 'control-label mr-2']) !!}
+                                <select class="form-control" name="teacher_id" id="teacher_id">
+                                    <option value="">{{ __('--Chọn--') }}</option>
+                                    @foreach($teachers as $teacher)
+                                        <option value="{{ $teacher->id }}" @if (old('teacher_id') == $teacher->id) selected @endif>{{ $teacher->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group mr-3">
+                                {!! Form::label('course_name', 'Tên khóa học:', ['class' => 'control-label, mr-2']) !!}
+                                {!! Form::text('course_name', old('course_name'), ['class' => 'form-control', 'placeholder' => 'Nhập tên khóa học']) !!}
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary mr-2" type="submit">{{__('course.search')}}</button>
+                                <button class="btn btn-danger" type="reset" data-url="{{ route('courses.index') }}">{{__('Đặt lại')}}</button>
+                            </div>
+                        {!! Form::close() !!}
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -66,7 +86,15 @@
                     <div class="col-lg-4 col-md-6 mb-4">{{__('course.no-data')}}</div>
                 @endif
             </div>
-            <div class="mx-auto">{{$courses->links()}}</div>
+            <div class="mx-auto">{{$courses->appends(\Request::except('page'))->links()}}</div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script type="text/javascript">
+        $('button[type=reset]').click(function () {
+            window.location.href = $(this).data('url');
+        })
+    </script>
 @endsection
