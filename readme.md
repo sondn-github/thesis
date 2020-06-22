@@ -1,65 +1,157 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Hướng dẫn cài đặt hệ thống trên môi trường linux.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## 1. Cài đặt apache
+Chạy lần lượt các lệnh sau:
+> sudo apt update
 
-## About Laravel
+> sudo apt-get install apache2
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+Sau khi cài đặt bạn có thể start và enable Apache bằng cách:
+> systemctl start apache2
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+> systemctl enable apache2
+## 2. Cài đặt PHP
+Thêm PHP vào khi PPA:
+> sudo add-apt-repository ppa:ondrej/php
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+> sudo apt-get update
 
-## Learning Laravel
+Chạy lệnh sau để cài PHP 7.2 và các extension cần thiết:
+> apt install php7.2 php7.2-xml php7.2-mbstring php7.2-mysql php7.2-json php7.2-curl php7.2-cli php7.2-common php7.1-mcrypt php7.2-gd libapache2-mod-php7.2 php7.2-zip
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+> sudo nano /etc/php/7.2/apache2/php.ini
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+Tìm và sửa lại giống như sau:
 
-## Laravel Sponsors
+memory_limit = 256M
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+upload_max_filesize = 64M
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
+cgi.fix_pathinfo=0
 
-## Contributing
+## 3. Cài đặt MySql
+Chạy lệnh sau:
+> sudo apt-get install mysql-server
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+> sudo mysql_secure_installation
 
-## Security Vulnerabilities
+> sudo mysql
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Nhập tiếp:
+> SELECT user,authentication_string,plugin,host FROM mysql.user;
 
-## License
+> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+> FLUSH PRIVILEGES;
+
+> CREATE DATABASE 'DB_NAME';
+
+> exit
+
+## 4. Cài đặt Composer và Laravel
+### 4.1. Cài đặt Composer
+> curl -sS https://getcomposer.org/installer | php
+
+>  mv composer.phar /usr/bin/composer
+### 4.2. Cài đặt Laravel
+Các bạn dùng composer để cài hoặc có thể dùng Git để clone source code vào đường dẫn: /var/www/html
+> cd /var/www/html
+
+> git clone https://github.com/sondn-github/thesis/
+
+> cd thesis/ 
+
+> composer install
+
+> cp .env-example .env
+
+> php artisan key:generate
+
+Sau đó sửa lại như file .env cho phù hợp máy của bạn. Ví dụ:
+> APP_NAME=Laravel
+>
+> APP_ENV=local
+>
+> APP_KEY=base64:rZIXoi5Z+RDTpYs0+9EaYCWvULop2HEgnYWjr0tEE3g=
+>
+> APP_DEBUG=true
+>
+> APP_URL=http://localhost
+>
+> 
+> LOG_CHANNEL=stack
+>
+> 
+> DB_CONNECTION=mysql
+>
+> DB_HOST=127.0.0.1
+>
+> DB_PORT=3306
+>
+> DB_DATABASE=thesis
+>
+> DB_USERNAME=root
+>
+> DB_PASSWORD=sonduong
+>
+> 
+> BROADCAST_DRIVER=log
+>
+> CACHE_DRIVER=file
+>
+> SESSION_DRIVER=file
+>
+> SESSION_LIFETIME=120
+>
+> QUEUE_DRIVER=sync
+>
+> 
+> REDIS_HOST=127.0.0.1
+>
+> REDIS_PASSWORD=null
+>
+> REDIS_PORT=6379
+>
+> 
+> MAIL_DRIVER=smtp
+>
+> MAIL_HOST=smtp.gmail.com
+>
+> MAIL_PORT=587
+>
+> MAIL_USERNAME=sondn.test@gmail.com
+>
+> MAIL_PASSWORD=dhqvhupxdghaacmn
+>
+> MAIL_ENCRYPTION=tls
+>
+> MAIL_FROM_ADDRESS=sondn.test@gmail.com
+>
+> MAIL_FROM_NAME=Academics
+>
+> 
+> PUSHER_APP_ID=
+>
+> PUSHER_APP_KEY=
+>
+> PUSHER_APP_SECRET=
+>
+> PUSHER_APP_CLUSTER=mt1
+>
+> 
+> MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+>
+> MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+# 5. Cầu hình apache.
+Chạy lệnh sau:
+> sudo nano /etc/apache2/sites-available/000-default.conf
+
+Tìm dòng DocumentRoot /var/www/html sửa lại thành như sau:
+> DocumentRoot /var/www/html/thesis/public
+
+Sau đó lưu lại rồi restart lại Apache nhé:
+> systemctl restart apache2
+
+# 6. Truy cập.
+Đi tới đường link http://localhost
