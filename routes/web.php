@@ -36,7 +36,8 @@ Route::middleware(['auth', 'isTeacher'])->prefix('teacher')->name('teacher.')->g
     Route::get('/lessons/{id}', 'LessonsController@getLessonOfTeacher')->name('lesson.getLessonOfTeacher');
     Route::get('/lessons/{id}/edit', 'LessonsController@edit')->name('lesson.edit');
     Route::put('/lessons/{id}', 'LessonsController@update')->name('lesson.update');
-    Route::get('/status/change', 'LessonsController@changeStatus')->name('lesson.status.change');
+    Route::get('/lessons/status/change', 'LessonsController@changeStatus')->name('lesson.status.change');
+    Route::get('/courses/status/change', 'Teacher\CourseController@changeStatus')->name('courses.status.change');
     Route::delete('/lessons/{id}', 'LessonsController@destroy')->name('lesson.destroy');
     Route::get('/advises', 'KnowledgeController@getAdvises')->name('courses.advises');
     Route::resource('courses', 'Teacher\CourseController');

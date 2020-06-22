@@ -13,6 +13,7 @@ use App\Lesson;
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Routing\CompiledRoute;
 use function GuzzleHttp\Psr7\_parse_request_uri;
@@ -198,5 +199,33 @@ class CourseService extends Service implements CourseServiceInterface
         }
 
         return $courses->paginate(Course::PER_PAGE);
+    }
+
+    public function changeStatus($request) {
+        if (Auth::user()->role->name == 'admin') {
+            $course = Course::findOrFail($request->id);
+            return $course->update([
+                    Course::COL_STATUS => $request->input(Course::COL_STATUS),
+                ]) && $course->lesson()
+                ->update([
+                    Lesson::COL_STATUS => $request->get('status'),
+                ]);
+        } else {
+            $course = Course::where('id', $request->get('id'))
+                ->where('user_id', Auth::id())
+                ->firstOrFail();
+            if ($course) {
+                return $course
+                        ->update([
+                            Course::COL_STATUS => $request->get('status'),
+                        ]) && $course->lesson()
+                        ->update([
+                            Lesson::COL_STATUS => $request->get('status'),
+                        ]);
+            } else {
+                return false;
+            }
+
+        }
     }
 }

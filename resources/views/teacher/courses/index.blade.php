@@ -34,6 +34,7 @@
                             <th>{{__('course.category')}}</th>
                             <th>{{__('course.numberLessons')}}</th>
                             <th>{{__('course.created_at')}}</th>
+                            <th>{{__('Trạng thái')}}</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -74,6 +75,10 @@
                         <div class="row mb-3">
                             <div class="col-md-4 label">{{__('course.created_at')}}</div>
                             <div class="col-md-8" id="created-at"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 label">{{__('Trạng thái')}}</div>
+                            <div class="col-md-8" id="status"></div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4 label">{{__('course.lessonList')}}</div>
@@ -175,6 +180,22 @@
                 {data: 'number_lessons'},
                 {data: 'created_at'},
                 {
+                    data: 'status', "searchable": false,
+                    render: function (data, type, row, meta) {
+                        if (data == 1) {
+                            return '<label class="switch small">'
+                                + '<input type="checkbox" name="status" data-id="' + row.id + '" checked>'
+                                + '<span class="slider round"></span>'
+                                + '</label>';
+                        } else {
+                            return '<label class="switch small">'
+                                + '<input type="checkbox" name="status" data-id="' + row.id + '">'
+                                + '<span class="slider round"></span>'
+                                + '</label>';
+                        }
+                    }
+                },
+                {
                     data: 'action', "searchable": false,
                     render: function (data, type, row, meta) {
                         return '<a href="/teacher/courses/' + row.id + '" class="btn btn-info btn-info-lesson" data-id="' + row.id + '" data-toggle="modal" data-target="#courseDetail" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>'
@@ -200,6 +221,11 @@
                     $("#description").html(data.description);
                     $("#link").html(data.link);
                     $("#created-at").html(data.created_at);
+                    if (data.status == 1) {
+                        $("#status").html('<p class="text-success">{{__("lesson.active")}}</p>');
+                    } else {
+                        $("#status").html('<p class="text-danger">{{__("lesson.deactive")}}</p>');
+                    }
                     $.each(data.lesson, function (index, value) {
                         index = index + 1;
                         $('#courseDetail tbody').append('<tr><td>' + index + '</td><td>' + value.name + '</td><td><a href="javascript:void(0)" data-id="' + value.id + '" class="btn btn-xs btn-danger btn-delete"><i class="fa fa-trash"></i></a></td></tr>');
@@ -268,6 +294,39 @@
                     },
                     '{{__('lesson.cancel')}}': function () {
 
+                    }
+                }
+            });
+        });
+
+        $('#coursesTable').on("click", ':checkbox', function () {
+            var status = this;
+            var id = $(status).attr("data-id");
+            var value = $(status).prop("checked");
+            $.confirm({
+                title: '{{__('lesson.confirm')}}!',
+                content: '{{__('lesson.confirmMessage')}}',
+                buttons: {
+                    '{{__('lesson.confirm')}}': function () {
+                        $.ajax({
+                            type: "GET",
+                            url: '{{route('teacher.courses.status.change')}}',
+                            dataType: "json",
+                            data: {
+                                id: id,
+                                status: value ? 1 : 0
+                            },
+                            success: function (data) {
+                                table.ajax.reload();
+                                $.alert(data.success);
+                            },
+                            error: function (data) {
+                                $.alert(data.error);
+                            }
+                        });
+                    },
+                    '{{__('lesson.cancel')}}': function () {
+                        $(status).prop("checked", !value);
                     }
                 }
             });

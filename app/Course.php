@@ -16,6 +16,7 @@ class Course extends AppModel
     public const COL_THUMBNAIL = 'thumbnail';
     public const COL_PFR = 'pfr';
     public const COL_LINK = 'link';
+    public const COL_STATUS = 'status';
 
     // Constant
     public const PER_PAGE = 6;
@@ -28,6 +29,7 @@ class Course extends AppModel
         self::COL_THUMBNAIL,
         self::COL_PFR,
         self::COL_LINK,
+        self::COL_STATUS,
     ];
 
     protected $attributes = [
@@ -40,6 +42,7 @@ class Course extends AppModel
 
     protected $casts = [
         self::COL_PFR => 'array',
+        self::COL_STATUS => 'boolean',
     ];
 
     public function category() {
