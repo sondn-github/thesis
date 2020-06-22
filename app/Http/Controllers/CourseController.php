@@ -86,7 +86,7 @@ class CourseController extends Controller
         $criteria = $this->criteriaService->getCriteriaByUser(Auth::user(), $id);
         $numberEvaluation = $this->evaluationService->countEvaluation($id);
         $isEvaluated = count($this->evaluationService->getEvaluation($id, Auth::id())) == 1;
-        $optionIsPFR = $this->typeSerice->isPFR($criteria[0]->type_id);
+        $optionIsPFR = $this->typeService->isPFR($criteria[0]->type_id);
 
         return view('course_single', [
             'course' => $course,
