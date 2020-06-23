@@ -91,12 +91,13 @@ class CriteriaService extends Service implements CriteriaServiceInterface
     }
 
     public function getCriteriaByUser($user, $courseId) {
-        $typeICT = Type::find(Type::TYPE_ICT);
+        $typeService = app()->make(TypeServiceInterface::class);
+        $usingType = $typeService->getUsingType();
         $course = Course::find($courseId);
 
-        if ($typeICT->is_using == 1) {
+        if (count($usingType) == 1) {
             return Criteria::where(Criteria::COL_STATUS, Criteria::ACTIVE_STATUS)
-                ->where(Criteria::COL_TYPE_ID, Type::TYPE_ICT)
+                ->where(Criteria::COL_TYPE_ID, $usingType->first()->id)
                 ->orderBy(Criteria::COL_ID, 'asc')
                 ->get();
         } else {
