@@ -40,12 +40,14 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="course" class="required">{{__('course.category')}}</label>
-                            <select class="form-control" id="category" name="category_id">
-                                @foreach($categories as $category)
-                                    <option value="{{$category->id}}"
-                                            @if($course->category_id == $category->id) selected @endif>{{$category->name}}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" name="category_name" id="category_name" list="category-list" class="form-control" placeholder="Chọn thể loại..." value="{{ $course->category->name }}">
+                            <datalist id="category-list">
+                                @if (count($categories) > 0)
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->name}}"></option>
+                                    @endforeach
+                                @endif
+                            </datalist>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>

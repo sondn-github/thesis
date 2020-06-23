@@ -62,12 +62,14 @@
                     </div>
                     <div class="form-group">
                         <label for="type" class="required">{{__('criteria.type')}}</label>
-                        <select name="type_id" id="type_id" class="form-control">
-                            <option>--Chọn--</option>
-                            @foreach($types as $type)
-                                <option value="{{$type->id}}" @if(old('type_id') == $type->id) selected @endif>{{$type->name}}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" name="type_name" id="type_name" list="type-list" class="form-control" placeholder="Chọn thể loại..." value="{{ old('type_name') }}">
+                        <datalist id="type-list">
+                            @if (count($types) > 0)
+                                @foreach($types as $type)
+                                    <option value="{{$type->name}}"></option>
+                                @endforeach
+                            @endif
+                        </datalist>
                     </div>
                     <div class="form-group">
                         <label for="description">{{__('criteria.description')}}</label>
