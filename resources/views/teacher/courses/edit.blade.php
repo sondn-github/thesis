@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">{{__('layouts/header.course')}}</h1>
+                        <h1 class="m-0 text-dark">{{__('layouts/header.edit')}}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -42,19 +42,21 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="course" class="required">{{__('course.category')}}</label>
-                            <select class="form-control" id="category" name="category_id">
-                                @foreach($categories as $category)
-                                    <option value="{{$category->id}}"
-                                            @if($course->category_id == $category->id) selected @endif>{{$category->name}}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" name="category_name" id="category_name" list="category-list" class="form-control" placeholder="Chọn thể loại..." value="{{ $course->category->name }}">
+                            <datalist id="category-list">
+                                @if (count($categories) > 0)
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->name}}"></option>
+                                    @endforeach
+                                @endif
+                            </datalist>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="description">{{__('course.description')}}</label>
+                        <label for="description" class="required">{{__('course.description')}}</label>
                         <textarea name="description" id="description" rows="5" class="form-control"
                                   placeholder="{{__('course.enterDescription')}}">{{$course->description}}</textarea>
                     </div>

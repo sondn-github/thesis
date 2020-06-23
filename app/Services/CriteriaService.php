@@ -9,7 +9,9 @@ use App\Criteria;
 use App\Http\Requests\StoreCriteriaRequest;
 use App\Http\Requests\UpdateCriteriaRequest;
 use App\Services\Interfaces\CriteriaServiceInterface;
+use App\Services\Interfaces\TypeServiceInterface;
 use App\Type;
+use Illuminate\Http\Request;
 
 class CriteriaService extends Service implements CriteriaServiceInterface
 {
@@ -58,8 +60,22 @@ class CriteriaService extends Service implements CriteriaServiceInterface
                 Criteria::COL_EXPLAIN => $request->input(Criteria::COL_EXPLAIN),
                 Criteria::COL_EXAMPLE => $request->input(Criteria::COL_EXAMPLE),
                 Criteria::COL_WEIGHT => $request->input(Criteria::COL_WEIGHT),
-                Criteria::COL_TYPE_ID => $request->input((Criteria::COL_TYPE_ID)),
+                Criteria::COL_TYPE_ID => $this->getTypeId($request->input('type_name')),
             ]);
+    }
+
+    public function getTypeId($typeName)
+    {
+        $typeService = app()->make(TypeServiceInterface::class);
+        $type = $typeService->getTypeByName($typeName);
+
+        if (!$type) {
+            $request = new Request();
+            $request->request->add(['name' => $typeName]);
+            $type = $typeService->store($request);
+        }
+
+        return $type->id;
     }
 
     public function store(StoreCriteriaRequest $request) {
@@ -70,7 +86,7 @@ class CriteriaService extends Service implements CriteriaServiceInterface
             Criteria::COL_EXPLAIN => $request->input(Criteria::COL_EXPLAIN),
             Criteria::COL_EXAMPLE => $request->input(Criteria::COL_EXAMPLE),
             Criteria::COL_WEIGHT => $request->input(Criteria::COL_WEIGHT),
-            Criteria::COL_TYPE_ID => $request->input((Criteria::COL_TYPE_ID)),
+            Criteria::COL_TYPE_ID => $this->getTypeId($request->input('type_name')),
         ]);
     }
 

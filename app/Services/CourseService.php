@@ -10,6 +10,7 @@ use App\Evaluation;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Requests\StoreCourseRequest;
 use App\Lesson;
+use App\Services\Interfaces\CategoryServiceInterface;
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Type;
 use Illuminate\Http\Request;
@@ -33,10 +34,18 @@ class CourseService extends Service implements CourseServiceInterface
             ->first();
     }
 
+    public function getCategoryId($categoryName)
+    {
+        $categoryService = app()->make(CategoryServiceInterface::class);
+        $category = $categoryService->getCategoryByName($categoryName);
+
+        return $category ? $category->id : $categoryService->createCategoryByName($categoryName)->id;
+    }
+
     public function update(UpdateCourseRequest $request, $id) {
         return Course::findOrFail($id)->update([
             Course::COL_NAME => $request->input(Course::COL_NAME),
-            Course::COL_CATEGORY_ID => $request->input(Course::COL_CATEGORY_ID),
+            Course::COL_CATEGORY_ID => $this->getCategoryId($request->get('category_name')),
             Course::COL_DESCRIPTION => $request->input(Course::COL_DESCRIPTION),
             Course::COL_LINK => $request->input(Course::COL_LINK),
         ]);
@@ -49,7 +58,7 @@ class CourseService extends Service implements CourseServiceInterface
     public function store(StoreCourseRequest $request, $teacherId) {
         return Course::create([
             Course::COL_NAME => $request->input(Course::COL_NAME),
-            Course::COL_CATEGORY_ID => $request->input(Course::COL_CATEGORY_ID),
+            Course::COL_CATEGORY_ID => $this->getCategoryId($request->get('category_name')),
             Course::COL_DESCRIPTION => $request->input(Course::COL_DESCRIPTION),
             Course::COL_USER_ID => $teacherId,
             Course::COL_LINK => $request->input(Course::COL_LINK),

@@ -34,4 +34,17 @@ class CategoryService extends Service implements CategoryServiceInterface
         return Category::findOrFail($id)
             ->delete();
     }
+
+    public function getCategoryByName($name)
+    {
+        return Category::where(Category::COL_NAME, $name)
+            ->first();
+    }
+
+    public function createCategoryByName($name)
+    {
+        return Category::create([
+            'name' => $name,
+        ]);
+    }
 }

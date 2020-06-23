@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Criteria;
 use App\Services\Interfaces\TypeServiceInterface;
 use App\Type;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TypeService extends Service implements TypeServiceInterface
@@ -49,5 +50,16 @@ class TypeService extends Service implements TypeServiceInterface
 
     public function getTypeById($id) {
         return Type::findOrFail($id);
+    }
+
+    public function getTypeByName($name) {
+        return Type::where('name', $name)
+            ->first();
+    }
+
+    public function store(Request $request) {
+        return Type::create([
+            'name' => $request->get('name'),
+        ]);
     }
 }
