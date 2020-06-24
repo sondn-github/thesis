@@ -27,7 +27,7 @@
 
         <div class="content">
             <div class="container-fluid">
-                <form action="{{route('teacher.courses.update', $course->id)}}" method="post">
+                <form action="{{route('teacher.courses.update', $course->id)}}" method="post" id="course-form">
                     {{--                <form action="{{route('teacher.lesson.store')}}" method="post" class="needs-validation" novalidate>--}}
                     {{csrf_field()}}
                     @method('PUT')
@@ -120,10 +120,10 @@
             this.showAlert("{{ session()->get('errors')->first() }}", "Lỗi", "error");
         @endif
 
-        $("#updateBtn").click(function () {
-            $(this).prop('disable', true);
-            $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
+        $('#course-form').submit(function () {
+            $('#updateBtn').prop('disable', true);
+            $('#updateBtn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
                 '  Loading...');
-        });
+        })
     </script>
 @endsection

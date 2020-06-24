@@ -29,7 +29,7 @@
         <div class="content">
             <div class="container-fluid">
                 <form action="{{route('teacher.lesson.update', $lesson->id)}}" method="post"
-                      enctype="multipart/form-data">
+                      enctype="multipart/form-data" id="lesson-form">
                     {{--                <form action="{{route('teacher.lesson.store')}}" method="post" class="needs-validation" novalidate>--}}
                     {{csrf_field()}}
                     @method('PUT')
@@ -37,14 +37,14 @@
                         <div class="col-md-8 mb-3 form-group">
                             <label for="name" class="required">{{__('lesson.name')}}</label>
                             <input type="text" class="form-control" id="name" name="name"
-                                   placeholder="{{__('lesson.enterName')}}" value="{{$lesson->name}}">
+                                   placeholder="{{__('lesson.enterName')}}" value="{{$lesson->name}}" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="course" class="required">{{__('lesson.course')}}</label>
-                            <select class="form-control" id="course" name="course_id">
+                            <select class="form-control" id="course" name="course_id" required>
                                 @foreach($courses as $course)
                                     <option value="{{$course->id}}"
                                             @if($lesson->course_id == $course->id) selected @endif>{{$course->name}}</option>
@@ -56,20 +56,20 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="abstract">{{__('lesson.abstract')}}</label>
+                        <label for="abstract" class="required">{{__('lesson.abstract')}}</label>
                         <textarea name="abstract" id="abstract" rows="5" class="form-control"
-                                  placeholder="{{__('lesson.enterAbstract')}}">{{$lesson->abstract}}</textarea>
+                                  placeholder="{{__('lesson.enterAbstract')}}" required>{{$lesson->abstract}}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="description">{{__('lesson.description')}}</label>
+                        <label for="description" class="required">{{__('lesson.description')}}</label>
                         <textarea name="description" id="description" rows="5" class="form-control"
-                                  placeholder="{{__('lesson.enterDescription')}}">{{$lesson->description}}</textarea>
+                                  placeholder="{{__('lesson.enterDescription')}}" required>{{$lesson->description}}</textarea>
                     </div>
                     {{--                <div class="custom-file mb-3">--}}
                     {{--                    <input type="file" class="custom-file-input" id="customFile" name="file">--}}
                     {{--                    <label id="fileLabel" class="custom-file-label" for="customFile">{{__('lesson.chooseFile')}}</label>--}}
                     {{--                </div>--}}
-                    <button id="createBtn" class="btn btn-primary" type="submit">{{__('lesson.update')}}</button>
+                    <button id="updateBtn" class="btn btn-primary" type="submit">{{__('lesson.update')}}</button>
                     <a href="{{route('teacher.lesson.index')}}" class="btn btn-secondary">{{__('lesson.back')}}</a>
                 </form>
             </div>
@@ -125,11 +125,11 @@
             this.showAlert("{{ session()->get('errors')->first() }}", "Lỗi", "error");
         @endif
 
-        $("#createBtn").click(function () {
-            $(this).prop('disable', true);
-            $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
+        $('#lesson-form').submit(function () {
+            $('#updateBtn').prop('disable', true);
+            $('#updateBtn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
                 '  Loading...');
-        });
+        })
 
         $("input[name='file']").on('change', function () {
             $("#fileLabel").html($("input[name='file']")[0].files[0].name);

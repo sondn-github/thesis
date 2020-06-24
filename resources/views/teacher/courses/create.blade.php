@@ -28,7 +28,7 @@
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
-                <form action="{{route('teacher.courses.store')}}" method="post">
+                <form action="{{route('teacher.courses.store')}}" method="post" id="course-form">
                     {{--                <form action="{{route('teacher.lesson.store')}}" method="post" class="needs-validation" novalidate>--}}
                     {{csrf_field()}}
                     <div class="form-row">
@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label for="description" class="required">{{__('lesson.description')}}</label>
                         <textarea name="description" id="description" rows="5" class="form-control"
-                                  placeholder="{{__('lesson.enterDescription')}}">{{old('description')}}</textarea>
+                                  placeholder="{{__('lesson.enterDescription')}}" required>{{old('description')}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="link">{{__('course.link')}}</label>
@@ -120,10 +120,10 @@
             this.showAlert("{{ session()->get('errors')->first() }}", "Lỗi", "error");
         @endif
 
-        $("#createBtn").click(function () {
-            $(this).prop('disable', true);
-            $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
+        $('#course-form').submit(function () {
+            $('#createBtn').prop('disable', true);
+            $('#createBtn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
                 '  Loading...');
-        });
+        })
     </script>
 @endsection
