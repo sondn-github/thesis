@@ -247,7 +247,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
     }
 
     public function storeRuleType2($request) {
-        $premises = $this->convertToPremiseWithType1($request);
+        $premises = $this->convertToPremiseWithType2($request);
         if ($this->hasRule($premises, $request->input(Knowledge::COL_CONCLUSION), Knowledge::TYPE_2)) {
             return false;
         }
@@ -263,7 +263,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
     }
 
     public function updateRuleType2($request, $id) {
-        $premises = $this->convertToPremiseWithType1($request);
+        $premises = $this->convertToPremiseWithType2($request);
         if ($this->hasRule($premises, $request->input(Knowledge::COL_CONCLUSION), Knowledge::TYPE_2)) {
             return false;
         }
