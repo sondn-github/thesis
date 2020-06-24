@@ -1,75 +1,101 @@
-@extends('layouts.default')
+@extends('admin.layouts.default')
 
 @section('content')
-    <div class="custom-breadcrumns border-bottom">
-        <div class="container">
-            <a href="{{route('index')}}">{{__('layouts/header.home')}}</a>
-            <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <span class="current">{{__('layouts/header.uploadcriteria')}}</span>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">{{__('layouts/header.create')}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">
+                                <a href="{{route('expert.home')}}">{{__('layouts/header.home')}}</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{route('expert.criteria.index')}}">{{__('layouts/header.criteriaManagement')}}</a>
+                            </li>
+                            <li class="breadcrumb-item active">{{__('layouts/header.create')}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </div>
-    </div>
 
-    <div class="site-section">
-        <div class="container">
-            <form action="{{route('expert.criteria.store')}}" method="post">
-                {{--                <form action="{{route('teacher.criteria.store')}}" method="post" class="needs-validation" novalidate>--}}
-                {{csrf_field()}}
-                {{--                <div class="form-row">--}}
-                {{--                    <div class="col-md-8 mb-3 form-group">--}}
-                {{--                        <label for="name">{{__('criteria.name')}}</label>--}}
-                {{--                        <input type="text" class="form-control" id="name" name="name" placeholder="{{__('criteria.enterName')}}" value="{{$criteria->name}}">--}}
-                {{--                        <div class="valid-feedback">--}}
-                {{--                            Looks good!--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
-                {{--                    <div class="col-md-4 mb-3">--}}
-                {{--                        <label for="course">{{__('criteria.course')}}</label>--}}
-                {{--                        <select class="form-control" id="course" name="course_id">--}}
-                {{--                            @foreach($courses as $course)--}}
-                {{--                                <option value="{{$course->id}}" @if($criteria->course_id == $course->id) selected @endif>{{$course->name}}</option>--}}
-                {{--                            @endforeach--}}
-                {{--                        </select>--}}
-                {{--                        <div class="valid-feedback">--}}
-                {{--                            Looks good!--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
-                <div class="form-group">
-                    <label for="code">{{__('criteria.code')}}</label>
-                    <input type="text" class="form-control" id="code" name="code" placeholder="{{__('criteria.enterCode')}}" value="{{old('code')}}">
-                </div>
-                <div class="form-group">
-                    <label for="name">{{__('criteria.name')}}</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="{{__('criteria.enterName')}}" value="{{old('name')}}">
-                </div>
-                <div class="form-group">
-                    <label for="type">{{__('criteria.type')}}</label>
-                    <select name="type_id" id="type_id" class="form-control">
-                        <option>--Chọn--</option>
-                        @foreach($types as $type)
-                            <option value="{{$type->id}}" @if(old('type_id') == $type->id) selected @endif>{{$type->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="description">{{__('criteria.description')}}</label>
-                    <textarea name="description" id="description" rows="5" class="form-control" placeholder="{{__('criteria.enterDescription')}}">{{old('description')}}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="explain">{{__('criteria.explain')}}</label>
-                    <textarea name="explain" id="explain" rows="5" class="form-control" placeholder="{{__('criteria.enterExplain')}}">{{old('explain')}}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="example">{{__('criteria.example')}}</label>
-                    <textarea name="example" id="example" rows="5" class="form-control" placeholder="{{__('criteria.enterExample')}}">{{old('example')}}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="weight">{{__('criteria.weight')}}</label>
-                    <input type="text" class="form-control" id="weight" name="weight" placeholder="{{__('criteria.enterWeight')}}" value="{{old('weight')}}">
-                </div>
-                <button id="createBtn" class="btn btn-primary" type="submit">{{__('criteria.create')}}</button>
-                <a href="{{route('expert.criteria.index')}}" class="btn btn-secondary">{{__('criteria.back')}}</a>
-            </form>
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <form action="{{route('expert.criteria.store')}}" method="post">
+                    {{--                <form action="{{route('teacher.criteria.store')}}" method="post" class="needs-validation" novalidate>--}}
+                    {{csrf_field()}}
+                    {{--                <div class="form-row">--}}
+                    {{--                    <div class="col-md-8 mb-3 form-group">--}}
+                    {{--                        <label for="name">{{__('criteria.name')}}</label>--}}
+                    {{--                        <input type="text" class="form-control" id="name" name="name" placeholder="{{__('criteria.enterName')}}" value="{{$criteria->name}}">--}}
+                    {{--                        <div class="valid-feedback">--}}
+                    {{--                            Looks good!--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
+                    {{--                    <div class="col-md-4 mb-3">--}}
+                    {{--                        <label for="course">{{__('criteria.course')}}</label>--}}
+                    {{--                        <select class="form-control" id="course" name="course_id">--}}
+                    {{--                            @foreach($courses as $course)--}}
+                    {{--                                <option value="{{$course->id}}" @if($criteria->course_id == $course->id) selected @endif>{{$course->name}}</option>--}}
+                    {{--                            @endforeach--}}
+                    {{--                        </select>--}}
+                    {{--                        <div class="valid-feedback">--}}
+                    {{--                            Looks good!--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
+                    {{--                </div>--}}
+                    <div class="form-group">
+                        <label for="code" class="required">{{__('criteria.code')}}</label>
+                        <input type="text" class="form-control" id="code" name="code"
+                               placeholder="{{__('criteria.enterCode')}}" value="{{old('code')}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="required">{{__('criteria.name')}}</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                               placeholder="{{__('criteria.enterName')}}" value="{{old('name')}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="type" class="required">{{__('criteria.type')}}</label>
+                        <input type="text" name="type_name" id="type_name" list="type-list" class="form-control" placeholder="Chọn thể loại..." value="{{ old('type_name') }}">
+                        <datalist id="type-list">
+                            @if (count($types) > 0)
+                                @foreach($types as $type)
+                                    <option value="{{$type->name}}"></option>
+                                @endforeach
+                            @endif
+                        </datalist>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">{{__('criteria.description')}}</label>
+                        <textarea name="description" id="description" rows="5" class="form-control"
+                                  placeholder="{{__('criteria.enterDescription')}}">{{old('description')}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="explain">{{__('criteria.explain')}}</label>
+                        <textarea name="explain" id="explain" rows="5" class="form-control"
+                                  placeholder="{{__('criteria.enterExplain')}}">{{old('explain')}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="example">{{__('criteria.example')}}</label>
+                        <textarea name="example" id="example" rows="5" class="form-control"
+                                  placeholder="{{__('criteria.enterExample')}}">{{old('example')}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight" class="required">{{__('criteria.weight')}}</label>
+                        <input type="text" class="form-control" id="weight" name="weight"
+                               placeholder="{{__('criteria.enterWeight')}}" value="{{old('weight')}}">
+                    </div>
+                    <button id="createBtn" class="btn btn-primary" type="submit">{{__('criteria.create')}}</button>
+                    <a href="{{route('expert.criteria.index')}}" class="btn btn-secondary">{{__('criteria.back')}}</a>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
@@ -77,14 +103,14 @@
 @section('js')
     <script type="text/javascript">
         // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
+        (function () {
             'use strict';
-            window.addEventListener('load', function() {
+            window.addEventListener('load', function () {
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
                 var forms = document.getElementsByClassName('needs-validation');
                 // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
                         if (form.checkValidity() === false) {
                             event.preventDefault();
                             event.stopPropagation();
@@ -95,7 +121,7 @@
             }, false);
         })();
 
-        function showAlert(message, header,status) {
+        function showAlert(message, header, status) {
             toastr[status](message, header);
             toastr.options = {
                 "closeButton": true,
@@ -117,7 +143,7 @@
         }
 
         @if (session('success'))
-            this.showAlert("{{session('success')}}", "Thành công","success");
+            this.showAlert("{{session('success')}}", "Thành công", "success");
         @elseif (session()->get('errors'))
             this.showAlert("{{ session()->get('errors')->first() }}", "Lỗi", "error");
         @endif

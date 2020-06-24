@@ -51,23 +51,25 @@
                     {{--                    </div>--}}
                     {{--                </div>--}}
                     <div class="form-group">
-                        <label for="code">{{__('criteria.code')}}</label>
+                        <label for="code" class="required">{{__('criteria.code')}}</label>
                         <input type="text" class="form-control" id="code" name="code"
                                placeholder="{{__('criteria.enterCode')}}" value="{{$criteria->code}}">
                     </div>
                     <div class="form-group">
-                        <label for="name">{{__('criteria.name')}}</label>
+                        <label for="name" class="required">{{__('criteria.name')}}</label>
                         <input type="text" class="form-control" id="name" name="name"
                                placeholder="{{__('criteria.enterName')}}" value="{{$criteria->name}}">
                     </div>
                     <div class="form-group">
-                        <label for="type">{{__('criteria.type')}}</label>
-                        <select name="type_id" id="type_id" class="form-control">
-                            <option>--Chọn--</option>
-                            @foreach($types as $type)
-                                <option value="{{$type->id}}" @if($criteria->type_id == $type->id) selected @endif>{{$type->name}}</option>
-                            @endforeach
-                        </select>
+                        <label for="type" class="required">{{__('criteria.type')}}</label>
+                        <input type="text" name="type_name" id="type_name" list="type-list" class="form-control" placeholder="Chọn thể loại..." value="{{ $criteria->type->name }}">
+                        <datalist id="type-list">
+                            @if (count($types) > 0)
+                                @foreach($types as $type)
+                                    <option value="{{$type->name}}"></option>
+                                @endforeach
+                            @endif
+                        </datalist>
                     </div>
                     <div class="form-group">
                         <label for="description">{{__('criteria.description')}}</label>
@@ -85,7 +87,7 @@
                                   placeholder="{{__('criteria.enterExample')}}">{{$criteria->example}}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="weight">{{__('criteria.weight')}}</label>
+                        <label for="weight" class="required">{{__('criteria.weight')}}</label>
                         <input type="text" class="form-control" id="weight" name="weight"
                                placeholder="{{__('criteria.enterWeight')}}" value="{{$criteria->weight}}">
                     </div>

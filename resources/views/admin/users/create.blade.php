@@ -29,7 +29,7 @@
                     {{csrf_field()}}
                     <div class="form-row">
                         <div class="col-md-8 mb-3 form-group">
-                            <label for="name">{{__('user.name')}}</label>
+                            <label for="name" class="required">{{__('user.name')}}</label>
                             <input type="text" class="form-control" id="name" name="name"
                                    placeholder="{{__('user.enterName')}}" value="{{old('name')}}">
                             <div class="valid-feedback">
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label for="role">{{__('user.role')}}</label>
+                            <label for="role" class="required">{{__('user.role')}}</label>
                             <select class="form-control" id="role" name="role_id">
                                 <option>--Chọn--</option>
                                 @foreach($roles as $role)
@@ -50,15 +50,15 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">{{__('user.email')}}</label>
+                        <label for="email" class="required">{{__('user.email')}}</label>
                         <input type="email" class="form-control" name="email" value="{{old('email')}}">
                     </div>
                     <div class="form-group">
-                        <label for="password">{{__('user.password')}}</label>
+                        <label for="password" class="required">{{__('user.password')}}</label>
                         <input type="password" class="form-control" name="password" value="">
                     </div>
                     <div class="form-group">
-                        <label for="password_confirmation">{{__('user.password_confirmation')}}</label>
+                        <label for="password_confirmation" class="required">{{__('user.password_confirmation')}}</label>
                         <input type="password" class="form-control" name="password_confirmation" value="">
                     </div>
                     <div class="form-group">
@@ -70,7 +70,7 @@
                         <input type="text" class="form-control" name="level" value="{{old('level')}}">
                     </div>
                     <div class="form-group">
-                        <label for="reliability">{{__('user.reliability')}}</label>
+                        <label for="reliability" class="required">{{__('user.reliability')}}</label>
                         <input type="text" class="form-control" name="reliability" value="{{old('reliability')}}">
                     </div>
                     <button id="createBtn" class="btn btn-primary" type="submit">{{__('user.create')}}</button>

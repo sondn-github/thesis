@@ -8,6 +8,7 @@ use App\Http\Requests\ChangeAvatarRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Role;
 use App\Services\Interfaces\UserServiceInterface;
 use App\User;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class UserService extends Service implements UserServiceInterface
         $img->fit($width, $height);
 
         $path = 'images/'.$width.'x'.$height.'/'.$userId.'_'.Carbon::now()->toDateTimeString().'.jpg';
+
         $img->save(storage_path('app/public/'.$path));
 
         return 'storage/'.$path;
@@ -42,6 +44,13 @@ class UserService extends Service implements UserServiceInterface
     public function getUserById($id)
     {
         return User::find($id);
+    }
+
+    public function getUserByEmail($email)
+    {
+        return User::where(User::COL_EMAIL, $email)
+            ->where(User::COL_STATUS, User::ACTIVE_STATUS)
+            ->first();
     }
 
     public function changePassword(ChangePasswordRequest $request, $userId, $oldPassword)
@@ -102,5 +111,19 @@ class UserService extends Service implements UserServiceInterface
     public function destroy($id) {
         return User::findOrFail($id)
             ->delete();
+    }
+
+    public function changeStatus($request) {
+        return User::findOrFail($request->get('id'))
+            ->update([
+                User::COL_STATUS => $request->get('status'),
+            ]);
+    }
+
+    public function getUsersByRoleName($roleName) {
+        return Role::where('name', $roleName)
+            ->firstOrFail()
+            ->users()
+            ->get();
     }
 }

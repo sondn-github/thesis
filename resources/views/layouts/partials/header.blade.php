@@ -83,18 +83,8 @@
 
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                                 <a href="{{route('profile.get')}}" class="dropdown-item">{{__('layouts/header.profile')}}</a>
-                                                @if(Auth::user()->role->name == 'teacher')
-                                                    <a href="{{route('teacher.courses.index')}}" class="dropdown-item">{{__('layouts/header.courseManagement')}}</a>
-                                                    <a href="{{route('teacher.lesson.index')}}" class="dropdown-item">{{__('layouts/header.lessonManagement')}}</a>
-                                                @endif
-                                                @if(Auth::user()->role->name == 'expert')
-                                                    <a href="{{route('expert.criteria.index')}}" class="dropdown-item">{{__('layouts/header.criteriaManagement')}}</a>
-                                                    <a href="{{route('expert.facts.index')}}" class="dropdown-item">{{__('layouts/header.factManagement')}}</a>
-                                                    <a href="{{route('expert.knowledge.index')}}" class="dropdown-item">{{__('layouts/header.rule1Management')}}</a>
-                                                    <a href="{{route('expert.rulesType2.index')}}" class="dropdown-item">{{__('layouts/header.rule2Management')}}</a>
-                                                @endif
-                                                @if(Auth::user()->role->name == 'admin')
-                                                    <a href="{{route('admin.home')}}" class="dropdown-item">{{__('layouts/header.pageManagement')}}</a>
+                                                @if(Auth::user()->role->name == 'teacher' || Auth::user()->role->name == 'expert' || Auth::user()->role->name == 'admin')
+                                                    <a href="{{route(Auth::user()->role->name . '.home')}}" class="dropdown-item">{{__('layouts/header.pageManagement')}}</a>
                                                 @endif
                                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                                    onclick="event.preventDefault();

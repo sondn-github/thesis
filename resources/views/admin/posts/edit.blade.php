@@ -32,11 +32,11 @@
                     {{csrf_field()}}
                     @method('PUT')
                     <div class="form-group">
-                        <label for="title">{{__('post.title')}}</label>
+                        <label for="title" class="required">{{__('post.title')}}</label>
                         <input type="text" class="form-control" name="title" value="{{$post->title}}">
                     </div>
                     <div class="form-group">
-                        <label for="content">{{__('post.content')}}</label>
+                        <label for="content" class="required">{{__('post.content')}}</label>
                         <textarea name="content" id="editor1" cols="30" rows="10">{{$post->content}}</textarea>
                     </div>
                     <button id="createBtn" class="btn btn-primary" type="submit">{{__('category.update')}}</button>

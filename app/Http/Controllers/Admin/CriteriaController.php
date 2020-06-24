@@ -25,13 +25,14 @@ class CriteriaController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
      */
     public function index()
     {
         $type = $this->typeService->getTypeById(Type::TYPE_ICT);
+        $types = $this->typeService->getTypes();
 
-        return view('admin.criteria.index', compact('type'));
+        return view('admin.criteria.index', compact('type', 'types'));
     }
 
     /**

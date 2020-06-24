@@ -184,5 +184,38 @@
                         }
                     });
                 });
+
+                $('#usersTable').on("click", ':checkbox', function () {
+                    var status = this;
+                    var id = $(status).attr("data-id");
+                    var value = $(status).prop("checked");
+                    $.confirm({
+                        title: '{{__('lesson.confirm')}}!',
+                        content: '{{__('lesson.confirmMessage')}}',
+                        buttons: {
+                            '{{__('lesson.confirm')}}': function () {
+                                $.ajax({
+                                    type: "GET",
+                                    url: '{{route('admin.users.status.change')}}',
+                                    dataType: "json",
+                                    data: {
+                                        id: id,
+                                        status: value ? 1 : 0
+                                    },
+                                    success: function (data) {
+                                        table.ajax.reload();
+                                        $.alert(data.success);
+                                    },
+                                    error: function (data) {
+                                        $.alert(data.error);
+                                    }
+                                });
+                            },
+                            '{{__('lesson.cancel')}}': function () {
+                                $(status).prop("checked", !value);
+                            }
+                        }
+                    });
+                });
             </script>
 @endsection

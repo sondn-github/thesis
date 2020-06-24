@@ -31,7 +31,7 @@
                     @method('PUT')
                     <div class="form-row">
                         <div class="col-md-8 mb-3 form-group">
-                            <label for="name">{{__('course.name')}}</label>
+                            <label for="name" class="required">{{__('course.name')}}</label>
                             <input type="text" class="form-control" id="name" name="name"
                                    placeholder="{{__('course.enterName')}}" value="{{$course->name}}">
                             <div class="valid-feedback">
@@ -39,13 +39,15 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label for="course">{{__('course.category')}}</label>
-                            <select class="form-control" id="category" name="category_id">
-                                @foreach($categories as $category)
-                                    <option value="{{$category->id}}"
-                                            @if($course->category_id == $category->id) selected @endif>{{$category->name}}</option>
-                                @endforeach
-                            </select>
+                            <label for="course" class="required">{{__('course.category')}}</label>
+                            <input type="text" name="category_name" id="category_name" list="category-list" class="form-control" placeholder="Chọn thể loại..." value="{{ $course->category->name }}">
+                            <datalist id="category-list">
+                                @if (count($categories) > 0)
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->name}}"></option>
+                                    @endforeach
+                                @endif
+                            </datalist>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>

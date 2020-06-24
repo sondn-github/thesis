@@ -22,24 +22,24 @@
         </div>
         <!-- /.content-header -->
 
-    <div class="content">
-        <div class="container-fluid">
-            <a href="{{route('admin.categories.create')}}" class="btn btn-primary mb-3">{{__('category.new')}}</a>
-            <div class="table-responsive small">
-                <table class="table table-bordered table-hover" id="categoryTable">
-                    <thead>
-                    <tr>
-                        <th width="10%">{{__('category.no')}}</th>
-                        <th>{{__('category.name')}}</th>
-                        <th width="10%"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+        <div class="content">
+            <div class="container-fluid">
+                <a href="{{route('admin.categories.create')}}" class="btn btn-primary mb-3">{{__('category.new')}}</a>
+                <div class="table-responsive small">
+                    <table class="table table-bordered table-hover" id="categoryTable">
+                        <thead>
+                        <tr>
+                            <th width="10%">{{__('category.no')}}</th>
+                            <th>{{__('category.name')}}</th>
+                            <th width="10%"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
 @endsection
 
 @section('js')

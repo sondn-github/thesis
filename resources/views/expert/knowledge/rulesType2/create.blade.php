@@ -1,96 +1,122 @@
-@extends('layouts.default')
+@extends('admin.layouts.default')
 
 @section('content')
-    <div class="custom-breadcrumns border-bottom">
-        <div class="container">
-            <a href="{{route('index')}}">{{__('layouts/header.home')}}</a>
-            <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <span class="current">{{__('layouts/header.uploadLesson')}}</span>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">{{__('layouts/header.create')}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">
+                                <a href="{{route('expert.home')}}">{{__('layouts/header.home')}}</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{route('expert.rulesType2.index')}}">{{__('layouts/header.rule2Management')}}</a>
+                            </li>
+                            <li class="breadcrumb-item active">{{__('layouts/header.create')}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </div>
-    </div>
 
-    <div class="site-section">
-        <div class="container">
-            <form action="{{route('expert.rulesType2.store')}}" class="form-horizontal" role="form" method="post">
-                @csrf
-                <div class="panel-group">
-                    <div class="panel panel-warning mb-3">
-                        <div class="panel-heading">{{__('knowledge.code')}}</div>
-                        <div class="panel-body">
-                            <div class="form-group row">
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="code" name="code" value="{{old('code')}}" placeholder="{{__('knowledge.enterCode')}}">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-info mb-3">
-                        <div class="panel-heading">{{__('knowledge.premise')}}</div>
-                        <div class="panel-body">
-                            <div id="premise-form-group">
-                                <div class="premise-form">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <select class="form-control" id="fact" name="facts[]" required>
-                                                <option>{{__('knowledge.select')}}</option>
-                                                @foreach($factsTypeComment as $fact)
-                                                    <option value="{{$fact->code}}">{{$fact->code}} - {{$fact->description}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control" id="scoreFrom"
-                                                   placeholder="{{__("knowledge.enterScore")}}" name="scoresFrom[]" required>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control" id="scoreTo"
-                                                   placeholder="{{__("knowledge.enterScore")}}" name="scoresTo[]" required>
-                                        </div>
-                                        <button type="button" class="btn btn-danger btn-delete"><i class="fa fa-minus"></i></button>
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <form action="{{route('expert.rulesType2.store')}}" class="form-horizontal" role="form" method="post">
+                    @csrf
+                    <div class="panel-group">
+                        <div class="panel panel-warning mb-3">
+                            <div class="panel-heading required">{{__('knowledge.code')}}</div>
+                            <div class="panel-body">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="code" name="code"
+                                               value="{{old('code')}}" placeholder="{{__('knowledge.enterCode')}}">
                                     </div>
-                                    <p>AND</p>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary" id="add-premise-btn"><i class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="panel panel-success mb-3">
-                        <div class="panel-heading">Kết luận</div>
-                        <div class="panel-body">
-                            <div class="form-group row">
-                                <div class="col-md-4">
-                                    <select class="form-control" id="conclusion" name="conclusion" required>
-                                        <option>{{__('knowledge.select')}}</option>
-                                        @foreach($facts as $fact)
-                                            <option value="{{$fact->code}}">{{$fact->code}} - {{$fact->description}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="reliability"
-                                           placeholder="{{__('knowledge.enterScore')}}" name="reliability" required>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Trạng thái</div>
-                        <div class="panel-body">
-                            <div class="form-group row">
-                                <div class="col-md-4">
-                                    <select class="form-control" id="status" name="status" required>
-                                        <option value="1">{{__('knowledge.active')}}</option>
-                                        <option value="0">{{__('knowledge.inactive')}}</option>
-                                    </select>
+                        <div class="panel panel-info mb-3">
+                            <div class="panel-heading required">{{__('knowledge.premise')}}</div>
+                            <div class="panel-body">
+                                <div id="premise-form-group">
+                                    <div class="premise-form">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <select class="form-control" id="fact" name="facts[]" required>
+                                                    <option>{{__('knowledge.select')}}</option>
+                                                    @foreach($factsTypeComment as $fact)
+                                                        <option value="{{$fact->code}}">{{$fact->code}}
+                                                            - {{$fact->description}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="scoreFrom"
+                                                       placeholder="{{__("knowledge.enterScore")}}" name="scoresFrom[]"
+                                                       required>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="scoreTo"
+                                                       placeholder="{{__("knowledge.enterScore")}}" name="scoresTo[]"
+                                                       required>
+                                            </div>
+                                            <button type="button" class="btn btn-danger btn-delete"><i
+                                                    class="fa fa-minus"></i></button>
+                                        </div>
+                                        <p>AND</p>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="add-premise-btn"><i
+                                        class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="panel panel-success mb-3">
+                            <div class="panel-heading required">Kết luận</div>
+                            <div class="panel-body">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="conclusion" name="conclusion" required>
+                                            <option>{{__('knowledge.select')}}</option>
+                                            @foreach($facts as $fact)
+                                                <option value="{{$fact->code}}">{{$fact->code}}
+                                                    - {{$fact->description}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="reliability"
+                                               placeholder="{{__('knowledge.enterScore')}}" name="reliability" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading required">Trạng thái</div>
+                            <div class="panel-body">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="status" name="status" required>
+                                            <option value="1">{{__('knowledge.active')}}</option>
+                                            <option value="0">{{__('knowledge.inactive')}}</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <button type="submit" class="btn btn-primary">{{__('knowledge.create')}}</button>
-                <a href="{{route('expert.rulesType2.index')}}" class="btn btn-secondary">{{__('knowledge.back')}}</a>
-            </form>
+                    <button type="submit" class="btn btn-primary">{{__('knowledge.create')}}</button>
+                    <a href="{{route('expert.rulesType2.index')}}"
+                       class="btn btn-secondary">{{__('knowledge.back')}}</a>
+                </form>
+            </div>
         </div>
     </div>
 @endsection

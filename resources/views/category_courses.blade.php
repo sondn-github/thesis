@@ -25,17 +25,7 @@
             <div class="row mb-5">
                 <div class="panel panel-default mx-auto">
                     <div class="panel-body">
-                        {!! Form::open(['route' => 'courses.index', 'method' => 'get', 'class' => 'form-inline ml-2']) !!}
-                            <div class="form-group mr-3">
-                                {!! Form::label('category_id', 'Thể loại:', ['class' => 'control-label mr-2']) !!}
-                                <select class="form-control" name="category_id" id="category_id">
-                                    <option value="">{{ __('--Chọn--') }}</option>
-                                    @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" @if (old('category_id') == $category->id) selected @endif>{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-{{--                                {!! Form::select('category_id', $categories , old('category_id') , ['class' => 'form-control']) !!}--}}
-                            </div>
+                        {!! Form::open(['route' => ['categories.show', request()->route('category')], 'method' => 'get', 'class' => 'form-inline ml-2']) !!}
                             <div class="form-group mr-3">
                                 {!! Form::label('teacher_id', 'Giảng viên:', ['class' => 'control-label mr-2']) !!}
                                 <select class="form-control" name="teacher_id" id="teacher_id">
@@ -51,7 +41,7 @@
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary mr-2" type="submit">{{__('course.search')}}</button>
-                                <button class="btn btn-danger" type="reset" data-url="{{ route('courses.index') }}">{{__('Đặt lại')}}</button>
+                                <button class="btn btn-danger" type="reset" data-url="{{ route('categories.show', request()->route('category')) }}">{{__('Đặt lại')}}</button>
                             </div>
                         {!! Form::close() !!}
                     </div>

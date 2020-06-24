@@ -37,7 +37,7 @@ class StoreRuleType2Request extends FormRequest
             $rules['scoresFrom.'.$key] = 'required|numeric|between:0,1|lte:scoresTo.'.$key;
         }
         foreach ($this->request->get('scoresTo') as $key => $value) {
-            $rules['scores.'.$key] = 'required|numeric|between:0,1';
+            $rules['scoresTo.'.$key] = 'required|numeric|between:0,1';
         }
 
         return $rules;

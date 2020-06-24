@@ -28,7 +28,7 @@
                     {{--                <form action="{{route('admin.lesson.store')}}" method="post" class="needs-validation" novalidate>--}}
                     {{csrf_field()}}
                     <div class="form-group">
-                        <label for="name">{{__('category.name')}}</label>
+                        <label for="name" class="required">{{__('category.name')}}</label>
                         <input type="text" class="form-control" name="name" value="{{old('name')}}">
                     </div>
                     <button id="createBtn" class="btn btn-primary" type="submit">{{__('category.create')}}</button>

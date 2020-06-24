@@ -58,15 +58,18 @@ class ReportDetailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         $course = $this->courseService->getCourseById($id);
         $type = $this->criteriaService->getCriteriaByTypeId(Type::TYPE_DHBK_SV);
-        $evaluation = $this->evaluationService->reportEvaluationsOfCourse($id);
+        $evaluation = $this->evaluationService->reportEvaluationsOfCourse($id, $request);
         $fromDate = $this->evaluationService->getMinCreatedAt();
+
+        $request->flashExcept('_token');
 
         return view('admin.reports.detail.show', [
             'course' => $course,

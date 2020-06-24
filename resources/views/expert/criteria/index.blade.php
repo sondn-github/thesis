@@ -1,82 +1,93 @@
-@extends('layouts.default')
-
-@section('css')
-    <!-- Bootstrap CSS -->
-@endsection
+@extends('admin.layouts.default')
 
 @section('content')
-    <div class="custom-breadcrumns border-bottom">
-        <div class="container">
-            <a href="{{route('index')}}">{{__('layouts/header.home')}}</a>
-            <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <span class="current">{{__('layouts/header.uploadLesson')}}</span>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">{{__('layouts/header.criteriaManagement')}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">
+                                <a href="{{route('expert.home')}}">{{__('layouts/header.home')}}</a>
+                            </li>
+                            <li class="breadcrumb-item active">{{__('layouts/header.criteriaManagement')}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </div>
-    </div>
 
-    <div class="site-section">
-        <div class="container">
-            <a href="{{route('expert.criteria.create')}}" class="btn btn-primary mb-3">{{__('criteria.new')}}</a>
-            <div class="table-responsive small">
-                <table class="table table-bordered table-hover" id="criteriaTable">
-                    <thead>
-                    <tr>
-                        <th>{{__('criteria.no')}}</th>
-                        <th>{{__('criteria.code')}}</th>
-                        <th>{{__('criteria.name')}}</th>
-                        <th>{{__('criteria.weight')}}</th>
-                        <th>{{__('criteria.status')}}</th>
-                        <th width="10%"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <a href="{{route('expert.criteria.create')}}" class="btn btn-primary mb-3">{{__('criteria.new')}}</a>
+                <div class="table-responsive small">
+                    <table class="table table-bordered table-hover" id="criteriaTable">
+                        <thead>
+                        <tr>
+                            <th width="3%">{{__('criteria.no')}}</th>
+                            <th>{{__('criteria.code')}}</th>
+                            <th>{{__('criteria.name')}}</th>
+                            <th>{{__('criteria.weight')}}</th>
+                            <th>{{__('criteria.status')}}</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Modal -->
-    <div id="criteriaModal" class="modal fade small" role="dialog">
-        <div class="modal-dialog mw-75">
+        <!-- Modal -->
+        <div id="criteriaModal" class="modal fade small" role="dialog">
+            <div class="modal-dialog mw-75">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">{{__('criteria.detail')}}</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mb-3">
-                        <div class="col-md-4 label">{{__('criteria.code')}}</div>
-                        <div class="col-md-8" id="code"></div>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{__('criteria.detail')}}</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4 label">{{__('criteria.name')}}</div>
-                        <div class="col-md-8" id="name"></div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col-md-4 label">{{__('criteria.code')}}</div>
+                            <div class="col-md-8" id="code"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 label">{{__('criteria.name')}}</div>
+                            <div class="col-md-8" id="name"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 label">{{__('criteria.description')}}</div>
+                            <div class="col-md-8" id="description"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 label">{{__('criteria.explain')}}</div>
+                            <div class="col-md-8" id="explain"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 label">{{__('criteria.example')}}</div>
+                            <div class="col-md-8" id="example"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 label">{{__('criteria.weight')}}</div>
+                            <div class="col-md-8" id="weight"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 label">{{__('criteria.status')}}</div>
+                            <div class="col-md-8" id="status"></div>
+                        </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4 label">{{__('criteria.description')}}</div>
-                        <div class="col-md-8" id="description"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4 label">{{__('criteria.explain')}}</div>
-                        <div class="col-md-8" id="explain"></div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4 label">{{__('criteria.example')}}</div>
-                        <div class="col-md-8" id="example"></div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4 label">{{__('criteria.weight')}}</div>
-                        <div class="col-md-8" id="weight"></div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4 label">{{__('criteria.status')}}</div>
-                        <div class="col-md-8" id="status"></div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -108,12 +119,13 @@
                     "previous": "Trang trước"
                 },
             },
-            order: [[ 1, 'asc' ]],
+            order: [[1, 'asc']],
             ajax: {
                 url: '{{route('expert.datatables.criteria')}}',
             },
             columns: [
-                {data: 'id',
+                {
+                    data: 'id',
                     render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }
@@ -121,22 +133,24 @@
                 {data: 'code'},
                 {data: 'name'},
                 {data: 'weight'},
-                {data: 'status', "searchable": false,
+                {
+                    data: 'status', "searchable": false,
                     render: function (data, type, row, meta) {
                         if (data == 1) {
                             return '<label class="switch small">'
-                                + '<input type="checkbox" name="status" data-id="'+ row.id + '" checked>'
+                                + '<input type="checkbox" name="status" data-id="' + row.id + '" checked>'
                                 + '<span class="slider round"></span>'
                                 + '</label>';
                         } else {
                             return '<label class="switch small">'
-                                + '<input type="checkbox" name="status" data-id="'+ row.id + '">'
+                                + '<input type="checkbox" name="status" data-id="' + row.id + '">'
                                 + '<span class="slider round"></span>'
                                 + '</label>';
                         }
                     }
                 },
-                {data: 'action', "searchable": false,
+                {
+                    data: 'action', "searchable": false,
                     render: function (data, type, row, meta) {
                         return '<a href="/expert/criteria/' + row.id + '" class="btn btn-info btn-info-criteria" data-id="' + row.id + '" data-toggle="modal" data-target="#criteriaModal" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>'
                             + '<a href="/expert/criteria/' + row.id + '/edit" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
@@ -172,7 +186,7 @@
             });
         }
 
-        $('#criteriaTable').on("click", ':checkbox', function() {
+        $('#criteriaTable').on("click", ':checkbox', function () {
             var status = this;
             var id = $(status).attr("data-id");
             var value = $(status).prop("checked");
@@ -186,8 +200,8 @@
                             url: '{{route('expert.criteria.changing-status')}}',
                             dataType: "json",
                             data: {
-                                id : id,
-                                status : value? 1 : 0
+                                id: id,
+                                status: value ? 1 : 0
                             },
                             success: function (data) {
                                 table.ajax.reload();

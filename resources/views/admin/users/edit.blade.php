@@ -29,12 +29,12 @@
                     {{csrf_field()}}
                     @method('PUT')
                     <div class="form-group">
-                        <label for="email">{{__('user.email')}}</label>
+                        <label for="email" class="required">{{__('user.email')}}</label>
                         <input type="email" class="form-control" name="email" value="{{$user->email}}" disabled>
                     </div>
                     <div class="form-row">
                         <div class="col-md-8 mb-3 form-group">
-                            <label for="name">{{__('user.name')}}</label>
+                            <label for="name" class="required">{{__('user.name')}}</label>
                             <input type="text" class="form-control" id="name" name="name"
                                    placeholder="{{__('user.enterName')}}" value="{{$user->name}}">
                             <div class="valid-feedback">
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label for="role">{{__('user.role')}}</label>
+                            <label for="role" class="required">{{__('user.role')}}</label>
                             <select class="form-control" id="role" name="role_id">
                                 <option>--Chọn--</option>
                                 @foreach($roles as $role)
@@ -63,7 +63,7 @@
                         <input type="text" class="form-control" name="level" value="{{$user->level}}">
                     </div>
                     <div class="form-group">
-                        <label for="reliability">{{__('user.reliability')}}</label>
+                        <label for="reliability" class="required">{{__('user.reliability')}}</label>
                         <input type="text" class="form-control" name="reliability" value="{{$user->reliability}}">
                     </div>
                     <button id="createBtn" class="btn btn-primary" type="submit">{{__('user.create')}}</button>

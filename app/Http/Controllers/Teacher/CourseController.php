@@ -120,4 +120,16 @@ class CourseController extends Controller
             ], 500);
         }
     }
+
+    public function changeStatus(Request $request) {
+        if ($this->courseService->changeStatus($request)) {
+            return response()->json([
+                'success' => __('lesson.updateSuccess'),
+            ], 200);
+        } else {
+            return response()->json([
+                'error' => __('lesson.updateFailed'),
+            ], 500);
+        }
+    }
 }

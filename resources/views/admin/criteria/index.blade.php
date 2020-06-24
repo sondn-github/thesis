@@ -30,11 +30,12 @@
                             <div class="form-group">
                                 <label for="type_id">{{__('criteria.usingCriteria')}}:</label>
                                 <select name="id" id="type_id" class="form-control">
-{{--                                    @foreach($types as $type)--}}
-{{--                                        <option value="{{$type->id}}" @if($type->is_using) selected @endif>{{$type->name}}</option>--}}
-{{--                                    @endforeach--}}
-                                    <option value="1" @if($type->is_using) selected @endif>Bộ tiêu chí ICT NewHourse</option>
-                                    <option value="2" @if(!$type->is_using) selected @endif>Bộ tiêu chí ĐHBKHN</option>
+                                    <option value="2">Bộ tiêu chí ĐHBKHN</option>
+                                    @foreach($types as $type)
+                                        @if ($type->name != 'Bộ tiêu chí ĐHBKHN - SV' && $type->name != 'Bộ tiêu chí ĐHBKHN - GV' && $type->name != 'Bộ tiêu chí cho người tạo bài giảng')
+                                            <option value="{{$type->id}}" @if($type->is_using) selected @endif>{{$type->name}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">

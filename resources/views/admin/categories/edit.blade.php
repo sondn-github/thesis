@@ -29,7 +29,7 @@
                     {{csrf_field()}}
                     @method('PUT')
                     <div class="form-group">
-                        <label for="name">{{__('category.name')}}</label>
+                        <label for="name" class="required">{{__('category.name')}}</label>
                         <input type="text" class="form-control" name="name" value="{{$category->name}}">
                     </div>
                     <button id="updateBtn" class="btn btn-primary" type="submit">{{__('category.update')}}</button>

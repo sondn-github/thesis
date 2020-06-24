@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Category;
+use App\Course;
+use App\Observers\CourseObserver;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Interfaces;
 use App\Services;
@@ -41,6 +42,8 @@ class AppServiceProvider extends ServiceProvider
 
         // Get current language
         View::share('currLang', App::getLocale());
+
+        Course::observe(CourseObserver::class);
     }
 
     /**

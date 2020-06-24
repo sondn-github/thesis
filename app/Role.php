@@ -20,4 +20,8 @@ class Role extends AppModel
         self::COL_UPDATED_AT,
         self::COL_DELETED_AT,
     ];
+
+    public function users() {
+        return $this->hasMany('App\User');
+    }
 }

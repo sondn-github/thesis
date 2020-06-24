@@ -29,7 +29,7 @@
                     {{csrf_field()}}
                     <div class="form-row">
                         <div class="col-md-8 mb-3 form-group">
-                            <label for="code">{{__('fact.code')}}</label>
+                            <label for="code" class="required">{{__('fact.code')}}</label>
                             <input type="text" class="form-control" id="code" name="code"
                                    placeholder="{{__('fact.enterCode')}}" value="{{old('code')}}">
                             <div class="valid-feedback">
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label for="type">{{__('fact.type')}}</label>
+                            <label for="type" class="required">{{__('fact.type')}}</label>
                             <select class="form-control" id="type" name="type">
                                 <option>--Chọn--</option>
                                 <option value="1" @if(old('type') == 1) selected @endif>{{__('fact.comment')}}</option>
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="description">{{__('fact.description')}}</label>
+                        <label for="description" class="required">{{__('fact.description')}}</label>
                         <textarea name="description" id="description" rows="5" class="form-control"
                                   placeholder="{{__('fact.enterDescription')}}">{{old('description')}}</textarea>
                     </div>

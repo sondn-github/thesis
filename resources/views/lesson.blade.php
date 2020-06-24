@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-12 mb-4 overflow-auto">
                     <div class="embed-responsive embed-responsive-16by9 border border-dark rounded">
-                        <iframe class="embed-responsive-item" src="{{asset($lesson->file)}}" allowfullscreen>
+                        <iframe class="embed-responsive-item" src="{{asset($lesson->file)}}" allowfullscreen webkitallowfullscreen>
                             <p>{{__('lesson.not-support')}}</p>
                         </iframe>
                     </div>

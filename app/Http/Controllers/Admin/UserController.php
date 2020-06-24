@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Services\Interfaces\RoleServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -116,6 +117,18 @@ class UserController extends Controller
         } else {
             return response()->json([
                 'error' => __('user.failedDeleting'),
+            ], 500);
+        }
+    }
+
+    public function changeStatus(Request $request) {
+        if ($this->userService->changeStatus($request)) {
+            return response()->json([
+                'success' => __('lesson.updateSuccess'),
+            ], 200);
+        } else {
+            return response()->json([
+                'error' => __('lesson.updateFailed'),
             ], 500);
         }
     }

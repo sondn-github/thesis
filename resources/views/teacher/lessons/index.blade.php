@@ -1,81 +1,92 @@
-@extends('layouts.default')
-
-@section('css')
-    <!-- Bootstrap CSS -->
-@endsection
+@extends('admin.layouts.default')
 
 @section('content')
-    <div class="custom-breadcrumns border-bottom">
-        <div class="container">
-            <a href="{{route('index')}}">{{__('layouts/header.home')}}</a>
-            <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <span class="current">{{__('layouts/header.uploadLesson')}}</span>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">{{__('layouts/header.lessonManagement')}}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">
+                                <a href="{{route('teacher.home')}}">{{__('layouts/header.home')}}</a>
+                            </li>
+                            <li class="breadcrumb-item active">{{__('layouts/header.lessonManagement')}}</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </div>
-    </div>
 
-    <div class="site-section">
-        <div class="container">
-            <a href="{{route('teacher.lessons.create')}}" class="btn btn-primary mb-3">{{__('lesson.new')}}</a>
-            <div class="table-responsive small">
-                <table class="table table-bordered table-hover" id="lessonsTable">
-                    <thead>
-                    <tr>
-                        <th>{{__('lesson.no')}}</th>
-                        <th>{{__('lesson.name')}}</th>
-                        <th>{{__('lesson.course')}}</th>
-                        <th>{{__('lesson.view')}}</th>
-                        <th>{{__('lesson.created_at')}}</th>
-                        <th>{{__('lesson.status')}}</th>
-                        <th width="14%"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <a href="{{route('teacher.lessons.create')}}" class="btn btn-primary mb-3">{{__('lesson.new')}}</a>
+                <div class="table-responsive small">
+                    <table class="table table-bordered table-hover" id="lessonsTable">
+                        <thead>
+                        <tr>
+                            <th width="3%">{{__('lesson.no')}}</th>
+                            <th>{{__('lesson.name')}}</th>
+                            <th>{{__('lesson.course')}}</th>
+                            <th>{{__('lesson.view')}}</th>
+                            <th>{{__('lesson.created_at')}}</th>
+                            <th>{{__('lesson.status')}}</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
 
-            <!-- Modal -->
-            <div id="detailLesson" class="modal fade small" role="dialog">
-                <div class="modal-dialog mw-75">
+                <!-- Modal -->
+                <div id="detailLesson" class="modal fade small" role="dialog">
+                    <div class="modal-dialog mw-75">
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">{{__('lesson.lessonDetail')}}</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row mb-3">
-                                <div class="col-md-4 label">{{__('lesson.name')}}</div>
-                                <div class="col-md-8" id="name"></div>
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">{{__('lesson.lessonDetail')}}</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-4 label">{{__('lesson.course')}}</div>
-                                <div class="col-md-8" id="course-name"></div>
+                            <div class="modal-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-4 label">{{__('lesson.name')}}</div>
+                                    <div class="col-md-8" id="name"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4 label">{{__('lesson.course')}}</div>
+                                    <div class="col-md-8" id="course-name"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4 label">{{__('lesson.abstract')}}</div>
+                                    <div class="col-md-8" id="abstract"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4 label">{{__('lesson.description')}}</div>
+                                    <div class="col-md-8" id="description"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4 label">{{__('lesson.view')}}</div>
+                                    <div class="col-md-8" id="view"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4 label">{{__('lesson.created_at')}}</div>
+                                    <div class="col-md-8" id="created-at"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4 label">{{__('lesson.status')}}</div>
+                                    <div class="col-md-8" id="status"></div>
+                                </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-4 label">{{__('lesson.abstract')}}</div>
-                                <div class="col-md-8" id="abstract"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-4 label">{{__('lesson.description')}}</div>
-                                <div class="col-md-8" id="description"></div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-4 label">{{__('lesson.view')}}</div>
-                                <div class="col-md-8" id="view"></div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-4 label">{{__('lesson.created_at')}}</div>
-                                <div class="col-md-8" id="created-at"></div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-4 label">{{__('lesson.status')}}</div>
-                                <div class="col-md-8" id="status"></div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -87,66 +98,70 @@
 @section('js')
     <script>
         // $(document).ready(function() {
-             var table = $('#lessonsTable').DataTable({
-                 stateSave: true,
-                 searching: true,
-                 serverSide: true,
-                 lengthChange: true,
-                 language: {
-                     "lengthMenu": "Hiện thị _MENU_",
-                     "zeroRecords": "Nothing found - sorry",
-                     "info": "Hiện thị trang _PAGE_ trong _PAGES_",
-                     "infoEmpty": "Không có bản ghi nào",
-                     "infoFiltered": "(Lọc trong _MAX_ bản ghi)",
-                     "search": "Tìm kiếm:",
-                     "loadingRecords": "Tải dữ liệu...",
-                     "processing": "Đang xử lý...",
-                     "zeroRecords": "Không tìm thấy kết quả",
-                     "paginate": {
-                         "first": "Trang đầu",
-                         "last": "Trang cuối",
-                         "next": "Trang sau",
-                         "previous": "Trang trước"
-                     },
+        var table = $('#lessonsTable').DataTable({
+            stateSave: true,
+            searching: true,
+            serverSide: true,
+            lengthChange: true,
+            language: {
+                "lengthMenu": "Hiện thị _MENU_",
+                "zeroRecords": "Nothing found - sorry",
+                "info": "Hiện thị trang _PAGE_ trong _PAGES_",
+                "infoEmpty": "Không có bản ghi nào",
+                "infoFiltered": "(Lọc trong _MAX_ bản ghi)",
+                "search": "Tìm kiếm:",
+                "loadingRecords": "Tải dữ liệu...",
+                "processing": "Đang xử lý...",
+                "zeroRecords": "Không tìm thấy kết quả",
+                "paginate": {
+                    "first": "Trang đầu",
+                    "last": "Trang cuối",
+                    "next": "Trang sau",
+                    "previous": "Trang trước"
+                },
 
-                 },
-                 ajax: {
-                     url: '{{route('teacher.datatables.lessons')}}',
-                 },
-                 columns: [
-                     {data: 'id',
-                         render: function (data, type, row, meta) {
-                             return meta.row + meta.settings._iDisplayStart + 1;
-                         }
-                     },
-                     {data: 'name', name: 'lessons.name'},
-                     {data: 'course.name', name: 'lessons.course.name', "searchable": false},
-                     {data: 'view', name: 'lessons.view'},
-                     {data: 'created_at', name: 'lessons.created_at'},
-                     {data: 'status', "searchable": false,
-                         render: function (data, type, row, meta) {
-                             if (data == 1) {
-                                 return '<label class="switch small">'
-                                     + '<input type="checkbox" name="status" data-id="'+ row.id + '" checked>'
-                                     + '<span class="slider round"></span>'
-                                     + '</label>';
-                             } else {
-                                 return '<label class="switch small">'
-                                     + '<input type="checkbox" name="status" data-id="'+ row.id + '">'
-                                     + '<span class="slider round"></span>'
-                                     + '</label>';
-                             }
-                         }
-                     },
-                     {data: 'action', "searchable": false,
-                         render: function (data, type, row, meta) {
-                             return '<a href="/teacher/lessons/' + row.id + '" class="btn btn-info btn-info-lesson" data-id="' + row.id + '" data-toggle="modal" data-target="#detailLesson" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>'
-                                 + '<a href="/teacher/lessons/' + row.id + '/edit" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>'
-                                 + '<a href="javascript:void(0)" data-id="' + row.id + '" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></a>';
-                         }
-                     },
-                 ]
-            });
+            },
+            ajax: {
+                url: '{{route('teacher.datatables.lessons')}}',
+            },
+            columns: [
+                {
+                    data: 'id',
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {data: 'name', name: 'lessons.name'},
+                {data: 'course.name', name: 'lessons.course.name', "searchable": false},
+                {data: 'view', name: 'lessons.view'},
+                {data: 'created_at', name: 'lessons.created_at'},
+                {
+                    data: 'status', "searchable": false,
+                    render: function (data, type, row, meta) {
+                        if (data == 1) {
+                            return '<label class="switch small">'
+                                + '<input type="checkbox" name="status" data-id="' + row.id + '" checked>'
+                                + '<span class="slider round"></span>'
+                                + '</label>';
+                        } else {
+                            return '<label class="switch small">'
+                                + '<input type="checkbox" name="status" data-id="' + row.id + '">'
+                                + '<span class="slider round"></span>'
+                                + '</label>';
+                        }
+                    }
+                },
+                {
+                    data: 'action', "searchable": false,
+                    render: function (data, type, row, meta) {
+                        return '<a href="/teacher/lessons/' + row.id + '" class="btn btn-info btn-info-lesson" data-id="' + row.id + '" data-toggle="modal" data-target="#detailLesson" onclick="showInfoModal(this)"><i class="fa fa-info-circle"></i></a>'
+                            + '<a href="/teacher/lessons/' + row.id + '/edit" class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>'
+                            + '<a href="javascript:void(0)" data-id="' + row.id + '" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></a>';
+                    }
+                },
+            ]
+        });
+
         // });
         function showInfoModal(btn) {
             var id = $(btn).attr("data-id");
@@ -155,7 +170,7 @@
                 type: "GET",
                 url: url,
                 data: {
-                    id : id
+                    id: id
                 },
                 success: function (data) {
                     $("#name").html(data.name);
@@ -176,7 +191,7 @@
             });
         }
 
-        $('#lessonsTable').on("click", ':checkbox', function() {
+        $('#lessonsTable').on("click", ':checkbox', function () {
             var status = this;
             var id = $(status).attr("data-id");
             var value = $(status).prop("checked");
@@ -184,14 +199,14 @@
                 title: '{{__('lesson.confirm')}}!',
                 content: '{{__('lesson.confirmMessage')}}',
                 buttons: {
-                '{{__('lesson.confirm')}}': function () {
+                    '{{__('lesson.confirm')}}': function () {
                         $.ajax({
                             type: "GET",
                             url: '{{route('teacher.lesson.status.change')}}',
                             dataType: "json",
                             data: {
-                                id : id,
-                                status : value? 1 : 0
+                                id: id,
+                                status: value ? 1 : 0
                             },
                             success: function (data) {
                                 table.ajax.reload();
@@ -209,7 +224,7 @@
             });
         });
 
-        $('#lessonsTable').on("click", '.btn-delete', function() {
+        $('#lessonsTable').on("click", '.btn-delete', function () {
             var id = $(this).attr("data-id");
             $.confirm({
                 title: '{{__('lesson.confirm')}}!',

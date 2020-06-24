@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Interfaces\CategoryServiceInterface;
 use App\Services\Interfaces\CourseServiceInterface;
+use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     protected $courseService;
+    private $userService;
 
-    public function __construct(CourseServiceInterface $courseService)
+    public function __construct(CourseServiceInterface $courseService,
+                                UserServiceInterface $userService)
     {
         $this->courseService = $courseService;
+        $this->userService = $userService;
     }
 
     /**
@@ -48,13 +53,17 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
-        $courses = $this->courseService->getCoursesByCategory($id);
-        return view('courses', compact('courses'));
+        $courses = $this->courseService->getCoursesByCategoryWithFilter($id, $request);
+        $teachers = $this->userService->getUsersByRoleName('teacher');
+        $request->flash();
+
+        return view('category_courses', compact('courses', 'teachers'));
     }
 
     /**

@@ -87,27 +87,29 @@
             <div class="row">
                 <div class="col-12">
                     <div class="owl-slide-3 owl-carousel">
-                        @foreach($topCourses as $key => $course)
-                            <div class="course-1-item">
-                                <figure class="thumnail">
-                                    <a href="{{route('courses.show', $course->id)}}"><img src="{{asset($course->thumbnail)}}" alt="Image" class="img-fluid"></a>
-                                    <div class="price">#{{__('welcome.ranking').' '.($key + 1)}}</div>
-                                    <div class="category"><h3>{{$course->category->name}}</h3></div>
-                                </figure>
-                                <div class="course-1-content pb-4">
-                                    <h2>{{$course->name}}</h2>
-                                    <div class="rating text-center mb-3">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
+                        @if (count($topCourses) > 0)
+                            @foreach($topCourses as $key => $course)
+                                <div class="course-1-item">
+                                    <figure class="thumnail">
+                                        <a href="{{route('courses.show', $course->id)}}"><img src="{{asset($course->thumbnail)}}" alt="Image" class="img-fluid"></a>
+                                        <div class="price">#{{__('welcome.ranking').' '.($key + 1)}}</div>
+                                        <div class="category"><h3>{{$course->category->name}}</h3></div>
+                                    </figure>
+                                    <div class="course-1-content pb-4">
+                                        <h2>{{$course->name}}</h2>
+                                        <div class="rating text-center mb-3">
+                                            <span class="icon-star2 text-warning"></span>
+                                            <span class="icon-star2 text-warning"></span>
+                                            <span class="icon-star2 text-warning"></span>
+                                            <span class="icon-star2 text-warning"></span>
+                                            <span class="icon-star2 text-warning"></span>
+                                        </div>
+                                        <p class="desc mb-4" style="max-height: 100px; overflow: auto">{{$course->description}}</p>
+                                        <p><a href="{{route('courses.show', $course->id)}}" class="btn btn-primary rounded-0 px-4">{{__('welcome.view-detail')}}</a></p>
                                     </div>
-                                    <p class="desc mb-4" style="max-height: 100px; overflow: auto">{{$course->description}}</p>
-                                    <p><a href="{{route('courses.show', $course->id)}}" class="btn btn-primary rounded-0 px-4">{{__('welcome.view-detail')}}</a></p>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

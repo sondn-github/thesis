@@ -9,8 +9,12 @@ use App\Criteria;
 use App\Evaluation;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Requests\StoreCourseRequest;
+use App\Lesson;
+use App\Services\Interfaces\CategoryServiceInterface;
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Type;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Routing\CompiledRoute;
 use function GuzzleHttp\Psr7\_parse_request_uri;
@@ -19,19 +23,29 @@ class CourseService extends Service implements CourseServiceInterface
 {
     public function getCoursesByUserId($userId) {
         return Course::where(Course::COL_USER_ID, $userId)
+            ->where(Course::COL_STATUS, Course::ACTIVE_STATUS)
             ->get();
     }
 
     public function getCourseById($courseId) {
-        return Course::with('category', 'lesson', 'user')
-            ->where(Course::COL_ID, $courseId)
+        return Course::with(['category', 'user', 'lesson' => function ($query) {
+            $query->where(Lesson::COL_STATUS, Lesson::ACTIVE_STATUS);
+        }])->where(Course::COL_ID, $courseId)
             ->first();
+    }
+
+    public function getCategoryId($categoryName)
+    {
+        $categoryService = app()->make(CategoryServiceInterface::class);
+        $category = $categoryService->getCategoryByName($categoryName);
+
+        return $category ? $category->id : $categoryService->createCategoryByName($categoryName)->id;
     }
 
     public function update(UpdateCourseRequest $request, $id) {
         return Course::findOrFail($id)->update([
             Course::COL_NAME => $request->input(Course::COL_NAME),
-            Course::COL_CATEGORY_ID => $request->input(Course::COL_CATEGORY_ID),
+            Course::COL_CATEGORY_ID => $this->getCategoryId($request->get('category_name')),
             Course::COL_DESCRIPTION => $request->input(Course::COL_DESCRIPTION),
             Course::COL_LINK => $request->input(Course::COL_LINK),
         ]);
@@ -44,21 +58,27 @@ class CourseService extends Service implements CourseServiceInterface
     public function store(StoreCourseRequest $request, $teacherId) {
         return Course::create([
             Course::COL_NAME => $request->input(Course::COL_NAME),
-            Course::COL_CATEGORY_ID => $request->input(Course::COL_CATEGORY_ID),
+            Course::COL_CATEGORY_ID => $this->getCategoryId($request->get('category_name')),
             Course::COL_DESCRIPTION => $request->input(Course::COL_DESCRIPTION),
             Course::COL_USER_ID => $teacherId,
             Course::COL_LINK => $request->input(Course::COL_LINK),
         ]);
     }
 
-    public function getCourses() {
-        return Course::with('category')->paginate(Course::PER_PAGE);
-    }
+    public function getCoursesByCategoryWithFilter($categoryId, $request) {
+        $courses = Course::with('category')
+            ->where('category_id', $categoryId)
+            ->where(Course::COL_STATUS, Course::ACTIVE_STATUS);
 
-    public function getCoursesByCategory($categoryId) {
-        return Course::with('category')
-            ->where(Course::COL_CATEGORY_ID, $categoryId)
-            ->paginate(Course::PER_PAGE);
+        if ($teacherId = $request->get('teacher_id')) {
+            $courses->where('user_id', $teacherId);
+        }
+
+        if ($courseName = $request->get('course_name')) {
+            $courses->where('name', 'like', "%$courseName%");
+        }
+
+        return $courses->paginate(Course::PER_PAGE);
     }
 
     public function getTopCourses($limit) {
@@ -77,6 +97,7 @@ class CourseService extends Service implements CourseServiceInterface
 
         if (count($coursesId) == 0) {
             return Course::with('category')
+                ->where(Course::COL_STATUS, Course::ACTIVE_STATUS)
                 ->limit($limit)
                 ->get();
         }
@@ -84,7 +105,11 @@ class CourseService extends Service implements CourseServiceInterface
         $defaultPFS = [Evaluation::AGREEMENT => 0, Evaluation::NEUTRAL => 0, Evaluation::DISAGREEMENT => 0];
 
         $courses = Course::whereIn(Course::COL_ID, $coursesId)
+            ->where(Course::COL_STATUS, Course::ACTIVE_STATUS)
             ->get();
+        if (count($courses) == 0) {
+            return [];
+        }
 
         $bestPFR = [];
         $criteria = $this->getUsingCriteria($typeId);
@@ -179,4 +204,48 @@ class CourseService extends Service implements CourseServiceInterface
             ->toArray();
     }
 
+    public function getCoursesWithFilter(Request $request) {
+        $courses = Course::with('category');
+
+        if ($categoryId = $request->get('category_id')) {
+            $courses->where('category_id', $categoryId);
+        }
+
+        if ($teacherId = $request->get('teacher_id')) {
+            $courses->where('user_id', $teacherId);
+        }
+
+        if ($courseName = $request->get('course_name')) {
+            $courses->where('name', 'like', "%$courseName%");
+        }
+
+        return $courses->paginate(Course::PER_PAGE);
+    }
+
+    public function changeStatus($request) {
+        if (Auth::user()->role->name == 'admin') {
+            $course = Course::findOrFail($request->id);
+            return $course->update([
+                    Course::COL_STATUS => $request->input(Course::COL_STATUS),
+                ]) && $course->lesson()
+                ->update([
+                    Lesson::COL_STATUS => $request->get('status'),
+                ]);
+        } else {
+            $course = Course::where('id', $request->get('id'))
+                ->where('user_id', Auth::id())
+                ->firstOrFail();
+            if ($course) {
+                return $course
+                        ->update([
+                            Course::COL_STATUS => $request->get('status'),
+                        ]) && ($course->lesson->count() != 0 ? $course->lesson()->update([
+                            Lesson::COL_STATUS => $request->get('status'),
+                        ]) : true);
+            } else {
+                return false;
+            }
+
+        }
+    }
 }

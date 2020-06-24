@@ -31,7 +31,7 @@
                     {{csrf_field()}}
                     @method('PUT')
                     <div class="form-group">
-                        <label for="name">{{__('lesson.name')}}</label>
+                        <label for="name" class="required">{{__('lesson.name')}}</label>
                         <input type="text" class="form-control" id="name" name="name"
                                placeholder="{{__('lesson.enterName')}}" value="{{$lesson->name}}">
                         <div class="valid-feedback">
