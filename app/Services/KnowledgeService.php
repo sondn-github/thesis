@@ -29,13 +29,31 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         return $rightConclusions;
     }
 
+    public function getValidConclusions($conclusions)
+    {
+        $validConclusions = [];
+        foreach ($conclusions as $conclusion) {
+            foreach ($conclusion as $conclusionCode => $reliability) {
+                if ($reliability >= Knowledge::MIN_RELIABILITY) {
+                    $validConclusions[$conclusionCode] = $reliability;
+                }
+            }
+        }
+
+        return $validConclusions;
+    }
+
     public function getAdvises($sr) {
         $conclusions = $this->deduceWithRule2($this->deduceWithRule1($sr));
         $rightConclusions = $this->filterConclusions($conclusions);
+        $rightConclusionsWithReliability = $this->getValidConclusions($conclusions);
 
-        return Fact::whereIn(Fact::COL_CODE, $rightConclusions)
+        return [
+            'advices' => Fact::whereIn(Fact::COL_CODE, $rightConclusions)
             ->where(Fact::COL_TYPE, Fact::TYPE_ADVISE)
-            ->get();
+            ->get(),
+            'reliabilities' => $rightConclusionsWithReliability,
+        ];
     }
 
     public function deduceWithRule1($sr) {
@@ -59,6 +77,10 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
     }
 
     public function deduceWithRule2($conclusionsFromRule1) {
+        if (empty($conclusionsFromRule1)) {
+            return [];
+        }
+
         $rules = $this->getRuleByType(Knowledge::TYPE_2);
         $conclusions = $conclusionsFromRule1;
         $isDone = false;
@@ -159,8 +181,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
             array_push($premises, $premise);
         }
 
-        $sortedPremises = collect($premises)->sort()->all();
-        return $premises;
+        return collect($premises)->sort()->all();
     }
 
     public function hasRule($premises = [], $conclusion, $ruleType) {
@@ -176,7 +197,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         if ($this->hasRule($premises, $request->input(Knowledge::COL_CONCLUSION), Knowledge::TYPE_1)) {
             return false;
         }
-        
+
         return Knowledge::create([
             Knowledge::COL_CODE => $request->input(Knowledge::COL_CODE),
             Knowledge::COL_TYPE => Knowledge::TYPE_1,

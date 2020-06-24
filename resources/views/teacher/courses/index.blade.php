@@ -344,9 +344,14 @@
                 success: function (data) {
                     $('#numberEvaluation').html('Hiện tại khoá học nhận được <span class="text-primary">' + data.count + '</span> lượt đánh giá.');
                     var advises = '<ol>';
+                    // var reliabilities = Object.keys(data.reliabilities).map(function(key) {
+                    //     return [key => data.reliabilities[key]];
+                    // });
+                    var reliabilities = data.reliabilities;
                     $.each(data.advises, function (index, value) {
-                        advises += '<li>' + value.description + '</li>';
+                        advises += '<li>' + value.description + ' (Độ chắc chắn: <span class="text-green">' + reliabilities[value.code] * 100 + '%</span>)' + '</li>';
                     });
+
                     advises += '</ol>';
                     $('#advise-list').html(advises);
                 },

@@ -25,9 +25,11 @@ class KnowledgeController extends Controller
         $numberEvaluation = $this->evaluationService->countEvaluation($request->id);
         if ($numberEvaluation > Evaluation::MIN_NUMBER_EVALUATION) {
             $sr = $this->evaluationService->getAvgEvaluation($request->id);
+            $data = $this->knowledgeService->getAdvises($sr);
             return response()->json([
-                'advises' => $this->knowledgeService->getAdvises($sr),
+                'advises' => $data['advices'],
                 'count' => $numberEvaluation,
+                'reliabilities' => $data['reliabilities'],
             ], 200);
         } else {
             return response()->json(__('lesson.noAdvise'), 401);
@@ -44,7 +46,7 @@ class KnowledgeController extends Controller
         $sr = $this->evaluationService->getAvgEvaluation(1);
 //        dd($this->knowledgeService->deduceWithRule1($sr));
 //        dd($this->knowledgeService->compareWithRule2($this->knowledgeService->deduceWithRule1($sr), Knowledge::find(17)));
-        dd($this->knowledgeService->getAdvises($sr));
+//        dd($this->knowledgeService->getAdvises($sr));
     }
 
     /**
