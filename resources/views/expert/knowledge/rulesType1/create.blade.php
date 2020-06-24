@@ -52,7 +52,7 @@
                                                 <select class="form-control" id="criteria" name="criteria[]" required>
                                                     <option>{{__('knowledge.select')}}</option>
                                                     @foreach($criteria as $c)
-                                                        <option value="{{$c->code}}">{{$c->name}}</option>
+                                                        <option value="{{$c->code}}">{{ $c->code }} - {{ $c->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -89,7 +89,7 @@
                                         <select class="form-control" id="conclusion" name="conclusion" required>
                                             <option>{{__('knowledge.select')}}</option>
                                             @foreach($facts as $fact)
-                                                <option value="{{$fact->code}}">{{$fact->description}}</option>
+                                                <option value="{{$fact->code}}">{{$fact->code}} - {{$fact->description}}</option>
                                             @endforeach
                                         </select>
                                     </div>
