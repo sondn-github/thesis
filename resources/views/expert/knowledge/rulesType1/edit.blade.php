@@ -69,13 +69,13 @@
                                                     <select class="form-control" id="operator" name="operators[]"
                                                             required>
                                                         <option>{{__('knowledge.select')}}</option>
-                                                        <option value="0" @if($premise[1] == 0) selected @endif>>=
+                                                        <option value="0" @if($premise[1] == '>=') selected @endif>>=
                                                         </option>
-                                                        <option value="1" @if($premise[1] == 1) selected @endif><=
+                                                        <option value="1" @if($premise[1] == '<=') selected @endif><=
                                                         </option>
-                                                        <option value="2" @if($premise[1] == 2) selected @endif>>
+                                                        <option value="2" @if($premise[1] == '>') selected @endif>>
                                                         </option>
-                                                        <option value="3" @if($premise[1] == 3) selected @endif><
+                                                        <option value="3" @if($premise[1] == '<') selected @endif><
                                                         </option>
                                                     </select>
                                                 </div>
