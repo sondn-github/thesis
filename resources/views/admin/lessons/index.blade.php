@@ -130,7 +130,7 @@
                             }
                         },
                         {data: 'name', name: 'lessons.name'},
-                        {data: 'course.name', name: 'lessons.course.name', "searchable": false},
+                        {data: 'course_name', name: 'courses.name'},
                         {data: 'view', name: 'lessons.view'},
                         {data: 'created_at', name: 'lessons.created_at'},
                         {data: 'status', "searchable": false,

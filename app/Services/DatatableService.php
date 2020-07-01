@@ -20,13 +20,15 @@ class DatatableService extends Service implements DatatableServiceInterface
 {
     public function lessons($teacherId) {
         if (Auth::user()->role->name == 'admin') {
-            $query = Lesson::with('course');
+            $query = Lesson::select('lessons.*', 'courses.name as course_name')
+                ->leftJoin('courses', 'courses.id','=','lessons.course_id');
         } else {
-            $courseIds = Course::where(Course::COL_USER_ID, $teacherId)
-                ->pluck(Course::COL_ID)
-                ->toArray();
-            $query = Lesson::with('course')
-                ->whereIn(Lesson::COL_COURSE_ID, $courseIds);
+//            $courseIds = Course::where(Course::COL_USER_ID, $teacherId)
+//                ->pluck(Course::COL_ID)
+//                ->toArray();
+            $query = $query = Lesson::select('lessons.*', 'courses.name as course_name')
+                ->leftJoin('courses', 'courses.id','=','lessons.course_id')
+                ->where('courses.user_id', $teacherId);
         }
 
         return DataTables::of($query)
