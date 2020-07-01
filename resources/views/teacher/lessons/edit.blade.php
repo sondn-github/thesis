@@ -65,10 +65,10 @@
                         <textarea name="description" id="description" rows="5" class="form-control"
                                   placeholder="{{__('lesson.enterDescription')}}" required>{{$lesson->description}}</textarea>
                     </div>
-                    {{--                <div class="custom-file mb-3">--}}
-                    {{--                    <input type="file" class="custom-file-input" id="customFile" name="file">--}}
-                    {{--                    <label id="fileLabel" class="custom-file-label" for="customFile">{{__('lesson.chooseFile')}}</label>--}}
-                    {{--                </div>--}}
+                    <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input" id="customFile" name="file">
+                        <label id="fileLabel" class="custom-file-label" for="customFile">{{__('lesson.chooseFile')}}</label>
+                    </div>
                     <button id="updateBtn" class="btn btn-primary" type="submit">{{__('lesson.update')}}</button>
                     <a href="{{route('teacher.lesson.index')}}" class="btn btn-secondary">{{__('lesson.back')}}</a>
                 </form>
