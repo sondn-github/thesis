@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Services\Interfaces\CriteriaServiceInterface;
 use App\Services\Interfaces\EvaluationServiceInterface;
+use App\Services\Interfaces\TypeServiceInterface;
 use App\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,14 +15,17 @@ class ReportDetailController extends Controller
     private $courseService;
     private $criteriaService;
     private $evaluationService;
+    private $typeService;
 
     public function __construct(CourseServiceInterface $courseService,
                                 CriteriaServiceInterface $criteriaService,
-                                EvaluationServiceInterface $evaluationService)
+                                EvaluationServiceInterface $evaluationService,
+                                TypeServiceInterface $typeService)
     {
         $this->courseService = $courseService;
         $this->criteriaService = $criteriaService;
         $this->evaluationService = $evaluationService;
+        $this->typeService = $typeService;
     }
 
     /**
@@ -65,8 +69,8 @@ class ReportDetailController extends Controller
     public function show($id, Request $request)
     {
         $course = $this->courseService->getCourseById($id);
-        $type = $this->criteriaService->getCriteriaByTypeId(Type::TYPE_DHBK_SV);
-        $evaluation = $this->evaluationService->reportEvaluationsOfCourse($id, $request);
+        $type = $this->criteriaService->getCriteriaByTypeId($this->typeService->getUsingTypeIdForReport());
+        $evaluation = $this->evaluationService->reportEvaluationsOfCourse($id, $request, $this->typeService->getUsingTypeIdForReport());
         $fromDate = $this->evaluationService->getMinCreatedAt();
 
         $request->flashExcept('_token');

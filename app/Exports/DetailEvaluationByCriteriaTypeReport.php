@@ -5,8 +5,6 @@ namespace App\Exports;
 
 
 use App\Services\Interfaces\ReportServiceInterface;
-use App\Type;
-use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;

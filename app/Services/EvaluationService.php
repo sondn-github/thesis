@@ -135,10 +135,10 @@ class EvaluationService extends Service implements EvaluationServiceInterface
             ->get();
     }
 
-    public function reportEvaluationsOfCourse($courseId, $request) {
+    public function reportEvaluationsOfCourse($courseId, $request, $usingTypeId) {
         $evaluations = Evaluation::where(Evaluation::COL_COURSE_ID, $courseId)
             ->where(Evaluation::COL_TYPE, Evaluation::TYPE_PFR)
-            ->where(Evaluation::COL_CRITERIA_TYPE, Type::TYPE_DHBK_SV);
+            ->where(Evaluation::COL_CRITERIA_TYPE, $usingTypeId);
 
         if ($fromDate = $request->get('from-date')) {
             $evaluations->whereDate('created_at', '>=', $fromDate);

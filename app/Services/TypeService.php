@@ -68,4 +68,15 @@ class TypeService extends Service implements TypeServiceInterface
         return Type::where(Type::COL_IS_USING, 1)
             ->get();
     }
+
+    public function getUsingTypeIdForReport()
+    {
+        $typeId = $this->getUsingType()->pluck('id');
+
+        if (count($typeId) > 1) {
+            return Type::TYPE_DHBK_SV;
+        }
+
+        return $typeId;
+    }
 }
