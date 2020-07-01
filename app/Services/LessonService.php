@@ -115,4 +115,10 @@ class LessonService extends Service implements LessonServiceInterface
             return null;
         }
     }
+
+    public function getLessonsByCourseId($courseId)
+    {
+        return Lesson::where(Lesson::COL_COURSE_ID, $courseId)
+            ->get();
+    }
 }

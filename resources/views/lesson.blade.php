@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-12 border-bottom">
                     <div class="media">
                         <div class="media-left media-top mr-2">
                             <img src="{{asset($teacher->avatar)}}" class="media-object rounded-circle"
@@ -58,9 +58,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2text-right">
-
+                <div class="col-lg-12 mt-2">
+                    <h3>Danh sách bài giảng:</h3>
+                    <div class="list-group">
+                        @foreach ($lessons as $l)
+                            <a href="{{ route('display-lesson', $l->id) }}" class="list-group-item border-0 @if ($l->id == $lesson->id) active @endif"><i class="fa fa-book mr-1" aria-hidden="true"></i>{{ $l->name }}</a>
+                        @endforeach
+                    </div>
                 </div>
+            </div>
+            <div class="row">
+
             </div>
         </div>
     </div>

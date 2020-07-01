@@ -58,10 +58,12 @@ class LessonsController extends Controller
         $this->lessonService->increaseView($request->id);
         $lesson = $this->lessonService->getLessonDetailById($request->id);
         $teacher = $this->userService->getUserById($lesson->course->user_id);
+        $lessons = $this->lessonService->getLessonsByCourseId($lesson->course_id);
 
         return view('lesson', [
             'lesson' => $lesson,
             'teacher' => $teacher,
+            'lessons' => $lessons,
             ]);
     }
 
