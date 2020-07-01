@@ -77,8 +77,19 @@ class LessonService extends Service implements LessonServiceInterface
 
     public function update(UpdateLessonRequest $request, $teacherId) {
         if ($this->getLessonOfTeacher($request->id, $teacherId)) {
-            $path = Str::after($request->file('file')->store('public/files'), 'public/');
-            $path = 'storage/'.$path;
+            if ($request->hasFile('file')) {
+                $path = Str::after($request->file('file')->store('public/files'), 'public/');
+                $path = 'storage/'.$path;
+
+                return Lesson::findOrFail($request->id)
+                    ->update([
+                        Lesson::COL_NAME => $request->input(Lesson::COL_NAME),
+                        Lesson::COL_COURSE_ID => $request->input(Lesson::COL_COURSE_ID),
+                        Lesson::COL_ABSTRACT => $request->input(Lesson::COL_ABSTRACT),
+                        Lesson::COL_DESCRIPTION => $request->input(Lesson::COL_DESCRIPTION),
+                        Lesson::COL_FILE => $path,
+                    ]);
+            }
 
             return Lesson::findOrFail($request->id)
                 ->update([
@@ -86,7 +97,6 @@ class LessonService extends Service implements LessonServiceInterface
                     Lesson::COL_COURSE_ID => $request->input(Lesson::COL_COURSE_ID),
                     Lesson::COL_ABSTRACT => $request->input(Lesson::COL_ABSTRACT),
                     Lesson::COL_DESCRIPTION => $request->input(Lesson::COL_DESCRIPTION),
-                    Lesson::COL_FILE => $path,
                 ]);
 
         }

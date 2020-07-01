@@ -104,7 +104,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" id="lessonCloseBtn" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -228,7 +228,7 @@
                     }
                     $.each(data.lesson, function (index, value) {
                         index = index + 1;
-                        $('#courseDetail tbody').append('<tr><td>' + index + '</td><td>' + value.name + '</td><td><a href="javascript:void(0)" data-id="' + value.id + '" class="btn btn-xs btn-danger btn-delete"><i class="fa fa-trash"></i></a></td></tr>');
+                        $('#courseDetail tbody').append('<tr><td>' + index + '</td><td>' + value.name + '</td><td><a href="javascript:void(0)" data-id="' + value.id + '" class="btn btn-xs btn-danger btn-delete"><i class="fa fa-trash"></i></a><a href="/teacher/lessons/' + value.id + '/edit" class="btn btn-xs btn-warning ml-1"><i class="fa fa-edit"></i></a></td></tr>');
                     })
                 },
                 error: function (data) {
@@ -366,6 +366,10 @@
             $('#adviseLable').show();
             $('#numberEvaluation').html('');
             $('#advise-list').html('');
+        })
+
+        $('#lessonCloseBtn').click(function () {
+            $('#lessonsTable tbody').html('');
         })
     </script>
 @endsection
