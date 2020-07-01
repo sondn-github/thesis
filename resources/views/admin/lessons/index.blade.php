@@ -129,10 +129,10 @@
                                 return meta.row + meta.settings._iDisplayStart + 1;
                             }
                         },
-                        {data: 'name', name: 'lessons.name'},
-                        {data: 'course_name', name: 'courses.name'},
-                        {data: 'view', name: 'lessons.view'},
-                        {data: 'created_at', name: 'lessons.created_at'},
+                        {data: 'name'},
+                        {data: 'course.name'},
+                        {data: 'view'},
+                        {data: 'created_at'},
                         {data: 'status', "searchable": false,
                             render: function (data, type, row, meta) {
                                 if (data == 1) {
