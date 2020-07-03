@@ -44,6 +44,7 @@ Route::middleware(['auth', 'isTeacher'])->prefix('teacher')->name('teacher.')->g
     Route::get('/datatables/courses', 'DatatableController@courses')->name('datatables.courses');
     Route::resource('details', 'Admin\ReportDetailController');
     Route::get('/home', 'Teacher\HomeController@home')->name('home');
+    Route::get('/exports/course/{course_id}', 'Admin\ReportController@exportEvaluationOfCourse')->name('exports.course');
 });
 
 Route::resource('courses', 'CourseController');
@@ -102,6 +103,7 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::resource('reports', 'Admin\ReportController')->except(['destroy']);
     Route::get('/exports', 'Admin\ReportController@exportTotalEvaluation')->name('exports.index');
     Route::get('/exports/{criteria_type}', 'Admin\ReportController@exportDetailEvaluationByCriteria')->name('exports.show');
+    Route::get('/exports/course/{course_id}', 'Admin\ReportController@exportEvaluationOfCourse')->name('exports.course');
 
     Route::get('/datatables/posts', 'DatatableController@posts')->name('datatables.posts');
     Route::resource('posts', 'Admin\PostController');

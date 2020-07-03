@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Exports\DetailEvaluationByCriteriaTypeReport;
+use App\Exports\DetailEvaluationOfCourse;
 use App\Exports\TotalEvaluationExport;
+use App\Services\Interfaces\CriteriaServiceInterface;
+use App\Services\Interfaces\EvaluationServiceInterface;
 use App\Services\Interfaces\ReportServiceInterface;
+use App\Services\Interfaces\TypeServiceInterface;
 use App\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,10 +17,19 @@ use Maatwebsite\Excel\Facades\Excel;
 class ReportController extends Controller
 {
     private $reportService;
+    private $typeService;
+    private $evaluationService;
+    private $criteriaService;
 
-    public function __construct(ReportServiceInterface $reportService)
+    public function __construct(ReportServiceInterface $reportService,
+                                TypeServiceInterface $typeService,
+                                EvaluationServiceInterface $evaluationService,
+                                CriteriaServiceInterface $criteriaService)
     {
         $this->reportService = $reportService;
+        $this->typeService = $typeService;
+        $this->evaluationService = $evaluationService;
+        $this->criteriaService = $criteriaService;
     }
 
     /**
@@ -102,6 +115,11 @@ class ReportController extends Controller
 
     public function exportDetailEvaluationByCriteria(Request $request) {
         return Excel::download(new DetailEvaluationByCriteriaTypeReport($this->reportService, $request->criteria_type), 'detail.xlsx');
+    }
+
+    public function exportEvaluationOfCourse(Request $request)
+    {
+        return Excel::download(new DetailEvaluationOfCourse($this->typeService, $this->evaluationService, $this->criteriaService, $request), 'detail-course.xlsx');
     }
 
     public function test() {

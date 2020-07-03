@@ -25,23 +25,27 @@ class DetailEvaluationByCriteriaTypeReport implements FromCollection, WithHeadin
     public function collection()
     {
         $evaluations = $this->reportService->getDetailEvaluationByCriteriaType($this->criteriaType);
-
         $evaluation = [];
         $index = 0;
         foreach ($evaluations as $row) {
-            if (isset($evaluation[$row->course_id])) {
-                if (count($evaluation[$row->course_id]) < 5 && $row->role_name == 'teacher') {
-                    array_push($evaluation[$row->course_id], 0);
-                }
-                array_push($evaluation[$row->course_id], $row->count);
-            } else {
+            if (!isset($evaluation[$row->course_id])) {
                 $index++;
                 $evaluation[$row->course_id] = array(
                     0 => $index,
                     1 => $row->course->name,
                     2 => $row->course->user->name,
-                    3 => $row->count,
+                    3 => 0,
+                    4 => 0,
+                    5 => 0,
                 );
+            }
+
+            if ($row->role_name == 'expert') {
+                $evaluation[$row->course_id][3] = $row->count;
+            } elseif ($row->role_name == 'student') {
+                $evaluation[$row->course_id][4] = $row->count;
+            } elseif ($row->role_name == 'teacher') {
+                $evaluation[$row->course_id][5] = $row->count;
             }
         }
 

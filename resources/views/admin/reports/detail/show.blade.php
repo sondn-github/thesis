@@ -30,7 +30,7 @@
 {{--                            <div class="panel-heading">Bộ lọc</div>--}}
                             <div class="panel-body">
                                 <div class="row">
-                                    {!! Form::open(['route' => [Auth::user()->role->name . '.details.show', $course->id], 'method' => 'get', 'class' => 'form-inline ml-2']) !!}
+                                    {!! Form::open(['route' => [Auth::user()->role->name . '.details.show', $course->id], 'method' => 'get', 'class' => 'form-inline ml-2', 'id' => 'form-filter']) !!}
                                         <div class="form-group mr-5">
                                             <label for="from-date" class="mr-2">Từ:</label>
                                             <input type="date" name="from-date" class="form-control date-picker" value="{{old('from-date') ?? \Carbon\Carbon::createFromTimeString($fromDate)->toDateString()}}">
@@ -47,9 +47,10 @@
                                         </div>
                                         <div class="form-group mr-5">
                                             {!! Form::label('class_name', 'Lớp:', ['class' => 'control-label mr-2']) !!}
-                                            {!! Form::select('class_name', ['' => 'Chọn lớp', 'Hespi' => 'Hespi','SIE' => 'SIE'] , null , ['class' => 'form-control']) !!}
+                                            {!! Form::select('class_name', array_merge(['' => 'Chọn lớp'], $classes) , null , ['class' => 'form-control']) !!}
                                         </div>
                                         <button type="submit" class="btn btn-primary">Lọc</button>
+                                        <button type="button" class="btn btn-info ml-1" id="btn-reset" data-url="{{ url()->current() }}">Đặt lại</button>
                                     </form>
                                     {!! Form::close() !!}
                                 </div>
@@ -71,7 +72,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
-                                    {{--                                    <a href="{{route('admin.exports.show', 1)}}" class="btn btn-primary">Export ICT NewHouse</a>--}}
+                                    <a href="{{ route(Auth::user()->role->name . '.exports.course', $course->id) }}" id="btn-export" class="btn btn-primary">Export</a>
                                     {{--                                    <a href="{{route('admin.exports.show', 2)}}" class="btn btn-primary">Export DHBKHN</a>--}}
                                 </div>
                                 <div class="chart">
@@ -81,86 +82,9 @@
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
-                        {{--                        <!-- AREA CHART -->--}}
-                        {{--                        <div class="card card-primary">--}}
-                        {{--                            <div class="card-header">--}}
-                        {{--                                <h3 class="card-title">Area Chart</h3>--}}
-
-                        {{--                                <div class="card-tools">--}}
-                        {{--                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>--}}
-                        {{--                                    </button>--}}
-                        {{--                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <div class="card-body">--}}
-                        {{--                                <div class="chart">--}}
-                        {{--                                    <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <!-- /.card-body -->--}}
-                        {{--                        </div>--}}
-                        {{--                        <!-- /.card -->--}}
-
-                        {{--                        <!-- DONUT CHART -->--}}
-                        {{--                        <div class="card card-danger">--}}
-                        {{--                            <div class="card-header">--}}
-                        {{--                                <h3 class="card-title">Donut Chart</h3>--}}
-
-                        {{--                                <div class="card-tools">--}}
-                        {{--                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>--}}
-                        {{--                                    </button>--}}
-                        {{--                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <div class="card-body">--}}
-                        {{--                                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>--}}
-                        {{--                            </div>--}}
-                        {{--                            <!-- /.card-body -->--}}
-                        {{--                        </div>--}}
-                        {{--                        <!-- /.card -->--}}
-
-                        {{--                        <!-- PIE CHART -->--}}
-                        {{--                        <div class="card card-danger">--}}
-                        {{--                            <div class="card-header">--}}
-                        {{--                                <h3 class="card-title">Pie Chart</h3>--}}
-
-                        {{--                                <div class="card-tools">--}}
-                        {{--                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>--}}
-                        {{--                                    </button>--}}
-                        {{--                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <div class="card-body">--}}
-                        {{--                                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>--}}
-                        {{--                            </div>--}}
-                        {{--                            <!-- /.card-body -->--}}
-                        {{--                        </div>--}}
-                        {{--                        <!-- /.card -->--}}
-
                     </div>
                     <!-- /.col (LEFT) -->
                     <div class="col-md-12">
-                    {{--                        <!-- LINE CHART -->--}}
-                    {{--                        <div class="card card-info">--}}
-                    {{--                            <div class="card-header">--}}
-                    {{--                                <h3 class="card-title">Line Chart</h3>--}}
-
-                    {{--                                <div class="card-tools">--}}
-                    {{--                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>--}}
-                    {{--                                    </button>--}}
-                    {{--                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-                    {{--                            <div class="card-body">--}}
-                    {{--                                <div class="chart">--}}
-                    {{--                                    <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-                    {{--                            <!-- /.card-body -->--}}
-                    {{--                        </div>--}}
-                    {{--                        <!-- /.card -->--}}
-
-                    <!-- BAR CHART -->
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">{{__('Mức độ đồng ý của tiêu chí với khóa học')}}</h3>
@@ -297,7 +221,7 @@
             var codes = [];
             @foreach($type->criteria as $key => $c)
                 codes.push('{{$c->code}}');
-                labels.push('Tiêu chí ' + '{{$key + 1}}');
+                labels.push('Tiêu chí {{ $c->code }}');
             @endforeach
             @foreach($course->pfr as $key => $value)
                 if (codes.includes('{{$key}}')) {
@@ -501,5 +425,16 @@
         //     rtl: true,
         //     orientation: "auto"
         // })
+        $('#btn-reset').click(function () {
+            window.location.href = $(this).data('url');
+        })
+
+        $('#btn-export').click(function (e) {
+            e.preventDefault();
+            let oldUrl = $('#form-filter').attr('action');
+            $('#form-filter').attr('action', $(this).attr('href')).submit();
+            $('#form-filter').attr('action', oldUrl);
+        })
+
     </script>
 @endsection

@@ -6,6 +6,7 @@ use App\Services\Interfaces\CourseServiceInterface;
 use App\Services\Interfaces\CriteriaServiceInterface;
 use App\Services\Interfaces\EvaluationServiceInterface;
 use App\Services\Interfaces\TypeServiceInterface;
+use App\Services\Interfaces\UserServiceInterface;
 use App\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,16 +17,19 @@ class ReportDetailController extends Controller
     private $criteriaService;
     private $evaluationService;
     private $typeService;
+    private $userService;
 
     public function __construct(CourseServiceInterface $courseService,
                                 CriteriaServiceInterface $criteriaService,
                                 EvaluationServiceInterface $evaluationService,
-                                TypeServiceInterface $typeService)
+                                TypeServiceInterface $typeService,
+                                UserServiceInterface $userService)
     {
         $this->courseService = $courseService;
         $this->criteriaService = $criteriaService;
         $this->evaluationService = $evaluationService;
         $this->typeService = $typeService;
+        $this->userService = $userService;
     }
 
     /**
@@ -64,7 +68,7 @@ class ReportDetailController extends Controller
      *
      * @param int $id
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
      */
     public function show($id, Request $request)
     {
@@ -72,7 +76,7 @@ class ReportDetailController extends Controller
         $type = $this->criteriaService->getCriteriaByTypeId($this->typeService->getUsingTypeIdForReport());
         $evaluation = $this->evaluationService->reportEvaluationsOfCourse($id, $request, $this->typeService->getUsingTypeIdForReport());
         $fromDate = $this->evaluationService->getMinCreatedAt();
-
+        $classes = $this->userService->getClasses();
         $request->flashExcept('_token');
 
         return view('admin.reports.detail.show', [
@@ -80,6 +84,7 @@ class ReportDetailController extends Controller
             'type' => $type,
             'evaluation' => $evaluation,
             'fromDate' => $fromDate,
+            'classes' => $classes,
         ]);
     }
 

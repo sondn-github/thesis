@@ -126,4 +126,18 @@ class UserService extends Service implements UserServiceInterface
             ->users()
             ->get();
     }
+
+    public function getClasses()
+    {
+        $classNames = User::whereNotNull('class_name')
+            ->distinct()
+            ->pluck('class_name')->toArray();
+        $classes = [];
+
+        foreach ($classNames as $className) {
+            $classes[$className] = $className;
+        }
+
+        return $classes;
+    }
 }
