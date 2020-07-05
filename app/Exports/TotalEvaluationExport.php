@@ -25,6 +25,11 @@ class TotalEvaluationExport implements FromCollection, WithHeadings
     public function collection()
     {
         $evaluations = $this->reportService->getTotalEvaluation();
+
+        if (count($evaluations) == 0) {
+            return collect([]);
+        }
+
         $evaluation = [];
         $index = 0;
         foreach ($evaluations as $row) {

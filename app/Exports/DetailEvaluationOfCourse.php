@@ -39,6 +39,10 @@ class DetailEvaluationOfCourse implements FromCollection, WithHeadings
         $evaluation = $this->evaluationService->reportEvaluationsOfCourse($this->request->route('course_id'), $this->request, $this->typeService->getUsingTypeIdForReport());
         $data = [];
 
+        if (count($evaluation) == 0) {
+            return collect([]);
+        }
+
         foreach ($type->criteria as $key => $criterion) {
             $data[$key] = [
                 0 => $key + 1,

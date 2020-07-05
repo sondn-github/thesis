@@ -25,8 +25,13 @@ class DetailEvaluationByCriteriaTypeReport implements FromCollection, WithHeadin
     public function collection()
     {
         $evaluations = $this->reportService->getDetailEvaluationByCriteriaType($this->criteriaType);
+        if (count($evaluations) == 0) {
+            return collect([]);
+        }
+
         $evaluation = [];
         $index = 0;
+
         foreach ($evaluations as $row) {
             if (!isset($evaluation[$row->course_id])) {
                 $index++;
