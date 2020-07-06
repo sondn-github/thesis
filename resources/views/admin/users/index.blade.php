@@ -75,7 +75,7 @@
                             "previous": "Trang trước"
                         },
                     },
-                    order: [[1, 'asc']],
+                    order: [[2, 'asc']],
                     ajax: {
                         url: '{{route('admin.datatables.users')}}',
                     },

@@ -89,7 +89,8 @@ class DatatableService extends Service implements DatatableServiceInterface
     }
 
     public function users() {
-        $query = User::with('role');
+        $query = User::with('role')
+            ->orderBy('created_at', 'desc');
 
         return DataTables::of($query)
             ->make(true);
