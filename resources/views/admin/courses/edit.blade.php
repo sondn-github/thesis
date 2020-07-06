@@ -8,13 +8,15 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">{{__('layouts/header.course')}}</h1>
+                        <h1 class="m-0 text-dark">{{__('layouts/header.edit')}}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a
                                     href="{{route('admin.home')}}">{{__('layouts/header.home')}}</a></li>
-                            <li class="breadcrumb-item active">{{__('layouts/header.course')}}</li>
+                            <li class="breadcrumb-item"><a
+                                    href="{{route('admin.courses.index')}}">{{__('layouts/header.courseManagement')}}</a></li>
+                            <li class="breadcrumb-item active">{{__('layouts/header.edit')}}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
