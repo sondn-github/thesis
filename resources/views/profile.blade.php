@@ -128,7 +128,7 @@
                 <div class="col-lg-4 order-lg-1 text-center">
                     <img src="{{asset($user->avatar)}}" id="avatarImg" style="max-width: 150px;max-height: 150px" class="mx-auto img-fluid img-circle d-block"
                          alt="avatar">
-                    <form action="{{route('profile.change-avatar')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('profile.change-avatar')}}" method="post" enctype="multipart/form-data" id="form-change-avatar">
                         {{csrf_field()}}
                         <label class="btn btn-light mt-3 p-1" for="my-file-selector" id="avatar-selector">
                             <input id="my-file-selector" type="file" style="display:none"
@@ -199,6 +199,7 @@
             $(this).prop('disable', true);
             $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
                 '  <span class="sr-only">Loading...</span>');
+            $('#form-change-avatar').submit();
         });
     </script>
 @endsection
