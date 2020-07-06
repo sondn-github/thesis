@@ -27,7 +27,7 @@ class UserService extends Service implements UserServiceInterface
 
         $img->save(storage_path('app/public/'.$path));
 
-        return 'storage/'.$path;
+        return '/storage/'.$path;
     }
 
     public function update(Request $request, $userId)
