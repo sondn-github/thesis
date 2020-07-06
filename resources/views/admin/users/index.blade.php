@@ -123,37 +123,6 @@
 
                 });
 
-                $('#lessonsTable').on("click", '.btn-delete', function () {
-                    var btn = $(this);
-                    var id = btn.attr("data-id");
-                    $.confirm({
-                        title: '{{__('lesson.confirm')}}!',
-                        content: '{{__('lesson.confirmMessage')}}',
-                        buttons: {
-                            '{{__('lesson.confirm')}}': function () {
-                                $.ajax({
-                                    headers: {
-                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                    },
-                                    type: "DELETE",
-                                    url: "/admin/lessons/" + id,
-                                    dataType: "json",
-                                    success: function (data) {
-                                        btn.parent().parent().hide();
-                                        $.alert(data.success);
-                                    },
-                                    error: function (data) {
-                                        $.alert(data.error);
-                                    }
-                                });
-                            },
-                            '{{__('lesson.cancel')}}': function () {
-
-                            }
-                        }
-                    });
-                });
-
                 $('#usersTable').on("click", '.btn-delete', function () {
                     var btn = $(this);
                     var id = btn.attr("data-id");
