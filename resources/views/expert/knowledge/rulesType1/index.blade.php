@@ -25,7 +25,7 @@
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
-                <a href="{{route('expert.knowledge.create')}}" class="btn btn-primary mb-3">{{__('knowledge.new')}}</a>
+                <a href="{{route('expert.rulesType1.create')}}" class="btn btn-primary mb-3">{{__('knowledge.new')}}</a>
                 <div class="table-responsive small">
                     <table class="table table-bordered table-hover" id="knowledgeTable">
                         <thead>
@@ -92,9 +92,10 @@
                         // let premiseSource = data.join(',');
                         $.each(data, function (index, value) {
                             let elements = value.split(',')
-                            if (index !== 0) {
+                            if (index != 0) {
                                 premise += ' AND ';
                             }
+                            console.log(index + ' ' + premise);
                             premise += '(' + elements[0] + ' ' + elements[1] + ' ' + elements[2] + ')';
                         });
 
@@ -122,7 +123,7 @@
                 {
                     data: 'action', "searchable": false,
                     render: function (data, type, row, meta) {
-                        return '<a href="/expert/knowledge/' + row.id + '/edit " class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
+                        return '<a href="/expert/rulesType1/' + row.id + '/edit " class="btn btn-warning margin-r-5"><i class="fa fa-edit"></i></a>';
                     }
                 },
             ],

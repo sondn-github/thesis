@@ -16,7 +16,7 @@
                                 <a href="{{route('expert.home')}}">{{__('layouts/header.home')}}</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{route('expert.knowledge.index')}}">{{__('layouts/header.rule1Management')}}</a>
+                                <a href="{{route('expert.rulesType1.index')}}">{{__('layouts/header.rule1Management')}}</a>
                             </li>
                             <li class="breadcrumb-item active">{{__('layouts/header.edit')}}</li>
                         </ol>
@@ -28,7 +28,7 @@
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
-                <form action="{{route('expert.knowledge.update', $knowledge->id)}}" class="form-horizontal" role="form"
+                <form action="{{route('expert.rulesType1.update', $knowledge->id)}}" class="form-horizontal" role="form"
                       method="post">
                     @csrf
                     @method('PUT')
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">{{__('knowledge.update')}}</button>
-                    <a href="{{route('expert.knowledge.index')}}" class="btn btn-secondary">{{__('knowledge.back')}}</a>
+                    <a href="{{route('expert.rulesType1.index')}}" class="btn btn-secondary">{{__('knowledge.back')}}</a>
                 </form>
             </div>
         </div>

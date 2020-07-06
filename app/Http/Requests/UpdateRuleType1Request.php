@@ -25,7 +25,7 @@ class UpdateRuleType1Request extends FormRequest
     public function rules()
     {
         $rules = [
-            Knowledge::COL_CODE => 'required|unique:knowledge,code,'.$this->knowledge,
+            Knowledge::COL_CODE => 'required|unique:knowledge,code,'.$this->rulesType1,
             Knowledge::COL_CONCLUSION => 'required|exists:facts,code',
             Knowledge::COL_RELIABILITY => 'required|numeric|between:0,1',
             Knowledge::COL_STATUS => 'required|boolean',

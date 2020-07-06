@@ -11,7 +11,7 @@ use App\Services\Interfaces\KnowledgeServiceInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class KnowledgeController extends Controller
+class RuleType1Controller extends Controller
 {
     protected $knowledgeService;
     protected $criteriaService;

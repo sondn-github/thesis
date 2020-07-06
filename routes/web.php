@@ -58,10 +58,10 @@ Route::middleware(['auth', 'isExpert'])->prefix('expert')->name('expert.')->grou
     Route::resource('facts', 'Expert\FactController')->except(['destroy', 'show']);
     Route::get('/datatables/facts', 'DatatableController@facts')->name('datatables.facts');
     Route::get('/fact-status/change', 'Expert\FactController@changeStatus')->name('facts.changing-status');
-    Route::resource('knowledge', 'Expert\KnowledgeController')->except(['destroy', 'show']);
+    Route::resource('rulesType1', 'Expert\RuleType1Controller')->except(['destroy', 'show']);
     Route::get('/datatables/rulesType1', 'DatatableController@rulesType1')->name('datatables.knowledge.rulesType1');
     Route::get('/datatables/rulesType2', 'DatatableController@rulesType2')->name('datatables.knowledge.rulesType2');
-    Route::get('/rule-status/change', 'Expert\KnowledgeController@changeStatus')->name('knowledge.changing-status');
+    Route::get('/rule-status/change', 'Expert\RuleType1Controller@changeStatus')->name('knowledge.changing-status');
     Route::resource('rulesType2', 'Expert\RuleType2Controller')->except(['destroy', 'show']);
     Route::get('/home', 'Expert\HomeController@home')->name('home');
 });

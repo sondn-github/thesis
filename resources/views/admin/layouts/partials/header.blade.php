@@ -195,7 +195,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('expert.knowledge.index')}}" class="nav-link">
+                                <a href="{{route('expert.rulesType1.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{__('layouts/header.rule1Management')}}</p>
                                 </a>

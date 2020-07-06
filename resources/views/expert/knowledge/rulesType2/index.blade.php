@@ -92,7 +92,7 @@
                         // let premiseSource = data.join(',');
                         $.each(data, function (index, value) {
                             let elements = value.split(',')
-                            if (index !== 0) {
+                            if (index != 0) {
                                 premise += ' AND ';
                             }
                             premise += '(' + elements[1] + ' <= ' + elements[0] + ' <= ' + elements[2] + ')';

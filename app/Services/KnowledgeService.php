@@ -184,10 +184,11 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
         return collect($premises)->sort()->all();
     }
 
-    public function hasRule($premises = [], $conclusion, $ruleType) {
+    public function hasRule($premises = [], $conclusion, $ruleType, $ignoreId = 0) {
         return !Knowledge::where(Knowledge::COL_TYPE, Knowledge::TYPE_1)
             ->where(Knowledge::COL_PREMISE, json_encode($premises))
             ->where(Knowledge::COL_CONCLUSION, $conclusion)
+            ->where(Knowledge::COL_ID, '!=', $ignoreId)
             ->get()
             ->isEmpty();
     }
@@ -214,7 +215,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
 
     public function updateRuleType1($request, $id) {
         $premises = $this->convertToPremiseWithType1($request);
-        if ($this->hasRule($premises, $request->input(Knowledge::COL_CONCLUSION), Knowledge::TYPE_1)) {
+        if ($this->hasRule($premises, $request->input(Knowledge::COL_CONCLUSION), Knowledge::TYPE_1, $id)) {
             return false;
         }
 
@@ -264,7 +265,7 @@ class KnowledgeService extends Service implements KnowledgeServiceInterface
 
     public function updateRuleType2($request, $id) {
         $premises = $this->convertToPremiseWithType2($request);
-        if ($this->hasRule($premises, $request->input(Knowledge::COL_CONCLUSION), Knowledge::TYPE_2)) {
+        if ($this->hasRule($premises, $request->input(Knowledge::COL_CONCLUSION), Knowledge::TYPE_2, $id)) {
             return false;
         }
 

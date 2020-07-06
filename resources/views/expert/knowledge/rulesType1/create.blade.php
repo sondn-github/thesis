@@ -28,7 +28,7 @@
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
-                <form action="{{route('expert.knowledge.store')}}" class="form-horizontal" role="form" method="post">
+                <form action="{{route('expert.rulesType1.store')}}" class="form-horizontal" role="form" method="post">
                     @csrf
                     <div class="panel-group">
                         <div class="panel panel-warning mb-3">
@@ -115,7 +115,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">{{__('knowledge.create')}}</button>
-                    <a href="{{route('expert.knowledge.index')}}" class="btn btn-secondary">{{__('knowledge.back')}}</a>
+                    <a href="{{route('expert.rulesType1.index')}}" class="btn btn-secondary">{{__('knowledge.back')}}</a>
                 </form>
             </div>
         </div>
