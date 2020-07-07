@@ -50,9 +50,8 @@ class EvaluationController extends Controller
         }
     }
 
-    public function test() {
-
-//        dd($criteriaArr);
-//        $this->evaluationService->calculateToPFR(8);
+    public function showForm()
+    {
+        return view('teacher.form-evaluation');
     }
 }

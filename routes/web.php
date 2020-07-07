@@ -39,7 +39,7 @@ Route::middleware(['auth', 'isTeacher'])->prefix('teacher')->name('teacher.')->g
     Route::get('/lessons/status/change', 'LessonsController@changeStatus')->name('lesson.status.change');
     Route::get('/courses/status/change', 'Teacher\CourseController@changeStatus')->name('courses.status.change');
     Route::delete('/lessons/{id}', 'LessonsController@destroy')->name('lesson.destroy');
-    Route::get('/advises', 'KnowledgeController@getAdvises')->name('courses.advises');
+    Route::get('/advises', 'Teacher\CourseController@showAdvises')->name('courses.advises');
     Route::resource('courses', 'Teacher\CourseController');
     Route::get('/datatables/courses', 'DatatableController@courses')->name('datatables.courses');
     Route::resource('details', 'Admin\ReportDetailController');

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Teacher;
 
+use App\Evaluation;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Services\Interfaces\CategoryServiceInterface;
 use App\Services\Interfaces\CourseServiceInterface;
 use App\Services\Interfaces\DatatableServiceInterface;
+use App\Services\Interfaces\EvaluationServiceInterface;
+use App\Services\Interfaces\KnowledgeServiceInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -15,12 +18,18 @@ class CourseController extends Controller
 {
     protected $courseService;
     protected $categoryService;
+    protected $evaluationService;
+    protected $knowledgeService;
 
     public function __construct(CourseServiceInterface $courseService,
-                                CategoryServiceInterface $categoryService)
+                                CategoryServiceInterface $categoryService,
+                                EvaluationServiceInterface $evaluationService,
+                                KnowledgeServiceInterface $knowledgeService)
     {
         $this->courseService = $courseService;
         $this->categoryService = $categoryService;
+        $this->evaluationService = $evaluationService;
+        $this->knowledgeService = $knowledgeService;
     }
 
     /**
@@ -130,6 +139,21 @@ class CourseController extends Controller
             return response()->json([
                 'error' => __('lesson.updateFailed'),
             ], 500);
+        }
+    }
+
+    public function showAdvises(Request $request) {
+        $numberEvaluation = $this->evaluationService->countEvaluation($request->id);
+        if ($numberEvaluation > Evaluation::MIN_NUMBER_EVALUATION) {
+            $sr = $this->evaluationService->getAvgEvaluation($request->id);
+            $data = $this->knowledgeService->getAdvises($sr);
+            return response()->json([
+                'advises' => $data['advices'],
+                'count' => $numberEvaluation,
+                'reliabilities' => $data['reliabilities'],
+            ], 200);
+        } else {
+            return response()->json(__('lesson.noAdvise'), 401);
         }
     }
 }
