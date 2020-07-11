@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Services\Interfaces\UserServiceInterface;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,11 +59,10 @@ class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
+        if (User::where('email', $request->email)->first() && !Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
             $this->incrementLoginAttempts($request);
             return view('404');
         }
-
 
         if ($this->attemptLogin($request)) {
             return $this->sendLoginResponse($request);
